@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
-use DB, Validator;
+use DB, Validator, Illuminate\Support\Carbon;
 
 class EventsApiController extends BaseController
 {
@@ -24,43 +24,28 @@ class EventsApiController extends BaseController
 
     public function create(Request $request)
     {
-       // try {
-        $rules = [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|min:0',
-            'start_date' => 'required',
-            'start_time' => 'required',
-            'player_limit' => 'required|min:0'
-        ];
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|min:0',
-            'start_date' => 'required',
-            'start_time' => 'required',
-            'player_limit' => 'required|min:0'
-        ]);
-        //Helper::custom_validator($request->all(), $rules);
-
-          //  DB::begintransaction();
-            // $this->validate($request, [
-            //     'name' => 'required',
-            //     'description' => 'required',
-            //     'price' => 'required|min:0',
-            //     'start_date' => 'required',
-            //     'start_time' => 'required',
-            //     'player_limit' => 'required|min:0'
-            // ]);
-
-           
-            $event = Event::create($request->all());
-          //  DB::commit();
-            return $this->sendResponse($event, 'event created successfully.');
-        // } catch (\Exception $e) {
-        //    // return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
-        // }
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'description' => 'required',
+                'price' => 'required|min:0',
+                'start_date' => 'required',
+                'start_time' => 'required',
+                'player_limit' => 'required|min:0'
+            ]);
         
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            
+            DB::begintransaction();
+            $event = Event::create($request->all());
+            DB::commit();
+
+            return $this->sendResponse($event, 'event created successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
     }
 
     public function update(UpdateEventRequest $request, Event $product)
@@ -85,5 +70,44 @@ class EventsApiController extends BaseController
     {
         $DeviceToekn = User::whereNotNull('device_token')->pluck('device_token')->all();
         return $this->sendResponse($DeviceToekn, 'Events retrieved successfully.', 'Events retrieved successfully.');
+    }
+
+    public function getAllEventList()
+    {
+        try {
+            $eventLists = Event::where('status', 1)->orderBy('start_date', 'DESC')->get();
+
+            return $this->sendResponse($eventLists, 'event list get successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
+    }
+
+    public function getPastEventList()
+    {
+        try {
+            $eventLists = Event::where([
+                        ['status' , 1],
+                        ['start_date', '<=', Carbon::today()]
+                        ])->get();
+
+            return $this->sendResponse($eventLists, 'past event list get successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
+        }
+    }
+
+    public function getFutureEventList()
+    {
+        try {
+            $eventLists = Event::where([
+                        ['status' , 1],
+                        ['start_date', '>=', Carbon::today()]
+                        ])->get();
+
+            return $this->sendResponse($eventLists, 'future event list get successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
+        }
     }
 }
