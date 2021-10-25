@@ -15,12 +15,6 @@ use DB, Validator, Illuminate\Support\Carbon;
 
 class EventsApiController extends BaseController
 {
-    public function index()
-    {
-        $events = Event::all();
-
-        return $this->sendResponse($events, 'Events retrieved successfully.');
-    }
 
     public function create(Request $request)
     {
@@ -42,7 +36,7 @@ class EventsApiController extends BaseController
             $event = Event::create($request->all());
             DB::commit();
 
-            return $this->sendResponse($event, 'event created successfully.');
+            return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
         }
@@ -53,12 +47,18 @@ class EventsApiController extends BaseController
         return $product->update($request->all());
     }
 
-    public function show($id)
+    public function showEventDetails($id)
     {
-       // return $id;
-        $event = Event::findOrFail($id);
-
-        return $this->sendResponse($event, 'Events retrieved successfully.');
+        try {
+            if (isset($id) && !is_null($id)) {
+                $event = Event::findOrFail($id);
+                return $this->sendResponse($event, 'Event details get successfully.');    
+            } else {
+                return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
     }
 
     public function destroy(Event $product)
@@ -69,7 +69,7 @@ class EventsApiController extends BaseController
     public function sendUserNotification()
     {
         $DeviceToekn = User::whereNotNull('device_token')->pluck('device_token')->all();
-        return $this->sendResponse($DeviceToekn, 'Events retrieved successfully.', 'Events retrieved successfully.');
+        return $this->sendResponse($DeviceToekn, 'Token send successfully.', 'Token send successfully.');
     }
 
     public function getAllEventList()
@@ -77,7 +77,7 @@ class EventsApiController extends BaseController
         try {
             $eventLists = Event::where('status', 1)->orderBy('start_date', 'DESC')->get();
 
-            return $this->sendResponse($eventLists, 'event list get successfully.');
+            return $this->sendResponse($eventLists, 'Event list get successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
         }
@@ -89,7 +89,7 @@ class EventsApiController extends BaseController
             $eventLists = Event::where([
                         ['status' , 1],
                         ['start_date', '<=', Carbon::today()]
-                        ])->get();
+                        ])->orderBy('start_date', 'DESC')->get();
 
             return $this->sendResponse($eventLists, 'past event list get successfully.');
         } catch (\Exception $e) {
@@ -103,7 +103,7 @@ class EventsApiController extends BaseController
             $eventLists = Event::where([
                         ['status' , 1],
                         ['start_date', '>=', Carbon::today()]
-                        ])->get();
+                        ])->orderBy('start_date', 'DESC')->get();
 
             return $this->sendResponse($eventLists, 'future event list get successfully.');
         } catch (\Exception $e) {

@@ -20,19 +20,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-allevent-list', 'Api\EventsApiController@getAllEventList');
     Route::get('get-pastevent-list', 'Api\EventsApiController@getPastEventList');
     Route::get('get-futureevent-list', 'Api\EventsApiController@getFutureEventList');
-
-   // Route::apiResource('events', 'Api\EventsApiController');
-   // Route::post('events', 'Api\EventsApiController@create');
-    
-   // Route::get('events/{id}', 'Api\EventsApiController@showEventDetails');
+    Route::get('events/{id}', 'Api\EventsApiController@showEventDetails');
 });
 
-// Route::group(['prefix' => 'v1', 'as' => 'admin.', 'namespace' => 'Api\V1\Admin'], function () {
-//     Route::apiResource('permissions', 'PermissionsApiController');
-
-//     Route::apiResource('roles', 'RolesApiController');
-
-//     Route::apiResource('users', 'UsersApiController');
-
-//     Route::apiResource('events', 'EventsApiController');
-// });
