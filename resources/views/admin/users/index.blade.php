@@ -29,7 +29,7 @@
                             {{ trans('global.user.fields.email') }}
                         </th>
                         <th>
-                            {{ trans('global.user.fields.email_verified_at') }}
+                            Mobile No.
                         </th>
                         <th>
                             {{ trans('global.user.fields.roles') }}
@@ -52,7 +52,7 @@
                                 {{ $user->email ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email_verified_at ?? '' }}
+                                {{ $user->mobile_no ?? '' }}
                             </td>
                             <td>
                                 @foreach($user->roles as $key => $item)

@@ -27,13 +27,13 @@
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.user.fields.email_verified_at') }}
+                        Mobile No.
                     </th>
                     <td>
-                        {{ $user->email_verified_at }}
+                        {{ $user->mobile_no }}
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th>
                         Roles
                     </th>
@@ -42,7 +42,7 @@
                             <span class="label label-info label-many">{{ $roles->title }}</span>
                         @endforeach
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
