@@ -70,6 +70,6 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany('App\Event');
+        return $this->hasMany(Event::class);
     }
 }
