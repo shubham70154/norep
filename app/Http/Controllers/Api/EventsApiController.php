@@ -25,6 +25,7 @@ class EventsApiController extends BaseController
                 'price' => 'required|min:0',
                 'start_date' => 'required',
                 'start_time' => 'required',
+                'user_id' => 'required',
                 'player_limit' => 'required|min:0'
             ]);
         
