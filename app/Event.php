@@ -38,5 +38,10 @@ class Event extends Model
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
-     }
+    }
+
+    public function event_types()
+    {
+        return $this->belongsTo(EventType::class, 'event_type_id');
+    }
 }
