@@ -34,6 +34,7 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'mobile_no',
+        'user_type',
         'deleted_at',
         'remember_token',
         'email_verified_at',
