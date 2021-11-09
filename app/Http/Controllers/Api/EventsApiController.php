@@ -53,7 +53,7 @@ class EventsApiController extends BaseController
         try {
             if (isset($id) && !is_null($id)) {
                 $event = Event::findOrFail($id);
-                $event->user_details = $event->users;
+                $event->users;
                 return $this->sendResponse($event, 'Event details get successfully.');    
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
