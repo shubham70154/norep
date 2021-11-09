@@ -35,7 +35,7 @@ class Event extends Model
         'deleted_at'
     ];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
      }
