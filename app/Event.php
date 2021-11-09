@@ -34,9 +34,4 @@ class Event extends Model
         'updated_at',
         'deleted_at'
     ];
-
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
