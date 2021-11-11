@@ -34,10 +34,10 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
-            //$event = Event::create($request->all());
+            $event = Event::create($request->all());
             DB::commit();
 
-            return $this->sendResponse($request->all(), 'Event created successfully.');
+            return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
         }
