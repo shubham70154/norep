@@ -14,6 +14,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('roles', 'Api\RolesApiController');
 
     Route::apiResource('users', 'Api\UsersApiController');
+    Route::post('user-profile-update/{userid}', 'Api\UsersApiController@userProfileUpdate');
 
     // Events API routes
     Route::post('create-events', 'Api\EventsApiController@create');

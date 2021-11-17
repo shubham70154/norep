@@ -60,6 +60,22 @@ class RegisterController extends BaseController
         } 
     }
 
+    /**
+     * User Profile update api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userProfileUpdate(Request $request, $userId)
+    {
+        $user = User::find($userId);
+        if ($user) {
+            $user->update($request->all());
+            return $this->sendResponse($user, 'User profile updated successfully.');
+        } else {
+            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+        }
+    }
+
     public function logout()
     {
         Auth::logout();
