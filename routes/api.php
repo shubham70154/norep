@@ -5,6 +5,7 @@ Route::post('login', 'Api\RegisterController@login');
 Route::get('logout', 'Api\RegisterController@logout');
 Route::get('login-user-details/{id}', 'Api\RegisterController@getAuthUser');
 Route::post('send-notification', 'Api\EventsApiController@sendUserNotification');
+Route::post('forget-password', 'Api\RegisterController@forgetPassword');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('permissions', 'Api\PermissionsApiController');

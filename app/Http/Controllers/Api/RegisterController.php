@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+use Validator, DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
    
 class RegisterController extends BaseController
@@ -99,5 +100,59 @@ class RegisterController extends BaseController
             return $this->sendResponse($user, 'Token added successfully.');
         }
         
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|exists:users,email',
+            ]);
+            
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+
+            $user = User::firstWhere('email' , $request->email);
+
+            if(!$user) {
+                return $this->sendError('Not found.', ['error'=>'User not found with is email id!']);
+            }
+
+
+            $token = app('auth.password.broker')->createToken($user);
+
+            \App\PasswordReset::where('email', $user->email)->delete();
+
+            \App\PasswordReset::insert([
+                'email'=>$user->email,
+                'token'=>$token,
+                'created_at'=>Carbon::now()
+            ]);
+
+            $email_data['subject'] = "Password Reset NoRep";
+
+            $email_data['email']  = $user->email;
+
+            $email_data['name']  = $user->name;
+
+            $email_data['page'] = "emails.user.forget-password";
+
+            $email_data['url'] = $token;
+
+            $this->dispatch(new \App\Jobs\SendEmailJob($email_data));
+
+            DB::commit();
+
+            return $this->sendResponse([], 'Password token send successfully.');
+
+        } catch(Exception $e) {
+
+            DB::rollback();
+
+            return $this->sendError($e->getMessage(), $e->getCode());
+        }   
     }
 }
