@@ -149,10 +149,57 @@ class RegisterController extends BaseController
             return $this->sendResponse([], 'Password token send successfully.');
 
         } catch(Exception $e) {
-
             DB::rollback();
-
-            return $this->sendError($e->getMessage(), $e->getCode());
+            return $this->sendError('Exception error.', ['error'=>$e->getMessage()]);
         }   
     }
+
+    /**
+     * @method reset_password()
+     *
+     * @uses To reset the password
+     *
+     *
+     * @param object $request - Email id
+     *
+     * @return send mail to the valid user
+     */
+
+    public function resetPassword(Request $request) {
+
+        try {
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|confirmed',
+                'token' => 'required|string',
+                'password_confirmation'=>'required'
+            ]);
+            
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+
+            DB::beginTransaction();
+
+            $password_reset = \App\PasswordReset::where('token', $request->token)->first();
+
+            if(!$password_reset){
+                return $this->sendError('Not found.', ['error'=>'Invalid Token']);
+            }
+
+            $user = User::where('email', $password_reset->email)->first();
+
+            $user->password = \Hash::make($request->password);
+
+            $user->save();
+
+            \App\PasswordReset::where('email', $user->email) ->delete();
+
+            DB::commit();
+            return $this->sendResponse([], 'Password reset successfully.');
+
+        } catch(Exception $e) {
+            DB::rollback();
+            return $this->sendError('Exception error.', ['error'=>$e->getMessage()]);
+        }
+   }
 }
