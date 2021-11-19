@@ -149,7 +149,7 @@
 
                                     <tr>
                                         <td align="center">
-                                            <h3 style="font-size:0px;padding:10px 25px;word-break:break-word;">{{$data['url']}}</h3>
+                                            <p>{{$data['url']}}</p>
                                         </td>
                                     </tr>
 
