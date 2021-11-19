@@ -122,7 +122,7 @@ class RegisterController extends BaseController
             }
 
 
-            $token = app('auth.password.broker')->createToken($user);
+            $token =random_int(100000, 999999); //app('auth.password.broker')->createToken($user);
 
             \App\PasswordReset::where('email', $user->email)->delete();
 

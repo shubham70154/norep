@@ -139,7 +139,7 @@
                                                 <br></br>
 
                                                 <h3>Hello {{$data['name']}},</h3>
-                                                <p>Enter below password to proceed with resetting your account password <strong></strong></p>
+                                                <p>Enter below token to proceed with resetting your account password <strong></strong></p>
 
 
                                             </div>
