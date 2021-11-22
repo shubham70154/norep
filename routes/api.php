@@ -7,6 +7,7 @@ Route::get('login-user-details/{id}', 'Api\RegisterController@getAuthUser');
 Route::post('send-notification', 'Api\EventsApiController@sendUserNotification');
 Route::post('forget-password', 'Api\RegisterController@forgetPassword');
 Route::post('reset-password', 'Api\RegisterController@resetPassword');
+Route::get('get-page-details', 'Api\PagesApiController@getPageDetails');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('permissions', 'Api\PermissionsApiController');
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     // Events API routes
     Route::post('create-events', 'Api\EventsApiController@create');
     Route::get('get-allevent-list', 'Api\EventsApiController@getAllEventList');
+    Route::get('get-allactiveevent-list', 'Api\EventsApiController@getAllActiveEventList');
     Route::get('get-pastevent-list', 'Api\EventsApiController@getPastEventList');
     Route::get('get-futureevent-list', 'Api\EventsApiController@getFutureEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
