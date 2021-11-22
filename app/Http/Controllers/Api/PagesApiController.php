@@ -19,8 +19,11 @@ class PagesApiController extends BaseController
     {
         try {
             $pageDetail = Page::where('query_title', $title)->first();
-
-            return $this->sendResponse($pageDetail, 'page detail get successfully.');
+            if ($pageDetail) {
+                return $this->sendResponse($pageDetail, 'page detail get successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'Page not found']);
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
