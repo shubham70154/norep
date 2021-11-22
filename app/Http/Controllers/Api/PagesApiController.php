@@ -18,7 +18,7 @@ class PagesApiController extends BaseController
     public function getPageDetails($title)
     {
         try {
-            $pageDetail = Page::where('title', $title)->first();
+            $pageDetail = Page::where('query_title', $title)->first();
 
             return $this->sendResponse($pageDetail, 'page detail get successfully.');
         } catch (\Exception $e) {
