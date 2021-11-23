@@ -79,8 +79,11 @@ class EventsApiController extends BaseController
     {
         try {
             $eventLists = Event::where('status', 1)->orderBy('start_date', 'DESC')->get();
-
-            return $this->sendResponse($eventLists, 'Event list get successfully.');
+            if ($eventLists) {
+                return $this->sendResponse($eventLists, 'Event list get successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
         }
@@ -93,8 +96,12 @@ class EventsApiController extends BaseController
                         ['status' , 1],
                         ['start_date', '<=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
-
-            return $this->sendResponse($eventLists, 'past event list get successfully.');
+            if ($eventLists) {
+                return $this->sendResponse($eventLists, 'past event list get successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
+            }
+            
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
@@ -107,8 +114,11 @@ class EventsApiController extends BaseController
                         ['status' , 1],
                         ['start_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
-
-            return $this->sendResponse($eventLists, 'future event list get successfully.');
+            if ($eventLists) {
+                return $this->sendResponse($eventLists, 'future event list get successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
