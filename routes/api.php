@@ -8,8 +8,6 @@ Route::post('send-notification', 'Api\EventsApiController@sendUserNotification')
 Route::post('forget-password', 'Api\RegisterController@forgetPassword');
 Route::post('reset-password', 'Api\RegisterController@resetPassword');
 Route::get('get-page-details/{query_title}', 'Api\PagesApiController@getPageDetails');
-Route::post('save-help-support', 'Api\PagesApiController@saveHelpSupport');
-Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('permissions', 'Api\PermissionsApiController');
@@ -30,5 +28,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-pastevent-list', 'Api\EventsApiController@getPastEventList');
     Route::get('get-futureevent-list', 'Api\EventsApiController@getFutureEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
+
+    Route::post('save-help-support', 'Api\PagesApiController@saveHelpSupport');
+    Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
 });
 

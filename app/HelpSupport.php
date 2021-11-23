@@ -18,6 +18,7 @@ class HelpSupport extends Model
     protected $fillable = [
         'title',
         'description',
+        'user_id',
         'created_at',
         'updated_at',
         'deleted_at'
