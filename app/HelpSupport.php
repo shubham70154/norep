@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HelpSupport extends Model
 {
-    use SoftDeletes;
 
     protected $table = 'help_supports';
 

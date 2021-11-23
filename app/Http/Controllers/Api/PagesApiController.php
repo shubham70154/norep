@@ -54,7 +54,7 @@ class PagesApiController extends BaseController
     public function getSupportList()
     {
         try {
-            $supportList = HelpSupport::orderBy('start_date', 'DESC')->get();
+            $supportList = HelpSupport::orderBy('created_at', 'DESC')->get();
             if ($supportList) {
                 return $this->sendResponse($supportList, 'Support list get successfully.');
             } else {
