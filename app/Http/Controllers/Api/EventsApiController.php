@@ -165,7 +165,7 @@ class EventsApiController extends BaseController
                 return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
             }
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
 
