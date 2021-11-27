@@ -158,7 +158,7 @@ class EventsApiController extends BaseController
             $subeventLists = SubEvent::where([
                             ['status' , 1],
                             ['event_id', $event_id]
-                        ])->orderBy('created', 'DESC')->get();
+                        ])->orderBy('created_at', 'DESC')->get();
             if ($subeventLists) {
                 return $this->sendResponse($subeventLists, 'Sub event list get successfully.');
             } else {
