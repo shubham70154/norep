@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Event;
+use App\SubEvent;
 use App\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -121,6 +122,65 @@ class EventsApiController extends BaseController
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
+        }
+    }
+
+    public function createSubEvent(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' =>'required|event_id|exists:events,id',
+                'name' => 'required',
+                'description' => 'required',
+                'category' => 'required',
+                'event_type_id' => 'required',
+                'location' => 'required',
+                'user_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            
+            DB::begintransaction();
+            $event = SubEvent::create($request->all());
+            DB::commit();
+
+            return $this->sendResponse($event, 'Sub event created successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
+    }
+
+    public function getSubEventList($event_id)
+    {
+        try {
+            $subeventLists = SubEvent::where([
+                            ['status' , 1],
+                            ['event_id', $event_id]
+                        ])->orderBy('created', 'DESC')->get();
+            if ($subeventLists) {
+                return $this->sendResponse($subeventLists, 'Sub event list get successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
+    }
+
+    public function showSubEventDetails($subEventId)
+    {
+        try {
+            if (isset($subEventId) && !is_null($subEventId)) {
+                $subevent = SubEvent::findOrFail($subEventId);
+                
+                return $this->sendResponse($subevent, 'Sub event details get successfully.');    
+            } else {
+                return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
         }
     }
 }

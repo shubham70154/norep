@@ -203,11 +203,15 @@ class RegisterController extends BaseController
 
    public function saveTermCondition(Request $request)
     {
-        $user = User::where('id', $request->user_id)->update([
-                'is_terms_conditions_accept' => $request->is_terms_conditions_accept
-            ]);
-        if ($user) {
-            return $this->sendResponse($user, 'Terms & Condition accepted successfully.');
+        try {
+            $user = User::where('id', $request->user_id)->update([
+                    'is_terms_conditions_accept' => $request->is_terms_conditions_accept
+                ]);
+            if ($user) {
+                return $this->sendResponse($user, 'Terms & Condition accepted successfully.');
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
         
     }

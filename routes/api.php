@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-futureevent-list', 'Api\EventsApiController@getFutureEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
 
+    Route::post('create-subevents', 'Api\EventsApiController@createSubEvent');
+    Route::get('subevent/{subeventid}', 'Api\EventsApiController@showSubEventDetails');
+    Route::get('get-eubevent-list/{eventid}', 'Api\EventsApiController@getSubEventList');
+
     Route::post('save-help-support', 'Api\PagesApiController@saveHelpSupport');
     Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
 
