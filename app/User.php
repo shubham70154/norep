@@ -41,6 +41,7 @@ class User extends Authenticatable
         'user_type',
         'deleted_at',
         'remember_token',
+        'is_terms_conditions_accept',
         'email_verified_at',
         'device_token'
     ];

@@ -94,12 +94,10 @@ class RegisterController extends BaseController
 
     public function saveDeviceToken(Request $request)
     {
-        Log::info('Come: ' . json_encode($request));
         $user = User::where('id', $request->id)->update(['device_token'=>$request->device_token]);
         if ($user) {
             return $this->sendResponse($user, 'Token added successfully.');
-        }
-        
+        }   
     }
 
     public function forgetPassword(Request $request)
@@ -202,4 +200,15 @@ class RegisterController extends BaseController
             return $this->sendError('Exception error.', ['error'=>$e->getMessage()]);
         }
    }
+
+   public function saveTermCondition(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->update([
+                'is_terms_conditions_accept' => $request->is_terms_conditions_accept
+            ]);
+        if ($user) {
+            return $this->sendResponse($user, 'Terms & Condition accepted successfully.');
+        }
+        
+    }
 }

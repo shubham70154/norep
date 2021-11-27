@@ -31,5 +31,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('save-help-support', 'Api\PagesApiController@saveHelpSupport');
     Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
+
+    Route::post('save-terms-conditions', 'Api\RegisterController@saveTermCondition');
 });
 
