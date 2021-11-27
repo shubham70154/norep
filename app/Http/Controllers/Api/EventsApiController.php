@@ -129,7 +129,7 @@ class EventsApiController extends BaseController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'event_id' =>'required|event_id|exists:events,id',
+                'event_id' =>'required|exists:events,id',
                 'name' => 'required',
                 'description' => 'required',
                 'category' => 'required',
