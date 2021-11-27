@@ -9,7 +9,7 @@ class SubEvent extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'events';
+    protected $table = 'sub_events';
 
     protected $dates = [
         'created_at',
