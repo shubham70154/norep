@@ -61,7 +61,7 @@ class EventsApiController extends BaseController
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
             }
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
 
@@ -148,7 +148,7 @@ class EventsApiController extends BaseController
 
             return $this->sendResponse($event, 'Sub event created successfully.');
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
 
