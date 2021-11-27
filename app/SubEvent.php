@@ -26,6 +26,7 @@ class SubEvent extends Model
         'category',
         'location',
         'status',
+        'age',
         'created_at',
         'updated_at',
         'deleted_at'
