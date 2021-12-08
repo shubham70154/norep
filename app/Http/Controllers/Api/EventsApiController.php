@@ -39,6 +39,7 @@ class EventsApiController extends BaseController
             $event = Event::create($request->all());
 
             $images = [];
+            $videos = [];
             foreach($request->images as $image) {
                 $file = File::create([
                     'url' => $image['url'],
@@ -47,12 +48,18 @@ class EventsApiController extends BaseController
                 ]);
                 $images[] = $image['url'];
             }
+            foreach($request->videos as $video) {
+                $file = File::create([
+                    'url' => $video['url'],
+                    'type' => 'video',
+                    'event_id' => $event->id
+                ]);
+                $videos[] = $video['url'];
+            }
             DB::commit();
-        //    return $imageFiles = File::where([
-        //     ['event_id' , $event->id],
-        //     ['type', '=', 'image']
-        //     ])->get();
+       
             $event->images = $images;
+            $event->videos = $videos;
             return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
