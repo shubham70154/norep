@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\User;
 use App\Event;
+use App\SubEvent;
 use Illuminate\Support\Facades\Auth;
 use Validator, DB;
 use Carbon\Carbon;
@@ -221,14 +222,16 @@ class RegisterController extends BaseController
         try {
             $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
 
-            $getEventAssignRefereeLists = Event::where([
+            $getEventFutureLists = Event::where([
                             ['status' , 1],
                             ['start_date', '>=', Carbon::today()]
-                        ])->get();
+                        ])->lists('id')->toArray();
+
+            $getEventAssignRefereeLists = SubEvent::whereIn('event_id', $getEventFutureLists)->get();
             $freeReferee = [];
             foreach ($getEventAssignRefereeLists as $referee) {
-                if (isset($referee['user_id']) && !in_array($referee['user_id'], (array) $getAllRefereeLists)) {
-                    $freeReferee[] = $referee['user_id'];
+                if (isset($referee['referee_id']) && !in_array($referee['referee_id'], (array) $getAllRefereeLists)) {
+                    $freeReferee[] = $referee['referee_id'];
                 }
             }
 
