@@ -46,8 +46,8 @@ class EventsApiController extends BaseController
             }
             DB::commit();
             $imageFiles = File::where([
-                'event_id' => $event->id,
-                'type' => 'image'
+                ['event_id' => $event->id],
+                ['type' => 'image']
                 ])->get();
             $event->images = $imageFiles;
             return $this->sendResponse($event, 'Event created successfully.');
