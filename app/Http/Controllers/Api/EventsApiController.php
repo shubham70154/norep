@@ -49,7 +49,7 @@ class EventsApiController extends BaseController
                 'event_id' => $event->id,
                 'type' => 'image'
                 ])->get();
-            $event->image_file = $imageFiles;
+            $event->images = $imageFiles;
             return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
