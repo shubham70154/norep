@@ -35,6 +35,7 @@ class RegisterController extends BaseController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $input['email'] = strtolower($input['email']);
+        $input['user_type'] = ucfirst(strtolower($input['email']));
         $user = User::create($input);
         $success['token'] =  $user->createToken('Norep App')->accessToken;
         $success['user_details'] =  $user;
@@ -119,7 +120,6 @@ class RegisterController extends BaseController
                 return $this->sendError('Not found.', ['error'=>'User not found with is email id!']);
             }
 
-
             $token =random_int(100000, 999999); //app('auth.password.broker')->createToken($user);
 
             \App\PasswordReset::where('email', $user->email)->delete();
@@ -163,8 +163,8 @@ class RegisterController extends BaseController
      * @return send mail to the valid user
      */
 
-    public function resetPassword(Request $request) {
-
+    public function resetPassword(Request $request)
+    {
         try {
             $validator = Validator::make($request->all(), [
                 'password' => 'required|confirmed',
@@ -199,7 +199,7 @@ class RegisterController extends BaseController
             DB::rollback();
             return $this->sendError('Exception error.', ['error'=>$e->getMessage()]);
         }
-   }
+    }
 
    public function saveTermCondition(Request $request)
     {
@@ -213,6 +213,19 @@ class RegisterController extends BaseController
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
-        
+    }
+
+    public function getRefereesList()
+    {
+        try {
+            $userLists = User::where('user_type', 'Judge')->orderBy('name', 'ASC')->get();
+            if ($userLists) {
+                return $this->sendResponse($userLists, 'Referee list get successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'Referee List not found']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
     }
 }

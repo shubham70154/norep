@@ -37,5 +37,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
 
     Route::post('save-terms-conditions', 'Api\RegisterController@saveTermCondition');
+
+    Route::get('get-referees-list', 'Api\RegisterController@getRefereesList');
 });
 
