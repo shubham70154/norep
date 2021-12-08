@@ -26,6 +26,7 @@ class SubEvent extends Model
         'category',
         'location',
         'status',
+        'referee_id',
         'age',
         'created_at',
         'updated_at',
