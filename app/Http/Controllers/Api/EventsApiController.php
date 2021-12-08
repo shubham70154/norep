@@ -152,8 +152,8 @@ class EventsApiController extends BaseController
         try {
             $eventLists = Event::where([
                         ['status' , 1],
-                        ['start_date', '>=', Carbon::today()],
-                        ['end_date', '<=', Carbon::today()]
+                        ['start_date', '<=', Carbon::today()],
+                        ['end_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
             if ($eventLists) {
                 return $this->sendResponse($eventLists, 'Running event list get successfully.');
