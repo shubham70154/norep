@@ -221,12 +221,12 @@ class RegisterController extends BaseController
         try {
             $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
 
-            $getEventAssignRefereeLists = DB::table('events')->select('user_id')->where([
+            $getEventAssignRefereeLists = Event::where([
                             ['status' , 1],
                             ['start_date', '>=', Carbon::today()]
-                        ])->toArray();
+                        ])->get();
             $freeReferee = [];
-            foreach ($getEventAssignRefereeLists as $referee) {
+            foreach ((array)$getEventAssignRefereeLists as $referee) {
                 if (!in_array($referee->user_id, $getAllRefereeLists)) {
                     $freeReferee[] = $referee->user_id;
                 }
