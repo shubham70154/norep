@@ -226,9 +226,9 @@ class RegisterController extends BaseController
                             ['start_date', '>=', Carbon::today()]
                         ])->get();
             $freeReferee = [];
-            foreach ((array)$getEventAssignRefereeLists as $referee) {
-                if (!in_array($referee['user_id'], $getAllRefereeLists)) {
-                    $freeReferee[] = $referee['user_id'];
+            foreach ($getEventAssignRefereeLists as $referee) {
+                if (isset($referee->user_id) && !in_array($referee->user_id, $getAllRefereeLists)) {
+                    $freeReferee[] = $referee->user_id;
                 }
             }
 
