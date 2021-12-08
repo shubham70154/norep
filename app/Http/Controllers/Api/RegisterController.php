@@ -218,7 +218,7 @@ class RegisterController extends BaseController
     public function getRefereesList()
     {
         try {
-            $userLists = User::where('user_type', 'Judge')->orderBy('name', 'ASC')->get();
+            $userLists = User::select('name')->where('user_type', 'Judge')->orderBy('name', 'ASC')->get();
             if ($userLists) {
                 return $this->sendResponse($userLists, 'Referee list get successfully.');
             } else {
