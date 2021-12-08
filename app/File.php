@@ -14,8 +14,7 @@ class File extends Model
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $fillable = [
-        'name',
-        'mime',
+        'url',
         'type',
         'event_id',
         'sub_event_id',

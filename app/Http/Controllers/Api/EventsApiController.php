@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Event;
 use App\SubEvent;
 use App\User;
+use App\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -35,12 +36,21 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
-            return $request->images;
-           // $event = Event::create($request->all());
-
+            $event = Event::create($request->all());
+            foreach($request->images as $image) {
+                $file = File::create([
+                    'url' => $image['url'],
+                    'type' => 'image',
+                    'event_id' => $event->id
+                ]);
+            }
             DB::commit();
-
-            return $this->sendResponse($request, 'Event created successfully.');
+            $imageFiles = File::where([
+                'event_id' => $event->id,
+                'type' => 'image'
+                ])->get();
+            $event->image_file = $imageFiles;
+            return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
