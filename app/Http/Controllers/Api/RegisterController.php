@@ -243,7 +243,7 @@ class RegisterController extends BaseController
                 return $this->sendError('Oops something went wrong.', ['error'=> 'Referee List not found']);
             }
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
 }
