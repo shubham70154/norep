@@ -78,6 +78,12 @@ class EventsApiController extends BaseController
                 $event = Event::findOrFail($id);
                 $event->users;
                 $event->event_types;
+                
+                $imageFiles = File::where('type', 'image')->where('event_id', $event->id)->get();
+                $videoFiles = File::where('type', 'video')->where('event_id', $event->id)->get();
+                $event->images = $imageFiles;
+                $event->videos = $videoFiles;
+                
                 return $this->sendResponse($event, 'Event details get successfully.');    
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
@@ -155,6 +161,7 @@ class EventsApiController extends BaseController
                         ['start_date', '<=', Carbon::today()],
                         ['end_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
+        
             if ($eventLists) {
                 return $this->sendResponse($eventLists, 'Running event list get successfully.');
             } else {
@@ -217,6 +224,27 @@ class EventsApiController extends BaseController
                 $subevent = SubEvent::findOrFail($subEventId);
                 
                 return $this->sendResponse($subevent, 'Sub event details get successfully.');    
+            } else {
+                return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+        }
+    }
+
+
+    public function refereeAllocatedEvents($referee_id)
+    {
+        try {
+            if (isset($subEventId) && !is_null($subEventId)) {
+                $eventIds = SubEvent::where('referee_id', $referee_id)->lists('event_id')->toArray();
+                
+                if ($eventIds) {
+                    $events = Event::whereIn('id', $eventIds)->get();
+
+                }
+                
+                //return $this->sendResponse($events, 'Sub event details get successfully.');    
             } else {
                 return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
             }
