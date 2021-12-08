@@ -221,7 +221,7 @@ class RegisterController extends BaseController
         try {
             $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
 
-            $getEventAssignRefereeLists = Event::select('user_id')->where([
+            $getEventAssignRefereeLists = DB::table('events')->select('user_id')->where([
                             ['status' , 1],
                             ['start_date', '>=', Carbon::today()]
                         ])->toArray();
