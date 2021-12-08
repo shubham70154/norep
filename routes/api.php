@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-allactiveevent-list', 'Api\EventsApiController@getAllActiveEventList');
     Route::get('get-pastevent-list', 'Api\EventsApiController@getPastEventList');
     Route::get('get-futureevent-list', 'Api\EventsApiController@getFutureEventList');
+    Route::get('get-runningevent-list', 'Api\EventsApiController@getRunningEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
 
     Route::post('create-subevents', 'Api\EventsApiController@createSubEvent');
