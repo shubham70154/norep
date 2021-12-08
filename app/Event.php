@@ -25,6 +25,8 @@ class Event extends Model
         'start_date',
         'start_time',
         'location',
+        'latitude',
+        'longitude',
         'end_date',
         'end_time',
         'price',
