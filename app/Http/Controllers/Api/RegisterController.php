@@ -227,8 +227,8 @@ class RegisterController extends BaseController
                         ])->get();
             $freeReferee = [];
             foreach ((array)$getEventAssignRefereeLists as $referee) {
-                if (!in_array($referee->user_id, $getAllRefereeLists)) {
-                    $freeReferee[] = $referee->user_id;
+                if (!in_array($referee['user_id'], $getAllRefereeLists)) {
+                    $freeReferee[] = $referee['user_id'];
                 }
             }
 
