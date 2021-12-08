@@ -225,9 +225,9 @@ class RegisterController extends BaseController
             $getEventFutureLists = Event::where([
                             ['status' , 1],
                             ['start_date', '>=', Carbon::today()]
-                        ])->lists('id')->toArray();
+                        ])->select('id')->get();
 
-            $getEventAssignRefereeLists = SubEvent::whereIn('event_id', $getEventFutureLists)->get();
+            $getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
             foreach ($getEventAssignRefereeLists as $referee) {
                 if (isset($referee['referee_id']) && !in_array($referee['referee_id'], (array) $getAllRefereeLists)) {
