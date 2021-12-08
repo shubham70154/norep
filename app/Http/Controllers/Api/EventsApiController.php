@@ -79,9 +79,9 @@ class EventsApiController extends BaseController
                 $event->users;
                 $event->event_types;
                 
-                $imageFiles = DB::table('files')->select('url', 'type', 'event_id', 'sub_event_id')
+                $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                 ->where('type','=', 'image')->where('event_id', $event->id)->get();
-                $videoFiles = DB::table('files')->select('url', 'type', 'event_id', 'sub_event_id')
+                $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                 ->where('type', '=','video')->where('event_id', $event->id)->get();
                 $event->images = $imageFiles;
                 $event->videos = $videoFiles;
@@ -193,10 +193,31 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
-            $event = SubEvent::create($request->all());
+            $subEvent = SubEvent::create($request->all());
+            $images = [];
+            $videos = [];
+            foreach($request->images as $image) {
+                $file = File::create([
+                    'url' => $image['url'],
+                    'type' => 'image',
+                    'event_id' => $request->event_id,
+                    'sub_event_id' => $subEvent->id
+                ]);
+                $images[] = $image['url'];
+            }
+            foreach($request->videos as $video) {
+                $file = File::create([
+                    'url' => $video['url'],
+                    'type' => 'video',
+                    'event_id' => $subEvent->id
+                ]);
+                $videos[] = $video['url'];
+            }
             DB::commit();
+            $subEvent->images = $images;
+            $subEvent->videos = $videos;
 
-            return $this->sendResponse($event, 'Sub event created successfully.');
+            return $this->sendResponse($subEvent, 'Sub event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
@@ -209,6 +230,7 @@ class EventsApiController extends BaseController
                             ['status' , 1],
                             ['event_id', $event_id]
                         ])->orderBy('created_at', 'DESC')->get();
+
             if ($subeventLists) {
                 return $this->sendResponse($subeventLists, 'Sub event list get successfully.');
             } else {
@@ -224,6 +246,13 @@ class EventsApiController extends BaseController
         try {
             if (isset($subEventId) && !is_null($subEventId)) {
                 $subevent = SubEvent::findOrFail($subEventId);
+
+                $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
+                                ->where('type','=', 'image')->where('sub_event_id', $subevent->id)->get();
+                $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
+                                ->where('type', '=','video')->where('sub_event_id', $subevent->id)->get();
+                $subevent->images = $imageFiles;
+                $subevent->videos = $videoFiles;
                 
                 return $this->sendResponse($subevent, 'Sub event details get successfully.');    
             } else {

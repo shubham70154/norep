@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\User;
+use App\Event;
 use Illuminate\Support\Facades\Auth;
 use Validator, DB;
 use Carbon\Carbon;
@@ -218,9 +219,26 @@ class RegisterController extends BaseController
     public function getRefereesList()
     {
         try {
-            $userLists = User::select('name','id')->where('user_type', 'Judge')->orderBy('name', 'ASC')->get();
-            if ($userLists) {
-                return $this->sendResponse($userLists, 'Referee list get successfully.');
+            $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
+
+            $getEventAssignRefereeLists = Event::select('user_id')->where([
+                            ['status' , 1],
+                            ['start_date', '>=', Carbon::today()]
+                        ])->toArray();
+            $freeReferee = [];
+            foreach ($getEventAssignRefereeLists as $referee) {
+                if (!in_array($referee->user_id, $getAllRefereeLists)) {
+                    $freeReferee[] = $referee->user_id;
+                }
+            }
+
+            $getFreeRefereeLists = User::select('name','id')
+                                    ->where('user_type', 'Judge')
+                                    ->whereIn('id', $freeReferee)
+                                    ->orderBy('name', 'ASC')->get();
+
+            if ($getFreeRefereeLists) {
+                return $this->sendResponse($getFreeRefereeLists, 'Referee list get successfully.');
             } else {
                 return $this->sendError('Oops something went wrong.', ['error'=> 'Referee List not found']);
             }
