@@ -271,8 +271,8 @@ class EventsApiController extends BaseController
                 $eventIds = SubEvent::where('referee_id', $referee_id)->pluck('event_id')->toArray();
                 
                 if ($eventIds) {
-                   return $events = Event::whereIn('id', $eventIds)->get();
-
+                   return $events = DB::table('events')->whereIn('id', $eventIds)
+                    ->join('files', 'files.event_id', '=', 'events.id')->get();
                 }
                 
                 //return $this->sendResponse($events, 'Sub event details get successfully.');    
