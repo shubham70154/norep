@@ -277,7 +277,7 @@ class EventsApiController extends BaseController
                       return  $imagefiles = File::where([
                             ['event_id', $event->id],
                             ['type', '=', 'image']
-                        ])->sql();
+                        ])->toSql();
 
                         $videofiles = File::where([
                             ['event_id', $event->id],
