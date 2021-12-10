@@ -274,10 +274,10 @@ class EventsApiController extends BaseController
                     $events = Event::whereIn('id', $eventIds)->get();
 
                     foreach($events as $event) {
-                      return  $imagefiles = File::where([
+                      return  $imagefiles = DB::table('files')->where([
                             ['event_id', $event->id],
                             ['type', '=', 'image']
-                        ])->toSql();
+                        ])->get();
 
                         $videofiles = File::where([
                             ['event_id', $event->id],
