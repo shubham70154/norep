@@ -267,8 +267,8 @@ class EventsApiController extends BaseController
     public function refereeAllocatedEvents($referee_id)
     {
         try {
-            if (isset($subEventId) && !is_null($subEventId)) {
-                $eventIds = SubEvent::where('referee_id', $referee_id)->lists('event_id')->toArray();
+            if (isset($referee_id) && !is_null($referee_id)) {
+              return  $eventIds = SubEvent::where('referee_id', $referee_id)->lists('event_id')->toArray();
                 
                 if ($eventIds) {
                     $events = Event::whereIn('id', $eventIds)->get();
