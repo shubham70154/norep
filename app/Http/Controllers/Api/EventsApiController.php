@@ -273,19 +273,23 @@ class EventsApiController extends BaseController
                 if ($eventIds) {
                     $events = Event::whereIn('id', $eventIds)->get();
 
+                    $allevents = [];
                     foreach($events as $event) {
-                      return  $imagefiles = DB::table('files')->where([
+                        $imagefiles = DB::table('files')->where([
                             ['event_id', $event->id],
                             ['type', '=', 'image']
-                        ])->get();
+                        ])->select('url')->get();
 
-                        $videofiles = File::where([
+                        $videofiles = DB::table('files')->where([
                             ['event_id', $event->id],
                             ['type', '=', 'video']
-                        ])->get();
+                        ])->select('url')->get();
+                        $event->images =  $imagefiles;
+                        $event->vidoes =  $videofiles;
+                        $allevents[] = $event;
                     }
-                    
                 }
+                return $allevents;
                 
                 //return $this->sendResponse($events, 'Sub event details get successfully.');    
             } else {
