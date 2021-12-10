@@ -268,10 +268,10 @@ class EventsApiController extends BaseController
     {
         try {
             if (isset($referee_id) && !is_null($referee_id)) {
-              return  $eventIds = SubEvent::where('referee_id', $referee_id)->pluck('event_id')->toArray();
+                $eventIds = SubEvent::where('referee_id', $referee_id)->pluck('event_id')->toArray();
                 
                 if ($eventIds) {
-                    $events = Event::whereIn('id', $eventIds)->get();
+                   return $events = Event::whereIn('id', $eventIds)->get();
 
                 }
                 
