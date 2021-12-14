@@ -232,7 +232,7 @@ class RegisterController extends BaseController
                     $result .= $referees .',';
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
-                $refereeIds = array_unique($refereeArray);
+               return $refereeIds = array_unique($refereeArray);
             //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
             foreach ($refereeIds as $referee) {
