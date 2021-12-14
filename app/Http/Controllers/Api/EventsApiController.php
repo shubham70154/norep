@@ -268,27 +268,26 @@ class EventsApiController extends BaseController
     {
         try {
             if (isset($referee_id) && !is_null($referee_id)) {
-                $eventIds = SubEvent::where('referee_id', $referee_id)->pluck('event_id')->toArray();
                 
-                if ($eventIds) {
-                    $events = Event::whereIn('id', $eventIds)->get();
+                
+                $events = Event::where('referee_id', 'like', $referee_id . '%')->get();
 
-                    $allevents = [];
-                    foreach($events as $event) {
-                        $imagefiles = DB::table('files')->where([
-                            ['event_id', $event->id],
-                            ['type', '=', 'image']
-                        ])->select('url')->get();
+                $allevents = [];
+                foreach($events as $event) {
+                    $imagefiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['type', '=', 'image']
+                    ])->select('url')->get();
 
-                        $videofiles = DB::table('files')->where([
-                            ['event_id', $event->id],
-                            ['type', '=', 'video']
-                        ])->select('url')->get();
-                        $event->images =  $imagefiles;
-                        $event->vidoes =  $videofiles;
-                        $allevents[] = $event;
-                    }
+                    $videofiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['type', '=', 'video']
+                    ])->select('url')->get();
+                    $event->images =  $imagefiles;
+                    $event->vidoes =  $videofiles;
+                    $allevents[] = $event;
                 }
+                
                 return $allevents;
                 
                 //return $this->sendResponse($events, 'Sub event details get successfully.');    
