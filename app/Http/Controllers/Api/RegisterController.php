@@ -220,7 +220,7 @@ class RegisterController extends BaseController
     public function getRefereesList()
     {
         try {
-            $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
+           return $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
 
             $getEventFutureLists = Event::where([
                             ['status' , 1],
