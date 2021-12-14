@@ -234,7 +234,7 @@ class RegisterController extends BaseController
                     }
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
-                $refereeIds = array_unique($refereeArray);
+               return $refereeIds = array_unique($refereeArray);
             //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
             foreach ($getAllRefereeLists as $referee) {
@@ -244,7 +244,6 @@ class RegisterController extends BaseController
             }
 return $freeReferee;
             $getFreeRefereeLists = User::select('name','id')
-                                    ->where('user_type', 'Judge')
                                     ->whereIn('id', $freeReferee)
                                     ->orderBy('name', 'ASC')->get();
 
