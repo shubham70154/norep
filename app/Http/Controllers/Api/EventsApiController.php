@@ -185,7 +185,6 @@ class EventsApiController extends BaseController
                 'event_type_id' => 'required',
                 'location' => 'required',
                 'user_id' => 'required',
-                'referee_id' => 'required'
             ]);
         
             if($validator->fails()){
