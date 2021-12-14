@@ -239,7 +239,7 @@ class RegisterController extends BaseController
             $freeReferee = [];
             foreach ($getAllRefereeLists as $referee) {
                 if (!in_array($referee->id, $refereeIds)) {
-                    $freeReferee[] = $referee;
+                    $freeReferee[] = $referee->id;
                 }
             }
             $getFreeRefereeLists = User::select('name','id')
