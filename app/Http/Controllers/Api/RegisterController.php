@@ -230,11 +230,11 @@ class RegisterController extends BaseController
                 $result = '';
                 foreach ($getEventFutureLists as $referees) {
                     if (!is_null($referees->referee_id)) {
-                        $result .= $referees->referee_id .',';
+                        $result .= str_replace('"',"",$referees->referee_id) .',';
                     }
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
-                $refereeIds = json_decode(array_unique($refereeArray));
+                $refereeIds = array_unique($refereeArray);
                return $this->sendResponse($refereeIds, 'Referee list get successfully.');
             //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
