@@ -242,7 +242,7 @@ class RegisterController extends BaseController
                     $freeReferee[] = $referee;
                 }
             }
-
+return $freeReferee;
             $getFreeRefereeLists = User::select('name','id')
                                     ->where('user_type', 'Judge')
                                     ->whereIn('id', $freeReferee)
