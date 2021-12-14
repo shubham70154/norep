@@ -228,8 +228,10 @@ class RegisterController extends BaseController
                         ])->select('id','referee_id')->get();
                 
                 $result = '';
-                foreach ($getEventFutureLists->referee_id as $referees) {
-                    $result .= $referees .',';
+                foreach ($getEventFutureLists as $referees) {
+                    if (!is_null($referees->referee_id)) {
+                        $result .= $referees .',';
+                    }
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
                return $refereeIds = array_unique($refereeArray);
