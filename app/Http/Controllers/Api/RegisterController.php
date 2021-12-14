@@ -228,7 +228,7 @@ class RegisterController extends BaseController
                         ])->select('id')->get();
                 
                 $result = '';
-                foreach ($getEventFutureLists as $referees) {
+                foreach ($getEventFutureLists->referee_id as $referees) {
                     $result .= $referees .',';
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
