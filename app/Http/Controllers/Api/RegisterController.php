@@ -37,7 +37,7 @@ class RegisterController extends BaseController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $input['email'] = strtolower($input['email']);
-        $input['user_type'] = ucfirst(strtolower($input['email']));
+        $input['user_type'] = ucfirst(strtolower($input['user_type']));
         $user = User::create($input);
         $success['token'] =  $user->createToken('Norep App')->accessToken;
         $success['user_details'] =  $user;
