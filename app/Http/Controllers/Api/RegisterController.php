@@ -220,7 +220,7 @@ class RegisterController extends BaseController
     public function getRefereesList()
     {
         try {
-           return $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
+            $getAllRefereeLists = User::select('id')->where('user_type', 'Judge')->get();
 
             $getEventFutureLists = Event::where([
                             ['status' , 1],
@@ -234,15 +234,14 @@ class RegisterController extends BaseController
                     }
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
-               return $refereeIds = array_unique($refereeArray);
+                $refereeIds = array_unique($refereeArray);
             //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
             foreach ($getAllRefereeLists as $referee) {
-                if (in_array($referee->id, $refereeIds)) {
+                if (!in_array($referee->id, $refereeIds)) {
                     $freeReferee[] = $referee;
                 }
             }
-return $freeReferee;
             $getFreeRefereeLists = User::select('name','id')
                                     ->whereIn('id', $freeReferee)
                                     ->orderBy('name', 'ASC')->get();
