@@ -234,7 +234,8 @@ class RegisterController extends BaseController
                     }
                 }
                 $refereeArray = explode(',', rtrim($result, ','));
-               return $refereeIds = array_unique($refereeArray);
+                $refereeIds = array_unique($refereeArray);
+               return $this->sendResponse($refereeIds, 'Referee list get successfully.');
             //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
             foreach ($getAllRefereeLists as $referee) {
