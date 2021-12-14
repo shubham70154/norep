@@ -226,12 +226,18 @@ class RegisterController extends BaseController
                             ['status' , 1],
                             ['start_date', '>=', Carbon::today()]
                         ])->select('id')->get();
-
-            $getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
+                
+                $result = '';
+                foreach ($getEventFutureLists as $referees) {
+                    $result .= $referees .',';
+                }
+                $refereeArray = explode(',', rtrim($result, ','));
+                $refereeIds = array_unique($refereeArray);
+            //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
-            foreach ($getEventAssignRefereeLists as $referee) {
-                if (isset($referee['referee_id']) && !in_array($referee['referee_id'], (array) $getAllRefereeLists)) {
-                    $freeReferee[] = $referee['referee_id'];
+            foreach ($refereeIds as $referee) {
+                if (isset($referee) && !in_array($referee, (array) $getAllRefereeLists)) {
+                    $freeReferee[] = $referee;
                 }
             }
 
