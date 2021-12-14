@@ -237,8 +237,8 @@ class RegisterController extends BaseController
                 $refereeIds = array_unique($refereeArray);
             //$getEventAssignRefereeLists = SubEvent::whereIn('event_id', (array)$getEventFutureLists)->get();
             $freeReferee = [];
-            foreach ($refereeIds as $referee) {
-                if (isset($referee) && !in_array($referee, (array) $getAllRefereeLists)) {
+            foreach ($getAllRefereeLists as $referee) {
+                if (isset($referee->id) && !in_array($referee->id, $refereeIds)) {
                     $freeReferee[] = $referee;
                 }
             }
