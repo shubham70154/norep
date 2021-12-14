@@ -56,6 +56,7 @@ class EventsApiController extends BaseController
                 ]);
                 $videos[] = $video;
             }
+
             DB::commit();
        
             $event->images = $images;
@@ -294,6 +295,20 @@ class EventsApiController extends BaseController
             } else {
                 return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
             }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function assignEventReferees(Request $request)
+    {
+        try {
+        $event = Event::where('id', $request->event_id)->update(['referee_id'=>$request->referee_id]);
+        if ($event) {
+            return $this->sendResponse($event, 'Referee assigned successfully.');
+        } else {
+            return $this->sendError('Oops something went wrong.', ['error'=> 'Event not found']);
+        }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }

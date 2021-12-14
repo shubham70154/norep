@@ -43,5 +43,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('referee-allocate-events/{refereeid}', 'Api\EventsApiController@refereeAllocatedEvents');
     
+    Route::post('assign-event-referees', 'Api\EventsApiController@assignEventReferees');
+    
 });
 

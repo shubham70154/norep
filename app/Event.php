@@ -31,6 +31,7 @@ class Event extends Model
         'end_time',
         'price',
         'player_limit',
+        'referee_id',
         'status',
         'created_at',
         'updated_at',
