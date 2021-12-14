@@ -270,7 +270,7 @@ class EventsApiController extends BaseController
             if (isset($referee_id) && !is_null($referee_id)) {
                 
                 
-                $events = Event::where('referee_id', 'like', $referee_id . '%')->get();
+                $events = Event::where('referee_id', 'like', '% ' . $referee_id . '%')->get();
 
                 $allevents = [];
                 foreach($events as $event) {
@@ -288,11 +288,10 @@ class EventsApiController extends BaseController
                     $allevents[] = $event;
                 }
                 
-                return $allevents;
                 
-                //return $this->sendResponse($events, 'Sub event details get successfully.');    
+                return $this->sendResponse($allevents, 'Allocated event list get successfully.');    
             } else {
-                return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
+                return $this->sendError('Sub event not found.', ['error'=>'Allocated event list not found!']);
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
