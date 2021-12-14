@@ -225,7 +225,7 @@ class RegisterController extends BaseController
             $getEventFutureLists = Event::where([
                             ['status' , 1],
                             ['start_date', '>=', Carbon::today()]
-                        ])->select('id')->get();
+                        ])->select('id','referee_id')->get();
                 
                 $result = '';
                 foreach ($getEventFutureLists->referee_id as $referees) {
