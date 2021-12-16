@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('assign-event-referees', 'Api\EventsApiController@assignEventReferees');
 
     Route::post('update-event-player-limit', 'Api\EventsApiController@updateEventPlayerLimit');
+
+
+    Route::post('join-user-event', 'Api\UserEventsApiController@joinUserEvent');
     
 });
 
