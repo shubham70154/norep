@@ -36,32 +36,32 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
-           // $event = Event::create($request->all());
+            $event = Event::create($request->all());
 
-            // $images = [];
-            // $videos = [];
-            // foreach($request->images as $image) {
-            //     $file = File::create([
-            //         'url' => $image,
-            //         'type' => 'image',
-            //         'event_id' => $event->id
-            //     ]);
-            //     $images[] = $image;
-            // }
-            // foreach($request->videos as $video) {
-            //     $file = File::create([
-            //         'url' => $video,
-            //         'type' => 'video',
-            //         'event_id' => $event->id
-            //     ]);
-            //     $videos[] = $video;
-            // }
+            $images = [];
+            $videos = [];
+            foreach($request->images as $image) {
+                $file = File::create([
+                    'url' => $image,
+                    'type' => 'image',
+                    'event_id' => $event->id
+                ]);
+                $images[] = $image;
+            }
+            foreach($request->videos as $video) {
+                $file = File::create([
+                    'url' => $video,
+                    'type' => 'video',
+                    'event_id' => $event->id
+                ]);
+                $videos[] = $video;
+            }
 
-            // DB::commit();
+            DB::commit();
        
-            // $event->images = $images;
-            // $event->videos = $videos;
-           // return $this->sendResponse($event, 'Event created successfully.');
+            $event->images = $images;
+            $event->videos = $videos;
+            return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
