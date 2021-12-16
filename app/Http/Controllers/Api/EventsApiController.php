@@ -25,7 +25,7 @@ class EventsApiController extends BaseController
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required|min:0',
-                'start_date' => 'required|before_or_equal:now',
+                'start_date' => 'required|after_or_equal:now',
                 'start_time' => 'required',
                 'user_id' => 'required',
                 'player_limit' => 'required|min:0'
@@ -61,7 +61,7 @@ class EventsApiController extends BaseController
        
             // $event->images = $images;
             // $event->videos = $videos;
-            return $this->sendResponse($event, 'Event created successfully.');
+           // return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
