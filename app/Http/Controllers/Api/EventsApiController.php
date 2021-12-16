@@ -304,12 +304,26 @@ class EventsApiController extends BaseController
     public function assignEventReferees(Request $request)
     {
         try {
-        $event = Event::where('id', $request->event_id)->update(['referee_id'=>$request->referee_id]);
-        if ($event) {
-            return $this->sendResponse($event, 'Referee assigned successfully.');
-        } else {
-            return $this->sendError('Oops something went wrong.', ['error'=> 'Event not found']);
+            $event = Event::where('id', $request->event_id)->update(['referee_id'=>$request->referee_id]);
+            if ($event) {
+                return $this->sendResponse($event, 'Referee assigned successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'Event not found']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
+    }
+
+    public function updateEventPlayerLimit(Request $request)
+    {
+        try {
+            $event = Event::where('id', $request->event_id)->update(['player_limit' => $request->player_limit]);
+            if ($event) {
+                return $this->sendResponse($event, 'Event player limit updated successfully.');
+            } else {
+                return $this->sendError('Oops something went wrong.', ['error'=> 'Event not found']);
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
