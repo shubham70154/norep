@@ -9,21 +9,22 @@ use App\Event;
 use App\SubEvent;
 use App\User;
 use App\File;
-use App\UserEvent;
+use App\EventPayment;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
 use DB, Validator, Illuminate\Support\Carbon;
 
-class UserEventsApiController extends BaseController
+class EventPaymentsApiController extends BaseController
 {
-    public function joinUserEvent(Request $request)
+    public function saveEventAmount(Request $request)
     {
         try {
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
-                'user_id' => 'required'
+                'user_id' => 'required',
+                'amount' => 'required'
             ]);
         
             if($validator->fails()){
@@ -31,10 +32,12 @@ class UserEventsApiController extends BaseController
             }
             
             DB::begintransaction();
-            $result = UserEvent::create($request->all());
+            $result = EventPayment::create($request->all());
+            if ($result) {
+                Event::where('id', $request->event_id)->update(['status' => 1]);
+            }
             DB::commit();
-       
-            return $this->sendResponse($result, 'Event joined successfully.');
+            return $this->sendResponse($result, 'Event Payment successfully saved.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }

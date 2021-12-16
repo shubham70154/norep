@@ -47,8 +47,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('update-event-player-limit', 'Api\EventsApiController@updateEventPlayerLimit');
 
-
     Route::post('join-user-event', 'Api\UserEventsApiController@joinUserEvent');
     
+    Route::post('save-event-amount', 'Api\EventPaymentsApiController@saveEventAmount');
 });
 
