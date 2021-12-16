@@ -35,6 +35,7 @@ class EventPaymentsApiController extends BaseController
             $result = EventPayment::create($request->all());
             if ($result) {
                 Event::where('id', $request->event_id)->update(['status' => 1]);
+                EventPayment::where('id', $result->id)->update(['transaction_status' => 1]);
             }
             DB::commit();
             return $this->sendResponse($result, 'Event Payment successfully saved.');
