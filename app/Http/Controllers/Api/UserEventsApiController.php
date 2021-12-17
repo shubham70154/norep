@@ -63,7 +63,7 @@ class UserEventsApiController extends BaseController
             if (!is_null($eventId)) {
                $eventDetails = Event::where([
                     ['id', $eventId]
-                ])->select('refeee_id')->get();
+                ])->select('referee_id')->get();
 
                 $result = '';
                 foreach ($eventDetails as $referees) {
