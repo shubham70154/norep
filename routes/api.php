@@ -50,5 +50,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('join-user-event', 'Api\UserEventsApiController@joinUserEvent');
     
     Route::post('save-event-amount', 'Api\EventPaymentsApiController@saveEventAmount');
+
+    Route::get('get-participants-list-by-eventId/{eventid}', 'Api\UserEventsApiController@getParticipantsListByEventId');
 });
 

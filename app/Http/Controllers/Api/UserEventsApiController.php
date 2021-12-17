@@ -39,4 +39,23 @@ class UserEventsApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
+
+    public function getParticipantsListByEventId($eventId)
+    {
+        try {
+            if (!is_null($eventId)) {
+               $result = UserEvent::where([
+                    ['event_id', $eventId]
+                ])->pluck('user_id')->toArray();
+
+                $participantList = User::whereIn('id', $result)->get();
+                return $this->sendResponse($result, 'Participants list get successfully.');
+            }
+       
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+
 }
