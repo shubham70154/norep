@@ -49,7 +49,7 @@ class UserEventsApiController extends BaseController
                 ])->pluck('user_id')->toArray();
 
                 $participantList = User::whereIn('id', $result)->get();
-                return $this->sendResponse($result, 'Participants list get successfully.');
+                return $this->sendResponse($participantList, 'Participants list get successfully.');
             }
        
         } catch (\Exception $e) {
