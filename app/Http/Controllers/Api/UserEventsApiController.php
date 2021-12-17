@@ -57,5 +57,30 @@ class UserEventsApiController extends BaseController
         }
     }
 
+    public function getRefereeListByEventId($eventId)
+    {
+        try {
+            if (!is_null($eventId)) {
+               $eventDetails = Event::where([
+                    ['id', $eventId]
+                ])->select('refeee_id')->get();
+
+                $result = '';
+                foreach ($eventDetails as $referees) {
+                    if (!is_null($referees->referee_id)) {
+                        $result .= str_replace('"',"",$referees->referee_id) .',';
+                    }
+                }
+                $refereeArray = explode(',', rtrim($result, ','));
+                $refereeIds = array_unique($refereeArray);
+
+                $participantList = User::whereIn('id', $refereeIds)->get();
+                return $this->sendResponse($participantList, 'Participants list get successfully.');
+            }
+       
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
 
 }
