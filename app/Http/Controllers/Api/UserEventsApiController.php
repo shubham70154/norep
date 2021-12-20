@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
+use App\Http\Requests\Request as RequestsRequest;
 use DB, Validator, Illuminate\Support\Carbon;
 
 class UserEventsApiController extends BaseController
@@ -76,6 +77,33 @@ class UserEventsApiController extends BaseController
 
                 $participantList = User::whereIn('id', $refereeIds)->get();
                 return $this->sendResponse($participantList, 'Participants list get successfully.');
+            }
+       
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function checkUserJoinedEvents(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' => 'required',
+                'user_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            
+            $result = UserEvent::where([
+                ['event_id', $request->event_id],
+                ['user_id', $request->user_id]
+            ])->first();
+            if ($result) {
+                return $this->sendResponse($result, 'Already joined.');     
+            } else {
+                return $this->sendError('Not Joined.', ['error'=>'Event not joined']);
             }
        
         } catch (\Exception $e) {

@@ -54,5 +54,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-participants-list-by-eventId/{eventid}', 'Api\UserEventsApiController@getParticipantsListByEventId');
 
     Route::get('get-referee-list-by-eventId/{eventid}', 'Api\UserEventsApiController@getRefereeListByEventId');
+    
+    Route::post('check-user-joined-events', 'Api\UserEventsApiController@checkUserJoinedEvents');
 });
 
