@@ -196,16 +196,25 @@ class EventsApiController extends BaseController
             
             $req_images = $request->images;
             $req_videos = $request->videos;
-            $request->request->remove('images');
-            $request->request->remove('videos');
-            $request->request->remove('docs');
-            $scoreboard = json_encode($request['scoreboard'],true);
-            $timer = json_encode($request['timer'],true);
-            
-            $request->scoreboard = $scoreboard;
-            $request->timer = $timer;
-            return $request->all();
-            $subEvent = SubEvent::create($request->all());
+            $data = [
+                'event_id' => $request->event_id,
+                'age' => $request->age,
+                'category' => $request->category,
+                'name' => $request->name,
+                'event_type_id' => $request->event_type_id,
+                'user_id' => $request->user_id,
+                'description' => $request->description,
+                'location' => $request->location,
+                'timer' => json_encode($request->timer),
+                'scoreboard' => json_encode($request->scoreboard),
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'start_date' => $request->start_date,
+                'start_time' => $request->start_time,
+                'end_date' => $request->end_date,
+                'end_time' => $request->end_time,
+            ];
+            $subEvent = SubEvent::create($data);
             DB::commit();
             $images = [];
             $videos = [];
