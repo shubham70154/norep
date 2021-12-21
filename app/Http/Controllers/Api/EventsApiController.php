@@ -197,6 +197,7 @@ class EventsApiController extends BaseController
             DB::commit();
             $images = [];
             $videos = [];
+            return $request->images;
             foreach($request->images as $image) {
                 $file = File::create([
                     'url' => $image,
