@@ -193,9 +193,6 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
-            
-            $req_images = $request->images;
-            $req_videos = $request->videos;
             $data = [
                 'event_id' => $request->event_id,
                 'age' => $request->age,
@@ -215,9 +212,14 @@ class EventsApiController extends BaseController
                 'end_time' => $request->end_time,
             ];
             $subEvent = SubEvent::create($data);
-            DB::commit();
+
+            $req_images = $request->images;
+            $req_videos = $request->videos;
+            $req_docs = $request->docs;
+            
             $images = [];
             $videos = [];
+            $docs = [];
             foreach($req_images as $image) {
                 $file = File::create([
                     'url' => $image,
@@ -227,6 +229,7 @@ class EventsApiController extends BaseController
                 ]);
                 $images[] = $image;
             }
+
             foreach($req_videos as $video) {
                 $file = File::create([
                     'url' => $video,
@@ -236,8 +239,20 @@ class EventsApiController extends BaseController
                 ]);
                 $videos[] = $video;
             }
+
+            foreach($req_docs as $doc) {
+                $file = File::create([
+                    'url' => $doc,
+                    'type' => 'doc',
+                    'event_id' => $request->event_id,
+                    'sub_event_id' => $subEvent->id
+                ]);
+                $docs[] = $doc;
+            }
+            DB::commit();
             $subEvent->images = $images;
             $subEvent->videos = $videos;
+            $subEvent->docs = $doc;
 
             return $this->sendResponse($subEvent, 'Sub event created successfully.');
         } catch (\Exception $e) {
