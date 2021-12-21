@@ -198,6 +198,7 @@ class EventsApiController extends BaseController
             unset($request->images);
             unset($request->videos);
             unset($request->docs);
+            return $request->all();
             $subEvent = SubEvent::create($request->all());
             DB::commit();
             $images = [];
