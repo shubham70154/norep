@@ -193,12 +193,16 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
+            $req_images = $request->images;
+            $req_videos = $request->videos;
+            unset($request->images);
+            unset($request->videos);
+            unset($request->docs);
             $subEvent = SubEvent::create($request->all());
             DB::commit();
             $images = [];
             $videos = [];
-            return $request->images;
-            foreach($request->images as $image) {
+            foreach($req_images as $image) {
                 $file = File::create([
                     'url' => $image,
                     'type' => 'image',
@@ -207,7 +211,7 @@ class EventsApiController extends BaseController
                 ]);
                 $images[] = $image;
             }
-            foreach($request->videos as $video) {
+            foreach($req_videos as $video) {
                 $file = File::create([
                     'url' => $video,
                     'type' => 'video',
