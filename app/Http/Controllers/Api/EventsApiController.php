@@ -196,9 +196,9 @@ class EventsApiController extends BaseController
             
             $req_images = $request->images;
             $req_videos = $request->videos;
-            $request->remove('images');
-            $request->remove('images');
-            $request->remove('images');
+            $request->request->remove('images');
+            $request->request->remove('images');
+            $request->request->remove('images');
             return $request->all();
             $subEvent = SubEvent::create($request->all());
             DB::commit();
