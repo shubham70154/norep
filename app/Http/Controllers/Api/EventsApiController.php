@@ -199,6 +199,7 @@ class EventsApiController extends BaseController
             $request->images = '';
             $request->videos = '';
             $request->docs = '';
+            return $request->all();
             $subEvent = SubEvent::create($request->all());
             DB::commit();
             $images = [];
