@@ -193,7 +193,8 @@ class EventsApiController extends BaseController
             }
             
             DB::begintransaction();
-            $data = $request;
+            $requestData = $request->getContent();
+            $data = json_decode($requestData, true);
             $req_images = $request->images;
             $req_videos = $request->videos;
             $data->unset('images');
