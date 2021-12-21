@@ -199,8 +199,8 @@ class EventsApiController extends BaseController
             $request->request->remove('images');
             $request->request->remove('videos');
             $request->request->remove('docs');
-            $scoreboard = json_encode($request['scoreboard']);
-            $timer = json_encode($request['timer']);
+            $scoreboard = json_encode($request['scoreboard'],true);
+            $timer = json_encode($request['timer'],true);
             
             $request->scoreboard = $scoreboard;
             $request->timer = $timer;
