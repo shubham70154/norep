@@ -199,7 +199,7 @@ class EventsApiController extends BaseController
             $request->request->remove('images');
             $request->request->remove('videos');
             $request->request->remove('docs');
-            return $request->scoreboard;
+            return $request['scoreboard'];
             $subEvent = SubEvent::create($request->all());
             DB::commit();
             $images = [];
