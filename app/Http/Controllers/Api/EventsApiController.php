@@ -194,6 +194,7 @@ class EventsApiController extends BaseController
             
             DB::begintransaction();
             $subEvent = SubEvent::create($request->all());
+            DB::commit();
             $images = [];
             $videos = [];
             foreach($request->images as $image) {
@@ -209,11 +210,11 @@ class EventsApiController extends BaseController
                 $file = File::create([
                     'url' => $video,
                     'type' => 'video',
+                    'event_id' => $request->event_id,
                     'event_id' => $subEvent->id
                 ]);
                 $videos[] = $video;
             }
-            DB::commit();
             $subEvent->images = $images;
             $subEvent->videos = $videos;
 
