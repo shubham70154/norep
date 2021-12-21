@@ -252,7 +252,7 @@ class EventsApiController extends BaseController
             DB::commit();
             $subEvent->images = $images;
             $subEvent->videos = $videos;
-            $subEvent->docs = $doc;
+            $subEvent->docs = $docs;
 
             return $this->sendResponse($subEvent, 'Sub event created successfully.');
         } catch (\Exception $e) {
