@@ -253,6 +253,8 @@ class EventsApiController extends BaseController
             $subEvent->images = $images;
             $subEvent->videos = $videos;
             $subEvent->docs = $docs;
+            $subEvent->scoreboard = json_decode($subEvent->scoreboard);
+            $subEvent->timer = json_decode($subEvent->timer);
 
             return $this->sendResponse($subEvent, 'Sub event created successfully.');
         } catch (\Exception $e) {
