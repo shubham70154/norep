@@ -114,7 +114,7 @@ class EventsApiController extends BaseController
             if ($eventLists) {
                 return $this->sendResponse($eventLists, 'Event list get successfully.');
             } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
+                return $this->sendError('List not found.', ['error'=> 'List not found']);
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
@@ -301,7 +301,7 @@ class EventsApiController extends BaseController
             if ($allevents) {
                 return $this->sendResponse($allevents, 'Sub event list get successfully.');
             } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
+                return $this->sendError('Sub Event not found.', ['error'=> 'List not found']);
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
