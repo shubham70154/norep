@@ -200,30 +200,30 @@ class EventsApiController extends BaseController
             unset($data['images']);
             unset($data['videos']);
             unset($data['docs']);
-            $subEvent = SubEvent::create($data);
+            $subEvent = SubEvent::create([$data]);
             DB::commit();
-            // $images = [];
-            // $videos = [];
-            // foreach($req_images as $image) {
-            //     $file = File::create([
-            //         'url' => $image,
-            //         'type' => 'image',
-            //         'event_id' => $request->event_id,
-            //         'sub_event_id' => $subEvent->id
-            //     ]);
-            //     $images[] = $image;
-            // }
-            // foreach($req_videos as $video) {
-            //     $file = File::create([
-            //         'url' => $video,
-            //         'type' => 'video',
-            //         'event_id' => $request->event_id,
-            //         'sub_event_id' => $subEvent->id
-            //     ]);
-            //     $videos[] = $video;
-            // }
-            // $subEvent->images = $images;
-            // $subEvent->videos = $videos;
+            $images = [];
+            $videos = [];
+            foreach($req_images as $image) {
+                $file = File::create([
+                    'url' => $image,
+                    'type' => 'image',
+                    'event_id' => $request->event_id,
+                    'sub_event_id' => $subEvent->id
+                ]);
+                $images[] = $image;
+            }
+            foreach($req_videos as $video) {
+                $file = File::create([
+                    'url' => $video,
+                    'type' => 'video',
+                    'event_id' => $request->event_id,
+                    'sub_event_id' => $subEvent->id
+                ]);
+                $videos[] = $video;
+            }
+            $subEvent->images = $images;
+            $subEvent->videos = $videos;
 
             return $this->sendResponse($subEvent, 'Sub event created successfully.');
         } catch (\Exception $e) {
