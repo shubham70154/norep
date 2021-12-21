@@ -29,6 +29,12 @@ class SubEvent extends Model
         'timer',
         'scoreboard',
         'age',
+        'latitude',
+        'longitude',
+        'start_date',
+        'start_time',
+        'end_date',
+        'end_time',
         'created_at',
         'updated_at',
         'deleted_at'
