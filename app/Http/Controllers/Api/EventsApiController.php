@@ -219,7 +219,8 @@ class EventsApiController extends BaseController
 
             return $this->sendResponse($subEvent, 'Sub event created successfully.');
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line'=> $e->getLine()]);
         }
     }
 
