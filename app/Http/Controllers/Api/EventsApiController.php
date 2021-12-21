@@ -211,7 +211,7 @@ class EventsApiController extends BaseController
                     'url' => $video,
                     'type' => 'video',
                     'event_id' => $request->event_id,
-                    'event_id' => $subEvent->id
+                    'sub_event_id' => $subEvent->id
                 ]);
                 $videos[] = $video;
             }
