@@ -201,7 +201,9 @@ class EventsApiController extends BaseController
             $request->request->remove('docs');
             $request->scoreboard = json_encode($request['scoreboard']);
             $request->timer = json_encode($request['timer']);
-            //return $request['scoreboard'];
+            $request->request->remove('scoreboard');
+            $request->request->remove('timer');
+            return $request->all();
             $subEvent = SubEvent::create($request->all());
             DB::commit();
             $images = [];
