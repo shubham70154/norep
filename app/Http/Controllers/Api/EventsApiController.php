@@ -298,11 +298,8 @@ class EventsApiController extends BaseController
                 $allevents[] = $event;
             }
 
-            if ($allevents) {
-                return $this->sendResponse($allevents, 'Sub event list get successfully.');
-            } else {
-                return $this->sendError('Sub Events not found.', ['error'=> 'List not found']);
-            }
+            return $this->sendResponse($allevents, 'Sub event list get successfully.');
+            
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
