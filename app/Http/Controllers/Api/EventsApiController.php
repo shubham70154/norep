@@ -392,4 +392,13 @@ class EventsApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
+
+    public function getEventTimelines($event_id)
+    {
+        if (isset($event_id) && !is_null($event_id))
+        {
+            $subEvents = SubEvent::where('status',1)->orderBy('start_date',ASC)->get();
+            return $subEvents;
+        }
+    }
 }
