@@ -128,11 +128,7 @@ class EventsApiController extends BaseController
                         ['status' , 1],
                         ['start_date', '<=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
-            if ($eventLists) {
-                return $this->sendResponse($eventLists, 'past event list get successfully.');
-            } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
-            }
+            return $this->sendResponse($eventLists, 'past event list get successfully.');
             
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
@@ -146,11 +142,7 @@ class EventsApiController extends BaseController
                         ['status' , 1],
                         ['start_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
-            if ($eventLists) {
-                return $this->sendResponse($eventLists, 'future event list get successfully.');
-            } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
-            }
+            return $this->sendResponse($eventLists, 'future event list get successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
@@ -165,11 +157,7 @@ class EventsApiController extends BaseController
                         ['end_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
         
-            if ($eventLists) {
-                return $this->sendResponse($eventLists, 'Running event list get successfully.');
-            } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'List not found']);
-            }
+            return $this->sendResponse($eventLists, 'Running event list get successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
@@ -369,11 +357,7 @@ class EventsApiController extends BaseController
     {
         try {
             $event = Event::where('id', $request->event_id)->update(['referee_id'=>$request->referee_id]);
-            if ($event) {
-                return $this->sendResponse($event, 'Referee assigned successfully.');
-            } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'Event not found']);
-            }
+            return $this->sendResponse($event, 'Referee assigned successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
@@ -383,11 +367,7 @@ class EventsApiController extends BaseController
     {
         try {
             $event = Event::where('id', $request->event_id)->update(['player_limit' => $request->player_limit]);
-            if ($event) {
-                return $this->sendResponse($event, 'Event player limit updated successfully.');
-            } else {
-                return $this->sendError('Oops something went wrong.', ['error'=> 'Event not found']);
-            }
+            return $this->sendResponse($event, 'Event player limit updated successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
@@ -397,11 +377,41 @@ class EventsApiController extends BaseController
     {
         if (isset($event_id) && !is_null($event_id))
         {
-            $subEvents = SubEvent::where([
-                ['status', 1],
-                ['event_id', $event_id]
-                ])->orderBy('start_date', 'ASC')->get();
-            return $subEvents;
+            $runningEventLists = Event::where([
+                ['status' , 1],
+                ['start_date', '<=', Carbon::today()],
+                ['end_date', '>=', Carbon::today()]
+                ])->orderBy('start_date', 'DESC')->get();
+            
+            $runningEvents = [];
+            foreach($runningEventLists as $event) {
+                $event->timeline_status =  'active';
+                $runningEvents[] = $event;
+            }
+
+            $upcomingEventLists = Event::where([
+                ['status' , 1],
+                ['start_date', '>=', Carbon::today()]
+                ])->orderBy('start_date', 'DESC')->get();
+
+            $upcomingEvents = [];
+            foreach($upcomingEventLists as $event) {
+                $event->timeline_status =  'upcoming';
+                $upcomingEvents[] = $event;
+            }
+            
+            $pastEventLists = Event::where([
+                ['status' , 1],
+                ['start_date', '<=', Carbon::today()]
+                ])->orderBy('start_date', 'DESC')->get();
+
+            $pastEvents = [];
+            foreach($pastEventLists as $event) {
+                $event->timeline_status =  'past';
+                $pastEvents[] = $event;
+            }
+            $timeSubEvents = array_merge($runningEvents, $upcomingEvents, $pastEvents);
+            return $this->sendResponse($timeSubEvents, 'Event timeline list get successfully.');
         }
     }
 }
