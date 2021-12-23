@@ -111,11 +111,23 @@ class EventsApiController extends BaseController
     {
         try {
             $eventLists = Event::where('status', 1)->orderBy('start_date', 'DESC')->get();
-            if ($eventLists) {
-                return $this->sendResponse($eventLists, 'Event list get successfully.');
-            } else {
-                return $this->sendError('List not found.', ['error'=> 'List not found']);
+            $allevents = [];
+            foreach($eventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
+                $allevents[] = $event;
             }
+
+            return $this->sendResponse($allevents, 'Event list get successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
         }
