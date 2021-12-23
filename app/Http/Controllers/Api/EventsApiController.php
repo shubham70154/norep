@@ -386,7 +386,7 @@ class EventsApiController extends BaseController
             
             $runningEvents = [];
             foreach($runningEventLists as $event) {
-                $event->timeline_status =  'active';
+                $event->timeline_status =  'running';
                 $runningEvents[] = $event;
             }
 
