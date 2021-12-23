@@ -386,6 +386,19 @@ class EventsApiController extends BaseController
             
             $runningEvents = [];
             foreach($runningEventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
                 $event->timeline_status =  'running';
                 $runningEvents[] = $event;
             }
@@ -398,6 +411,19 @@ class EventsApiController extends BaseController
 
             $upcomingEvents = [];
             foreach($upcomingEventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
                 $event->timeline_status =  'upcoming';
                 $upcomingEvents[] = $event;
             }
@@ -410,6 +436,19 @@ class EventsApiController extends BaseController
 
             $pastEvents = [];
             foreach($pastEventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
                 $event->timeline_status =  'past';
                 $pastEvents[] = $event;
             }
