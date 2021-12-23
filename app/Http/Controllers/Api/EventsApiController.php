@@ -379,6 +379,7 @@ class EventsApiController extends BaseController
         {
             $runningEventLists = Event::where([
                 ['status' , 1],
+                ['event_id' , $event_id],
                 ['start_date', '<=', Carbon::today()],
                 ['end_date', '>=', Carbon::today()]
                 ])->orderBy('start_date', 'DESC')->get();
@@ -391,6 +392,7 @@ class EventsApiController extends BaseController
 
             $upcomingEventLists = Event::where([
                 ['status' , 1],
+                ['event_id' , $event_id],
                 ['start_date', '>=', Carbon::today()]
                 ])->orderBy('start_date', 'DESC')->get();
 
@@ -402,6 +404,7 @@ class EventsApiController extends BaseController
             
             $pastEventLists = Event::where([
                 ['status' , 1],
+                ['event_id' , $event_id],
                 ['start_date', '<=', Carbon::today()]
                 ])->orderBy('start_date', 'DESC')->get();
 
