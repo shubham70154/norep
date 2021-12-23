@@ -377,7 +377,7 @@ class EventsApiController extends BaseController
     {
         if (isset($event_id) && !is_null($event_id))
         {
-            $runningEventLists = Event::where([
+            $runningEventLists = SubEvent::where([
                 ['status' , 1],
                 ['event_id' , $event_id],
                 ['start_date', '<=', Carbon::today()],
@@ -390,7 +390,7 @@ class EventsApiController extends BaseController
                 $runningEvents[] = $event;
             }
 
-            $upcomingEventLists = Event::where([
+            $upcomingEventLists = SubEvent::where([
                 ['status' , 1],
                 ['event_id' , $event_id],
                 ['start_date', '>=', Carbon::today()]
@@ -402,7 +402,7 @@ class EventsApiController extends BaseController
                 $upcomingEvents[] = $event;
             }
             
-            $pastEventLists = Event::where([
+            $pastEventLists = SubEvent::where([
                 ['status' , 1],
                 ['event_id' , $event_id],
                 ['start_date', '<=', Carbon::today()]
