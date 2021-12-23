@@ -57,6 +57,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     
     Route::post('check-user-joined-events', 'Api\UserEventsApiController@checkUserJoinedEvents');
 
-    Route::post('get-event-timelines', 'Api\UserEventsApiController@getEventTimelines');
+    Route::post('get-event-timelines/{event_id}', 'Api\UserEventsApiController@getEventTimelines');
 });
 
