@@ -397,7 +397,10 @@ class EventsApiController extends BaseController
     {
         if (isset($event_id) && !is_null($event_id))
         {
-            $subEvents = SubEvent::where('status',1)->orderBy('start_date','ASC')->get();
+            $subEvents = SubEvent::where([
+                ['status', 1],
+                ['event_id', $event_id]
+                ])->orderBy('start_date', 'ASC')->get();
             return $subEvents;
         }
     }
