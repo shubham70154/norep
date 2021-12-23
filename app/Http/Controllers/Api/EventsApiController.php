@@ -128,7 +128,23 @@ class EventsApiController extends BaseController
                         ['status' , 1],
                         ['start_date', '<=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
-            return $this->sendResponse($eventLists, 'past event list get successfully.');
+            
+            $allevents = [];
+            foreach($eventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
+                $allevents[] = $event;
+            }
+            return $this->sendResponse($allevents, 'past event list get successfully.');
             
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
@@ -142,7 +158,23 @@ class EventsApiController extends BaseController
                         ['status' , 1],
                         ['start_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
-            return $this->sendResponse($eventLists, 'future event list get successfully.');
+            
+            $allevents = [];
+            foreach($eventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
+                $allevents[] = $event;
+            }
+            return $this->sendResponse($allevents, 'future event list get successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
@@ -156,8 +188,24 @@ class EventsApiController extends BaseController
                         ['start_date', '<=', Carbon::today()],
                         ['end_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
+             
+            $allevents = [];
+            foreach($eventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
+                $allevents[] = $event;
+            }
         
-            return $this->sendResponse($eventLists, 'Running event list get successfully.');
+            return $this->sendResponse($allevents, 'Running event list get successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
         }
