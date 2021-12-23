@@ -522,4 +522,18 @@ class EventsApiController extends BaseController
             return $this->sendResponse($timeSubEvents, 'Event timeline list get successfully.');
         }
     }
+
+    public function getSubEventCategoryLists()
+    {
+        try {
+            $categoryList = DB::table('sub_event_categories')->select('id','name')
+                            ->where('status' , 1)->get();
+
+
+            return $this->sendResponse($categoryList, 'Sub event category list get successfully.');
+            
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
 }
