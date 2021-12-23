@@ -21,6 +21,7 @@ class SubEvent extends Model
         'name',
         'event_id',
         'event_type_id',
+        'sub_event_category_id',
         'user_id',
         'description',
         'category',
