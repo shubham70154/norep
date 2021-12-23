@@ -460,6 +460,8 @@ class EventsApiController extends BaseController
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
                 $event->timeline_status =  'running';
+                $event->scoreboard = json_decode($event->scoreboard);
+                $event->timer = json_decode($event->timer);
                 $runningEvents[] = $event;
             }
 
@@ -485,6 +487,8 @@ class EventsApiController extends BaseController
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
                 $event->timeline_status =  'upcoming';
+                $event->scoreboard = json_decode($event->scoreboard);
+                $event->timer = json_decode($event->timer);
                 $upcomingEvents[] = $event;
             }
             
@@ -510,6 +514,8 @@ class EventsApiController extends BaseController
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
                 $event->timeline_status =  'past';
+                $event->scoreboard = json_decode($event->scoreboard);
+                $event->timer = json_decode($event->timer);
                 $pastEvents[] = $event;
             }
             $timeSubEvents = array_merge($runningEvents, $upcomingEvents, $pastEvents);
