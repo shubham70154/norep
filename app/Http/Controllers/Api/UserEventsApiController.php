@@ -41,14 +41,16 @@ class UserEventsApiController extends BaseController
 
             $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id');
             
-            $freeReferee = [];
-            foreach ($refereeIds as $referee) {
-                return $referee;
-                if (!in_array($referee, $getAssignedRefereeLists)) {
-                    $freeReferee[] = $referee;
-                }
-            }
-            return $freeReferee;
+            $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
+            $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
+            return array_merge($diff1, $diff2);
+            // $freeReferee = [];
+            // foreach ($refereeIds as $referee) {
+            //     if (!in_array($referee, $getAssignedRefereeLists)) {
+            //         $freeReferee[] = $referee;
+            //     }
+            // }
+            // return $freeReferee;
 
             $result = UserEvent::create($request->all());
             DB::commit();
