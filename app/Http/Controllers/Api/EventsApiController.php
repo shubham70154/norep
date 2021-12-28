@@ -195,11 +195,13 @@ class EventsApiController extends BaseController
         }
     }
 
-    public function getRunningEventList()
+    public function getRunningEventList(Request $request)
     {
         try {
+            return $request->user();
             $eventLists = Event::where([
                         ['status' , 1],
+                        ['user_id' , '!=', 1],
                         ['start_date', '<=', Carbon::today()],
                         ['end_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
