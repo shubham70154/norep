@@ -37,7 +37,7 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
-          return   $request->all();
+          
             DB::begintransaction();
             $event = Event::create($request->all());
 
