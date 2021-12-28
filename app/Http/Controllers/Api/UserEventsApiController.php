@@ -33,7 +33,14 @@ class UserEventsApiController extends BaseController
             
             DB::begintransaction();
             $eventDetail = Event::findOrFail($request->event_id);
-            return $eventDetail->referee_id;
+            $result = '';
+            foreach ($eventDetail as $referees) {
+                if (!is_null($referees->referee_id)) {
+                    $result .= str_replace('"',"",$referees->referee_id) .',';
+                }
+            }
+            $refereeArray = explode(',', rtrim($result, ','));
+            return $refereeIds = array_unique($refereeArray);
             $result = UserEvent::create($request->all());
             DB::commit();
        

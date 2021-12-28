@@ -16,6 +16,7 @@ class UserEvent extends Model
     protected $fillable = [
         'user_id',
         'event_id',
+        'referee_id',
         'amount',
         'created_at',
         'updated_at'
