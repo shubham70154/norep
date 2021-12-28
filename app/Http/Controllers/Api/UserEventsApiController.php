@@ -39,7 +39,7 @@ class UserEventsApiController extends BaseController
             $refereeIds = array_unique($refereeArray);
             // Get all referee array list for this event(end)
 
-            $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id');
+            $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id')->toArray();
             
             $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
             $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
