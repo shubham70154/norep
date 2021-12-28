@@ -51,7 +51,7 @@ class UserEventsApiController extends BaseController
                 DB::commit();
                 return $this->sendResponse($result, 'Event joined successfully.');
             } else {
-                return $this->sendResponse([], "All referee's assigned, can't join event.");
+                return $this->sendResponse((object)[], "All referee's assigned, can't join event.");
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
