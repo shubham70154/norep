@@ -201,7 +201,7 @@ class EventsApiController extends BaseController
             $user = $request->user();
             $eventLists = Event::where([
                         ['status' , 1],
-                        ['user_id' , '!=', $user->id],
+                        //['user_id' , '!=', $user->id],
                         ['start_date', '<=', Carbon::today()],
                         ['end_date', '>=', Carbon::today()]
                         ])->orderBy('start_date', 'DESC')->get();
