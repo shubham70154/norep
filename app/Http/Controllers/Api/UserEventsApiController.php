@@ -32,27 +32,31 @@ class UserEventsApiController extends BaseController
             }
             
             $eventDetail = Event::findOrFail($request->event_id);
-            // Get all referee array list for this event(start)
-            $result = str_replace('"',"",$eventDetail->referee_id);
-            $refereeArray = explode(',', rtrim($result, ','));
-            $refereeIds = array_unique($refereeArray);
-            // Get all referee array list for this event(end)
+            if (!is_null($eventDetail->referee_id))
+            {
+                // Get all referee array list for this event(start)
+                $result = str_replace('"',"",$eventDetail->referee_id);
+                $refereeArray = explode(',', rtrim($result, ','));
+                $refereeIds = array_unique($refereeArray);
+                // Get all referee array list for this event(end)
 
-            $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id')->toArray();
-            
-            $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
-            $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
-            $freeRefereeLists = array_merge($diff1, $diff2);
-            
-            if (count($freeRefereeLists) > 0) {
-                return "hi";
-                DB::begintransaction();
-                $request->request->add(['referee_id' => $freeRefereeLists[0]]);
-                $result = UserEvent::create($request->all());
-                DB::commit();
-                return $this->sendResponse($result, 'Event joined successfully.');
+                $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id')->toArray();
+                
+                $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
+                $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
+                $freeRefereeLists = array_merge($diff1, $diff2);
+                
+                if (count($freeRefereeLists) > 0) {
+                    DB::begintransaction();
+                    $request->request->add(['referee_id' => $freeRefereeLists[0]]);
+                    $result = UserEvent::create($request->all());
+                    DB::commit();
+                    return $this->sendResponse($result, 'Event joined successfully.');
+                } else {
+                    return $this->sendResponse((object)[], "All referee's assigned, can't join event.");
+                }
             } else {
-                return $this->sendResponse((object)[], "All referee's assigned, can't join event.");
+                return $this->sendResponse((object)[], "No referee assigned to this event");
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
