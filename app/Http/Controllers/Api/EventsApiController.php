@@ -22,12 +22,12 @@ class EventsApiController extends BaseController
     public function create(Request $request)
     {
         try {
-            return $mytime = Carbon::now();
+            //return $mytime = Carbon::now();
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required|min:0',
-                'start_date' => 'required|after_or_equal:now',
+                'start_date' => 'required|after_or_equal:date',
                 'start_time' => 'required',
                 'user_id' => 'required',
                 'player_limit' => 'required|min:0'
