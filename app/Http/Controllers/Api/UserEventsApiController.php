@@ -120,7 +120,7 @@ class UserEventsApiController extends BaseController
             if ($result) {
                 return $this->sendResponse($result, 'Already joined.');     
             } else {
-                return $this->sendResponse($result, 'Event not joined.'); 
+                return $this->sendResponse(json_encode([]), 'Event not joined.'); 
             }
        
         } catch (\Exception $e) {
