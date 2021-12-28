@@ -42,7 +42,7 @@ class UserEventsApiController extends BaseController
             
             $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
             $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
-            $freeRefereeLists = array_merge($diff1, $diff2);
+           return $freeRefereeLists = array_merge($diff1, $diff2);
             
             if (count($freeRefereeLists) > 0) {
                 DB::begintransaction();
