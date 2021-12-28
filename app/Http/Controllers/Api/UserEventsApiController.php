@@ -46,7 +46,6 @@ class UserEventsApiController extends BaseController
             $freeRefereeLists = array_merge($diff1, $diff2);
             
             $request->request->add(['referee_id' => $freeRefereeLists[0]]);
-            return $request->all();
             $result = UserEvent::create($request->all());
             DB::commit();
        
