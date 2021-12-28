@@ -39,10 +39,11 @@ class UserEventsApiController extends BaseController
             $refereeIds = array_unique($refereeArray);
             // Get all referee array list for this event(end)
 
-            return $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id');
+            $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id');
             
             $freeReferee = [];
             foreach ($refereeIds as $referee) {
+                return $referee;
                 if (!in_array($referee, $getAssignedRefereeLists)) {
                     $freeReferee[] = $referee;
                 }
