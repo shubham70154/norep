@@ -56,7 +56,7 @@ class UserEventsApiController extends BaseController
                     return $this->sendResponse((object)[], "All referee's assigned, can't join event.");
                 }
             } else {
-                return $this->sendResponse((object)[], "No referee assigned to this event");
+                return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
