@@ -233,6 +233,8 @@ class EventsApiController extends BaseController
                 'event_id' =>'required|exists:events,id',
                 'name' => 'required',
                 'description' => 'required',
+                'start_date' => 'required|after_or_equal:today',
+                'end_date' => 'after_or_equal:start_date',
                 'category' => 'required',
                 'event_type_id' => 'required',
                 'location' => 'required',
