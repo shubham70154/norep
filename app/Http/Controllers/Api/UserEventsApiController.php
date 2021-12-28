@@ -32,6 +32,8 @@ class UserEventsApiController extends BaseController
             }
             
             DB::begintransaction();
+            $eventDetail = Event::findOrFail($request->event_id);
+            return $eventDetail->referee_id;
             $result = UserEvent::create($request->all());
             DB::commit();
        
