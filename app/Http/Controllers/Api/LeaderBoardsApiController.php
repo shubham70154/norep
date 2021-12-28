@@ -31,7 +31,7 @@ class LeaderBoardsApiController extends BaseController
                     ])->get();
             
                 $getAssignedParticipantLists = UserEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
-                $participantLists = User::select("name");
+                $participantLists = User::select('name', 'id');
                 $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
                 $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
                 $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
