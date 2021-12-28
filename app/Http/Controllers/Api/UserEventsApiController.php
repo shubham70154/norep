@@ -43,15 +43,9 @@ class UserEventsApiController extends BaseController
             
             $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
             $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
-            return array_merge($diff1, $diff2);
-            // $freeReferee = [];
-            // foreach ($refereeIds as $referee) {
-            //     if (!in_array($referee, $getAssignedRefereeLists)) {
-            //         $freeReferee[] = $referee;
-            //     }
-            // }
-            // return $freeReferee;
-
+            $freeRefereeLists = array_merge($diff1, $diff2);
+            
+            $request->referee_id = $freeRefereeLists[0];
             $result = UserEvent::create($request->all());
             DB::commit();
        
