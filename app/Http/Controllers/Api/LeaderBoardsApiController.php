@@ -31,6 +31,7 @@ class LeaderBoardsApiController extends BaseController
                     ])->get();
             
                 $getAssignedParticipantLists = UserEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
+                
                 $participantLists = User::select('id', 'name');
                 $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
                 $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
@@ -42,7 +43,7 @@ class LeaderBoardsApiController extends BaseController
                     $participants[] = $subevent;
                 }
                 $eventDetail->sub_events = $participants;
-                $eventDetail->total->participants = $participantLists;
+                $eventDetail->total = ['participants' => $participantLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
