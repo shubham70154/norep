@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
-use DB, Validator, Illuminate\Support\Carbon;
+use DB, Validator;
+use Carbon\Carbon;
 
 class EventsApiController extends BaseController
 {
@@ -21,6 +22,7 @@ class EventsApiController extends BaseController
     public function create(Request $request)
     {
         try {
+            return $mytime = Carbon::now();
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'description' => 'required',
