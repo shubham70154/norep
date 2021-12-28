@@ -27,7 +27,7 @@ class EventsApiController extends BaseController
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required|min:0',
-                'start_date' => 'required|after_or_equal:date',
+                'start_date' => 'required|after_or_equal:today',
                 'start_time' => 'required',
                 'user_id' => 'required',
                 'player_limit' => 'required|min:0'
@@ -36,7 +36,7 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
-            
+          return   $request->all();
             DB::begintransaction();
             $event = Event::create($request->all());
 
