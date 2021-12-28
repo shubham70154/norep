@@ -31,7 +31,6 @@ class UserEventsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             
-            DB::begintransaction();
             $eventDetail = Event::findOrFail($request->event_id);
             // Get all referee array list for this event(start)
             $result = str_replace('"',"",$eventDetail->referee_id);
@@ -45,11 +44,15 @@ class UserEventsApiController extends BaseController
             $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
             $freeRefereeLists = array_merge($diff1, $diff2);
             
-            $request->request->add(['referee_id' => $freeRefereeLists[0]]);
-            $result = UserEvent::create($request->all());
-            DB::commit();
-       
-            return $this->sendResponse($result, 'Event joined successfully.');
+            if (count($freeRefereeLists) > 0) {
+                DB::begintransaction();
+                $request->request->add(['referee_id' => $freeRefereeLists[0]]);
+                $result = UserEvent::create($request->all());
+                DB::commit();
+                return $this->sendResponse($result, 'Event joined successfully.');
+            } else {
+                return $this->sendResponse($result, "All referee assigned, Can't join event.");
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
