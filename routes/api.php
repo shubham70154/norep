@@ -60,5 +60,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-event-timelines/{event_id}', 'Api\EventsApiController@getEventTimelines');
 
     Route::get('get-subevent-category-lists', 'Api\EventsApiController@getSubEventCategoryLists');
+
+    Route::get('get-event-leaderBoard/{event_id}', 'Api\EventsApiController@getEventLeaderBoard');
 });
 
