@@ -30,16 +30,16 @@ class LeaderBoardsApiController extends BaseController
                         ['status', 1]
                     ])->get();
             
-                $eventDetail->sub_events = $getSubEvents;
                 $getAssignedParticipantLists = UserEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
                 $participantLists = User::select('name')->whereIn('id', $getAssignedParticipantLists)->get();
 
                 $participants = [];
-                foreach($eventDetail->sub_events as $subevent){
+                foreach($getSubEvents as $subevent){
                     $subevent->participants = $participantLists;
                     $participants[] = $subevent;
                 }
-                return $participants;
+                $eventDetail->sub_events = $participants;
+                return $eventDetail;
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
             }
