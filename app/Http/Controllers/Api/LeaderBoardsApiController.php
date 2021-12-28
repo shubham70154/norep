@@ -31,7 +31,9 @@ class LeaderBoardsApiController extends BaseController
                     ])->get();
             
                 $getAssignedParticipantLists = UserEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
-                $participantLists = User::select("name", "'example' AS newfield")->whereIn('id', $getAssignedParticipantLists)->get();
+                $participantLists = User::select("name");
+                $participantLists = $participantLists->addSelect(DB::raw( "'example' AS newfield"));
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
