@@ -29,7 +29,7 @@ class EventsApiController extends BaseController
                 'price' => 'required|min:0',
                 'start_date' => 'required|after_or_equal:today',
                 'start_time' => 'required',
-                'end_date' => 'required|before_or_equal:start_date',
+                'end_date' => 'before_or_equal:start_date',
                 'user_id' => 'required',
                 'player_limit' => 'required|min:0'
             ]);
