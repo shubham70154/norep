@@ -66,5 +66,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-user-wallet/{user_id}', 'Api\UserWalletsApiController@getUserWallet');
 
     Route::get('event-joined-participant-lists/{event_id}', 'Api\UserWalletsApiController@eventJoinedParticipantLists');
+
+    Route::post('user-wallet-deposite-amount', 'Api\UserWalletsApiController@userWalletDepositeAmount');
 });
 

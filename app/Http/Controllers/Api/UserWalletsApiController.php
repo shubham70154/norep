@@ -10,7 +10,7 @@ use App\SubEvent;
 use App\User;
 use App\File;
 use App\UserJoinedEvent;
-use Illuminate\Support\Facades\Log;
+use App\UserTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
@@ -90,4 +90,27 @@ class UserWalletsApiController extends BaseController
         }
     }
 
+    public function userWalletDepositeAmount(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required',
+                'deposite' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            DB::begintransaction();
+            $userTransaction = UserTransaction::create($request->all());
+            //Update user wallet
+            $userDetails = User::find($request->user_id);
+            $userDetails->total_amount = $userDetails->total_amount + $request->deposite;
+            $userDetails->save();
+            DB::commit();
+
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
 }
