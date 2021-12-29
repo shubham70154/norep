@@ -50,6 +50,7 @@ class UserWalletsApiController extends BaseController
                     ])->select('url')->get();
                     $eventDetail->images =  $imagefiles;
                     $eventDetail->vidoes =  $videofiles;
+                    $eventDetail->total =  $event->total;
                     $events[] = $eventDetail;
                     $totalAmount = $totalAmount + $event->total;
                 }
