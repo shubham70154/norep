@@ -39,8 +39,18 @@ class UserWalletsApiController extends BaseController
                 foreach($eventsAmount as $event)
                 {
                     $eventDetail = Event::findOrFail($event->event_id);
-                    $event->name = $eventDetail;
-                    $events[] = $event;
+                    $imagefiles = DB::table('files')->where([
+                        ['event_id', $eventDetail->id],
+                        ['type', '=', 'image']
+                    ])->select('url')->get();
+    
+                    $videofiles = DB::table('files')->where([
+                        ['event_id', $eventDetail->id],
+                        ['type', '=', 'video']
+                    ])->select('url')->get();
+                    $eventDetail->images =  $imagefiles;
+                    $eventDetail->vidoes =  $videofiles;
+                    $events[] = $eventDetail;
                     $totalAmount = $totalAmount + $event->total;
                 }
                 $result = ['event_amount' => $events, 'total_amount' => $totalAmount];
