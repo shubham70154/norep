@@ -57,11 +57,33 @@ class UserWalletsApiController extends BaseController
                 }
                 $result = ['event_amount' => $events, 'total_amount' => $totalAmount];
                 return $this->sendResponse($result, 'User wallet fetch successfully.');
-                //return $result;
             } else {
                 return $this->sendError('User not found.', ['error'=>'User id not found!']);
             }
             
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function eventParticipantLists($event_id)
+    {
+        try {
+            if (isset($event_id) && !is_null($event_id))
+            {
+                $events = UserJoinedEvent::where('event_id', $event_id)->get();
+
+                $participants = [];
+                foreach($events as $event){
+                    $userDetail = User::findOrFail($event->user_id);
+                    $userDetail->event_joined_amount = $event->amount;
+                    $participants[] = $userDetail;
+                }
+                $result = ['event' => $events, 'participants' => $participants];
+                return $this->sendResponse($result, 'Event Participant List fetch successfully.');
+            } else {
+                return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
