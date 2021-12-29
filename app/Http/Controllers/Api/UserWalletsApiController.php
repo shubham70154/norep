@@ -113,4 +113,28 @@ class UserWalletsApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
+
+    public function userWalletWithDrawAmount(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required',
+                'withdraw' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            DB::begintransaction();
+            $userTransaction = UserTransaction::create($request->all());
+            //Update user wallet
+            $userDetails = User::find($request->user_id);
+            $userDetails->total_amount = $userDetails->total_amount - $request->withdraw;
+            $userDetails->save();
+            DB::commit();
+            return $this->sendResponse($userDetails, 'User wallet updated successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
 }
