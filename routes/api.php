@@ -63,6 +63,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('get-event-leaderboard/{event_id}', 'Api\LeaderBoardsApiController@getEventLeaderBoard');
 
-    Route::get('get-user-wallet/{user_id}', 'Api\LeaderBoardsApiController@getUserWallet');
+    Route::get('get-user-wallet/{user_id}', 'Api\UserWalletsApiController@getUserWallet');
 });
 
