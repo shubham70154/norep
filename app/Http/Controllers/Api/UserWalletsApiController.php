@@ -29,7 +29,11 @@ class UserWalletsApiController extends BaseController
                     ['status', 1]
                 ])->orderBy('start_date', 'DESC')->pluck('id')->toArray();
 
-                return $userEvents;
+                $result = UserJoinedEvent::whereIn('event_id', $userEvents)
+                ->select('event_id', DB::raw('count(amount) as total'))
+                ->groupBy('event_id')
+                ->get();
+                return $result;
             } else {
                 return $this->sendError('User not found.', ['error'=>'User id not found!']);
             }
