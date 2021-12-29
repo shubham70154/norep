@@ -50,6 +50,12 @@ class UserJoinedEventsApiController extends BaseController
                     DB::begintransaction();
                     $request->request->add(['referee_id' => $freeRefereeLists[0]]);
                     $result = UserJoinedEvent::create($request->all());
+
+                    $userDetails = User::findOrFail($request->user_id);
+                    $totalAmount = $userDetails->total_amount + $request->amount;
+                    $userDetails->total_amount = $totalAmount;
+                    $userDetails->save();
+                    //$event = User::where('id', $request->user_id)->update(['total_amount' => $request->player_limit]);
                     DB::commit();
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {

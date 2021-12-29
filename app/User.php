@@ -43,7 +43,8 @@ class User extends Authenticatable
         'remember_token',
         'is_terms_conditions_accept',
         'email_verified_at',
-        'device_token'
+        'device_token',
+        'total_amount'
     ];
 
     public function getEmailVerifiedAtAttribute($value)
