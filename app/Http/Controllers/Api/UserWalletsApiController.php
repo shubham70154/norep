@@ -35,11 +35,15 @@ class UserWalletsApiController extends BaseController
                 ->get();
 
                 $totalAmount = 0;
+                $events = [];
                 foreach($eventsAmount as $event)
                 {
+                    $eventDetail = Event::findOrFail($event->event_id);
+                    $event->name = $eventDetail->name;
+                    $events[] = $event;
                     $totalAmount = $totalAmount + $event->total;
                 }
-                $result = ['event_amount' => $eventsAmount, 'total_amount' => $totalAmount];
+                $result = ['event_amount' => $events, 'total_amount' => $totalAmount];
                 return $this->sendResponse($result, 'LeaderBoard fetch successfully.');
                 //return $result;
             } else {
