@@ -66,7 +66,7 @@ class UserWalletsApiController extends BaseController
         }
     }
 
-    public function eventParticipantLists($event_id)
+    public function eventJoinedParticipantLists($event_id)
     {
         try {
             if (isset($event_id) && !is_null($event_id))
