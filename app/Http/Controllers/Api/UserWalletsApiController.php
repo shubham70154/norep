@@ -30,7 +30,7 @@ class UserWalletsApiController extends BaseController
                 ])->orderBy('start_date', 'DESC')->pluck('id')->toArray();
 
                 $result = UserJoinedEvent::whereIn('event_id', $userEvents)
-                ->select('event_id', DB::raw('count(amount) as total'))
+                ->select('event_id', DB::raw('sum(amount) as total'))
                 ->groupBy('event_id')
                 ->get();
                 return $result;
