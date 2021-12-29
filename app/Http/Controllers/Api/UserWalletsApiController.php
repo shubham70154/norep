@@ -108,7 +108,7 @@ class UserWalletsApiController extends BaseController
             $userDetails->total_amount = $userDetails->total_amount + $request->deposite;
             $userDetails->save();
             DB::commit();
-
+            return $this->sendResponse($userDetails, 'User wallet updated successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
