@@ -34,7 +34,6 @@ class UserWalletsApiController extends BaseController
                 ->groupBy('event_id')
                 ->get();
 
-                $totalAmount = 0;
                 $events = [];
                 foreach($eventsAmount as $event)
                 {
@@ -53,7 +52,8 @@ class UserWalletsApiController extends BaseController
                     $eventDetail->event_total_amount =  $event->total;
                     $eventDetail->event_total_participant =  $event->total_participant;
                     $events[] = $eventDetail;
-                    $totalAmount = $totalAmount + $event->total;
+                    $userDetails = User::find($user_id);
+                    $totalAmount = $userDetails->total_amount;
                 }
                 $result = ['event_amount' => $events, 'total_amount' => $totalAmount];
                 return $this->sendResponse($result, 'User wallet fetch successfully.');
