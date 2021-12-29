@@ -44,7 +44,7 @@ class UserWalletsApiController extends BaseController
                     $totalAmount = $totalAmount + $event->total;
                 }
                 $result = ['event_amount' => $events, 'total_amount' => $totalAmount];
-                return $this->sendResponse($result, 'LeaderBoard fetch successfully.');
+                return $this->sendResponse($result, 'User wallet fetch successfully.');
                 //return $result;
             } else {
                 return $this->sendError('User not found.', ['error'=>'User id not found!']);
