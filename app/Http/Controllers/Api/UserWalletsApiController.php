@@ -79,7 +79,8 @@ class UserWalletsApiController extends BaseController
                     $userDetail->event_joined_amount = $event->amount;
                     $participants[] = $userDetail;
                 }
-                $result = ['event' => $events, 'participants' => $participants];
+                $eventDetail = Event::findOrFail($event->event_id);
+                $result = ['event' => $eventDetail, 'participants' => $participants];
                 return $this->sendResponse($result, 'Event Participant List fetch successfully.');
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
