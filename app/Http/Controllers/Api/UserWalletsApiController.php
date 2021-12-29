@@ -29,11 +29,19 @@ class UserWalletsApiController extends BaseController
                     ['status', 1]
                 ])->orderBy('start_date', 'DESC')->pluck('id')->toArray();
 
-                $result = UserJoinedEvent::whereIn('event_id', $userEvents)
-                ->select('event_id', DB::raw('sum(amount) as total'))
+                $eventsAmount = UserJoinedEvent::whereIn('event_id', $userEvents)
+                ->select('event_id','name', DB::raw('sum(amount) as total'))
                 ->groupBy('event_id')
                 ->get();
-                return $result;
+
+                $totalAmount = 0;
+                foreach($eventsAmount as $event)
+                {
+                    $totalAmount = $totalAmount + $event->total;
+                }
+                $result = ['event_amount' => $eventsAmount, 'total_amount' => $totalAmount];
+                return $this->sendResponse($result, 'LeaderBoard fetch successfully.');
+                //return $result;
             } else {
                 return $this->sendError('User not found.', ['error'=>'User id not found!']);
             }
