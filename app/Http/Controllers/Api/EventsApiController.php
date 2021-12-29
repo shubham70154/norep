@@ -247,7 +247,7 @@ class EventsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
 
-            return $request->all();
+            return $request->timer;
             $checkSubEvents = DB::table('sub_events')->where([
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
