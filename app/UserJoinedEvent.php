@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserEvent extends Model
+class UserJoinedEvent extends Model
 {
-    protected $table = 'user_events';
+    protected $table = 'user_joined_events';
 
     protected $dates = [
         'created_at',

@@ -47,19 +47,21 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('update-event-player-limit', 'Api\EventsApiController@updateEventPlayerLimit');
 
-    Route::post('join-user-event', 'Api\UserEventsApiController@joinUserEvent');
+    Route::post('join-user-event', 'Api\UserJoinedEventsApiController@joinUserEvent');
     
     Route::post('save-event-amount', 'Api\EventPaymentsApiController@saveEventAmount');
 
-    Route::get('get-participants-list-by-eventId/{eventid}', 'Api\UserEventsApiController@getParticipantsListByEventId');
+    Route::get('get-participants-list-by-eventId/{eventid}', 'Api\UserJoinedEventsApiController@getParticipantsListByEventId');
 
-    Route::get('get-referee-list-by-eventId/{eventid}', 'Api\UserEventsApiController@getRefereeListByEventId');
+    Route::get('get-referee-list-by-eventId/{eventid}', 'Api\UserJoinedEventsApiController@getRefereeListByEventId');
     
-    Route::post('check-user-joined-events', 'Api\UserEventsApiController@checkUserJoinedEvents');
+    Route::post('check-user-joined-events', 'Api\UserJoinedEventsApiController@checkUserJoinedEvents');
 
     Route::get('get-event-timelines/{event_id}', 'Api\EventsApiController@getEventTimelines');
 
     Route::get('get-subevent-category-lists', 'Api\EventsApiController@getSubEventCategoryLists');
+
+    Route::get('get-event-leaderboard/{event_id}', 'Api\LeaderBoardsApiController@getEventLeaderBoard');
 
     Route::get('get-event-leaderboard/{event_id}', 'Api\LeaderBoardsApiController@getEventLeaderBoard');
 });

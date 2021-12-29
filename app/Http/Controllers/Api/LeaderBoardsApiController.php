@@ -9,7 +9,7 @@ use App\Event;
 use App\SubEvent;
 use App\User;
 use App\File;
-use App\UserEvent;
+use App\UserJoinedEvent;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -30,7 +30,7 @@ class LeaderBoardsApiController extends BaseController
                         ['status', 1]
                     ])->get();
             
-                $getAssignedParticipantLists = UserEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
+                $getAssignedParticipantLists = UserJoinedEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
                 
                 $participantLists = User::select('id', 'name');
                 $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));

@@ -9,7 +9,7 @@ use App\Event;
 use App\SubEvent;
 use App\User;
 use App\File;
-use App\UserEvent;
+use App\UserJoinedEvent;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -17,7 +17,7 @@ use App\Helpers\Helper;
 use App\Http\Requests\Request as RequestsRequest;
 use DB, Validator, Illuminate\Support\Carbon;
 
-class UserEventsApiController extends BaseController
+class UserJoinedEventsApiController extends BaseController
 {
     public function joinUserEvent(Request $request)
     {
@@ -40,7 +40,7 @@ class UserEventsApiController extends BaseController
                 $refereeIds = array_unique($refereeArray);
                 // Get all referee array list for this event(end)
 
-                $getAssignedRefereeLists = UserEvent::where('event_id', $request->event_id)->pluck('referee_id')->toArray();
+                $getAssignedRefereeLists = UserJoinedEvent::where('event_id', $request->event_id)->pluck('referee_id')->toArray();
                 
                 $diff1 = array_diff($refereeIds, $getAssignedRefereeLists);
                 $diff2 = array_diff($getAssignedRefereeLists, $refereeIds);
@@ -49,7 +49,7 @@ class UserEventsApiController extends BaseController
                 if (count($freeRefereeLists) > 0) {
                     DB::begintransaction();
                     $request->request->add(['referee_id' => $freeRefereeLists[0]]);
-                    $result = UserEvent::create($request->all());
+                    $result = UserJoinedEvent::create($request->all());
                     DB::commit();
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {
@@ -67,7 +67,7 @@ class UserEventsApiController extends BaseController
     {
         try {
             if (!is_null($eventId)) {
-               $result = UserEvent::where([
+               $result = UserJoinedEvent::where([
                     ['event_id', $eventId]
                 ])->pluck('user_id')->toArray();
 
@@ -118,7 +118,7 @@ class UserEventsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             
-            $result = UserEvent::where([
+            $result = UserJoinedEvent::where([
                 ['event_id', $request->event_id],
                 ['user_id', $request->user_id]
             ])->first();
