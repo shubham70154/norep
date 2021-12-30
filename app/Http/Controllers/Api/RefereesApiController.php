@@ -55,7 +55,7 @@ class RefereesApiController extends BaseController
                 $subeventDetail->docs =  $docsfiles;
                 //$subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
-                $scoreboard = json_decode($subeventDetail->scoreboard);
+               return $scoreboard = json_decode($subeventDetail->scoreboard);
 
                 $header = [];
                 if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
