@@ -47,7 +47,7 @@ class RefereesApiController extends BaseController
                     ['event_id', $request->event_id],
                     ['sub_event_id', $request->sub_event_id],
                     ['type', '=', 'docs']
-                ])->select('url')->get();
+                ])->select('url')->get(); 
 
                 $subeventDetail->images =  $imagefiles;
                 $subeventDetail->vidoes =  $videofiles;
@@ -55,6 +55,40 @@ class RefereesApiController extends BaseController
                 $subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
                 $scoreboard = $subeventDetail->scoreboard;
+
+                $header = [];
+                if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
+                    $header[] = 'Round';
+                }
+                if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
+                    $header[] = 'Reps'. "($scoreboard->reps)";
+                }
+                if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
+                    $header[] = $scoreboard->task1;
+                }
+                if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
+                    $header[] = $scoreboard->task2;
+                }
+                if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
+                    $header[] = $scoreboard->task2;
+                }
+                if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
+                    $header[] = $scoreboard->task3;
+                }
+                if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
+                    $header[] = $scoreboard->task4;
+                }
+                if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
+                    $header[] = $scoreboard->task5;
+                }
+                if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
+                    $header[] = $scoreboard->time;
+                }
+                $scoreboard->header = $header;
+                
+                for ($i = 0; $i >= $scoreboard->round; $i++) {
+                    
+                }
 
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
