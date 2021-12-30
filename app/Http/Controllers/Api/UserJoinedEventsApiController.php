@@ -49,7 +49,6 @@ class UserJoinedEventsApiController extends BaseController
                 if (count($freeRefereeLists) > 0) {
                     DB::begintransaction();
                     $request->request->add(['referee_id' => $freeRefereeLists[0]]);
-                    return $request->all();
                     $result = UserJoinedEvent::create($request->all());
 
                     $userDetails = User::findOrFail($request->user_id);
