@@ -18,7 +18,7 @@ class RefereesApiController extends BaseController
     public function refereeGetSubeventDetails(Request $request)
     {
         try {
-            return $request->all();
+            //return $request->all();
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
                 'user_id' => 'required',
