@@ -270,7 +270,7 @@ class EventsApiController extends BaseController
                 ['id', $request->event_id],
                 ['status', 1]
             ])->first();
-            $eventStartDate = Carbon::parse($eventdata->start)->format('Y-m-d');
+            $eventStartDate = Carbon::parse($eventdata->start_date)->format('Y-m-d');
             $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
             $requestStartDate = date('Y-m-d', strtotime($request->start_date));
             $requestEndDate = date('Y-m-d', strtotime($request->end_date));
