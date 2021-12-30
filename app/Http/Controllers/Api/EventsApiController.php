@@ -268,11 +268,10 @@ class EventsApiController extends BaseController
 
             $checkSubEvents = DB::table('events')->where([
                 ['id', $request->event_id],
-                ['start_date', '>=', $request->start_date],
-                ['end_date', '<=', $request->end_date],
                 ['status', 1]
-            ])->get();
-            if($checkSubEvents){
+            ])->first();
+            if (($checkSubEvents->start_date >= $request->start_date) &&
+                ($checkSubEvents->end_date <= $request->end_date)){   
                 return $this->sendError('Validation Error.', 'Sub Event date should be between event start and end date');       
             }
             
