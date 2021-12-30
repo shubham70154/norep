@@ -127,7 +127,7 @@ class RefereesApiController extends BaseController
                     $userDetails = User::find($assignedParticipant->user_id);
                 }
                 $result = [
-                    'scoreboard' => $scoreboard,
+                    'scoreboard' => isset($scoreboard) || !is_null($scoreboard) ? $scoreboard : (object)[],
                     'sub_event' => $subeventDetail,
                     'participant' => isset($userDetails) ? $userDetails : (object)[]];
                 return $this->sendResponse($result, 'Result fetch successfully.');
