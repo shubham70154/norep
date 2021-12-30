@@ -68,11 +68,6 @@ class UserJoinedEventsApiController extends BaseController
                     $userTransaction = UserTransaction::create($depositeData);
                     // Update user transaction table (deposite end)
 
-                    // $userDetails = User::findOrFail($request->user_id);
-                    // $totalAmount = $userDetails->total_amount + $request->amount;
-                    // $userDetails->total_amount = $totalAmount;
-                    // $userDetails->save();
-                    //$event = User::where('id', $request->user_id)->update(['total_amount' => $request->player_limit]);
                     DB::commit();
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {

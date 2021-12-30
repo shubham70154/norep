@@ -140,4 +140,50 @@ class UserWalletsApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
+
+    public function userTransactionDetails(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required',
+                'type' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+
+            $userTransaction = UserTransaction::where([
+                ['user_id', $request->user_id],
+                ['user_id', $request->user_id],
+            ])->get();
+            
+            $transactions = [];
+            $transactionResult = [];
+            foreach($userTransaction as $transaction){
+                if(isset($transaction->deposite) && !is_null($transaction->deposite)) {
+                    $transactions['deposite'] = $transaction->deposite;
+                }
+                if(isset($transaction->withdraw) && !is_null($transaction->withdraw)) {
+                    $transactions['withdraw'] = $transaction->withdraw;
+                }
+                if(isset($transaction->joining_event_name) && !is_null($transaction->joining_event_name)) {
+                    $transactions['joining_event_name'] = $transaction->joining_event_name;
+                }
+                if(isset($transaction->transaction_date_time) && !is_null($transaction->transaction_date_time)) {
+                    $transactions['transaction_date_time'] = $transaction->transaction_date_time;
+                }
+                if(isset($transaction->amount_before_transaction) && !is_null($transaction->amount_before_transaction)) {
+                    $transactions['amount_before_transaction'] = $transaction->amount_before_transaction;
+                }
+                if(isset($transaction->amount_after_transaction) && !is_null($transaction->amount_after_transaction)) {
+                    $transactions['amount_after_transaction'] = $transaction->amount_after_transaction;
+                }
+                $transactionResult = $transactions;
+            }
+            return $this->sendResponse($transactionResult, 'Transaction list fetch successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
 }

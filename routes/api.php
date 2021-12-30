@@ -72,5 +72,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('user-wallet-withdraw-amount', 'Api\UserWalletsApiController@userWalletWithDrawAmount');
 
     Route::post('referee-get-subevent-details', 'Api\RefereesApiController@refereeGetSubeventDetails');
+
+    Route::post('user-transaction-details', 'Api\UserWalletsApiController@userTransactionDetails');
 });
 
