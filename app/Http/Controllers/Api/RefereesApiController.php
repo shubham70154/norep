@@ -18,6 +18,7 @@ class RefereesApiController extends BaseController
     public function refereeGetSubeventDetails(Request $request)
     {
         try {
+            return $request->all();
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
                 'user_id' => 'required',
@@ -132,7 +133,8 @@ class RefereesApiController extends BaseController
                 return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
+            'line_no'=> $e->getLine()]);
         }
     }
 
