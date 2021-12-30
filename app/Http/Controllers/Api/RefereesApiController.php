@@ -104,11 +104,11 @@ class RefereesApiController extends BaseController
                     if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
                         $rawData['task5'] = '';
                     }
-                    if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
-                        $rawData['timer'] = '';
-                    }
                     if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                         $rawData['reps'] = '';
+                    }
+                    if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
+                        $rawData['timer'] = '';
                     }
                     $data[] = $rawData;
                 }
