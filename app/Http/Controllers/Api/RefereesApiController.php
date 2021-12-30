@@ -60,9 +60,10 @@ class RefereesApiController extends BaseController
 
                 if ($assignedParticipant) {
                     $userDetails = User::find($assignedParticipant->user_id);
+                    $result = ['sub_event' => $subeventDetail, 'participant' => $userDetails];
+                    return $this->sendResponse($result, 'Result fetch successfully.');
                 }
-                $result = ['sub_event' => $subeventDetail, 'participant' => $userDetails];
-                return $this->sendResponse($result, 'Result fetch successfully.');
+                
             } else {
                 return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
