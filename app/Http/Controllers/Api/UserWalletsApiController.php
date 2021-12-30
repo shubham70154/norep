@@ -179,7 +179,7 @@ class UserWalletsApiController extends BaseController
                 if(isset($transaction->amount_after_transaction) && !is_null($transaction->amount_after_transaction)) {
                     $transactions['amount_after_transaction'] = $transaction->amount_after_transaction;
                 }
-                $transactionResult = $transactions;
+                $transactionResult[] = $transactions;
             }
             return $this->sendResponse($transactionResult, 'Transaction list fetch successfully.');
         } catch (\Exception $e) {
