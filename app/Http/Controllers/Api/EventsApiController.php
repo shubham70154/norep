@@ -281,8 +281,6 @@ class EventsApiController extends BaseController
                 return $this->sendError('Validation Error.', 'Sub Event end date should be between event start and end date');
             }
             
-            
-            return $request->all();
             DB::begintransaction();
             $data = [
                 'event_id' => $request->event_id,
