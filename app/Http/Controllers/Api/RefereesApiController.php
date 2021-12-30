@@ -52,6 +52,8 @@ class RefereesApiController extends BaseController
                 $subeventDetail->images =  $imagefiles;
                 $subeventDetail->vidoes =  $videofiles;
                 $subeventDetail->docs =  $docsfiles;
+                $subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
+                $subeventDetail->timer = json_decode($subeventDetail->timer);
 
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
