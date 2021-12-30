@@ -52,9 +52,9 @@ class RefereesApiController extends BaseController
                 $subeventDetail->images =  $imagefiles;
                 $subeventDetail->vidoes =  $videofiles;
                 $subeventDetail->docs =  $docsfiles;
-                $subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
+                //$subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
-                $scoreboard = $subeventDetail->scoreboard;
+                $scoreboard = json_decode($subeventDetail->scoreboard);
 
                 $header = [];
                 if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
