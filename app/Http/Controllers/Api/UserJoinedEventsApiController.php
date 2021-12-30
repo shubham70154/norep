@@ -10,6 +10,7 @@ use App\SubEvent;
 use App\User;
 use App\File;
 use App\UserJoinedEvent;
+use App\UserTransaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -51,10 +52,26 @@ class UserJoinedEventsApiController extends BaseController
                     $request->request->add(['referee_id' => $freeRefereeLists[0]]);
                     $result = UserJoinedEvent::create($request->all());
 
-                    $userDetails = User::findOrFail($request->user_id);
-                    $totalAmount = $userDetails->total_amount + $request->amount;
-                    $userDetails->total_amount = $totalAmount;
-                    $userDetails->save();
+                    // Update user transaction table (deposite start)
+                    $eventUserDetail = User::findOrFail($eventDetail->user_id);
+                    $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
+                    $eventUserDetail->total_amount = $eventtotalAmount;
+                    
+                    $depositeData = [
+                        'user_id' => $eventDetail->user_id,
+                        'joining_event_name' => $eventDetail->name,
+                        'amount_before_transaction' => $eventUserDetail->total_amount,
+                        'amount_after_transaction' => $eventtotalAmount,
+                        'deposite' => $request->amount
+                    ];
+                    $eventUserDetail->save();
+                    $userTransaction = UserTransaction::create($depositeData);
+                    // Update user transaction table (deposite end)
+
+                    // $userDetails = User::findOrFail($request->user_id);
+                    // $totalAmount = $userDetails->total_amount + $request->amount;
+                    // $userDetails->total_amount = $totalAmount;
+                    // $userDetails->save();
                     //$event = User::where('id', $request->user_id)->update(['total_amount' => $request->player_limit]);
                     DB::commit();
                     return $this->sendResponse($result, 'Event joined successfully.');
