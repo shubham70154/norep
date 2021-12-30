@@ -262,9 +262,9 @@ class EventsApiController extends BaseController
                 ['start_time', $request->start_time],
                 ['event_id', $request->event_id],
             ])->first();
-            if($checkSubEvents){
-                return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
-            }
+            // if($checkSubEvents){
+            //     return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
+            // }
 
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
