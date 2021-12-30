@@ -263,28 +263,22 @@ class EventsApiController extends BaseController
                 ['event_id', $request->event_id],
             ])->first();
             if($checkSubEvents){
-                return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');       
+                return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
             }
 
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
                 ['status', 1]
             ])->first();
-             $eventStartDate = date('Y-m-d', strtotime($eventdata->start_date));
-            // $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
+            $eventStartDate = Carbon::parse($eventdata->end_date)->format('Y-m-d');
+            $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
             $requestStartDate = date('Y-m-d', strtotime($request->start_date));
             $requestEndDate = date('Y-m-d', strtotime($request->end_date));
-            if (!$eventdata->start_date->between(
-                $requestStartDate,
-                $requestEndDate
-            )
-                || !$eventdata->date_end->between(
-                    $request->start_date,
-                    $request->date_end
-                )
-            ) {
-                return $this->sendError('Validation Error.', 'Sub Event date should be between event start and end date');       
-            }
+
+            if (($eventStartDate >= $requestStartDate) && ($eventStartDate <= $requestEndDate)){ 
+                return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
+            }  
+            
             
             return $request->all();
             DB::begintransaction();
