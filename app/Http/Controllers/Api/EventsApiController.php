@@ -277,7 +277,7 @@ class EventsApiController extends BaseController
 
             if (($eventStartDate >= $requestStartDate && $eventStartDate <= $requestEndDate)
             || ($eventEndDate >= $requestStartDate && $eventEndDate <= $requestEndDate)){ 
-                return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
+                return $this->sendError('Validation Error.', 'Sub Event should be between event start date and time');
             }  
             
             
