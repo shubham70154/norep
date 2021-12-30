@@ -270,11 +270,19 @@ class EventsApiController extends BaseController
                 ['id', $request->event_id],
                 ['status', 1]
             ])->first();
-            $eventStartDate = date('Y-m-d', strtotime($eventdata->start_date));
-            $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
-            return $requestStartDate = date('Y-m-d', strtotime($request->start_date));
-            $requestEndDate = date('Y-m-d', strtotime($request->end_date));
-            if ($eventStartDate >= $requestStartDate){   
+            // $eventStartDate = date('Y-m-d', strtotime($eventdata->start_date));
+            // $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
+            // $requestStartDate = date('Y-m-d', strtotime($request->start_date));
+            // $requestEndDate = date('Y-m-d', strtotime($request->end_date));
+            if (!$eventdata->start_date->between(
+                $request->start_date,
+                $request->date_end
+            )
+                || !$eventdata->date_end->between(
+                    $request->start_date,
+                    $request->date_end
+                )
+            ) {
                 return $this->sendError('Validation Error.', 'Sub Event date should be between event start and end date');       
             }
             
