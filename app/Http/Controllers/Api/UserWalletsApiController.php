@@ -179,7 +179,7 @@ class UserWalletsApiController extends BaseController
                 if(isset($transaction->transaction_date_time) && !is_null($transaction->transaction_date_time)) {
                     $transaction->transaction_date_time = $transaction->transaction_date_time;
                 }
-                $transactionResult[] = $transactions;
+                $transactionResult[] = $transaction;
             }
             return $this->sendResponse($transactionResult, 'Transaction list fetch successfully.');
         } catch (\Exception $e) {
