@@ -57,7 +57,6 @@ class RefereesApiController extends BaseController
                 $scoreboard = $subeventDetail->scoreboard;
 
                 $header = [];
-                $data = [];
                 if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                     $header[] = 'Round';
                 }
@@ -83,9 +82,10 @@ class RefereesApiController extends BaseController
                     $header[] = "Timer" ."($scoreboard->time)";
                 }
                 $scoreboard->header = $header;
-                
+
+                $data = [];
                 $rawData = [];
-                for ($i = 0; $i >= $scoreboard->round; $i++) {
+                for ($i = 1; $i <= $scoreboard->round; $i++) {
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                         $rawData['round'] = $i;
                     }
