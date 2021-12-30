@@ -256,7 +256,7 @@ class EventsApiController extends BaseController
                 }
                 return $request->all();
             }
-            return "hi";
+          //  return "hi";
             $checkSubEvents = DB::table('sub_events')->where([
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
