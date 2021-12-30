@@ -247,15 +247,15 @@ class EventsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
 
-            $files = $request->file('docs');
+            // $files = $request->file('docs');
 
-            if($request->hasFile('docs'))
-            {
-                foreach ($files as $file) {
-                    $file->store('images');
-                }
-                return $request->all();
-            }
+            // if($request->hasFile('docs'))
+            // {
+            //     foreach ($files as $file) {
+            //         $file->store('images');
+            //     }
+            //     return $request->all();
+            // }
           //  return "hi";
             $checkSubEvents = DB::table('sub_events')->where([
                 ['start_date', $request->start_date],
