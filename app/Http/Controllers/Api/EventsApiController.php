@@ -266,11 +266,15 @@ class EventsApiController extends BaseController
                 return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');       
             }
 
-            $checkSubEvents = DB::table('events')->where([
+            $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
                 ['status', 1]
             ])->first();
-            if (($checkSubEvents->start_date >= $request->start_date)){   
+            $eventStartDate = date('Y-m-d', strtotime($eventdata->start_date));
+            $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
+            $requestStartDate = date('Y-m-d', strtotime($request->start_date));
+            $requestEndDate = date('Y-m-d', strtotime($request->end_date));
+            if (($eventStartDate >= $requestStartDate)){   
                 return $this->sendError('Validation Error.', 'Sub Event date should be between event start and end date');       
             }
             
