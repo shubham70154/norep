@@ -82,7 +82,7 @@ class RefereesApiController extends BaseController
                     $header[] = $scoreboard->task5;
                 }
                 if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
-                    $header[] = $scoreboard->time;
+                    $header[] = "Timer" ."($scoreboard->time)";
                 }
                 $scoreboard->header = $header;
                 
