@@ -18,6 +18,9 @@ class UserTransaction extends Model
         'deposite',
         'withdraw',
         'transaction_date_time',
+        'joining_event_name',
+        'amount_before_transaction',
+        'amount_after_transaction',
         'created_at',
         'updated_at'
     ];
