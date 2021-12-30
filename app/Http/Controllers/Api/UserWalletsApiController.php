@@ -74,12 +74,15 @@ class UserWalletsApiController extends BaseController
                 $events = UserJoinedEvent::where('event_id', $event_id)->get();
 
                 $participants = [];
+                $eventAmount = 0;
                 foreach($events as $event){
                     $userDetail = User::findOrFail($event->user_id);
                     $userDetail->event_joined_amount = $event->amount;
+                    $eventAmount = $eventAmount + $event->amount;
                     $participants[] = $userDetail;
                 }
                 $eventDetail = Event::findOrFail($event->event_id);
+                $eventDetail->event_total_amount = $eventAmount;
                 $result = ['event' => $eventDetail, 'participants' => $participants];
                 return $this->sendResponse($result, 'Event Participant List fetch successfully.');
             } else {
