@@ -254,8 +254,9 @@ class EventsApiController extends BaseController
                 foreach ($files as $file) {
                     $file->store('images');
                 }
+                return $request->all();
             }
-            return $request->all();
+            return "hi";
             $checkSubEvents = DB::table('sub_events')->where([
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
