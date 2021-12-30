@@ -60,9 +60,6 @@ class RefereesApiController extends BaseController
                 if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                     $header[] = 'Round';
                 }
-                if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
-                    $header[] = 'Reps'. "($scoreboard->reps)";
-                }
                 if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
                     $header[] = $scoreboard->task1;
                 }
@@ -78,6 +75,9 @@ class RefereesApiController extends BaseController
                 if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
                     $header[] = $scoreboard->task5;
                 }
+                if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
+                    $header[] = 'Reps'. "($scoreboard->reps)";
+                }
                 if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
                     $header[] = "Timer" ."($scoreboard->time)";
                 }
@@ -88,9 +88,6 @@ class RefereesApiController extends BaseController
                 for ($i = 1; $i <= $scoreboard->round; $i++) {
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                         $rawData['round'] = $i;
-                    }
-                    if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
-                        $rawData['reps'] = '';
                     }
                     if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
                         $rawData['task1'] = '';
@@ -109,6 +106,9 @@ class RefereesApiController extends BaseController
                     }
                     if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
                         $rawData['timer'] = '';
+                    }
+                    if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
+                        $rawData['reps'] = '';
                     }
                     $data[] = $rawData;
                 }
