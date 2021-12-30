@@ -55,7 +55,6 @@ class UserJoinedEventsApiController extends BaseController
                     // Update user transaction table (deposite start)
                     $eventUserDetail = User::findOrFail($eventDetail->user_id);
                     $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
-                    $eventUserDetail->total_amount = $eventtotalAmount;
                     
                     $depositeData = [
                         'user_id' => $eventDetail->user_id,
@@ -64,6 +63,7 @@ class UserJoinedEventsApiController extends BaseController
                         'amount_after_transaction' => $eventtotalAmount,
                         'deposite' => $request->amount
                     ];
+                    $eventUserDetail->total_amount = $eventtotalAmount;
                     $eventUserDetail->save();
                     $userTransaction = UserTransaction::create($depositeData);
                     // Update user transaction table (deposite end)
