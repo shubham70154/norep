@@ -270,8 +270,7 @@ class EventsApiController extends BaseController
                 ['id', $request->event_id],
                 ['status', 1]
             ])->first();
-            if (($checkSubEvents->start_date >= $request->start_date) &&
-                ($checkSubEvents->end_date <= $request->end_date)){   
+            if (($checkSubEvents->start_date >= $request->start_date)){   
                 return $this->sendError('Validation Error.', 'Sub Event date should be between event start and end date');       
             }
             
