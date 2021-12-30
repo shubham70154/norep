@@ -55,65 +55,68 @@ class RefereesApiController extends BaseController
                 $subeventDetail->docs =  $docsfiles;
                 //$subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
-               return $scoreboard = json_decode($subeventDetail->scoreboard);
+                $scoreboard = json_decode($subeventDetail->scoreboard);
 
-                $header = [];
-                if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
-                    $header[] = 'Round';
-                }
-                if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
-                    $header[] = $scoreboard->task1;
-                }
-                if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
-                    $header[] = $scoreboard->task2;
-                }
-                if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
-                    $header[] = $scoreboard->task3;
-                }
-                if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
-                    $header[] = $scoreboard->task4;
-                }
-                if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
-                    $header[] = $scoreboard->task5;
-                }
-                if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
-                    $header[] = 'Reps'. "($scoreboard->reps)";
-                }
-                if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
-                    $header[] = "Timer" ."($scoreboard->time)";
-                }
-                $scoreboard->header = $header;
-
-                $data = [];
-                $rawData = [];
-                for ($i = 1; $i <= $scoreboard->round; $i++) {
+                if ($scoreboard) {
+                    $header = [];
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
-                        $rawData['round'] = $i;
+                        $header[] = 'Round';
                     }
                     if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
-                        $rawData['task1'] = '';
+                        $header[] = $scoreboard->task1;
                     }
                     if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
-                        $rawData['task2'] = '';
+                        $header[] = $scoreboard->task2;
                     }
                     if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
-                        $rawData['task3'] = '';
+                        $header[] = $scoreboard->task3;
                     }
                     if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
-                        $rawData['task4'] = '';
+                        $header[] = $scoreboard->task4;
                     }
                     if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
-                        $rawData['task5'] = '';
+                        $header[] = $scoreboard->task5;
                     }
                     if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
-                        $rawData['reps'] = '';
+                        $header[] = 'Reps'. "($scoreboard->reps)";
                     }
                     if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
-                        $rawData['timer'] = '';
+                        $header[] = "Timer" ."($scoreboard->time)";
                     }
-                    $data[] = $rawData;
+                    $scoreboard->header = $header;
+    
+                    $data = [];
+                    $rawData = [];
+                    for ($i = 1; $i <= $scoreboard->round; $i++) {
+                        if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
+                            $rawData['round'] = $i;
+                        }
+                        if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
+                            $rawData['task1'] = '';
+                        }
+                        if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
+                            $rawData['task2'] = '';
+                        }
+                        if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
+                            $rawData['task3'] = '';
+                        }
+                        if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
+                            $rawData['task4'] = '';
+                        }
+                        if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
+                            $rawData['task5'] = '';
+                        }
+                        if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
+                            $rawData['reps'] = '';
+                        }
+                        if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
+                            $rawData['timer'] = '';
+                        }
+                        $data[] = $rawData;
+                    }
+                    $scoreboard->data = $data;
                 }
-                $scoreboard->data = $data;
+                
 
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
