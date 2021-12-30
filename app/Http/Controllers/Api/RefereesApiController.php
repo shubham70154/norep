@@ -31,6 +31,28 @@ class RefereesApiController extends BaseController
             $subeventDetail = SubEvent::findOrFail($request->sub_event_id);
             if ($subeventDetail)
             {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $request->event_id],
+                    ['sub_event_id', $request->sub_event_id],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $request->event_id],
+                    ['sub_event_id', $request->sub_event_id],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+
+                $docsfiles = DB::table('files')->where([
+                    ['event_id', $request->event_id],
+                    ['sub_event_id', $request->sub_event_id],
+                    ['type', '=', 'docs']
+                ])->select('url')->get();
+
+                $subeventDetail->images =  $imagefiles;
+                $subeventDetail->vidoes =  $videofiles;
+                $subeventDetail->docs =  $docsfiles;
+
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
                     ['referee_id', $request->user_id]
