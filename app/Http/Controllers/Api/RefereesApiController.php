@@ -28,8 +28,8 @@ class RefereesApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             
-            $eventDetail = SubEvent::findOrFail($request->sub_event_id);
-            if ($eventDetail)
+            $subeventDetail = SubEvent::findOrFail($request->sub_event_id);
+            if ($subeventDetail)
             {
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
@@ -39,9 +39,8 @@ class RefereesApiController extends BaseController
                 if ($assignedParticipant) {
                     $userDetails = User::find($assignedParticipant->user_id);
                 }
-                return $userDetails;
-                
-
+                $result = ['sub_event' => $subeventDetail, 'participant' => $userDetails];
+                return $this->sendResponse($result, 'Result fetch successfully.');
             } else {
                 return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
