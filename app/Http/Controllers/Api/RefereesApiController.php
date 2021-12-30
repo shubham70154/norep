@@ -54,6 +54,7 @@ class RefereesApiController extends BaseController
                 $subeventDetail->docs =  $docsfiles;
                 $subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
+                $scoreboard = $subeventDetail->scoreboard;
 
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
@@ -63,8 +64,10 @@ class RefereesApiController extends BaseController
                 if ($assignedParticipant) {
                     $userDetails = User::find($assignedParticipant->user_id);
                 }
-                $result = ['sub_event' => $subeventDetail,
-                            'participant' => isset($userDetails) ? $userDetails : (object)[]];
+                $result = [
+                    'scoreboard' => $scoreboard,
+                    'sub_event' => $subeventDetail,
+                    'participant' => isset($userDetails) ? $userDetails : (object)[]];
                 return $this->sendResponse($result, 'Result fetch successfully.');
                 
             } else {
