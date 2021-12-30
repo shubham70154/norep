@@ -270,13 +270,13 @@ class EventsApiController extends BaseController
                 ['id', $request->event_id],
                 ['status', 1]
             ])->first();
-            // $eventStartDate = date('Y-m-d', strtotime($eventdata->start_date));
+             $eventStartDate = date('Y-m-d', strtotime($eventdata->start_date));
             // $eventEndDate = date('Y-m-d', strtotime($eventdata->end_date));
-            // $requestStartDate = date('Y-m-d', strtotime($request->start_date));
-            // $requestEndDate = date('Y-m-d', strtotime($request->end_date));
+            $requestStartDate = date('Y-m-d', strtotime($request->start_date));
+            $requestEndDate = date('Y-m-d', strtotime($request->end_date));
             if (!$eventdata->start_date->between(
-                $request->start_date,
-                $request->date_end
+                $requestStartDate,
+                $requestEndDate
             )
                 || !$eventdata->date_end->between(
                     $request->start_date,
