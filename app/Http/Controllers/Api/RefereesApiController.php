@@ -115,6 +115,7 @@ class RefereesApiController extends BaseController
                         $data[] = $rawData;
                     }
                     $scoreboard->data = $data;
+                    $data = [];
                 }
                 
 
