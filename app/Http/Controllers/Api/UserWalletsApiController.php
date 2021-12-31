@@ -164,24 +164,25 @@ class UserWalletsApiController extends BaseController
             $transactionResult = [];
             foreach($userTransaction as $transaction){
                 if(isset($transaction->deposite) && !is_null($transaction->deposite)) {
-                    $transaction->deposite = $transaction->deposite;
+                    $transactions['deposite'] = $transaction->deposite;
                 }
                 if(isset($transaction->withdraw) && !is_null($transaction->withdraw)) {
-                    $transaction->withdraw = $transaction->withdraw;
+                    $transactions['withdraw'] = $transaction->withdraw;
                 }
                 if(isset($transaction->joining_event_name) && !is_null($transaction->joining_event_name)) {
-                    $transaction->joining_event_name = $transaction->joining_event_name;
+                    $transactions['joining_event_name'] = $transaction->joining_event_name;
                 }
                 if(isset($transaction->amount_before_transaction) && !is_null($transaction->amount_before_transaction)) {
-                    $transaction->amount_before_transaction = $transaction->amount_before_transaction;
+                    $transactions['amount_before_transaction'] = $transaction->amount_before_transaction;
                 }
                 if(isset($transaction->amount_after_transaction) && !is_null($transaction->amount_after_transaction)) {
-                    $transaction->amount_after_transaction = $transaction->amount_after_transaction;
+                    $transactions['amount_after_transaction'] = $transaction->amount_after_transaction;
                 }
                 if(isset($transaction->transaction_date_time) && !is_null($transaction->transaction_date_time)) {
-                    $transaction->transaction_date_time = $transaction->transaction_date_time;
+                    $transactions['transaction_date_time'] = $transaction->transaction_date_time;
                 }
-                $transactionResult[] = $transaction;
+                $transactionResult[] = $transactions;
+                $transactions = [];
             }
             return $this->sendResponse($transactionResult, 'Transaction list fetch successfully.');
         } catch (\Exception $e) {
