@@ -145,7 +145,7 @@ class UserWalletsApiController extends BaseController
                 'user_id' => $request->user_id,
                 'amount_before_transaction' => $userDetails->total_amount,
                 'amount_after_transaction' => $total_amount,
-                'deposite' => $request->withdraw,
+                'withdraw' => $request->withdraw,
                 'transaction_type' => 'withdraw'
             ];
             $userTransaction = UserTransaction::create($withdrawData);
