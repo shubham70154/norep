@@ -15,6 +15,7 @@ class UserTransaction extends Model
 
     protected $fillable = [
         'user_id',
+        'transaction_type',
         'deposite',
         'withdraw',
         'transaction_date_time',

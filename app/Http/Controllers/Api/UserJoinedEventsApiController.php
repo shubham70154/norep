@@ -61,7 +61,8 @@ class UserJoinedEventsApiController extends BaseController
                         'joining_event_name' => $eventDetail->name,
                         'amount_before_transaction' => $eventUserDetail->total_amount,
                         'amount_after_transaction' => $eventtotalAmount,
-                        'deposite' => $request->amount
+                        'deposite' => $request->amount,
+                        'transaction_type' => 'deposite'
                     ];
                     $eventUserDetail->total_amount = $eventtotalAmount;
                     $eventUserDetail->save();

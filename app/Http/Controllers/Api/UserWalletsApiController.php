@@ -105,6 +105,7 @@ class UserWalletsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             DB::begintransaction();
+            $request->request->add(['transaction_type' => 'deposite']);
             $userTransaction = UserTransaction::create($request->all());
             //Update user wallet
             $userDetails = User::find($request->user_id);
@@ -129,6 +130,7 @@ class UserWalletsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             DB::begintransaction();
+            $request->request->add(['transaction_type' => 'withdraw']);
             $userTransaction = UserTransaction::create($request->all());
             //Update user wallet
             $userDetails = User::find($request->user_id);
@@ -146,7 +148,7 @@ class UserWalletsApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'user_id' => 'required',
-                'type' => 'required'
+                'transaction_type' => 'required'
             ]);
         
             if($validator->fails()){
@@ -155,7 +157,7 @@ class UserWalletsApiController extends BaseController
 
             $userTransaction = UserTransaction::where([
                 ['user_id', $request->user_id],
-                ['user_id', $request->user_id],
+                ['transaction_type', $request->transaction_type],
             ])->get();
             
             $transactions = [];
