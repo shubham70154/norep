@@ -105,11 +105,19 @@ class UserWalletsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             DB::begintransaction();
-            $request->request->add(['transaction_type' => 'deposite']);
-            $userTransaction = UserTransaction::create($request->all());
-            //Update user wallet
             $userDetails = User::find($request->user_id);
-            $userDetails->total_amount = $userDetails->total_amount + $request->deposite;
+            $total_amount = $userDetails->total_amount + $request->deposite;
+            
+            $depositeData = [
+                'user_id' => $request->user_id,
+                'amount_before_transaction' => $userDetails->total_amount,
+                'amount_after_transaction' => $total_amount,
+                'deposite' => $request->deposite,
+                'transaction_type' => 'deposite'
+            ];
+            $userTransaction = UserTransaction::create($depositeData);
+            //Update user wallet
+            $userDetails->total_amount = $total_amount;
             $userDetails->save();
             DB::commit();
             return $this->sendResponse($userDetails, 'User wallet updated successfully.');
@@ -130,11 +138,19 @@ class UserWalletsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
             DB::begintransaction();
-            $request->request->add(['transaction_type' => 'withdraw']);
-            $userTransaction = UserTransaction::create($request->all());
-            //Update user wallet
             $userDetails = User::find($request->user_id);
-            $userDetails->total_amount = $userDetails->total_amount - $request->withdraw;
+            $total_amount = $userDetails->total_amount - $request->withdraw;
+            
+            $withdrawData = [
+                'user_id' => $request->user_id,
+                'amount_before_transaction' => $userDetails->total_amount,
+                'amount_after_transaction' => $total_amount,
+                'deposite' => $request->withdraw,
+                'transaction_type' => 'withdraw'
+            ];
+            $userTransaction = UserTransaction::create($withdrawData);
+            //Update user wallet
+            $userDetails->total_amount = $total_amount;
             $userDetails->save();
             DB::commit();
             return $this->sendResponse($userDetails, 'User wallet updated successfully.');
