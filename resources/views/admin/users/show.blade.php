@@ -1,9 +1,15 @@
 @extends('layouts.admin')
 @section('content')
-
+<div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route("admin.users.index") }}">
+                Back to User List
+            </a>
+        </div>
+    </div>
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('global.user.title') }}
+        Show Details
     </div>
 
     <div class="card-body">
@@ -33,6 +39,31 @@
                         {{ $user->mobile_no }}
                     </td>
                 </tr>
+                <tr>
+                    <th>
+                        Age
+                    </th>
+                    <td>
+                        {{ $user->age }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Weight
+                    </th>
+                    <td>
+                        {{ $user->weight }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Gender
+                    </th>
+                    <td>
+                        {{ $user->gender }}
+                    </td>
+                </tr>
+                
                 <!-- <tr>
                     <th>
                         Roles

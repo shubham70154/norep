@@ -21,6 +21,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('users', 'UsersController');
 
+    Route::get('users/refereelist', 'UsersController@getRefereeList')->name('users.refereelist');
+
     Route::delete('events/destroy', 'EventsController@massDestroy')->name('events.massDestroy');
 
     Route::resource('events', 'EventsController');

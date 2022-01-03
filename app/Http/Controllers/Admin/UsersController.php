@@ -15,9 +15,16 @@ class UsersController extends Controller
     {
         abort_unless(\Gate::allows('user_access'), 403);
 
-        $users = User::all();
+        $users = User::where('user_type' , 'CrossFiter')->get();
 
         return view('admin.users.index', compact('users'));
+    }
+
+    public function getRefereeList()
+    {
+       return $users = User::where('user_type' , 'Judge')->get();
+
+        return view('admin.users.referee', compact('users'));
     }
 
     public function create()

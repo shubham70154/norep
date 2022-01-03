@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        Event Organizer List
+        Referee List
     </div>
 
     <div class="card-body">

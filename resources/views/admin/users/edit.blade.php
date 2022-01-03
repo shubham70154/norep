@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 @section('content')
+<div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route("admin.users.index") }}">
+                Back to User List
+            </a>
+        </div>
+    </div>
 
 <div class="card">
     <div class="card-header">
@@ -34,7 +41,7 @@
                     {{ trans('global.user.fields.email_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+            <!-- <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                 <label for="password">{{ trans('global.user.fields.password') }}</label>
                 <input type="password" id="password" name="password" class="form-control">
                 @if($errors->has('password'))
@@ -45,8 +52,8 @@
                 <p class="helper-block">
                     {{ trans('global.user.fields.password_helper') }}
                 </p>
-            </div>
-            <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}">
+            </div> -->
+            <!-- <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}">
                 <label for="roles">{{ trans('global.user.fields.roles') }}*
                     <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label>
@@ -65,9 +72,9 @@
                 <p class="helper-block">
                     {{ trans('global.user.fields.roles_helper') }}
                 </p>
-            </div>
+            </div> -->
             <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                <input class="btn btn-danger" type="submit" value="Update">
             </div>
         </form>
     </div>
