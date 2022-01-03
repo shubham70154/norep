@@ -53,7 +53,7 @@ class UserWalletsApiController extends BaseController
                     $eventDetail->event_total_participant =  $event->total_participant;
                     $events[] = $eventDetail;
                     $userDetails = User::find($user_id);
-                    $totalAmount = $userDetails->total_amount;
+                    $totalAmount = !is_null($userDetails->total_amount) ? $userDetails->total_amount : 0;
                 }
                 $result = ['event_amount' => $events, 'total_amount' => $totalAmount];
                 return $this->sendResponse($result, 'User wallet fetch successfully.');
