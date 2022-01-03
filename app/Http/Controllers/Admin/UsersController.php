@@ -22,7 +22,7 @@ class UsersController extends Controller
 
     public function getRefereeList()
     {
-       return $users = User::where('user_type' , 'Judge')->get();
+        $users = User::where('user_type' , 'Judge')->get();
 
         return view('admin.users.referee', compact('users'));
     }

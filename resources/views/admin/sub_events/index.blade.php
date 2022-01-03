@@ -40,7 +40,7 @@
 
                             </td>
                             <td>
-                                {{ $event->title ?? '' }}
+                                {{ $event->name ?? '' }}
                             </td>
                             <td>
                                 {{ $event->description ?? '' }}

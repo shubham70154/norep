@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyEventRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Event;
+use App\User;
 use App\SubEvent;
 use Log;
 use DB;
@@ -56,8 +57,21 @@ class EventsController extends Controller
 
     public function show(Event $event)
     {
-        abort_unless(\Gate::allows('product_show'), 403);
+        $result = '';
+        $result = str_replace('"',"",$event->referee_id) .',';
 
+        $refereeArray = explode(',', rtrim($result, ','));
+        $refereeIds = array_unique($refereeArray);
+
+        $participantList = User::whereIn('id', $refereeIds)->get();
+
+        $refereenames = '';
+        foreach($participantList as $user) {
+            $refereenames .= $user->name . ',';
+        }
+        $refereenames = rtrim($refereenames, ',');
+        $event->refereenames = $refereenames;
+        
         return view('admin.events.show', compact('event'));
     }
 

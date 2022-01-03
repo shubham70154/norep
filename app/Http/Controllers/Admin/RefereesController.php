@@ -8,7 +8,9 @@ use App\Http\Requests\StoreRefereeRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateRefereeRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Referee;
+use App\UserJoinedEvent;
+use App\Event;
+use App\User;
 use App\{Country,State,City};
 
 class RefereesController extends Controller
@@ -17,9 +19,19 @@ class RefereesController extends Controller
     {
         abort_unless(\Gate::allows('user_access'), 403);
 
-        $referees = Referee::all();
+        $referees = UserJoinedEvent::all();
 
-        return view('admin.referees.index', compact('referees'));
+        $referleeLists = [];
+        foreach($referees as $referee) {
+            $event = Event::find($referee->event_id);
+            $refereeDetails = User::find($referee->referee_id);
+
+            $referee->event = $event;
+            $referee->referee = $refereeDetails;
+            $referleeLists[] = $referee;
+        }
+        
+        return view('admin.referees.index', compact('referleeLists'));
     }
 
     public function create()
@@ -56,11 +68,16 @@ class RefereesController extends Controller
         return redirect()->route('admin.referees.index');
     }
 
-    public function show(Referee $referee)
+    public function show($id)
     {
-        abort_unless(\Gate::allows('user_show'), 403);
+        $details = UserJoinedEvent::find($id);
 
-        return view('admin.referees.show', compact('referee'));
+        $event = Event::find($details->event_id);
+        $refereeDetails = User::find($details->referee_id);
+
+        $details->event = $event;
+        $details->referee = $refereeDetails;
+        return view('admin.referees.show', compact('details'));
     }
 
     public function destroy(Referee $referee)

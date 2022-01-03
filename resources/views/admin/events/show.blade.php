@@ -17,7 +17,7 @@
     <div class="card-body">
         <table class="table table-bordered table-striped">
             <tbody>
-                <tr>
+                <!-- <tr>
                     <th>
                         Event Type
                     </th>
@@ -31,7 +31,7 @@
                         On Site Event
                     </td>
                     @endif
-                </tr>
+                </tr> -->
                 <tr>
                     <th>
                         {{ trans('global.event.fields.title') }}
@@ -66,6 +66,22 @@
                 </tr>
                 <tr>
                     <th>
+                        End Date
+                    </th>
+                    <td>
+                        {!! $event->end_date !!}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        End Time
+                    </th>
+                    <td>
+                        {!! $event->end_time !!}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
                         Location
                     </th>
                     <td>
@@ -88,6 +104,16 @@
                          {{ $event->player_limit }}
                     </td>
                 </tr>
+
+                <tr>
+                    <th>
+                        Assigned Referee
+                    </th>
+                    <td>
+                         {{ $event->refereenames }}
+                    </td>
+                </tr>
+
             </tbody>
         </table>
     </div>

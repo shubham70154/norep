@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route("admin.users.refereelist") }}" class="nav-link {{ request()->is('admin/users/refereelist') || request()->is('admin/users/*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.users.refereelist') }}" class="nav-link {{ request()->is('admin/users/refereelist') || request()->is('admin/users/*') ? 'active' : '' }}">
                             <i class="fas fa-user nav-icon">
 
                             </i>

@@ -3,14 +3,14 @@
 <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.referees.index') }}">
-                Back to Referee List
+                Back to Referee Management
             </a>
         </div>
     </div>
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('global.referee.title') }}
+        Referee details
     </div>
 
     <div class="card-body">
@@ -18,66 +18,103 @@
             <tbody>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.name') }}
+                        Name
                     </th>
                     <td>
-                        {{ $referee->name }}
+                        {{ $details->referee->name }}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.email') }}
+                        Email
                     </th>
                     <td>
-                        {{ $referee->email }}
+                        {{ $details->referee->email }}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.gender') }}
+                        Gender
                     </th>
                     <td>
-                        {{ $referee->gender }}
+                        {{ $details->referee->gender }}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.phone_number') }}
+                        Mobile Number
                     </th>
                     <td>
-                        {{ $referee->phone_number }}
+                        {{ $details->referee->mobile_no }}
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-header">
+        Events details
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                    <th>
+                        {{ trans('global.event.fields.title') }}
+                    </th>
+                    <td>
+                        {{ $details->event->name }}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.alternate_number') }}
+                        {{ trans('global.event.fields.description') }}
                     </th>
                     <td>
-                        {{ $referee->alternate_number }}
+                        {!! $details->event->description !!}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.age') }}
+                        Start DateTime
                     </th>
                     <td>
-                        {{ $referee->age }}
+                        {!! $details->event->start_date !!}  {!! $details->event->start_time !!}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.details') }}
+                        End DateTime
                     </th>
                     <td>
-                        {{ $referee->details }}
+                        {!! $details->event->end_date !!} {!! $details->event->end_time !!}
+                    </td>
+                </tr>
+               
+                <tr>
+                    <th>
+                        Location
+                    </th>
+                    <td>
+                        {!! $details->event->location !!}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.referee.fields.address') }}
+                        {{ trans('global.event.fields.price') }}
                     </th>
                     <td>
-                        {{ $referee->address }}, {{ $referee->pincode }}, {{ $referee->city }}, {{ $referee->state }}, {{ $referee->country }}
+                        $ {{ $details->event->price }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Player Limit
+                    </th>
+                    <td>
+                         {{ $details->event->player_limit }}
                     </td>
                 </tr>
                 
