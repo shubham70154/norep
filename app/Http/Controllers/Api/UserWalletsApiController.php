@@ -35,6 +35,7 @@ class UserWalletsApiController extends BaseController
                 ->get();
 
                 $events = [];
+                $totalAmount = 0;
                 foreach($eventsAmount as $event)
                 {
                     $eventDetail = Event::findOrFail($event->event_id);
