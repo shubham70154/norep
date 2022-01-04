@@ -17,7 +17,7 @@
                             Event Start DateTime
                         </th>
                         <th>
-                            Event Ebd DateTime
+                            Event End DateTime
                         </th>
                         <th>
                             Event Total Booked Amount
