@@ -20,6 +20,9 @@
                             Event End DateTime
                         </th>
                         <th>
+                            Event Price
+                        </th>
+                        <th>
                             Event Total Booked Amount
                         </th>
                         <th>
@@ -41,6 +44,9 @@
                             </td>
                             <td>
                             {{ $event->end_date ?? '' }} {{ $event->end_time ?? '' }}
+                            </td>
+                            <td>
+                            {{ $event->price ?? '' }}
                             </td>
                             <td>
                             {{ $event->event_total_amount ?? '' }}
