@@ -1,17 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-@can('user_create')
-    <!-- <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.referees.create") }}">
-                {{ trans('global.add') }} {{ trans('global.referee.title_singular') }}
-            </a>
-        </div>
-    </div> -->
-@endcan
 <div class="card">
     <div class="card-header">
-        Referee Assigned Events
+        Booked Event List
     </div>
 
     <div class="card-body">
@@ -20,19 +11,19 @@
                 <thead>
                     <tr>
                         <th>
-                        Referee Name
-                        </th>
-                        <th>
-                            Referee Email
-                        </th>
-                        <th>
-                            Assigned Event
+                            Event Name
                         </th>
                         <th>
                             Event Start DateTime
                         </th>
                         <th>
-                            Event End DateTime
+                            Event Ebd DateTime
+                        </th>
+                        <th>
+                            Event Total Booked Amount
+                        </th>
+                        <th>
+                            No. of Participant
                         </th>
                         <th>
                             &nbsp;
@@ -40,31 +31,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($referleeLists as $key => $referleeList)
-                        <tr data-entry-id="{{ $referleeList->id }}">
+                    @foreach($events as $key => $event)
+                        <tr data-entry-id="{{ $event->id }}">
                             <td>
-                            {{ $referleeList->referee->name ?? '' }}
+                            {{ $event->name ?? '' }}
                             </td>
                             <td>
-                            {{ $referleeList->referee->email ?? '' }}
+                                {{ $event->start_date ?? '' }} {{ $event->start_time ?? '' }}
                             </td>
                             <td>
-                                {{ $referleeList->event->name ?? '' }}
+                            {{ $event->end_date ?? '' }} {{ $event->end_time ?? '' }}
                             </td>
                             <td>
-                                {{ $referleeList->event->start_date ?? '' }} {{ $referleeList->event->start_time ?? '' }}
+                            {{ $event->event_total_amount ?? '' }}
                             </td>
                             <td>
-                            {{ $referleeList->event->end_date ?? '' }} {{ $referleeList->event->end_time ?? '' }}
+                                {{ $event->event_total_participant ?? '' }}
                             </td>
+                            
                             <td>
                                 @can('user_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.referees.show', $referleeList->id) }}">
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.events.show', $event->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
                                 <!-- @can('user_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.referees.edit', $referleeList->id) }}">
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.events.edit', $event->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan -->

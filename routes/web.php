@@ -9,6 +9,9 @@ Auth::routes(['register' => false]);
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
+    //Route::resource('bookedevent', 'BookedEventsController');
+    Route::get('/bookedevents/list', 'BookedEventsController@index')->name('bookedevents.list');
+
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
 
     Route::resource('permissions', 'PermissionsController');
@@ -22,8 +25,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
 
     Route::resource('users', 'UsersController');
-
-    
 
     Route::delete('events/destroy', 'EventsController@massDestroy')->name('events.massDestroy');
 

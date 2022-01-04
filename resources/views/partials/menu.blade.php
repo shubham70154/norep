@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+            <a href="{{ route("admin.bookedevents.list") }}" class="nav-link {{ request()->is('admin/bookedevents') || request()->is('admin/bookedevent/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
