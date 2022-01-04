@@ -21,7 +21,7 @@
                         Name
                     </th>
                     <td>
-                        {{ $details->referee->name }}
+                        {{ $details->referee->name ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                         Email
                     </th>
                     <td>
-                        {{ $details->referee->email }}
+                        {{ $details->referee->email ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -37,7 +37,7 @@
                         Gender
                     </th>
                     <td>
-                        {{ $details->referee->gender }}
+                        {{ $details->referee->gender ?? '' }}
                     </td>
                 </tr>
                 <tr>
@@ -45,7 +45,7 @@
                         Mobile Number
                     </th>
                     <td>
-                        {{ $details->referee->mobile_no }}
+                        {{ $details->referee->mobile_no ?? '' }}
                     </td>
                 </tr>
                 

@@ -65,7 +65,7 @@
                         {{ trans('global.event.fields.title') }}
                     </th>
                     <td>
-                        {{ $details->event->name }}
+                        {{ $details->event->name ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -73,7 +73,7 @@
                         {{ trans('global.event.fields.description') }}
                     </th>
                     <td>
-                        {!! $details->event->description !!}
+                        {{ $details->event->description ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +81,7 @@
                         Start DateTime
                     </th>
                     <td>
-                        {!! $details->event->start_date !!}  {!! $details->event->start_time !!}
+                        {{ $details->event->start_date ?? ''}}  {{ $details->event->start_time ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@
                         End DateTime
                     </th>
                     <td>
-                        {!! $details->event->end_date !!} {!! $details->event->end_time !!}
+                        {{ $details->event->end_date ?? ''}} {{ $details->event->end_time ?? ''}}
                     </td>
                 </tr>
                
@@ -98,7 +98,7 @@
                         Location
                     </th>
                     <td>
-                        {!! $details->event->location !!}
+                        {{ $details->event->location ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -106,7 +106,7 @@
                         {{ trans('global.event.fields.price') }}
                     </th>
                     <td>
-                        $ {{ $details->event->price }}
+                        $ {{ $details->event->price?? '' }}
                     </td>
                 </tr>
                 <tr>
@@ -114,7 +114,7 @@
                         Player Limit
                     </th>
                     <td>
-                         {{ $details->event->player_limit }}
+                         {{ $details->event->player_limit ?? ''}}
                     </td>
                 </tr>
                 

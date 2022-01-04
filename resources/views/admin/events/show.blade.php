@@ -37,7 +37,7 @@
                         {{ trans('global.event.fields.title') }}
                     </th>
                     <td>
-                        {{ $event->name }}
+                        {{ $event->name ?? ''}}
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@
                         {{ trans('global.event.fields.price') }}
                     </th>
                     <td>
-                        $ {{ $event->price }}
+                        $ {{ $event->price ?? '' }}
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +101,7 @@
                         Player Limit
                     </th>
                     <td>
-                         {{ $event->player_limit }}
+                         {{ $event->player_limit ?? ''}}
                     </td>
                 </tr>
 
@@ -110,7 +110,7 @@
                         Assigned Referee
                     </th>
                     <td>
-                         {{ $event->refereenames }}
+                         {{ $event->refereenames ?? ''}}
                     </td>
                 </tr>
 

@@ -36,6 +36,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('referees', 'RefereesController');
 
+    Route::get('/helpsupports/list', 'HelpSupportsController@index')->name('helpsupports.list');
+
+    Route::get('/helpsupports/show/{id}', 'HelpSupportsController@show')->name('helpsupports.show');
+
     Route::post('get-states-by-country','RefereesController@getState');
     Route::post('get-cities-by-state','RefereesController@getCity');
 });

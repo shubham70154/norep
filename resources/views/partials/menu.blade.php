@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item">
-            <a href="{{ route("admin.bookedevents.list") }}" class="nav-link {{ request()->is('admin/bookedevents') || request()->is('admin/bookedevent/*') ? 'active' : '' }}">
+            <a href="{{ route("admin.bookedevents.list") }}" class="nav-link {{ request()->is('admin/bookedevents') || request()->is('admin/bookedevents/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
@@ -91,7 +91,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+            <a href="{{ route("admin.helpsupports.list") }}" class="nav-link {{ request()->is('admin/helpsupports') || request()->is('admin/helpsupports/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
