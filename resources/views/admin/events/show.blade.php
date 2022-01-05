@@ -3,8 +3,8 @@
 
 <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.events.index") }}">
-                Back to Event List
+            <a class="btn btn-success" href="{{ url()->previous() }}">
+                Back to List
             </a>
         </div>
     </div>
