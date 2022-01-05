@@ -11,6 +11,7 @@ use App\User;
 use App\SubEvent;
 use Log;
 use DB;
+use Carbon\Carbon;
 
 class EventsController extends Controller
 {
@@ -89,5 +90,82 @@ class EventsController extends Controller
         Event::whereIn('id', request('ids'))->delete();
 
         return response(null, 204);
+    }
+
+    public function getRunningEventList()
+    {
+        $eventLists = Event::where([
+                    ['status' , 1],
+                    ['start_date', '<=', Carbon::today()],
+                    ['end_date', '>=', Carbon::today()]
+                    ])->orderBy('start_date', 'DESC')->get();
+            
+        $allevents = [];
+        foreach($eventLists as $event) {
+            $imagefiles = DB::table('files')->where([
+                ['event_id', $event->id],
+                ['type', '=', 'image']
+            ])->select('url')->get();
+
+            $videofiles = DB::table('files')->where([
+                ['event_id', $event->id],
+                ['type', '=', 'video']
+            ])->select('url')->get();
+            $event->images =  $imagefiles;
+            $event->vidoes =  $videofiles;
+            $allevents[] = $event;
+        }
+
+        return view('admin.events.runningevents', compact('allevents'));
+    }
+
+    public function getFutureEventList()
+    {
+        $eventLists = Event::where([
+                    ['status' , 1],
+                    ['start_date', '>=', Carbon::today()]
+                    ])->orderBy('start_date', 'DESC')->get();
+        
+        $allevents = [];
+        foreach($eventLists as $event) {
+            $imagefiles = DB::table('files')->where([
+                ['event_id', $event->id],
+                ['type', '=', 'image']
+            ])->select('url')->get();
+
+            $videofiles = DB::table('files')->where([
+                ['event_id', $event->id],
+                ['type', '=', 'video']
+            ])->select('url')->get();
+            $event->images =  $imagefiles;
+            $event->vidoes =  $videofiles;
+            $allevents[] = $event;
+        }
+        return view('admin.events.upcomingevents', compact('allevents'));
+    }
+
+    public function getPastEventList()
+    {
+        $eventLists = Event::where([
+                    ['status' , 1],
+                    ['start_date', '<=', Carbon::today()]
+                    ])->orderBy('start_date', 'DESC')->get();
+        
+        $allevents = [];
+        foreach($eventLists as $event) {
+            $imagefiles = DB::table('files')->where([
+                ['event_id', $event->id],
+                ['type', '=', 'image']
+            ])->select('url')->get();
+
+            $videofiles = DB::table('files')->where([
+                ['event_id', $event->id],
+                ['type', '=', 'video']
+            ])->select('url')->get();
+            $event->images =  $imagefiles;
+            $event->vidoes =  $videofiles;
+            $allevents[] = $event;
+        }
+        return view('admin.events.pastevents', compact('allevents'));
     }
 }

@@ -18,29 +18,12 @@
                     {{ trans('global.userManagement.title') }}
                 </a>
                 <ul class="nav-dropdown-items">
-                    <!-- <li class="nav-item">
-                        <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                            <i class="fas fa-unlock-alt nav-icon">
-
-                            </i>
-                            {{ trans('global.permission.title') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
-                            <i class="fas fa-briefcase nav-icon">
-
-                            </i>
-                            {{ trans('global.role.title') }}
-                        </a>
-                    </li> -->
                     <li class="nav-item">
                         <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                             <i class="fas fa-user nav-icon">
 
                             </i>
                             Event Organizer
-                            <!-- {{ trans('global.user.title') }} -->
                         </a>
                     </li>
                     <li class="nav-item">
@@ -49,19 +32,62 @@
 
                             </i>
                             Referee List
-                            <!-- {{ trans('global.user.title') }} -->
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="{{ route("admin.events.index") }}" class="nav-link {{ request()->is('admin/events') || request()->is('admin/events/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
                     {{ trans('global.eventManagement.title') }}
                 </a>
+            </li> -->
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle">
+                    <i class="fa fa-calendar nav-icon">
+
+                    </i>
+                    {{ trans('global.eventManagement.title') }}
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                    <a href="{{ route("admin.events.index") }}" class="nav-link {{ request()->is('admin/events') || request()->is('admin/events/*') ? 'active' : '' }}">
+                            <i class="fa fa-calendar nav-icon">
+
+                            </i>
+                            All Events
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.events.runningeventlist') }}" class="nav-link {{ request()->is('admin/events/runningeventlist') || request()->is('admin/events/*') ? 'active' : '' }}">
+                            <i class="fa fa-calendar nav-icon">
+
+                            </i>
+                            Running Events
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.events.upcomingeventlist') }}" class="nav-link {{ request()->is('admin/events/upcomingeventlist') || request()->is('admin/events/*') ? 'active' : '' }}">
+                            <i class="fa fa-calendar nav-icon">
+
+                            </i>
+                            Upcoming Events
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.events.pasteventlist') }}" class="nav-link {{ request()->is('admin/events/pasteventlist') || request()->is('admin/events/*') ? 'active' : '' }}">
+                            <i class="fa fa-calendar nav-icon">
+
+                            </i>
+                            Past Events
+                        </a>
+                    </li>
+                </ul>
             </li>
+
             
             <li class="nav-item">
                 <a href="{{ route("admin.referees.index") }}" class="nav-link {{ request()->is('admin/referees') || request()->is('admin/referees/*') ? 'active' : '' }}">

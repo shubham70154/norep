@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.event.title_singular') }} {{ trans('global.list') }}
+        Running Events List
     </div>
 
     <div class="card-body">
@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($events as $key => $event)
+                    @foreach($allevents as $key => $event)
                         <tr data-entry-id="{{ $event->id }}">
                             <td>
 

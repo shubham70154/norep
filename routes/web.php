@@ -5,7 +5,7 @@ Route::redirect('/', '/login');
 Route::redirect('/home', '/admin');
 
 Auth::routes(['register' => false]);
-
+ 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
@@ -25,6 +25,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
 
     Route::resource('users', 'UsersController');
+
+    Route::get('events/runningEventList', 'EventsController@getRunningEventList')->name('events.runningeventlist');
+
+    Route::get('events/upcomingEventList', 'EventsController@getFutureEventList')->name('events.upcomingeventlist');
+
+    Route::get('events/pastEventList', 'EventsController@getPastEventList')->name('events.pasteventlist');
 
     Route::delete('events/destroy', 'EventsController@massDestroy')->name('events.massDestroy');
 
