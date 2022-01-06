@@ -29,6 +29,9 @@
                             {{ trans('global.sub_event.fields.description') }}
                         </th>
                         <th>
+                            Sub Event Type
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -44,6 +47,15 @@
                             </td>
                             <td>
                                 {{ $event->description ?? '' }}
+                            </td>
+                           
+                            <td>
+                                @if($event->event_type_id == 1)
+                                    Virtual Event
+                                    @endif
+                                @if($event->event_type_id == 2)
+                                    On Site Event
+                                @endif
                             </td>
                             <td>
                                 @can('product_show')
