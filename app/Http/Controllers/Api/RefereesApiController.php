@@ -82,6 +82,7 @@ class RefereesApiController extends BaseController
                     if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
                         $header[] = "Timer" ."($scoreboard->time)";
                     }
+                    $header[] = "Points";
                     $scoreboard->header = $header;
     
                     $data = [];
@@ -111,6 +112,7 @@ class RefereesApiController extends BaseController
                         if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
                             $rawData['timer'] = '';
                         }
+                        $rawData['points'] = '';
                         $data[] = $rawData;
                     }
                     $scoreboard->data = $data;
