@@ -63,6 +63,11 @@
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
+                                @can('product_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.subevents.leaderboard', $event->id) }}">
+                                        View Leaderboard
+                                    </a>
+                                @endcan
                                 <!-- @can('product_edit')
                                     <a class="btn btn-xs btn-info" href="{{ route('admin.events.edit', $event->id) }}">
                                         {{ trans('global.edit') }}
