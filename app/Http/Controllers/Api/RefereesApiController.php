@@ -180,25 +180,31 @@ class RefereesApiController extends BaseController
 
     public function submitFinalUserScoreByReferee(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'user_leaderboard_id' => 'required',
-            'referee_id' => 'required',
-            'referee_signature_url' => 'required',
-            'athlete_signature_url' => 'required'
-        ]);
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_leaderboard_id' => 'required',
+                'referee_id' => 'required',
+                'referee_signature_url' => 'required',
+                'athlete_signature_url' => 'required'
+            ]);
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            DB::begintransaction();
+            $UserLeaderboard = UserLeaderboard::where('id', $request->user_leaderboard_id)->update([
+                'referee_signature_url' => $request->referee_signature_url,
+                'athlete_signature_url' => $request->athlete_signature_url,
+                'is_final_submit' => 1
+            ]);
+            $UserLeaderboard = UserLeaderboard::find($request->user_leaderboard_id);
+            $UserLeaderboard->header = unserialize($UserLeaderboard->header);
+            $UserLeaderboard->scoreboard = unserialize($UserLeaderboard->scoreboard);
+            DB::commit();
+            return $this->sendResponse($UserLeaderboard, 'Final scoreboard submitted successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
+            'line_no'=> $e->getLine()]);
         }
-        DB::begintransaction();
-        $UserLeaderboard = UserLeaderboard::where('id', $request->user_leaderboard_id)->update([
-            'referee_signature_url' => $request->referee_signature_url,
-            'athlete_signature_url' => $request->athlete_signature_url,
-            'is_final_submit' => 1
-        ]);
-        $UserLeaderboard->header = unserialize($UserLeaderboard->header);
-        $UserLeaderboard->scoreboard = unserialize($UserLeaderboard->scoreboard);
-        DB::commit();
-        return $this->sendResponse($UserLeaderboard, 'Final scoreboard submitted successfully.');
     }
 
 }
