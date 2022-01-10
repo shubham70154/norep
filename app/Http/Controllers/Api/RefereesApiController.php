@@ -159,10 +159,11 @@ class RefereesApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
-            //return $request->all();
+
             DB::begintransaction();
             $request->header = serialize($request->header);
             $request->scoreboard = serialize($request->scoreboard);
+            return $request->all();
             $UserLeaderboard = UserLeaderboard::create($request->all());
             DB::commit();
             return $this->sendResponse($UserLeaderboard, 'Scoreboard submitted successfully.');
