@@ -22,6 +22,8 @@ class UserLeaderboard extends Model
         'scoreboard',
         'total_points',
         'is_final_submit',
+        'referee_signature_url',
+        'athlete_signature_url',
         'created_at',
         'updated_at'
     ];

@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('add-user-score-by-referee', 'Api\RefereesApiController@addUserScoreByReferee');
 
+    Route::post('submit-final-user-score-by-referee', 'Api\RefereesApiController@submitFinalUserScoreByReferee');
+
     Route::post('user-transaction-details', 'Api\UserWalletsApiController@userTransactionDetails');
 });
 
