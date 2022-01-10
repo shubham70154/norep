@@ -8,6 +8,7 @@ use App\SubEvent;
 use App\User;
 use App\File;
 use App\UserJoinedEvent;
+use App\UserLeaderboard;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -141,6 +142,33 @@ class RefereesApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
             'line_no'=> $e->getLine()]);
         }
+    }
+
+    public function addUserScoreByReferee(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' => 'required',
+                'user_id' => 'required',
+                'referee_id' => 'required',
+                'sub_event_id' => 'required',
+                'header' => 'required',
+                'scoreboard' => 'required',
+                'total_points' =>  'required'
+            ]);
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+
+            DB::begintransaction();
+            $UserLeaderboard = UserLeaderboard::create($request->all());
+            DB::commit();
+            return $this->sendResponse($UserLeaderboard, 'Scoreboard submitted successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
+            'line_no'=> $e->getLine()]);
+        }
+
     }
 
 }
