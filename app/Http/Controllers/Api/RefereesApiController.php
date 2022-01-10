@@ -161,7 +161,7 @@ class RefereesApiController extends BaseController
             }
             //return $request->all();
             DB::begintransaction();
-            return $request->header = json_encode($request->header);
+            return $request->header = json_decode($request->header);
             // $request->scoreboard = json_encode($request->scoreboard);
             $UserLeaderboard = UserLeaderboard::create($request->all());
             DB::commit();
