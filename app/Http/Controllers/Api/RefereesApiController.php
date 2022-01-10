@@ -162,7 +162,7 @@ class RefereesApiController extends BaseController
             //return $request->all();
             DB::begintransaction();
             $request->header = serialize($request->header);
-            // $request->scoreboard = json_encode($request->scoreboard);
+            $request->scoreboard = serialize($request->scoreboard);
             $UserLeaderboard = UserLeaderboard::create($request->all());
             DB::commit();
             return $this->sendResponse($UserLeaderboard, 'Scoreboard submitted successfully.');
