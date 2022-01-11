@@ -62,21 +62,13 @@ class RefereesApiController extends BaseController
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                         $header['round'] = 'Round';
                     }
-                    if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
-                        $header['task1'] = $scoreboard->task1;
-                    }
-                    if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
-                        $header['task2'] = $scoreboard->task2;
-                    }
-                    if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
-                        $header['task3'] = $scoreboard->task3;
-                    }
-                    if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
-                        $header['task4'] = $scoreboard->task4;
-                    }
-                    if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
-                        $header['task5'] = $scoreboard->task5;
-                    }
+                    
+                    $header['task1'] = isset($scoreboard->task1) ? $scoreboard->task1 : '';
+                    $header['task2'] = isset($scoreboard->task2) ? $scoreboard->task2 : '';
+                    $header['task3'] = isset($scoreboard->task3) ? $scoreboard->task3 : '';
+                    $header['task4'] = isset($scoreboard->task4) ? $scoreboard->task4 : '';
+                    $header['task5'] = isset($scoreboard->task5) ? $scoreboard->task5 : '';
+                    
                     if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                         $header['reps'] = 'Reps'. "($scoreboard->reps)";
                     }
@@ -92,21 +84,11 @@ class RefereesApiController extends BaseController
                         if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                             $rawData['round'] = $i;
                         }
-                        if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
-                            $rawData['task1'] = '';
-                        }
-                        if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
-                            $rawData['task2'] = '';
-                        }
-                        if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
-                            $rawData['task3'] = '';
-                        }
-                        if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
-                            $rawData['task4'] = '';
-                        }
-                        if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
-                            $rawData['task5'] = '';
-                        }
+                        $rawData['task1'] = isset($scoreboard->task1) ? $scoreboard->task1 : '';
+                        $rawData['task2'] = isset($scoreboard->task2) ? $scoreboard->task2 : '';
+                        $rawData['task3'] = isset($scoreboard->task3) ? $scoreboard->task3 : '';
+                        $rawData['task4'] = isset($scoreboard->task4) ? $scoreboard->task4 : '';
+                        $rawData['task5'] = isset($scoreboard->task5) ? $scoreboard->task5 : '';                                                                 
                         if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                             $rawData['reps'] = '';
                         }
