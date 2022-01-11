@@ -21,7 +21,7 @@ class RefereesApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
-                'user_id' => 'required',
+                'referee_id' => 'required',
                 'sub_event_id' => 'required'
             ]);
         
@@ -105,7 +105,7 @@ class RefereesApiController extends BaseController
 
                 $assignedParticipant = UserJoinedEvent::where([
                     ['event_id', $request->event_id],
-                    ['referee_id', $request->user_id]
+                    ['referee_id', $request->referee_id]
                 ])->first();
 
                 if ($assignedParticipant) {
