@@ -60,30 +60,30 @@ class RefereesApiController extends BaseController
                 if ($scoreboard) {
                     $header = [];
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
-                        $header[] = 'Round';
+                        $header['round'] = 'Round';
                     }
                     if (isset($scoreboard->task1) && !is_null($scoreboard->task1)) {
-                        $header[] = $scoreboard->task1;
+                        $header['task1'] = $scoreboard->task1;
                     }
                     if (isset($scoreboard->task2) && !is_null($scoreboard->task2)) {
-                        $header[] = $scoreboard->task2;
+                        $header['task2'] = $scoreboard->task2;
                     }
                     if (isset($scoreboard->task3) && !is_null($scoreboard->task3)) {
-                        $header[] = $scoreboard->task3;
+                        $header['task3'] = $scoreboard->task3;
                     }
                     if (isset($scoreboard->task4) && !is_null($scoreboard->task4)) {
-                        $header[] = $scoreboard->task4;
+                        $header['task4'] = $scoreboard->task4;
                     }
                     if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
-                        $header[] = $scoreboard->task5;
+                        $header['task5'] = $scoreboard->task5;
                     }
                     if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
-                        $header[] = 'Reps'. "($scoreboard->reps)";
+                        $header['reps'] = 'Reps'. "($scoreboard->reps)";
                     }
                     if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
-                        $header[] = "Timer" ."($scoreboard->time)";
+                        $header['timer'] = "Timer" ."($scoreboard->time)";
                     }
-                    $header[] = "Points";
+                    $header['points'] = "Points";
                     $scoreboard->header = $header;
     
                     $data = [];
