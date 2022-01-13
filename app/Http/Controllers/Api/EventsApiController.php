@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
+use App\UserJoinedEvent;
 use DB, Validator;
 use Carbon\Carbon;
 
@@ -429,6 +430,17 @@ class EventsApiController extends BaseController
                     ])->select('url')->get();
                     $event->images =  $imagefiles;
                     $event->vidoes =  $videofiles;
+                    $checkUserJoinedEvent = UserJoinedEvent::where([
+                                                ['event_id' => $event->id],
+                                                ['referee_id' => $referee_id]
+                                            ])->first();
+                    if ($checkUserJoinedEvent) {
+                        $user = User::find($checkUserJoinedEvent->user_id);
+                        if ($user)
+                        {
+                            $event->participant = $user;
+                        }
+                    }
                     $allevents[] = $event;
                 }
                 
@@ -561,8 +573,6 @@ class EventsApiController extends BaseController
         try {
             $categoryList = DB::table('sub_event_categories')->select('id','name')
                             ->where('status' , 1)->get();
-
-
             return $this->sendResponse($categoryList, 'Sub event category list get successfully.');
             
         } catch (\Exception $e) {
