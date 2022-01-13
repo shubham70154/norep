@@ -431,8 +431,8 @@ class EventsApiController extends BaseController
                     $event->images =  $imagefiles;
                     $event->vidoes =  $videofiles;
                     $checkUserJoinedEvent = UserJoinedEvent::where([
-                                                ['event_id' => $event->id],
-                                                ['referee_id' => $referee_id]
+                                                ['event_id', $event->id],
+                                                ['referee_id', $referee_id]
                                             ])->first();
                     if ($checkUserJoinedEvent) {
                         $user = User::find($checkUserJoinedEvent->user_id);
