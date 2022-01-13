@@ -439,7 +439,11 @@ class EventsApiController extends BaseController
                         if ($user)
                         {
                             $event->participant = $user;
+                        } else {
+                            $event->participant = (object)[];
                         }
+                    } else {
+                        $event->participant = (object)[];
                     }
                     $allevents[] = $event;
                 }
