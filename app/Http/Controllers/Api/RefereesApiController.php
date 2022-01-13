@@ -22,7 +22,8 @@ class RefereesApiController extends BaseController
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
                 'referee_id' => 'required',
-                'sub_event_id' => 'required'
+                'sub_event_id' => 'required',
+                'user_id' => 'required'
             ]);
         
             if($validator->fails()){
@@ -57,6 +58,12 @@ class RefereesApiController extends BaseController
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
                 $scoreboard = json_decode($subeventDetail->scoreboard);
 
+                return $checkUserLeaderboard =  UserLeaderboard::where([
+                                                ['user_id' , $request->user_id],
+                                                ['sub_event_id' , $request->sub_event_id],
+                                                ['referee_id' , $request->referee_id],
+                                                ['event_id' , $request->event_id],
+                                            ])->first();
                 if ($scoreboard) {
                     $header = [];
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
