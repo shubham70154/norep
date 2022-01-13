@@ -10,6 +10,40 @@
                     {{ trans('global.dashboard') }}
                 </a>
             </li>
+            <!-- <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle">
+                    <i class="fas fa-users nav-icon">
+
+                    </i>
+                    {{ trans('global.userManagement.title') }}
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                            <i class="fas fa-unlock-alt nav-icon">
+
+                            </i>
+                            {{ trans('global.permission.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                            <i class="fas fa-briefcase nav-icon">
+
+                            </i>
+                            {{ trans('global.role.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                            <i class="fas fa-user nav-icon">
+
+                            </i>
+                            {{ trans('global.user.title') }}
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
             <li class="nav-item nav-dropdown">
                 <a class="nav-link  nav-dropdown-toggle">
                     <i class="fas fa-users nav-icon">
@@ -108,7 +142,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+            <a href="{{ route("admin.manualnotifications.index") }}" class="nav-link {{ request()->is('admin/manualnotifications') || request()->is('admin/manualnotifications/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>

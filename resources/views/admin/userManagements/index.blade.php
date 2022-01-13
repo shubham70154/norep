@@ -64,11 +64,11 @@
 @parent
 <script>
     $(function () {
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+  //let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
-    text: deleteButtonTrans,
+    //text: deleteButtonTrans,
     url: "{{ route('admin.user-managements.massDestroy') }}",
-    className: 'btn-danger',
+    //className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
           return $(entry).data('entry-id')

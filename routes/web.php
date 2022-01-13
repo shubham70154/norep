@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('/helpsupports/list', 'HelpSupportsController@index')->name('helpsupports.list');
 
+    Route::get('/manualnotifications/index', 'ManualNotificationsController@index')->name('manualnotifications.index');
+
+    Route::post('/manualnotifications/sendnotification', 'ManualNotificationsController@sendNotifications')->name('manualnotifications.sendnotification');
+
     Route::get('/helpsupports/show/{id}', 'HelpSupportsController@show')->name('helpsupports.show');
 
     Route::post('get-states-by-country','RefereesController@getState');
