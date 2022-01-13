@@ -58,13 +58,16 @@ class RefereesApiController extends BaseController
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
                 $scoreboard = json_decode($subeventDetail->scoreboard);
 
-                return $checkUserLeaderboard =  UserLeaderboard::where([
+                $checkUserLeaderboard =  UserLeaderboard::where([
                                                 ['user_id' , $request->user_id],
                                                 ['sub_event_id' , $request->sub_event_id],
                                                 ['referee_id' , $request->referee_id],
                                                 ['event_id' , $request->event_id],
                                             ])->first();
-                if ($scoreboard) {
+                if ($checkUserLeaderboard) {
+                    $scoreboard->header = unserialize($checkUserLeaderboard->header);
+                    $scoreboard->data = unserialize($checkUserLeaderboard->scoreboard);
+                }elseif ($scoreboard) {
                     $header = [];
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
                         $header['round'] = 'Round';
