@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
 use App\Http\Requests\Request as RequestsRequest;
+use App\UserLeaderboard;
 use DB, Validator, Illuminate\Support\Carbon;
 
 class LeaderBoardsApiController extends BaseController
@@ -47,6 +48,41 @@ class LeaderBoardsApiController extends BaseController
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
+            }
+
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function userEventLeaderboard(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required',
+                'event_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+
+            $getEventDetail = Event::select('id','name')->where('id',$request->event_id)->first();
+
+            $userLeaderboards = UserLeaderboard::where([
+                ['user_id', $request->user_id],
+                ['event_id', $request->event_id]
+            ])->get();
+
+            if ($userLeaderboards) {
+                $allSubevents = [];
+                foreach($userLeaderboards as $leaderboard){
+                    $getSubEventDetail = SubEvent::select('id','name')->where('id',$leaderboard->sub_event_id)->first();
+                    $leaderboard->subevent = $getSubEventDetail;
+                    $allSubevents[] = $leaderboard;
+                }
+                $allSubevents['event'] = $getEventDetail;
+                return $this->sendResponse($allSubevents, 'Event Creator event list found.');    
             }
 
         } catch (\Exception $e) {
