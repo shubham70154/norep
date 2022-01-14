@@ -93,13 +93,9 @@ class LeaderBoardsApiController extends BaseController
                             
                             $leaderboard['rank'] = $key+1;
                             array_push($scoreboardArray, $leaderboard);
-                           // $scoreboardArray[] = $leaderboard;
                         }
-                        return $scoreboardArray;
-                        $leaderboard->scoreboard = $scoreboardArray;
-                        
+                        $leaderboard->scoreboard = (object)$scoreboardArray;                        
                     }
-                    
                     $allSubevents[] = $leaderboard;
                 }
                 $result = ['event'=>$getEventDetail, 'subevent'=>$allSubevents];
