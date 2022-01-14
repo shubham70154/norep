@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-runningevent-list', 'Api\EventsApiController@getRunningEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
 
+    Route::get('get-event-creators-event-list/{user_id}', 'Api\EventsApiController@getEventCreatorsEventList');
+
     Route::post('create-subevents', 'Api\EventsApiController@createSubEvent');
     Route::get('subevent/{subeventid}', 'Api\EventsApiController@showSubEventDetails');
     Route::get('get-subevent-list/{eventid}', 'Api\EventsApiController@getSubEventList');
