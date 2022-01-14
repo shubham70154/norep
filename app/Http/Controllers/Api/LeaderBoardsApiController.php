@@ -95,6 +95,7 @@ class LeaderBoardsApiController extends BaseController
                             array_push($scoreboardArray, $leaderboard);
                            // $scoreboardArray[] = $leaderboard;
                         }
+                        return $scoreboardArray;
                         $leaderboard->scoreboard = $scoreboardArray;
                         
                     }
