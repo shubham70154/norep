@@ -81,8 +81,8 @@ class LeaderBoardsApiController extends BaseController
                     $leaderboard->subevent = $getSubEventDetail;
                     $allSubevents[] = $leaderboard;
                 }
-               // $allSubevents[] = $getEventDetail;
-                return $this->sendResponse($allSubevents, 'Event Creator event list found.');    
+                $result = ['event'=>$getEventDetail, 'subevent'=>$allSubevents];
+                return $this->sendResponse($result, 'Event Creator event list found.');    
             }
 
         } catch (\Exception $e) {
