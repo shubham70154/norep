@@ -81,6 +81,7 @@ class LeaderBoardsApiController extends BaseController
                     $getSubEventDetail = SubEvent::select('id','name')->where('id',$leaderboard->sub_event_id)->get();
                     $leaderboard->subevents = $getSubEventDetail;
                     $leaderboard->overall = '1st';
+                    return unserialize($leaderboard->scoreboard);
                     if($leaderboard->scoreboard) {
                         $scoreboardArray = [];
                         foreach(unserialize($leaderboard->scoreboard) as $leaderboard) {
