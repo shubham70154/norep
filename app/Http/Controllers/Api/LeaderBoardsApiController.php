@@ -77,11 +77,11 @@ class LeaderBoardsApiController extends BaseController
             if ($userLeaderboards) {
                 $allSubevents = [];
                 foreach($userLeaderboards as $leaderboard){
-                    $getSubEventDetail = SubEvent::select('id','name')->where('id',$leaderboard->sub_event_id)->first();
+                    $getSubEventDetail = SubEvent::select('id','name')->where('id',$leaderboard->sub_event_id)->get();
                     $leaderboard->subevent = $getSubEventDetail;
                     $allSubevents[] = $leaderboard;
                 }
-                $allSubevents['event'] = $getEventDetail;
+               // $allSubevents[] = $getEventDetail;
                 return $this->sendResponse($allSubevents, 'Event Creator event list found.');    
             }
 
