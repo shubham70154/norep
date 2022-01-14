@@ -83,18 +83,19 @@ class LeaderBoardsApiController extends BaseController
                     $leaderboard->overall = '1st';
                     if($leaderboard->scoreboard) {
                         $scoreboardArray = [];
-                        foreach(unserialize($leaderboard->scoreboard) as $key => $leaderboard) {
-                            unset($leaderboard['task1']);
-                            unset($leaderboard['task2']);
-                            unset($leaderboard['task3']);
-                            unset($leaderboard['task4']);
-                            unset($leaderboard['task5']);
-                            unset($leaderboard['reps']);
+                        foreach(unserialize($leaderboard->scoreboard) as $key => $data) {
+                            unset($data['task1']);
+                            unset($data['task2']);
+                            unset($data['task3']);
+                            unset($data['task4']);
+                            unset($data['task5']);
+                            unset($data['reps']);
                             
-                            $leaderboard['rank'] = $key+1;
-                            array_push($scoreboardArray, $leaderboard);
+                            $data['rank'] = $key+1;
+                            
+                            array_push($scoreboardArray, $data);
                         }
-                        $leaderboard->test = (object)$scoreboardArray;                        
+                        $leaderboard->test = $scoreboardArray;                        
                     }
                     $allSubevents[] = $leaderboard;
                 }
