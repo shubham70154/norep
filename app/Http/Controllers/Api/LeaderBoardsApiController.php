@@ -69,7 +69,7 @@ class LeaderBoardsApiController extends BaseController
 
             $getEventDetail = Event::select('id','name')->where('id',$request->event_id)->first();
 
-            $userLeaderboards = UserLeaderboard::select('id', 'leaderboard', 'header', 'total_points')->where([
+            $userLeaderboards = UserLeaderboard::select('id', 'scoreboard', 'header', 'total_points')->where([
                 ['user_id', $request->user_id],
                 ['event_id', $request->event_id],
                 ['is_final_submit', 1]
