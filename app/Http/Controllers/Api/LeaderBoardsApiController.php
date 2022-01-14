@@ -90,12 +90,10 @@ class LeaderBoardsApiController extends BaseController
                             unset($data['task4']);
                             unset($data['task5']);
                             unset($data['reps']);
-                            
                             $data['rank'] = $key+1;
-                            
                             array_push($scoreboardArray, $data);
                         }
-                        $leaderboard->test = $scoreboardArray;                        
+                        $leaderboard->scoreboard = $scoreboardArray;                        
                     }
                     $allSubevents[] = $leaderboard;
                 }
