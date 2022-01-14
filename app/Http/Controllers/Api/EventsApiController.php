@@ -626,4 +626,44 @@ class EventsApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
+
+    public function getEventCreatorsEventList($user_id)
+    {
+        try {
+            if (isset($user_id) && !is_null($user_id)) {
+                
+                $events = Event::where('user_id', $user_id)->get();
+
+                $allevents = [];
+                foreach($events as $event) {
+                    $imagefiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['type', '=', 'image']
+                    ])->select('url')->get();
+
+                    $videofiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['type', '=', 'video']
+                    ])->select('url')->get();
+
+                    $docfiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['type', '=', 'docs']
+                    ])->select('url')->get();
+
+                    $event->images =  $imagefiles;
+                    $event->vidoes =  $videofiles;
+                    $event->docs =  $docfiles;
+                    
+                    $allevents[] = $event;
+                }
+                
+                return $this->sendResponse($allevents, 'Event Creator event list found.');    
+            } else {
+                return $this->sendResponse('event creator id found.', ['error'=>'Event Creator event list not found!']);
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
 }
