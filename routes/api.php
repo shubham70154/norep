@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     // Events API routes
     Route::post('create-events', 'Api\EventsApiController@create');
+    Route::delete('delete-event', 'Api\EventsApiController@deleteEvent');
+    Route::delete('delete-sub-event', 'Api\EventsApiController@deleteSubEvent');
     Route::get('get-allevent-list', 'Api\EventsApiController@getAllEventList');
     Route::get('get-allactiveevent-list', 'Api\EventsApiController@getAllActiveEventList');
     Route::get('get-pastevent-list', 'Api\EventsApiController@getPastEventList');

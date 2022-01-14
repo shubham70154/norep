@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Event;
+use App\EventPayment;
 use App\SubEvent;
 use App\User;
 use App\File;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
 use App\UserJoinedEvent;
+use App\UserLeaderboard;
 use DB, Validator;
 use Carbon\Carbon;
 
@@ -27,7 +29,7 @@ class EventsApiController extends BaseController
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'description' => 'required',
-                'price' => 'required|min:0',
+                'price' => 'required|min:4.5',
                 'start_date' => 'required|after_or_equal:today',
                 'start_time' => 'required',
                 'end_date' => 'after_or_equal:start_date',
@@ -66,6 +68,47 @@ class EventsApiController extends BaseController
             $event->images = $images;
             $event->videos = $videos;
             return $this->sendResponse($event, 'Event created successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function deleteEvent(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            $event = Event::where('id', $request->event_id)->delete();
+            $subEvent = SubEvent::where('event_id', $request->event_id)->delete();
+            $userJoinedEvent = UserJoinedEvent::where('event_id', $request->event_id)->delete();
+            $userLeaderboard = UserLeaderboard::where('event_id', $request->event_id)->delete();
+            $file = File::where('event_id', $request->event_id)->delete();
+            $eventPayment = EventPayment::where('event_id', $request->event_id)->delete();
+            return $this->sendResponse((object)[], 'Event deleted successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function deleteSubEvent(Request $request)
+    {
+        try{
+            $validator = Validator::make($request->all(), [
+                'sub_event_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+            $subEvent = SubEvent::where('id', $request->sub_event_id)->delete();
+            $userLeaderboard = UserLeaderboard::where('sub_event_id', $request->sub_event_id)->delete();
+            $file = File::where('sub_event_id', $request->sub_event_id)->delete();
+            return $this->sendResponse((object)[], 'Event deleted successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
