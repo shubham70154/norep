@@ -92,9 +92,10 @@ class LeaderBoardsApiController extends BaseController
                             unset($leaderboard['reps']);
                             
                             $leaderboard['rank'] = $key+1;
-                            $scoreboardArray[] = $leaderboard;
+                            array_push($scoreboardArray, $leaderboard);
+                           // $scoreboardArray[] = $leaderboard;
                         }
-                        $leaderboard->scoreboards = (object)$scoreboardArray;
+                        $leaderboard->scoreboard = $scoreboardArray;
                         
                     }
                     
