@@ -69,9 +69,10 @@ class LeaderBoardsApiController extends BaseController
 
             $getEventDetail = Event::select('id','name')->where('id',$request->event_id)->first();
 
-            $userLeaderboards = UserLeaderboard::where([
+            $userLeaderboards = UserLeaderboard::select('id', 'leaderboard', 'header', 'total_points')->where([
                 ['user_id', $request->user_id],
-                ['event_id', $request->event_id]
+                ['event_id', $request->event_id],
+                ['is_final_submit', 1]
             ])->get();
 
             if ($userLeaderboards) {
@@ -79,6 +80,7 @@ class LeaderBoardsApiController extends BaseController
                 foreach($userLeaderboards as $leaderboard){
                     $getSubEventDetail = SubEvent::select('id','name')->where('id',$leaderboard->sub_event_id)->get();
                     $leaderboard->subevent = $getSubEventDetail;
+                    $leaderboard->scoreboard = unserialize($leaderboard->scoreboard);
                     $allSubevents[] = $leaderboard;
                 }
                 $result = ['event'=>$getEventDetail, 'subevent'=>$allSubevents];
