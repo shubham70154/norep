@@ -84,13 +84,14 @@ class LeaderBoardsApiController extends BaseController
                     $leaderboard->scoreboard = unserialize($leaderboard->scoreboard);
                     $scoreboardArray = [];
                     foreach($leaderboard->scoreboard as $leaderboard) {
-                        $leaderboard->unset('task1');
-                        $leaderboard->unset('task2');
-                        $leaderboard->unset('task3');
-                        $leaderboard->unset('task4');
-                        $leaderboard->unset('task5');
-                        $leaderboard->unset('reps');
-                        $leaderboard->rank = 1;
+                        unset($leaderboard['task1']);
+                        unset($leaderboard['task2']);
+                        unset($leaderboard['task3']);
+                        unset($leaderboard['task4']);
+                        unset($leaderboard['task5']);
+                        unset($leaderboard['reps']);
+                        
+                        $leaderboard['rank'] = 1;
                         $scoreboardArray[] = $leaderboard;
                     }
                     $leaderboard->scoreboard = $scoreboardArray;
