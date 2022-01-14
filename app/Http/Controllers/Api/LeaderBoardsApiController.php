@@ -94,7 +94,7 @@ class LeaderBoardsApiController extends BaseController
                         $leaderboard['rank'] = 1;
                         $scoreboardArray[] = $leaderboard;
                     }
-                    $leaderboard->scoreboard = $scoreboardArray;
+                    $leaderboard['scoreboard'] = $scoreboardArray;
                     $allSubevents[] = $leaderboard;
                 }
                 $result = ['event'=>$getEventDetail, 'subevent'=>$allSubevents];
@@ -102,7 +102,8 @@ class LeaderBoardsApiController extends BaseController
             }
 
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line_no'=> $e->getLine()]);
         }
     }
 
