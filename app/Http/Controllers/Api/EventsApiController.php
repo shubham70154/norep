@@ -503,6 +503,11 @@ class EventsApiController extends BaseController
             $subEvent = SubEvent::where('id', $Sub_event_id)->get();
 
             if ($request->has('images')) {
+                $file = File::where([
+                    ['event_id', $request->event_id],
+                    ['type', 'image'],
+                    ['sub_event_id' => $subEvent->id]
+                ])->delete();
                 $req_images = $request->images;
                 $images = [];
                 foreach($req_images as $image) {
@@ -518,6 +523,11 @@ class EventsApiController extends BaseController
             }
 
             if ($request->has('videos')) {
+                $file = File::where([
+                    ['event_id', $request->event_id],
+                    ['type', 'video'],
+                    ['sub_event_id' => $subEvent->id]
+                ])->delete();
                 $req_videos = $request->videos;
                 $videos = [];
                 foreach($req_videos as $video) {
@@ -533,6 +543,11 @@ class EventsApiController extends BaseController
             }
             
             if ($request->has('docs')) {
+                $file = File::where([
+                    ['event_id', $request->event_id],
+                    ['type', 'doc'],
+                    ['sub_event_id' => $subEvent->id]
+                ])->delete();
                 $req_docs = $request->docs;
                 $docs = [];
                 foreach($req_docs as $doc) {
@@ -548,8 +563,8 @@ class EventsApiController extends BaseController
             }
             
             DB::commit();
-            $subEvent->scoreboard = json_decode($subEvent->scoreboard);
-            $subEvent->timer = json_decode($subEvent->timer);
+            $subEvent->scoreboard = !is_null($subEvent->scoreboard) ? json_decode($subEvent->scoreboard) : null;
+            $subEvent->timer = !is_null($subEvent->timer) ? json_decode($subEvent->timer) : null;
 
             return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
         } catch (\Exception $e) {
