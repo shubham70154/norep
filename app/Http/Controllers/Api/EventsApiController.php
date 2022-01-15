@@ -471,7 +471,6 @@ class EventsApiController extends BaseController
                     return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
                 }
             }
-            
 
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
@@ -499,7 +498,9 @@ class EventsApiController extends BaseController
                 $scoreboard = json_encode($request->scoreboard);
                 $request->request->add(['scoreboard' => $scoreboard]);
             }
-            $subEvent = SubEvent::where('id', $Sub_event_id)->update($request->all());
+            SubEvent::where('id', $Sub_event_id)->update($request->all());
+
+            $subEvent = SubEvent::where('id', $Sub_event_id)->get();
 
             if ($request->has('images')) {
                 $req_images = $request->images;
