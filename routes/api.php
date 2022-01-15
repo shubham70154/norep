@@ -31,8 +31,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-futureevent-list', 'Api\EventsApiController@getFutureEventList');
     Route::get('get-runningevent-list', 'Api\EventsApiController@getRunningEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
-    
-    Route::get('event-update/{id}', 'Api\EventsApiController@eventUpdate');
+
+    Route::put('event-update/{id}', 'Api\EventsApiController@eventUpdate');
 
     Route::get('get-event-creators-event-list/{user_id}', 'Api\EventsApiController@getEventCreatorsEventList');
 
