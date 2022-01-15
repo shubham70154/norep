@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::put('event-update/{id}', 'Api\EventsApiController@eventUpdate');
 
+    Route::put('sub-event-update/{id}', 'Api\EventsApiController@subEventUpdate');
+
     Route::get('get-event-creators-event-list/{user_id}', 'Api\EventsApiController@getEventCreatorsEventList');
 
     Route::post('create-subevents', 'Api\EventsApiController@createSubEvent');

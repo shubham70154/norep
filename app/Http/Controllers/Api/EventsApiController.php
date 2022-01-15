@@ -118,8 +118,6 @@ class EventsApiController extends BaseController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'description' => 'required',
                 'price' => 'min:4.5',
                 'start_date' => 'after_or_equal:today',
                 'end_date' => 'after_or_equal:start_date',
@@ -446,6 +444,115 @@ class EventsApiController extends BaseController
             $subEvent->timer = json_decode($subEvent->timer);
 
             return $this->sendResponse($subEvent, 'Sub event created successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line'=> $e->getLine()]);
+        }
+    }
+    
+    public function subEventUpdate(Request $request, $Sub_event_id)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' =>'required|exists:events,id',
+                'start_date' => 'after_or_equal:today',
+                'end_date' => 'after_or_equal:start_date'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+
+            if ($request->has('start_date') && $request->has('start_time')) {
+                $checkSubEvents = DB::table('sub_events')->where([
+                    ['start_date', $request->start_date],
+                    ['start_time', $request->start_time],
+                    ['event_id', $request->event_id],
+                ])->first();
+                if($checkSubEvents){
+                    return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
+                }
+            }
+            
+
+            $eventdata = DB::table('events')->where([
+                ['id', $request->event_id],
+                ['status', 1]
+            ])->first();
+            
+            if ($request->has('start_date') && $request->has('end_date')) {
+                if(($eventdata->start_date > $request->start_date ||
+                    $eventdata->end_date < $request->start_date)
+                ) {
+                    return $this->sendError('Validation Error.', 'Sub Event start date should be between event start and end date');
+                }
+
+                if(($eventdata->end_date < $request->end_date )) {
+                    return $this->sendError('Validation Error.', 'Sub Event end date should be between event start and end date');
+                }
+            }
+            
+            DB::begintransaction();
+            if ($request->has('timer')) {
+                $timer = json_encode($request->timer);
+                $request->request->add(['timer' => $timer]);
+            }
+            if ($request->has('scoreboard')) {
+                $scoreboard = json_encode($request->scoreboard);
+                $request->request->add(['scoreboard' => $scoreboard]);
+            }
+            $subEvent = SubEvent::where('id', $Sub_event_id)->update($request->all());
+
+            if ($request->has('images')) {
+                $req_images = $request->images;
+                $images = [];
+                foreach($req_images as $image) {
+                    $file = File::create([
+                        'url' => $image,
+                        'type' => 'image',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id
+                    ]);
+                    $images[] = $image;
+                }
+                $subEvent->images = $images; 
+            }
+
+            if ($request->has('videos')) {
+                $req_videos = $request->videos;
+                $videos = [];
+                foreach($req_videos as $video) {
+                    $file = File::create([
+                        'url' => $video,
+                        'type' => 'video',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id
+                    ]);
+                    $videos[] = $video;
+                }
+                $subEvent->videos = $videos; 
+            }
+            
+            if ($request->has('docs')) {
+                $req_docs = $request->docs;
+                $docs = [];
+                foreach($req_docs as $doc) {
+                    $file = File::create([
+                        'url' => $doc,
+                        'type' => 'doc',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id
+                    ]);
+                    $docs[] = $doc;
+                }
+                $subEvent->docs = $docs; 
+            }
+            
+            DB::commit();
+            $subEvent->scoreboard = json_decode($subEvent->scoreboard);
+            $subEvent->timer = json_decode($subEvent->timer);
+
+            return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
             'line'=> $e->getLine()]);
