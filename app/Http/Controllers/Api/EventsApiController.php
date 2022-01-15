@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEventRequest;
-use App\Http\Requests\UpdateEventRequest;
 use App\Event;
 use App\EventPayment;
 use App\SubEvent;
@@ -129,8 +126,9 @@ class EventsApiController extends BaseController
             }
           
             DB::begintransaction();
-            $event = Event::where('id', $event_id)->update($request->all());
+            Event::where('id', $event_id)->update($request->all());
             
+            $event = Event::where('id', $event_id)->first();
             if ($request->has('images')) {
                 $images = [];
                 $file = File::where([
