@@ -563,8 +563,8 @@ class EventsApiController extends BaseController
             }
             
             DB::commit();
-            $subEvent->scoreboard = !is_null($subEvent->scoreboard) ? json_decode($subEvent->scoreboard) : null;
-            $subEvent->timer = !is_null($subEvent->timer) ? json_decode($subEvent->timer) : null;
+            //$subEvent->scoreboard = !is_null($subEvent->scoreboard) ? json_decode($subEvent->scoreboard) : null;
+            //$subEvent->timer = !is_null($subEvent->timer) ? json_decode($subEvent->timer) : null;
 
             return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
         // } catch (\Exception $e) {
