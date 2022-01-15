@@ -450,7 +450,7 @@ class EventsApiController extends BaseController
     
     public function subEventUpdate(Request $request, $Sub_event_id)
     {
-       // try {
+        try {
             $validator = Validator::make($request->all(), [
                 'event_id' =>'required|exists:events,id',
                 'start_date' => 'after_or_equal:today',
@@ -563,14 +563,18 @@ class EventsApiController extends BaseController
             }
             
             DB::commit();
-            //$subEvent->scoreboard = !is_null($subEvent->scoreboard) ? json_decode($subEvent->scoreboard) : null;
-            //$subEvent->timer = !is_null($subEvent->timer) ? json_decode($subEvent->timer) : null;
+            if (isset($subEvent->scoreboard)) {
+                $subEvent->scoreboard = !is_null($subEvent->scoreboard) ? json_decode($subEvent->scoreboard) : null;
+            }
+            if (isset($subEvent->timer)) {
+                $subEvent->timer = !is_null($subEvent->timer) ? json_decode($subEvent->timer) : null;   
+            }
 
             return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
-        // } catch (\Exception $e) {
-        //     return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
-        //     'line'=> $e->getLine()]);
-        // }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line'=> $e->getLine()]);
+        }
     }
 
     public function getSubEventList($event_id)
