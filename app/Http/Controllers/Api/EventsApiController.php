@@ -132,9 +132,9 @@ class EventsApiController extends BaseController
           
             DB::begintransaction();
             $event = Event::where('id', $event_id)->update($request->all());
-            $images = [];
-            $videos = [];
-            if ($request->images) {
+            
+            if ($request->has('images')) {
+                $images = [];
                 $file = File::where([
                     ['event_id', $event_id],
                     ['type', 'image']
@@ -147,9 +147,11 @@ class EventsApiController extends BaseController
                     ]);
                     $images[] = $image;
                 }
+                $event->images = $images;
             }
 
-            if ($request->videos) {
+            if ($request->has('videos')) {
+                $videos = [];
                 $file = File::where([
                     ['event_id', $event_id],
                     ['type', 'video']
@@ -162,12 +164,10 @@ class EventsApiController extends BaseController
                     ]);
                     $videos[] = $video;
                 }
+                $event->videos = $videos;
             }    
             
             DB::commit();
-       
-            $event->images = $images;
-            $event->videos = $videos;
             return $this->sendResponse($event, 'Event Updated successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
