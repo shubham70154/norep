@@ -114,9 +114,66 @@ class EventsApiController extends BaseController
         }
     }
 
-    public function update(UpdateEventRequest $request, Event $product)
+    public function eventUpdate(Request $request, $event_id)
     {
-        return $product->update($request->all());
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'description' => 'required',
+                'price' => 'required|min:4.5',
+                'start_date' => 'required|after_or_equal:today',
+                'start_time' => 'required',
+                'end_date' => 'after_or_equal:start_date',
+                'user_id' => 'required',
+                'player_limit' => 'required|min:0'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors());       
+            }
+          
+            DB::begintransaction();
+            $event = Event::where('id', $event_id)->update($request->all());
+            $images = [];
+            $videos = [];
+            if ($request->images) {
+                $file = File::where([
+                    ['event_id', $event_id],
+                    ['type', 'image']
+                ])->delete();
+                foreach($request->images as $image) {
+                    $file = File::create([
+                        'url' => $image,
+                        'type' => 'image',
+                        'event_id' => $event->id
+                    ]);
+                    $images[] = $image;
+                }
+            }
+
+            if ($request->videos) {
+                $file = File::where([
+                    ['event_id', $event_id],
+                    ['type', 'video']
+                ])->delete();
+                foreach($request->videos as $video) {
+                    $file = File::create([
+                        'url' => $video,
+                        'type' => 'video',
+                        'event_id' => $event->id
+                    ]);
+                    $videos[] = $video;
+                }
+            }    
+            
+            DB::commit();
+       
+            $event->images = $images;
+            $event->videos = $videos;
+            return $this->sendResponse($event, 'Event Updated successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
     }
 
     public function showEventDetails($id)
