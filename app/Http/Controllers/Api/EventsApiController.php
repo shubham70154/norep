@@ -126,13 +126,13 @@ class EventsApiController extends BaseController
             }
           
             DB::begintransaction();
-            Event::where('id', $event_id)->update($request->all());
             
             $event = Event::where('id', $event_id)->first();
             if ($request->has('images')) {
                 $images = [];
                 $file = File::where([
                     ['event_id', $event_id],
+                    ['sub_event_id', null],
                     ['type', 'image']
                 ])->delete();
                 foreach($request->images as $image) {
@@ -150,6 +150,7 @@ class EventsApiController extends BaseController
                 $videos = [];
                 $file = File::where([
                     ['event_id', $event_id],
+                    ['sub_event_id', null],
                     ['type', 'video']
                 ])->delete();
                 foreach($request->videos as $video) {
@@ -162,6 +163,10 @@ class EventsApiController extends BaseController
                 }
                 $event->videos = $videos;
             }    
+            $request->request->remove('images');
+            $request->request->remove('videos');
+
+            Event::where('id', $event_id)->update($request->all());
             
             DB::commit();
             return $this->sendResponse($event, 'Event Updated successfully.');
