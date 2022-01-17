@@ -463,7 +463,7 @@ class EventsApiController extends BaseController
     
     public function subEventUpdate(Request $request, $Sub_event_id)
     {
-       // try {
+        try {
             $validator = Validator::make($request->all(), [
                 'event_id' =>'required|exists:events,id',
                 'start_date' => 'after_or_equal:today',
@@ -512,14 +512,13 @@ class EventsApiController extends BaseController
                 $request->request->add(['scoreboard' => $scoreboard]);
             }
             
-
             $subEvent = SubEvent::where('id', $Sub_event_id)->get();
 
             if ($request->has('images')) {
                 $file = File::where([
                     ['event_id', $request->event_id],
                     ['type', 'image'],
-                    ['sub_event_id' => $Sub_event_id]
+                    ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_images = $request->images;
                 $images = [];
@@ -539,7 +538,7 @@ class EventsApiController extends BaseController
                 $file = File::where([
                     ['event_id', $request->event_id],
                     ['type', 'video'],
-                    ['sub_event_id' => $Sub_event_id]
+                    ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_videos = $request->videos;
                 $videos = [];
@@ -559,7 +558,7 @@ class EventsApiController extends BaseController
                 $file = File::where([
                     ['event_id', $request->event_id],
                     ['type', 'doc'],
-                    ['sub_event_id' => $Sub_event_id]
+                    ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_docs = $request->docs;
                 $docs = [];
@@ -590,10 +589,10 @@ class EventsApiController extends BaseController
             }
 
             return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
-        // } catch (\Exception $e) {
-        //     return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
-        //     'line'=> $e->getLine()]);
-        // }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line'=> $e->getLine()]);
+        }
     }
 
     public function getSubEventList($event_id)
