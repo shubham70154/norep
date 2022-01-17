@@ -213,11 +213,13 @@ class EventsApiController extends BaseController
             foreach($eventLists as $event) {
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'image']
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'video']
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
@@ -243,11 +245,13 @@ class EventsApiController extends BaseController
             foreach($eventLists as $event) {
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'image']
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'video']
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
@@ -273,11 +277,13 @@ class EventsApiController extends BaseController
             foreach($eventLists as $event) {
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'image']
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'video']
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
@@ -305,11 +311,13 @@ class EventsApiController extends BaseController
             foreach($eventLists as $event) {
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'image']
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
+                    ['sub_event_id', null],
                     ['type', '=', 'video']
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
@@ -644,11 +652,13 @@ class EventsApiController extends BaseController
                 foreach($events as $event) {
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $event->id],
+                        ['sub_event_id', null],
                         ['type', '=', 'image']
                     ])->select('url')->get();
 
                     $videofiles = DB::table('files')->where([
                         ['event_id', $event->id],
+                        ['sub_event_id', null],
                         ['type', '=', 'video']
                     ])->select('url')->get();
                     $event->images =  $imagefiles;
@@ -818,16 +828,19 @@ class EventsApiController extends BaseController
                 foreach($events as $event) {
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $event->id],
+                        ['sub_event_id', null],
                         ['type', '=', 'image']
                     ])->select('url')->get();
 
                     $videofiles = DB::table('files')->where([
                         ['event_id', $event->id],
+                        ['sub_event_id', null],
                         ['type', '=', 'video']
                     ])->select('url')->get();
 
                     $docfiles = DB::table('files')->where([
                         ['event_id', $event->id],
+                        ['sub_event_id', null],
                         ['type', '=', 'docs']
                     ])->select('url')->get();
 
