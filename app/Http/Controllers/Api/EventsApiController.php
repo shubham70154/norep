@@ -511,7 +511,7 @@ class EventsApiController extends BaseController
                 $scoreboard = json_encode($request->scoreboard);
                 $request->request->add(['scoreboard' => $scoreboard]);
             }
-            SubEvent::where('id', $Sub_event_id)->update($request->all());
+            
 
             $subEvent = SubEvent::where('id', $Sub_event_id)->get();
 
@@ -574,6 +574,12 @@ class EventsApiController extends BaseController
                 }
                 $subEvent->docs = $docs; 
             }
+
+            $request->request->remove('images');
+            $request->request->remove('videos');
+            $request->request->remove('docs');
+
+            SubEvent::where('id', $Sub_event_id)->update($request->all());
             
             DB::commit();
             if (isset($subEvent->scoreboard)) {
