@@ -463,7 +463,7 @@ class EventsApiController extends BaseController
     
     public function subEventUpdate(Request $request, $Sub_event_id)
     {
-        try {
+       // try {
             $validator = Validator::make($request->all(), [
                 'event_id' =>'required|exists:events,id',
                 'start_date' => 'after_or_equal:today',
@@ -590,10 +590,10 @@ class EventsApiController extends BaseController
             }
 
             return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
-        } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
-            'line'=> $e->getLine()]);
-        }
+        // } catch (\Exception $e) {
+        //     return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+        //     'line'=> $e->getLine()]);
+        // }
     }
 
     public function getSubEventList($event_id)
