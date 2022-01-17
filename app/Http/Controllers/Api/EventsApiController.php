@@ -512,7 +512,7 @@ class EventsApiController extends BaseController
                 $request->request->add(['scoreboard' => $scoreboard]);
             }
             
-            $subEvent = SubEvent::where('id', $Sub_event_id)->get();
+            $subEvent = SubEvent::where('id', $Sub_event_id)->first();
 
             if ($request->has('images')) {
                 $file = File::where([
