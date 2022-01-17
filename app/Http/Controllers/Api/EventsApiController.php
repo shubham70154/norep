@@ -519,7 +519,7 @@ class EventsApiController extends BaseController
                 $file = File::where([
                     ['event_id', $request->event_id],
                     ['type', 'image'],
-                    ['sub_event_id' => $subEvent->id]
+                    ['sub_event_id' => $Sub_event_id]
                 ])->delete();
                 $req_images = $request->images;
                 $images = [];
@@ -528,7 +528,7 @@ class EventsApiController extends BaseController
                         'url' => $image,
                         'type' => 'image',
                         'event_id' => $request->event_id,
-                        'sub_event_id' => $subEvent->id
+                        'sub_event_id' => $Sub_event_id
                     ]);
                     $images[] = $image;
                 }
@@ -539,7 +539,7 @@ class EventsApiController extends BaseController
                 $file = File::where([
                     ['event_id', $request->event_id],
                     ['type', 'video'],
-                    ['sub_event_id' => $subEvent->id]
+                    ['sub_event_id' => $Sub_event_id]
                 ])->delete();
                 $req_videos = $request->videos;
                 $videos = [];
@@ -548,7 +548,7 @@ class EventsApiController extends BaseController
                         'url' => $video,
                         'type' => 'video',
                         'event_id' => $request->event_id,
-                        'sub_event_id' => $subEvent->id
+                        'sub_event_id' => $Sub_event_id
                     ]);
                     $videos[] = $video;
                 }
@@ -559,7 +559,7 @@ class EventsApiController extends BaseController
                 $file = File::where([
                     ['event_id', $request->event_id],
                     ['type', 'doc'],
-                    ['sub_event_id' => $subEvent->id]
+                    ['sub_event_id' => $Sub_event_id]
                 ])->delete();
                 $req_docs = $request->docs;
                 $docs = [];
@@ -568,7 +568,7 @@ class EventsApiController extends BaseController
                         'url' => $doc,
                         'type' => 'doc',
                         'event_id' => $request->event_id,
-                        'sub_event_id' => $subEvent->id
+                        'sub_event_id' => $Sub_event_id
                     ]);
                     $docs[] = $doc;
                 }
