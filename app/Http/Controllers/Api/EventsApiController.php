@@ -39,11 +39,6 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
-
-            if ($request->has('specified_for')) {
-                $eventSpecified = $request->specified_for;
-                $request->request->remove('specified_for');
-            }
           
             DB::begintransaction();
             $event = Event::create($request->all());
