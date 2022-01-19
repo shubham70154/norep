@@ -33,7 +33,7 @@ class EventsApiController extends BaseController
                 'end_date' => 'after_or_equal:start_date',
                 'user_id' => 'required',
                 'player_limit' => 'required|min:1',
-                'referee_id' => 'required|min:1'
+                //'referee_id' => 'required|min:1'
             ]);
         
             if($validator->fails()){
