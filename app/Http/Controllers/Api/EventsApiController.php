@@ -147,6 +147,22 @@ class EventsApiController extends BaseController
             DB::begintransaction();
             
             $event = Event::where('id', $event_id)->first();
+
+            if ($request->has('specified_for')) {
+                $specified = [];
+                $specify = EventSpecify::where([
+                    ['event_id', $event_id]
+                ])->delete();
+                foreach($request->specified_for as $title) {
+                    $specify = EventSpecify::create([
+                        'title' => $title,
+                        'event_id' => $event->id
+                    ]);
+                    $specified[] = $title;
+                }
+                $event->specified_for = $specified;
+            }
+
             if ($request->has('images')) {
                 $images = [];
                 $file = File::where([
