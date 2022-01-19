@@ -69,6 +69,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('get-subevent-category-lists', 'Api\EventsApiController@getSubEventCategoryLists');
 
+    Route::get('get-event-specified-lists/{event_id}', 'Api\EventsApiController@getEventSpecifiedLists');
+
     Route::get('get-event-leaderboard/{event_id}', 'Api\LeaderBoardsApiController@getEventLeaderBoard');
 
     Route::get('get-user-wallet/{user_id}', 'Api\UserWalletsApiController@getUserWallet');

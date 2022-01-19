@@ -23,7 +23,6 @@ class EventsApiController extends BaseController
     public function create(Request $request)
     {
         try {
-            //return $mytime = Carbon::now();
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'description' => 'required',
@@ -99,13 +98,13 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
-            $event = Event::where('id', $request->event_id)->delete();
-            $subEvent = SubEvent::where('event_id', $request->event_id)->delete();
-            $userJoinedEvent = UserJoinedEvent::where('event_id', $request->event_id)->delete();
-            $userLeaderboard = UserLeaderboard::where('event_id', $request->event_id)->delete();
-            $file = File::where('event_id', $request->event_id)->delete();
-            $eventPayment = EventPayment::where('event_id', $request->event_id)->delete();
-            $eventPayment = EventSpecify::where('event_id', $request->event_id)->delete();
+            Event::where('id', $request->event_id)->delete();
+            SubEvent::where('event_id', $request->event_id)->delete();
+            UserJoinedEvent::where('event_id', $request->event_id)->delete();
+            UserLeaderboard::where('event_id', $request->event_id)->delete();
+            File::where('event_id', $request->event_id)->delete();
+            EventPayment::where('event_id', $request->event_id)->delete();
+            EventSpecify::where('event_id', $request->event_id)->delete();
             return $this->sendResponse((object)[], 'Event deleted successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
@@ -234,11 +233,6 @@ class EventsApiController extends BaseController
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
-    }
-
-    public function destroy(Event $product)
-    {
-        return $product->delete();
     }
 
     public function sendUserNotification()
@@ -859,6 +853,19 @@ class EventsApiController extends BaseController
                             ->where('status' , 1)->get();
             return $this->sendResponse($categoryList, 'Sub event category list get successfully.');
             
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function getEventSpecifiedLists($event_id)
+    {
+        try {
+            if (isset($event_id) && !is_null($event_id)) {
+                $specifiedList = DB::table('event_specified_for')->select('id','title')
+                        ->where('event_id' , $event_id)->get();
+                return $this->sendResponse($specifiedList, 'Specified for list get successfully.');
+            }
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
