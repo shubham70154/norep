@@ -200,6 +200,7 @@ class EventsApiController extends BaseController
             }    
             $request->request->remove('images');
             $request->request->remove('videos');
+            $request->request->remove('specified_for');
 
             Event::where('id', $event_id)->update($request->all());
             
