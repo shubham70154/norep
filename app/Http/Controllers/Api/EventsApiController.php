@@ -105,6 +105,7 @@ class EventsApiController extends BaseController
             $userLeaderboard = UserLeaderboard::where('event_id', $request->event_id)->delete();
             $file = File::where('event_id', $request->event_id)->delete();
             $eventPayment = EventPayment::where('event_id', $request->event_id)->delete();
+            $eventPayment = EventSpecify::where('event_id', $request->event_id)->delete();
             return $this->sendResponse((object)[], 'Event deleted successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
