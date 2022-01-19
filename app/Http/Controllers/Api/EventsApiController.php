@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Event;
 use App\EventPayment;
+use App\EventSpecify;
 use App\SubEvent;
 use App\User;
 use App\File;
@@ -31,39 +32,62 @@ class EventsApiController extends BaseController
                 'start_time' => 'required',
                 'end_date' => 'after_or_equal:start_date',
                 'user_id' => 'required',
-                'player_limit' => 'required|min:1'
+                'player_limit' => 'required|min:1',
+                'referee_id' => 'required|min:1'
             ]);
         
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
+
+            if ($request->has('specified_for')) {
+                $eventSpecified = $request->specified_for;
+                $request->request->remove('specified_for');
+            }
           
             DB::begintransaction();
             $event = Event::create($request->all());
 
-            $images = [];
-            $videos = [];
-            foreach($request->images as $image) {
-                $file = File::create([
-                    'url' => $image,
-                    'type' => 'image',
-                    'event_id' => $event->id
-                ]);
-                $images[] = $image;
-            }
-            foreach($request->videos as $video) {
-                $file = File::create([
-                    'url' => $video,
-                    'type' => 'video',
-                    'event_id' => $event->id
-                ]);
-                $videos[] = $video;
+            if ($request->has('specified_for')) {
+                $specified = [];
+                foreach($request->specified_for as $title) {
+                    $file = EventSpecify::create([
+                        'title' => $title,
+                        'event_id' => $event->id
+                    ]);
+                    $specified[] = $title;
+                }
+                $event->specified_for = $specified;
             }
 
+            if ($request->has('images')) {
+                $images = [];
+                foreach($request->images as $image) {
+                    $file = File::create([
+                        'url' => $image,
+                        'type' => 'image',
+                        'event_id' => $event->id
+                    ]);
+                    $images[] = $image;
+                }
+                $event->images = $images;
+            }
+            
+            if ($request->has('videos')) {
+                $videos = [];
+                foreach($request->videos as $video) {
+                    $file = File::create([
+                        'url' => $video,
+                        'type' => 'video',
+                        'event_id' => $event->id
+                    ]);
+                    $videos[] = $video;
+                }
+                $event->videos = $videos;
+            }
+            
             DB::commit();
-       
-            $event->images = $images;
-            $event->videos = $videos;
+
             return $this->sendResponse($event, 'Event created successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
