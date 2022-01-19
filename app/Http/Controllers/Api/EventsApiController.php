@@ -26,7 +26,7 @@ class EventsApiController extends BaseController
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'description' => 'required',
-                'price' => 'required',
+                'price' => 'required|numeric|min:0',
                 'start_date' => 'required|after_or_equal:today',
                 'start_time' => 'required',
                 'end_date' => 'after_or_equal:start_date',
