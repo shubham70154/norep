@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEventRequest;
-use App\Http\Requests\UpdateEventRequest;
 use App\Event;
 use App\SubEvent;
 use App\User;
@@ -25,7 +22,8 @@ class UserJoinedEventsApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
-                'user_id' => 'required'
+                'user_id' => 'required',
+                'event_specified_id' => 'required'
             ]);
         
             if($validator->fails()){

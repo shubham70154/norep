@@ -17,6 +17,7 @@ class UserJoinedEvent extends Model
         'user_id',
         'event_id',
         'referee_id',
+        'event_specified_id',
         'amount',
         'created_at',
         'updated_at'
