@@ -17,7 +17,6 @@ use Carbon\Carbon;
 
 class SubEventsApiController extends BaseController
 {
-
     public function deleteSubEvent(Request $request)
     {
         try{
@@ -48,7 +47,8 @@ class SubEventsApiController extends BaseController
                 'end_date' => 'after_or_equal:start_date',
                 'event_type_id' => 'required',
                 'location' => 'required',
-                'user_id' => 'required'
+                'user_id' => 'required',
+                'specified_for' => 'required'
             ]);
         
             if($validator->fails()){
@@ -201,6 +201,7 @@ class SubEventsApiController extends BaseController
                     ['start_date', $request->start_date],
                     ['start_time', $request->start_time],
                     ['event_id', $request->event_id],
+                    ['deleted_at', null]
                 ])->first();
                 if($checkSubEvents){
                     return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
@@ -209,8 +210,13 @@ class SubEventsApiController extends BaseController
 
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
+                ['deleted_at', null],
                 ['status', 1]
             ])->first();
+
+            if($eventdata->event_type_id != $request->event_type_id) {
+                return $this->sendError('Validation Error.', 'Sub Event Type does not match with Main Event Type.');
+            }
             
             if ($request->has('start_date') && $request->has('end_date')) {
                 if(($eventdata->start_date > $request->start_date ||
@@ -296,9 +302,27 @@ class SubEventsApiController extends BaseController
                 $subEvent->docs = $docs; 
             }
 
+            if ($request->has('specified_for')) {
+                $specified = [];
+                SubEventSpecify::where([
+                    ['event_id', $request->event_id],
+                    ['sub_event_id', $subEvent->id]
+                ])->delete();
+                foreach($request->specified_for as $id) {
+                    SubEventSpecify::create([
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id,
+                        'event_specified_id' => $id
+                    ]);
+                    $specified[] = $id;
+                }
+                $subEvent->specified_for = $specified;
+            }
+
             $request->request->remove('images');
             $request->request->remove('videos');
             $request->request->remove('docs');
+            $request->request->remove('specified_for');
 
             SubEvent::where('id', $Sub_event_id)->update($request->all());
             
