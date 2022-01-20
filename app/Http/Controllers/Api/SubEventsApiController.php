@@ -45,7 +45,7 @@ class SubEventsApiController extends BaseController
                 'description' => 'required',
                 'start_date' => 'required|after_or_equal:today',
                 'end_date' => 'after_or_equal:start_date',
-                'event_type_id' => 'required|in:events,event_type_id',
+                'event_type_id' => 'required|exists:events,event_type_id',
                 'location' => 'required',
                 'user_id' => 'required',
             ]);
