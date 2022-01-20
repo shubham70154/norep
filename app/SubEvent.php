@@ -28,7 +28,6 @@ class SubEvent extends Model
         'status',
         'timer',
         'scoreboard',
-        'age',
         'latitude',
         'longitude',
         'start_date',

@@ -94,7 +94,6 @@ class SubEventsApiController extends BaseController
             DB::begintransaction();
             $data = [
                 'event_id' => $request->event_id,
-                'age' => $request->age,
                 'name' => $request->name,
                 'event_type_id' => $request->event_type_id,
                 'user_id' => $request->user_id,
