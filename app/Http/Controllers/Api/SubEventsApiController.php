@@ -79,6 +79,10 @@ class SubEventsApiController extends BaseController
                 ['deleted_at', null],
                 ['status', 1]
             ])->first();
+
+            if($eventdata->event_type_id != $request->event_type_id) {
+                return $this->sendError('Validation Error.', 'Event Type does not match with Main Event Type.');
+            }
             
             if(($eventdata->start_date > $request->start_date ||
                 $eventdata->end_date < $request->start_date)
