@@ -81,13 +81,13 @@ class SubEventsApiController extends BaseController
             ])->first();
 
             if($eventdata->event_type_id != $request->event_type_id) {
-                return $this->sendError('Validation Error.', 'Event Type does not match with Main Event Type.');
+                return $this->sendError('Validation Error.', 'Sub Event Type does not match with Main Event Type.');
             }
             
             if(($eventdata->start_date > $request->start_date ||
                 $eventdata->end_date < $request->start_date)
                 ) {
-                return $this->sendError('Validation Error.', 'Sub Event start date should be between event start and end date');
+                return $this->sendError('Validation Error.', 'Sub Event start date should be between Main Event start and end date');
             }
 
             if(($eventdata->end_date < $request->end_date )) {
