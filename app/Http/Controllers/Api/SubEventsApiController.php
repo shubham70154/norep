@@ -340,8 +340,8 @@ class SubEventsApiController extends BaseController
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
-                $event->scoreboard = json_decode($event->scoreboard);
-                $event->timer = json_decode($event->timer);
+                $event->scoreboard = !is_null($event->scoreboard) ? json_decode($event->scoreboard) : null;
+                $event->timer = !is_null($event->timer) ? json_decode($event->timer) : null;
                 $allevents[] = $event;
             }
 
@@ -364,6 +364,9 @@ class SubEventsApiController extends BaseController
                                 ->where('type', '=','video')->where('sub_event_id', $subevent->id)->get();
                 $subevent->images = $imageFiles;
                 $subevent->videos = $videoFiles;
+                $subevent->scoreboard = !is_null($subevent->scoreboard) ? json_decode($subevent->scoreboard) : null;
+                $subevent->timer = !is_null($subevent->timer) ? json_decode($subevent->timer) : null;
+                
                 
                 return $this->sendResponse($subevent, 'Sub event details get successfully.');    
             } else {
