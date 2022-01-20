@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     // Events API routes
     Route::post('create-events', 'Api\EventsApiController@create');
     Route::delete('delete-event', 'Api\EventsApiController@deleteEvent');
-    Route::delete('delete-sub-event', 'Api\EventsApiController@deleteSubEvent');
+    Route::delete('delete-sub-event', 'Api\SubEventsApiController@deleteSubEvent');
     Route::get('get-allevent-list', 'Api\EventsApiController@getAllEventList');
     Route::get('get-allactiveevent-list', 'Api\EventsApiController@getAllActiveEventList');
     Route::get('get-pastevent-list', 'Api\EventsApiController@getPastEventList');
@@ -34,13 +34,13 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::put('event-update/{id}', 'Api\EventsApiController@eventUpdate');
 
-    Route::put('sub-event-update/{id}', 'Api\EventsApiController@subEventUpdate');
+    Route::put('sub-event-update/{id}', 'Api\SubEventsApiController@subEventUpdate');
 
     Route::get('get-event-creators-event-list/{user_id}', 'Api\EventsApiController@getEventCreatorsEventList');
 
-    Route::post('create-subevents', 'Api\EventsApiController@createSubEvent');
-    Route::get('subevent/{subeventid}', 'Api\EventsApiController@showSubEventDetails');
-    Route::get('get-subevent-list/{eventid}', 'Api\EventsApiController@getSubEventList');
+    Route::post('create-subevents', 'Api\SubEventsApiController@createSubEvent');
+    Route::get('subevent/{subeventid}', 'Api\SubEventsApiController@showSubEventDetails');
+    Route::get('get-subevent-list/{eventid}', 'Api\SubEventsApiController@getSubEventList');
 
     Route::post('save-help-support', 'Api\PagesApiController@saveHelpSupport');
     Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
