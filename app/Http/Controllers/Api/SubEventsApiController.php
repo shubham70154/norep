@@ -356,7 +356,7 @@ class SubEventsApiController extends BaseController
     {
         try {
             if (isset($subEventId) && !is_null($subEventId)) {
-                $subevent = SubEvent::findOrFail($subEventId);
+                $subevent = SubEvent::find($subEventId);
                 if ($subevent->id) {
                     $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                     ->where('type','=', 'image')->where('sub_event_id', $subevent->id)->get();
