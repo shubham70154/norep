@@ -144,20 +144,20 @@ class SubEventsApiController extends BaseController
                 $subEvent->videos = $videos;
             }
             
-            if ($request->has('docs')) {
-                $docs = [];
-                $req_docs = $request->docs;
-                foreach($req_docs as $doc) {
-                    $file = File::create([
-                        'url' => $doc,
-                        'type' => 'doc',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $subEvent->id
-                    ]);
-                    $docs[] = $doc;
-                }
-                $subEvent->docs = $docs;
-            }
+            // if ($request->has('docs')) {
+            //     $docs = [];
+            //     $req_docs = $request->docs;
+            //     foreach($req_docs as $doc) {
+            //         $file = File::create([
+            //             'url' => $doc,
+            //             'type' => 'doc',
+            //             'event_id' => $request->event_id,
+            //             'sub_event_id' => $subEvent->id
+            //         ]);
+            //         $docs[] = $doc;
+            //     }
+            //     $subEvent->docs = $docs;
+            // }
 
             if ($request->has('specified_for')) {
                 $specified = [];
