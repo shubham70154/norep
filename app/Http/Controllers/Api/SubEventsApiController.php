@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Event;
-use App\EventPayment;
-use App\EventSpecify;
 use App\SubEvent;
 use App\User;
 use App\File;
@@ -12,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
-use App\UserJoinedEvent;
 use App\UserLeaderboard;
 use DB, Validator;
 use Carbon\Carbon;
@@ -48,7 +45,7 @@ class SubEventsApiController extends BaseController
                 'description' => 'required',
                 'start_date' => 'required|after_or_equal:today',
                 'end_date' => 'after_or_equal:start_date',
-                'event_type_id' => 'required',
+                'event_type_id' => 'required|in:events,event_type_id',
                 'location' => 'required',
                 'user_id' => 'required',
             ]);
