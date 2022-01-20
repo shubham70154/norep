@@ -47,7 +47,7 @@ class SubEventsApiController extends BaseController
                 'end_date' => 'after_or_equal:start_date',
                 'event_type_id' => 'required|exists:events,event_type_id',
                 'location' => 'required',
-                'user_id' => 'required',
+                'user_id' => 'required'
             ]);
         
             if($validator->fails()){
@@ -68,6 +68,7 @@ class SubEventsApiController extends BaseController
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
                 ['event_id', $request->event_id],
+                ['deletd_at', null],
             ])->first();
             if($checkSubEvents){
                 return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
@@ -314,6 +315,8 @@ class SubEventsApiController extends BaseController
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
+                $event->scoreboard = json_decode($event->scoreboard);
+                $event->timer = json_decode($event->timer);
                 $allevents[] = $event;
             }
 
