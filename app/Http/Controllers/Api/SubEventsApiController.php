@@ -30,7 +30,8 @@ class SubEventsApiController extends BaseController
             $subEvent = SubEvent::where('id', $request->sub_event_id)->delete();
             $userLeaderboard = UserLeaderboard::where('sub_event_id', $request->sub_event_id)->delete();
             $file = File::where('sub_event_id', $request->sub_event_id)->delete();
-            return $this->sendResponse((object)[], 'Event deleted successfully.');
+            SubEventSpecify::where('sub_event_id', $request->sub_event_id)->delete();
+            return $this->sendResponse((object)[], 'Sub Event deleted successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }

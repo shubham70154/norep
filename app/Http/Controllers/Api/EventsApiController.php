@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
+use App\SubEventSpecify;
 use App\UserJoinedEvent;
 use App\UserLeaderboard;
 use DB, Validator;
@@ -105,6 +106,7 @@ class EventsApiController extends BaseController
             File::where('event_id', $request->event_id)->delete();
             EventPayment::where('event_id', $request->event_id)->delete();
             EventSpecify::where('event_id', $request->event_id)->delete();
+            SubEventSpecify::where('event_id', $request->event_id)->delete();
             return $this->sendResponse((object)[], 'Event deleted successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
