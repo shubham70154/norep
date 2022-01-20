@@ -112,47 +112,54 @@ class SubEventsApiController extends BaseController
                 'end_time' => $request->end_time
             ];
             $subEvent = SubEvent::create($data);
-
-            $req_images = $request->images;
-            $req_videos = $request->videos;
-            $req_docs = $request->docs;
             
-            $images = [];
-            $videos = [];
-            $docs = [];
-            foreach($req_images as $image) {
-                $file = File::create([
-                    'url' => $image,
-                    'type' => 'image',
-                    'event_id' => $request->event_id,
-                    'sub_event_id' => $subEvent->id
-                ]);
-                $images[] = $image;
+            if ($request->has('images')) {
+                $images = [];
+                $req_images = $request->images;
+                foreach($req_images as $image) {
+                    $file = File::create([
+                        'url' => $image,
+                        'type' => 'image',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id
+                    ]);
+                    $images[] = $image;
+                }
+                $subEvent->images = $images;
             }
 
-            foreach($req_videos as $video) {
-                $file = File::create([
-                    'url' => $video,
-                    'type' => 'video',
-                    'event_id' => $request->event_id,
-                    'sub_event_id' => $subEvent->id
-                ]);
-                $videos[] = $video;
+            if ($request->has('videos')) {
+                $videos = [];
+                $req_videos = $request->videos;
+                foreach($req_videos as $video) {
+                    $file = File::create([
+                        'url' => $video,
+                        'type' => 'video',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id
+                    ]);
+                    $videos[] = $video;
+                }
+                $subEvent->videos = $videos;
             }
-
-            foreach($req_docs as $doc) {
-                $file = File::create([
-                    'url' => $doc,
-                    'type' => 'doc',
-                    'event_id' => $request->event_id,
-                    'sub_event_id' => $subEvent->id
-                ]);
-                $docs[] = $doc;
+            
+            if ($request->has('docs')) {
+                $docs = [];
+                $req_docs = $request->docs;
+                foreach($req_docs as $doc) {
+                    $file = File::create([
+                        'url' => $doc,
+                        'type' => 'doc',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id
+                    ]);
+                    $docs[] = $doc;
+                }
+                $subEvent->docs = $docs;
             }
+            
             DB::commit();
-            $subEvent->images = $images;
-            $subEvent->videos = $videos;
-            $subEvent->docs = $docs;
+            
             $subEvent->scoreboard = json_decode($subEvent->scoreboard);
             $subEvent->timer = json_decode($subEvent->timer);
 
