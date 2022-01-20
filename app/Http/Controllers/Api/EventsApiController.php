@@ -45,7 +45,7 @@ class EventsApiController extends BaseController
             if ($request->has('specified_for')) {
                 $specified = [];
                 foreach($request->specified_for as $title) {
-                    $file = EventSpecify::create([
+                    EventSpecify::create([
                         'title' => $title,
                         'event_id' => $event->id
                     ]);

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Helpers\Helper;
+use App\SubEventSpecify;
 use App\UserLeaderboard;
 use DB, Validator;
 use Carbon\Carbon;
@@ -157,9 +158,21 @@ class SubEventsApiController extends BaseController
                 }
                 $subEvent->docs = $docs;
             }
+
+            if ($request->has('specified_for')) {
+                $specified = [];
+                foreach($request->specified_for as $id) {
+                    SubEventSpecify::create([
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $subEvent->id,
+                        'event_specified_id' => $id
+                    ]);
+                    $specified[] = $id;
+                }
+                $subEvent->specified_for = $specified;
+            }
             
             DB::commit();
-            
             $subEvent->scoreboard = json_decode($subEvent->scoreboard);
             $subEvent->timer = json_decode($subEvent->timer);
 
