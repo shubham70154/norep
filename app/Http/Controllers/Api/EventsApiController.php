@@ -423,7 +423,6 @@ class EventsApiController extends BaseController
             $data = [
                 'event_id' => $request->event_id,
                 'age' => $request->age,
-                'category' => $request->category,
                 'name' => $request->name,
                 'event_type_id' => $request->event_type_id,
                 'user_id' => $request->user_id,
@@ -436,8 +435,7 @@ class EventsApiController extends BaseController
                 'start_date' => $request->start_date,
                 'start_time' => $request->start_time,
                 'end_date' => $request->end_date,
-                'end_time' => $request->end_time,
-                'sub_event_category_id' => $request->sub_event_category_id
+                'end_time' => $request->end_time
             ];
             $subEvent = SubEvent::create($data);
 
