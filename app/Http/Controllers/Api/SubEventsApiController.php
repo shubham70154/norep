@@ -68,7 +68,7 @@ class SubEventsApiController extends BaseController
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
                 ['event_id', $request->event_id],
-                ['deleted_at', null],
+                ['deleted_at', null]
             ])->first();
             if($checkSubEvents){
                 return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
@@ -76,6 +76,7 @@ class SubEventsApiController extends BaseController
 
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
+                ['deleted_at', null],
                 ['status', 1]
             ])->first();
             
