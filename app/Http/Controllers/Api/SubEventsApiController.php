@@ -357,17 +357,17 @@ class SubEventsApiController extends BaseController
         try {
             if (isset($subEventId) && !is_null($subEventId)) {
                 $subevent = SubEvent::findOrFail($subEventId);
-
-                $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
-                                ->where('type','=', 'image')->where('sub_event_id', $subevent->id)->get();
-                $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
-                                ->where('type', '=','video')->where('sub_event_id', $subevent->id)->get();
-                $subevent->images = $imageFiles;
-                $subevent->videos = $videoFiles;
+                if ($subevent->id) {
+                    $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
+                                    ->where('type','=', 'image')->where('sub_event_id', $subevent->id)->get();
+                    $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
+                                    ->where('type', '=','video')->where('sub_event_id', $subevent->id)->get();
+                    $subevent->images = $imageFiles;
+                    $subevent->videos = $videoFiles;
+                }
+                
                 $subevent->scoreboard = !is_null($subevent->scoreboard) ? json_decode($subevent->scoreboard) : null;
                 $subevent->timer = !is_null($subevent->timer) ? json_decode($subevent->timer) : null;
-                
-                
                 return $this->sendResponse($subevent, 'Sub event details get successfully.');    
             } else {
                 return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
