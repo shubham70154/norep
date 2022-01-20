@@ -45,7 +45,7 @@ class SubEventsApiController extends BaseController
                 'description' => 'required',
                 'start_date' => 'required|after_or_equal:today',
                 'end_date' => 'after_or_equal:start_date',
-                'event_type_id' => 'required|exists:events,event_type_id',
+                'event_type_id' => 'required',
                 'location' => 'required',
                 'user_id' => 'required'
             ]);
@@ -68,7 +68,7 @@ class SubEventsApiController extends BaseController
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
                 ['event_id', $request->event_id],
-                ['deletd_at', null],
+                ['deleted_at', null],
             ])->first();
             if($checkSubEvents){
                 return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
