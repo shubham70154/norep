@@ -24,7 +24,6 @@ class SubEvent extends Model
         'sub_event_category_id',
         'user_id',
         'description',
-        'category',
         'location',
         'status',
         'timer',
