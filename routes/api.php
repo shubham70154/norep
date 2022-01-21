@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('create-subevents', 'Api\SubEventsApiController@createSubEvent');
     Route::get('subevent/{subeventid}', 'Api\SubEventsApiController@showSubEventDetails');
-    Route::get('get-subevent-list/{eventid}', 'Api\SubEventsApiController@getSubEventList');
+    Route::get('get-subevent-list/{eventid}/{event_specified_id?}', 'Api\SubEventsApiController@getSubEventList');
 
     Route::post('save-help-support', 'Api\PagesApiController@saveHelpSupport');
     Route::get('get-support-list', 'Api\PagesApiController@getSupportList');
