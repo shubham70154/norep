@@ -84,11 +84,19 @@ class UserJoinedEventsApiController extends BaseController
     {
         try {
             if (!is_null($eventId)) {
-              return  $result = UserJoinedEvent::where([
+                $result = UserJoinedEvent::where([
                     ['event_id', $eventId]
-                ])->pluck('user_id', 'referee_id')->toArray();
+                ])->get();
 
-                $participantList = User::whereIn('id', $result)->get();
+                $participantList = [];
+                foreach($result as $res) {
+                   $participant = User::where('id', $res->user_id)->first();
+                   $referee = User::select('id', 'name')->where('id', $res->referee_id)->first();
+                   $participant->assigned_referee = $referee;
+                   $participantList[] = $participant;
+                }
+
+                //$participantList = User::whereIn('id', $result)->get();
                 return $this->sendResponse($participantList, 'Participants list get successfully.');
             }
        
