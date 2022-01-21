@@ -343,12 +343,19 @@ class SubEventsApiController extends BaseController
         }
     }
 
-    public function getSubEventList($event_id)
+    public function getSubEventList($event_id, $event_specified_id=null)
     {
         try {
-            $subeventLists = SubEventSpecify::where([
-                            ['event_id', $event_id]
-                        ])->orderBy('created_at', 'DESC')->get();
+            if (!is_null($event_specified_id)) {
+                $subeventLists = SubEventSpecify::where([
+                    ['event_id', $event_id],
+                    ['event_specified_id', $event_specified_id]
+                ])->orderBy('created_at', 'DESC')->get();
+            } else {
+                $subeventLists = SubEventSpecify::where([
+                    ['event_id', $event_id]
+                ])->orderBy('created_at', 'DESC')->get();
+            }
 
             $allevents = [];
             foreach($subeventLists as $subevent) {
