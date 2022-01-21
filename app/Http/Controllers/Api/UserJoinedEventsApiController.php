@@ -88,7 +88,7 @@ class UserJoinedEventsApiController extends BaseController
                     ['event_id', $eventId]
                 ])->pluck('user_id')->toArray();
 
-               return $participantList = User::whereIn('id', $result)->get();
+                $participantList = User::whereIn('id', $result)->get();
                 return $this->sendResponse($participantList, 'Participants list get successfully.');
             }
        
