@@ -96,7 +96,6 @@ class UserJoinedEventsApiController extends BaseController
                    $participantList[] = $participant;
                 }
 
-                //$participantList = User::whereIn('id', $result)->get();
                 return $this->sendResponse($participantList, 'Participants list get successfully.');
             }
        
@@ -109,21 +108,32 @@ class UserJoinedEventsApiController extends BaseController
     {
         try {
             if (!is_null($eventId)) {
-               $eventDetails = Event::where([
-                    ['id', $eventId]
-                ])->select('referee_id')->get();
+            //    $eventDetails = Event::where([
+            //         ['id', $eventId]
+            //     ])->select('referee_id', 'user_id')->get();
 
-                $result = '';
-                foreach ($eventDetails as $referees) {
-                    if (!is_null($referees->referee_id)) {
-                        $result .= str_replace('"',"",$referees->referee_id) .',';
-                    }
+            //     $result = '';
+            //     foreach ($eventDetails as $referees) {
+            //         if (!is_null($referees->referee_id)) {
+            //             $result .= str_replace('"',"",$referees->referee_id) .',';
+            //         }
+            //     }
+            //     $refereeArray = explode(',', rtrim($result, ','));
+            //     $refereeIds = array_unique($refereeArray);
+
+            //     $participantList = User::whereIn('id', $refereeIds)->get();
+                $result = UserJoinedEvent::where([
+                    ['event_id', $eventId]
+                ])->get();
+
+                $refereeList = [];
+                foreach($result as $res) {
+                    $referee = User::where('id', $res->referee_id)->first();
+                    $participant = User::select('id', 'name')->where('id', $res->user_id)->first();
+                    $referee->assigned_participant = $participant;
+                    $refereeList[] = $referee;
                 }
-                $refereeArray = explode(',', rtrim($result, ','));
-                $refereeIds = array_unique($refereeArray);
-
-                $participantList = User::whereIn('id', $refereeIds)->get();
-                return $this->sendResponse($participantList, 'Participants list get successfully.');
+                return $this->sendResponse($refereeList, 'Referee list get successfully.');
             }
        
         } catch (\Exception $e) {
