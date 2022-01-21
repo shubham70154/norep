@@ -27,9 +27,9 @@ class SubEventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors());       
             }
-            $subEvent = SubEvent::where('id', $request->sub_event_id)->delete();
-            $userLeaderboard = UserLeaderboard::where('sub_event_id', $request->sub_event_id)->delete();
-            $file = File::where('sub_event_id', $request->sub_event_id)->delete();
+            SubEvent::where('id', $request->sub_event_id)->delete();
+            UserLeaderboard::where('sub_event_id', $request->sub_event_id)->delete();
+            File::where('sub_event_id', $request->sub_event_id)->delete();
             SubEventSpecify::where('sub_event_id', $request->sub_event_id)->delete();
             return $this->sendResponse((object)[], 'Sub Event deleted successfully.');
         } catch (\Exception $e) {
@@ -345,29 +345,29 @@ class SubEventsApiController extends BaseController
     public function getSubEventList($event_id)
     {
         try {
-            $subeventLists = SubEvent::where([
-                            ['status' , 1],
+            $subeventLists = SubEventSpecify::where([
                             ['event_id', $event_id]
                         ])->orderBy('created_at', 'DESC')->get();
 
             $allevents = [];
-            foreach($subeventLists as $event) {
+            foreach($subeventLists as $subevent) {
+                $subEventData = SubEvent::find($subevent->sub_event_id);
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event_id],
-                    ['sub_event_id', $event->id],
+                    ['sub_event_id', $subEventData->id],
                     ['type', '=', 'image']
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event_id],
-                    ['sub_event_id', $event->id],
+                    ['sub_event_id', $subEventData->id],
                     ['type', '=', 'video']
                 ])->select('url')->get();
-                $event->images =  $imagefiles;
-                $event->vidoes =  $videofiles;
-                $event->scoreboard = !is_null($event->scoreboard) ? json_decode($event->scoreboard) : null;
-                $event->timer = !is_null($event->timer) ? json_decode($event->timer) : null;
-                $allevents[] = $event;
+                $subEventData->images =  $imagefiles;
+                $subEventData->vidoes =  $videofiles;
+                $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? json_decode($subEventData->scoreboard) : null;
+                $subEventData->timer = !is_null($subEventData->timer) ? json_decode($subEventData->timer) : null;
+                $allevents[] = $subEventData;
             }
 
             return $this->sendResponse($allevents, 'Sub event list get successfully.');
