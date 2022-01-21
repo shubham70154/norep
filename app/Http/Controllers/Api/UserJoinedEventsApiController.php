@@ -84,11 +84,11 @@ class UserJoinedEventsApiController extends BaseController
     {
         try {
             if (!is_null($eventId)) {
-              return $result = UserJoinedEvent::where([
+                $result = UserJoinedEvent::where([
                     ['event_id', $eventId]
                 ])->pluck('user_id')->toArray();
 
-                $participantList = User::whereIn('id', $result)->get();
+               return $participantList = User::whereIn('id', $result)->get();
                 return $this->sendResponse($participantList, 'Participants list get successfully.');
             }
        
