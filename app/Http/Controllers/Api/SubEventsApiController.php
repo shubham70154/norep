@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Event;
+use App\EventSpecify;
 use App\SubEvent;
 use App\User;
 use App\File;
@@ -352,6 +353,8 @@ class SubEventsApiController extends BaseController
             $allevents = [];
             foreach($subeventLists as $subevent) {
                 $subEventData = SubEvent::find($subevent->sub_event_id);
+
+                $eventSpecify = EventSpecify::find($subevent->event_specified_id);
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $subEventData->id],
@@ -363,8 +366,16 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $subEventData->id],
                     ['type', '=', 'video']
                 ])->select('url')->get();
+
+                $docsfiles = DB::table('files')->where([
+                    ['event_id', $event_id],
+                    ['sub_event_id', $subEventData->id],
+                    ['type', '=', 'doc']
+                ])->select('url')->get();
                 $subEventData->images =  $imagefiles;
                 $subEventData->vidoes =  $videofiles;
+                $subEventData->docs =  $docsfiles;
+                $subEventData->specified_for =  $eventSpecify;
                 $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? json_decode($subEventData->scoreboard) : null;
                 $subEventData->timer = !is_null($subEventData->timer) ? json_decode($subEventData->timer) : null;
                 $allevents[] = $subEventData;
