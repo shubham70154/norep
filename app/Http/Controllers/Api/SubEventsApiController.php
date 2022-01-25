@@ -243,6 +243,11 @@ class SubEventsApiController extends BaseController
             }
             
             $subEvent = SubEvent::where('id', $Sub_event_id)->first();
+            
+            $specified = [];
+            $images = [];
+            $videos = [];
+            $docs = [];
 
             if ($request->has('images')) {
                 $file = File::where([
@@ -251,7 +256,6 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_images = $request->images;
-                $images = [];
                 foreach($req_images as $image) {
                     $file = File::create([
                         'url' => $image,
@@ -261,7 +265,6 @@ class SubEventsApiController extends BaseController
                     ]);
                     $images[] = $image;
                 }
-                $subEvent->images = $images; 
             }
 
             if ($request->has('videos')) {
@@ -271,7 +274,6 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_videos = $request->videos;
-                $videos = [];
                 foreach($req_videos as $video) {
                     $file = File::create([
                         'url' => $video,
@@ -281,7 +283,6 @@ class SubEventsApiController extends BaseController
                     ]);
                     $videos[] = $video;
                 }
-                $subEvent->videos = $videos; 
             }
             
             if ($request->has('docs')) {
@@ -291,7 +292,6 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_docs = $request->docs;
-                $docs = [];
                 foreach($req_docs as $doc) {
                     $file = File::create([
                         'url' => $doc,
@@ -301,11 +301,9 @@ class SubEventsApiController extends BaseController
                     ]);
                     $docs[] = $doc;
                 }
-                $subEvent->docs = $docs; 
             }
 
             if ($request->has('specified_for')) {
-                $specified = [];
                 SubEventSpecify::where([
                     ['event_id', $request->event_id],
                     ['sub_event_id', $subEvent->id]
@@ -318,7 +316,6 @@ class SubEventsApiController extends BaseController
                     ]);
                     $specified[] = $id;
                 }
-                $subEvent->specified_for = $specified;
             }
 
             $request->request->remove('images');
@@ -327,16 +324,23 @@ class SubEventsApiController extends BaseController
             $request->request->remove('specified_for');
 
             SubEvent::where('id', $Sub_event_id)->update($request->all());
+
+            $subEventData = SubEvent::find($Sub_event_id);
+
+            $subEventData->images =  $images;
+            $subEventData->vidoes =  $videos;
+            $subEventData->docs =  $docs;
+            $subEventData->specified_for =  $specified;
             
             DB::commit();
             if (isset($subEvent->scoreboard)) {
-                $subEvent->scoreboard = !is_null($subEvent->scoreboard) ? json_decode($subEvent->scoreboard) : null;
+                $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? json_decode($subEventData->scoreboard) : null;
             }
             if (isset($subEvent->timer)) {
-                $subEvent->timer = !is_null($subEvent->timer) ? json_decode($subEvent->timer) : null;   
+                $subEventData->timer = !is_null($subEventData->timer) ? json_decode($subEventData->timer) : null;   
             }
 
-            return $this->sendResponse($subEvent, 'Sub event Updated successfully.');
+            return $this->sendResponse($subEventData, 'Sub event Updated successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
             'line'=> $e->getLine()]);
