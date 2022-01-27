@@ -212,7 +212,7 @@ class EventsApiController extends BaseController
                                     ->where([
                                         ['event_id', $event->id],
                                         ['sub_event_id', null],
-                                        ['type', '=', 'image']
+                                        ['type', '=', 'video']
                                     ])->get();
                 $event->images = $imageFiles;
                 $event->videos = $videoFiles;
