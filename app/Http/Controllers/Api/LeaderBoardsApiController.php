@@ -43,7 +43,7 @@ class LeaderBoardsApiController extends BaseController
                 $participants = [];
                 foreach($getSubEvents as $subevent){
                     $subevent->participants = $participantLists;
-                    $subevent->header = json_decode($subevent->header);
+                    $subevent->scoreboard = json_decode($subevent->scoreboard);
                     $subevent->timer = json_decode($subevent->timer);
                     $participants[] = $subevent;
                 }
