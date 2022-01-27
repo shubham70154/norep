@@ -203,9 +203,17 @@ class EventsApiController extends BaseController
                 $event->event_types;
                 
                 $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
-                                ->where('type','=', 'image')->where('event_id', $event->id)->get();
+                                    ->where([
+                                        ['event_id', $event->id],
+                                        ['sub_event_id', null],
+                                        ['type', '=', 'image']
+                                    ])->get();
                 $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
-                                ->where('type', '=','video')->where('event_id', $event->id)->get();
+                                    ->where([
+                                        ['event_id', $event->id],
+                                        ['sub_event_id', null],
+                                        ['type', '=', 'image']
+                                    ])->get();
                 $event->images = $imageFiles;
                 $event->videos = $videoFiles;
                 
