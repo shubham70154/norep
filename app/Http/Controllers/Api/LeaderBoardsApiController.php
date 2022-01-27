@@ -18,6 +18,8 @@ use App\Http\Requests\Request as RequestsRequest;
 use App\UserLeaderboard;
 use DB, Validator, Illuminate\Support\Carbon;
 
+use function GuzzleHttp\json_decode;
+
 class LeaderBoardsApiController extends BaseController
 {
     public function getEventLeaderBoard($event_id)
@@ -41,6 +43,8 @@ class LeaderBoardsApiController extends BaseController
                 $participants = [];
                 foreach($getSubEvents as $subevent){
                     $subevent->participants = $participantLists;
+                    $subevent->header = json_decode($subevent->header);
+                    $subevent->timer = json_decode($subevent->timer);
                     $participants[] = $subevent;
                 }
                 $eventDetail->sub_events = $participants;
