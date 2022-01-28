@@ -21,7 +21,6 @@ class RefereesApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
-                'referee_id' => 'required',
                 'sub_event_id' => 'required',
                 'user_id' => 'required'
             ]);
@@ -61,7 +60,7 @@ class RefereesApiController extends BaseController
                 $checkUserLeaderboard =  UserLeaderboard::where([
                                                 ['user_id' , $request->user_id],
                                                 ['sub_event_id' , $request->sub_event_id],
-                                                ['referee_id' , $request->referee_id],
+                                                ['referee_id' , isset($request->referee_id)?$request->referee_id:null],
                                                 ['event_id' , $request->event_id],
                                             ])->first();
                 if ($checkUserLeaderboard) {
