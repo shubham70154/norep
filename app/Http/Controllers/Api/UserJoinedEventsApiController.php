@@ -168,4 +168,41 @@ class UserJoinedEventsApiController extends BaseController
         }
     }
 
+    public function getEventsListByUserId($userId)
+    {
+        try {
+            if (!is_null($userId)) {
+                $result = UserJoinedEvent::where([
+                    ['user_id', $userId]
+                ])->get();
+
+                $eventList = [];
+                foreach($result as $res) {
+                   $event = Event::where('id', $res->event_id)->first();
+                   
+                   $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
+                                    ->where([
+                                        ['event_id', $event->id],
+                                        ['sub_event_id', null],
+                                        ['type', '=', 'image']
+                                    ])->get();
+                    $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
+                                        ->where([
+                                            ['event_id', $event->id],
+                                            ['sub_event_id', null],
+                                            ['type', '=', 'video']
+                                        ])->get();
+                    $event->images = $imageFiles;
+                    $event->videos = $videoFiles;
+                    $eventList[] = $event;
+                }
+
+                return $this->sendResponse($eventList, 'User joined event list get successfully.');
+            }
+       
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
 }
