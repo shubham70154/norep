@@ -168,7 +168,7 @@ class UserJoinedEventsApiController extends BaseController
         }
     }
 
-    public function getEventsListByUserId($userId)
+    public function getJoinedEventsListByUserId($userId)
     {
         try {
             if (!is_null($userId)) {
