@@ -617,4 +617,35 @@ class EventsApiController extends BaseController
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
+
+    public function getUnpublishedEventListForEventCreator($user_id = null)
+    {
+        try {
+            $eventLists = Event::where([
+                ['status' , 1],
+            ])->orderBy('start_date', 'DESC')->get();
+            
+            $allevents = [];
+            foreach($eventLists as $event) {
+                $imagefiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['sub_event_id', null],
+                    ['type', '=', 'image']
+                ])->select('url')->get();
+
+                $videofiles = DB::table('files')->where([
+                    ['event_id', $event->id],
+                    ['sub_event_id', null],
+                    ['type', '=', 'video']
+                ])->select('url')->get();
+                $event->images =  $imagefiles;
+                $event->vidoes =  $videofiles;
+                $allevents[] = $event;
+            }
+            return $this->sendResponse($allevents, 'past event list get successfully.');
+            
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
+        }
+    }
 }
