@@ -618,31 +618,36 @@ class EventsApiController extends BaseController
         }
     }
 
-    public function getUnpublishedEventListForEventCreator($user_id = null)
+    public function getUnpublishedEventListForEventCreator($user_id)
     {
         try {
-            $eventLists = Event::where([
-                ['status' , 1],
-            ])->orderBy('start_date', 'DESC')->get();
-            
-            $allevents = [];
-            foreach($eventLists as $event) {
-                $imagefiles = DB::table('files')->where([
-                    ['event_id', $event->id],
-                    ['sub_event_id', null],
-                    ['type', '=', 'image']
-                ])->select('url')->get();
-
-                $videofiles = DB::table('files')->where([
-                    ['event_id', $event->id],
-                    ['sub_event_id', null],
-                    ['type', '=', 'video']
-                ])->select('url')->get();
-                $event->images =  $imagefiles;
-                $event->vidoes =  $videofiles;
-                $allevents[] = $event;
+            if(isset($user_id) && !is_null($user_id)){
+                $eventLists = Event::where([
+                    ['status' , 1],
+                    ['user_id' , $user_id],
+                ])->orderBy('start_date', 'DESC')->get();
+                
+                $allevents = [];
+                foreach($eventLists as $event) {
+                    $imagefiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['sub_event_id', null],
+                        ['type', '=', 'image']
+                    ])->select('url')->get();
+    
+                    $videofiles = DB::table('files')->where([
+                        ['event_id', $event->id],
+                        ['sub_event_id', null],
+                        ['type', '=', 'video']
+                    ])->select('url')->get();
+                    $event->images =  $imagefiles;
+                    $event->vidoes =  $videofiles;
+                    $allevents[] = $event;
+                }
+                return $this->sendResponse($allevents, 'Unpublished event list get successfully.');
+            } else {
+                return $this->sendResponse('event creator id found.', ['error'=>'event creator id is not exists']);
             }
-            return $this->sendResponse($allevents, 'Unpublished event list get successfully.');
             
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
