@@ -80,7 +80,7 @@ class SubEventsApiController extends BaseController
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
                 ['deleted_at', null],
-                ['status', 1]
+                ['status', 4]
             ])->first();
 
             if($eventdata->event_type_id != $request->event_type_id) {
@@ -115,7 +115,8 @@ class SubEventsApiController extends BaseController
                 'end_time' => $request->end_time
             ];
             $subEvent = SubEvent::create($data);
-            
+            // update event status 2 means subevent created 
+            Event::where('id', $request->event_id)->update(['status'=> 2]);
             if ($request->has('images')) {
                 $images = [];
                 $req_images = $request->images;
@@ -213,7 +214,7 @@ class SubEventsApiController extends BaseController
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
                 ['deleted_at', null],
-                ['status', 1]
+                ['status', 4]
             ])->first();
 
             if($eventdata->event_type_id != $request->event_type_id) {

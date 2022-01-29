@@ -234,7 +234,7 @@ class EventsApiController extends BaseController
     public function getAllEventList()
     {
         try {
-            $eventLists = Event::where('status', 1)->orderBy('start_date', 'DESC')->get();
+            $eventLists = Event::where('status', 4)->orderBy('start_date', 'DESC')->get();
             $allevents = [];
             foreach($eventLists as $event) {
                 $imagefiles = DB::table('files')->where([
@@ -439,7 +439,11 @@ class EventsApiController extends BaseController
     public function assignEventReferees(Request $request)
     {
         try {
-            $event = Event::where('id', $request->event_id)->update(['referee_id'=>$request->referee_id]);
+            // assign referee to event and update status 4 means event publish
+            $event = Event::where('id', $request->event_id)->update([
+                'referee_id' => $request->referee_id,
+                'status' => 4
+            ]);
             return $this->sendResponse($event, 'Referee assigned successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
@@ -461,7 +465,7 @@ class EventsApiController extends BaseController
         if (isset($event_id) && !is_null($event_id))
         {
             $runningEventLists = SubEvent::where([
-                ['status' , 1],
+                ['status' , 4],
                 ['event_id' , $event_id],
                 ['start_date', '<=', Carbon::today()],
                 ['end_date', '>=', Carbon::today()]

@@ -95,7 +95,7 @@ class EventsController extends Controller
     public function getRunningEventList()
     {
         $eventLists = Event::where([
-                    ['status' , 1],
+                    ['status' , 4],
                     ['start_date', '<=', Carbon::today()],
                     ['end_date', '>=', Carbon::today()]
                     ])->orderBy('start_date', 'DESC')->get();
@@ -124,8 +124,8 @@ class EventsController extends Controller
     public function getFutureEventList()
     {
         $eventLists = Event::where([
-                    ['status' , 1],
-                    ['start_date', '>=', Carbon::today()]
+                    ['status' , 4],
+                    ['start_date', '>', Carbon::today()]
                     ])->orderBy('start_date', 'DESC')->get();
         
         $allevents = [];
@@ -149,8 +149,8 @@ class EventsController extends Controller
     public function getPastEventList()
     {
         $eventLists = Event::where([
-                    ['status' , 1],
-                    ['start_date', '<=', Carbon::today()]
+                    ['status' , 4],
+                    ['start_date', '<', Carbon::today()]
                     ])->orderBy('start_date', 'DESC')->get();
         
         $allevents = [];
