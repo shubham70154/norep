@@ -311,7 +311,7 @@ class EventsApiController extends BaseController
                     ])->orderBy('start_date', 'DESC')->get();
             } else {
                 $eventLists = Event::where([
-                    ['user_id' , $user_id],
+                    ['status' , 4],
                     ['start_date', '>', Carbon::today()]
                     ])->orderBy('start_date', 'DESC')->get();
             }
