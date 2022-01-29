@@ -20,7 +20,6 @@ use Carbon\Carbon;
 
 class EventsApiController extends BaseController
 {
-
     public function create(Request $request)
     {
         try {
