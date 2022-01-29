@@ -260,13 +260,21 @@ class EventsApiController extends BaseController
         }
     }
 
-    public function getPastEventList()
+    public function getPastEventList($user_id)
     {
         try {
-            $eventLists = Event::where([
-                        ['status' , 1],
-                        ['start_date', '<=', Carbon::today()]
-                        ])->orderBy('start_date', 'DESC')->get();
+            if(isset($user_id) && !is_null($user_id)) {
+                $eventLists = Event::where([
+                    ['status' , 4],
+                    ['user_id' , $user_id],
+                    ['start_date', '<', Carbon::today()]
+                    ])->orderBy('start_date', 'DESC')->get();
+            } else {
+                $eventLists = Event::where([
+                    ['status' , 4],
+                    ['start_date', '<', Carbon::today()]
+                    ])->orderBy('start_date', 'DESC')->get();
+            }
             
             $allevents = [];
             foreach($eventLists as $event) {
