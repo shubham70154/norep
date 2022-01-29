@@ -260,7 +260,7 @@ class EventsApiController extends BaseController
         }
     }
 
-    public function getPastEventList($user_id)
+    public function getPastEventList($user_id = null)
     {
         try {
             if(isset($user_id) && !is_null($user_id)) {
