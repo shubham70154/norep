@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get-allactiveevent-list', 'Api\EventsApiController@getAllActiveEventList');
     Route::get('get-pastevent-list/{userid?}', 'Api\EventsApiController@getPastEventList');
     Route::get('get-futureevent-list/{userid?}', 'Api\EventsApiController@getFutureEventList');
-    Route::get('get-runningevent-list', 'Api\EventsApiController@getRunningEventList');
+    Route::get('get-runningevent-list/{userid?}', 'Api\EventsApiController@getRunningEventList');
     Route::get('event/{id}', 'Api\EventsApiController@showEventDetails');
 
     Route::put('event-update/{id}', 'Api\EventsApiController@eventUpdate');

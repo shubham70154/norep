@@ -343,12 +343,21 @@ class EventsApiController extends BaseController
     {
         try {
             $user = $request->user();
-            $eventLists = Event::where([
-                        ['status' , 1],
-                       // ['user_id' , '!=', $user->id],
-                        ['start_date', '<=', Carbon::today()],
-                        ['end_date', '>=', Carbon::today()]
-                        ])->orderBy('start_date', 'DESC')->get();
+            if(isset($user_id) && !is_null($user_id)) {
+                $eventLists = Event::where([
+                    ['status' , 4],
+                    ['user_id' , $user_id],
+                    ['start_date', '<=', Carbon::today()],
+                    ['end_date', '>=', Carbon::today()]
+                 ])->orderBy('start_date', 'DESC')->get();
+            } else {
+                $eventLists = Event::where([
+                    ['status' , 4],
+                   // ['user_id' , '!=', $user->id],
+                    ['start_date', '<=', Carbon::today()],
+                    ['end_date', '>=', Carbon::today()]
+                ])->orderBy('start_date', 'DESC')->get();
+            }
              
             $allevents = [];
             foreach($eventLists as $event) {
