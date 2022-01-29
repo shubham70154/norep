@@ -642,7 +642,7 @@ class EventsApiController extends BaseController
                 $event->vidoes =  $videofiles;
                 $allevents[] = $event;
             }
-            return $this->sendResponse($allevents, 'past event list get successfully.');
+            return $this->sendResponse($allevents, 'Unpublished event list get successfully.');
             
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
