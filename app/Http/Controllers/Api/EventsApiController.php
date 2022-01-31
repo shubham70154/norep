@@ -36,7 +36,7 @@ class EventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
           
             DB::begintransaction();
@@ -96,7 +96,7 @@ class EventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             Event::where('id', $request->event_id)->delete();
             SubEvent::where('event_id', $request->event_id)->delete();
@@ -123,7 +123,7 @@ class EventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
           
             DB::begintransaction();

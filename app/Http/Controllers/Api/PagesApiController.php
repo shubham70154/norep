@@ -35,7 +35,7 @@ class PagesApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
 
             DB::begintransaction();

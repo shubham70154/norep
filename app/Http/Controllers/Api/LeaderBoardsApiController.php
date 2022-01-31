@@ -68,7 +68,7 @@ class LeaderBoardsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
 
             $getEventDetail = Event::select('id','name')->where('id',$request->event_id)->first();

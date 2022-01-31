@@ -26,7 +26,7 @@ class RefereesApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             
             $subeventDetail = SubEvent::findOrFail($request->sub_event_id);
@@ -148,7 +148,7 @@ class RefereesApiController extends BaseController
                 'total_points' =>  'required'
             ]);
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
 
             DB::begintransaction();
@@ -179,7 +179,7 @@ class RefereesApiController extends BaseController
                 'athlete_signature_url' => 'required'
             ]);
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             DB::begintransaction();
             $UserLeaderboard = UserLeaderboard::where('id', $request->user_leaderboard_id)->update([

@@ -26,7 +26,7 @@ class SubEventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             SubEvent::where('id', $request->sub_event_id)->delete();
             UserLeaderboard::where('sub_event_id', $request->sub_event_id)->delete();
@@ -54,7 +54,7 @@ class SubEventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
 
             // $files = $request->file('docs');
