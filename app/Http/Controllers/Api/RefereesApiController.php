@@ -56,6 +56,7 @@ class RefereesApiController extends BaseController
                 //$subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
                 $subeventDetail->timer = json_decode($subeventDetail->timer);
                 $subeventDetail->scoreboard = json_decode($subeventDetail->scoreboard);
+                $scoreboard = json_decode($subeventDetail->scoreboard);
 
                 $checkUserLeaderboard =  UserLeaderboard::where([
                                                 ['user_id' , $request->user_id],
