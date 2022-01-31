@@ -66,6 +66,12 @@ class RefereesApiController extends BaseController
                 if ($checkUserLeaderboard) {
                     $scoreboard->header = unserialize($checkUserLeaderboard->header);
                     $scoreboard->data = unserialize($checkUserLeaderboard->scoreboard);
+                    $athlete_virtual_videos = DB::table('files')->select('id','url', 'type', 'event_id', 'user_leaderboard_id', 'sub_event_id')
+                                            ->where([
+                                                ['user_leaderboard_id', $checkUserLeaderboard->id],
+                                                ['type', '=', 'athlete_virtual_videos']
+                                            ])->get();
+                    $scoreboard->athlete_virtual_videos = $athlete_virtual_videos;
                 }elseif ($scoreboard) {
                     $header = [];
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
@@ -145,7 +151,8 @@ class RefereesApiController extends BaseController
                 'sub_event_id' => 'required',
                 'header' => 'required',
                 'scoreboard' => 'required',
-                'total_points' =>  'required'
+                'total_points' =>  'required',
+                'athlete_virtual_videos' => 'required_if:event_type_id,2'
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
@@ -158,6 +165,25 @@ class RefereesApiController extends BaseController
             $request->request->add(['scoreboard' => $scoreboard]);
 
             $UserLeaderboard = UserLeaderboard::create($request->all());
+
+            if ($request->has('athlete_virtual_videos')) {
+                $videos = [];
+                $file = File::where([
+                    ['user_leaderboard_id', $UserLeaderboard->id],
+                    ['type', 'athlete_virtual_videos']
+                ])->delete();
+                foreach($request->athlete_virtual_videos as $video) {
+                    $file = File::create([
+                        'url' => $video,
+                        'type' => 'athlete_virtual_videos',
+                        'event_id' => $request->event_id,
+                        'sub_event_id' => $request->sub_event_id,
+                        'user_leaderboard_id' => $UserLeaderboard->id 
+                    ]);
+                    $videos[] = $video;
+                }
+                $UserLeaderboard->athlete_virtual_videos = $videos;
+            }
             
             $UserLeaderboard->header = unserialize($UserLeaderboard->header);
             $UserLeaderboard->scoreboard = unserialize($UserLeaderboard->scoreboard);
