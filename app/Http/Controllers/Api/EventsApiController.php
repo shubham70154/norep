@@ -192,7 +192,8 @@ class EventsApiController extends BaseController
             DB::commit();
             return $this->sendResponse($event, 'Event Updated successfully.');
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
+            'line_no'=> $e->getLine()]);
         }
     }
 
