@@ -166,7 +166,7 @@ class RefereesApiController extends BaseController
 
             $UserLeaderboard = UserLeaderboard::create($request->all());
 
-            if ($request->has('athlete_virtual_videos')) {
+            if ($request->has('athlete_virtual_videos') && $request->event_type_id == 2) {
                 $videos = [];
                 $file = File::where([
                     ['user_leaderboard_id', $UserLeaderboard->id],
