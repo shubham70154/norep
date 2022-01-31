@@ -59,7 +59,7 @@ class UserJoinedEventsApiController extends BaseController
             //if user in joining virtual event (end)
 
             //if user in joining onsite event (start)
-            if (!is_null($eventDetail->referee_id))
+            if (!is_null($eventDetail->referee_id) && $eventDetail->event_type_id = 1)
             {
                 // Get all referee array list for this event(start)
                 $result = str_replace('"',"",$eventDetail->referee_id);
