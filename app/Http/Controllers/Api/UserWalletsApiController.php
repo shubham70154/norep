@@ -105,7 +105,7 @@ class UserWalletsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             DB::begintransaction();
             $userDetails = User::find($request->user_id);
@@ -138,7 +138,7 @@ class UserWalletsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             DB::begintransaction();
             $userDetails = User::find($request->user_id);
@@ -171,7 +171,7 @@ class UserWalletsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
 
             $userTransaction = UserTransaction::where([

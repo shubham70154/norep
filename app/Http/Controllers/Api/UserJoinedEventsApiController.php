@@ -27,7 +27,7 @@ class UserJoinedEventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             
             $eventDetail = Event::findOrFail($request->event_id);
@@ -150,7 +150,7 @@ class UserJoinedEventsApiController extends BaseController
             ]);
         
             if($validator->fails()){
-                return $this->sendError('Validation Error.', $validator->errors());       
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             
             $result = UserJoinedEvent::where([
