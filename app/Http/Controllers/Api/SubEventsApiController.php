@@ -79,8 +79,7 @@ class SubEventsApiController extends BaseController
 
             $eventdata = DB::table('events')->where([
                 ['id', $request->event_id],
-                ['deleted_at', null],
-                ['status', 4]
+                ['deleted_at', null]
             ])->first();
 
             if($eventdata->event_type_id != $request->event_type_id) {
