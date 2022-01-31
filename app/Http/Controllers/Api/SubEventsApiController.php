@@ -414,8 +414,12 @@ class SubEventsApiController extends BaseController
                                         ->where('type','=', 'image')->where('sub_event_id', $subevent->id)->get();
                         $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                         ->where('type', '=','video')->where('sub_event_id', $subevent->id)->get();
+                        $subEventSpecify = SubEventSpecify::select('event_specified_id')->where([
+                                            ['sub_event_id', $subEventId]
+                                        ])->orderBy('created_at', 'DESC')->get();
                         $subevent->images = $imageFiles;
                         $subevent->videos = $videoFiles;
+                        $subevent->specified_for = $subEventSpecify;
                     }
                     
                     $subevent->scoreboard = !is_null($subevent->scoreboard) ? json_decode($subevent->scoreboard) : null;
