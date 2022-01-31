@@ -414,9 +414,9 @@ class SubEventsApiController extends BaseController
                                         ->where('type','=', 'image')->where('sub_event_id', $subevent->id)->get();
                         $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                         ->where('type', '=','video')->where('sub_event_id', $subevent->id)->get();
-                        $subEventSpecify = SubEventSpecify::select('event_specified_id')->where([
+                        $subEventSpecify = SubEventSpecify::where([
                                             ['sub_event_id', $subEventId]
-                                        ])->orderBy('created_at', 'DESC')->get();
+                                        ])->orderBy('created_at', 'DESC')->pluck('event_specified_id')->all();
                         $subevent->images = $imageFiles;
                         $subevent->videos = $videoFiles;
                         $subevent->specified_for = $subEventSpecify;
