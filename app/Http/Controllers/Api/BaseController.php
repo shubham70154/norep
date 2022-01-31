@@ -38,13 +38,13 @@ class BaseController extends Controller
     {
     	$response = [
             'success' => false,
-            'message' => $error,
+            'message' => $errorMessages,
         ];
 
 
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
-        }
+        // if(!empty($errorMessages)){
+        //     $response['data'] = $errorMessages;
+        // }
 
 
         return response()->json($response, $code);
