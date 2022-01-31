@@ -407,7 +407,6 @@ class SubEventsApiController extends BaseController
     {
         try {
             if (isset($subEventId) && !is_null($subEventId)) {
-                return $subEventId;
                 $subevent = SubEvent::find($subEventId);
                 if ($subevent->id) {
                     $imageFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
@@ -425,7 +424,8 @@ class SubEventsApiController extends BaseController
                 return $this->sendError('Sub event not found.', ['error'=>'Sub event id not found!']);
             }
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=>'Oops something went wrong!']);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line'=> $e->getLine()]);
         }
     }
 
