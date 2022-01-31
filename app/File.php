@@ -17,6 +17,7 @@ class File extends Model
         'type',
         'event_id',
         'sub_event_id',
+        'user_leaderboard_id',
         'status',
         'created_at',
         'updated_at'
