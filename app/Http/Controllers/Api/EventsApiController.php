@@ -27,9 +27,10 @@ class EventsApiController extends BaseController
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required|numeric|min:4.5',
-                'start_date' => 'required|after_or_equal:today',
-                'start_time' => 'required',
-                'end_date' => 'after_or_equal:start_date',
+                'start_date' => 'required|date_format:Y-m-d|after_or_equal:today',
+                'start_time' => 'required|date_format:H:i',
+                'end_date' => 'date_format:Y-m-d|after_or_equal:start_date',
+                'end_time' => 'date_format:H:i',
                 'user_id' => 'required',
                 'player_limit' => 'required|numeric|min:1',
                 //'referee_id' => 'required|min:1'
@@ -117,8 +118,10 @@ class EventsApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'price' => 'numeric|min:4.5',
-                'start_date' => 'after_or_equal:today',
-                'end_date' => 'after_or_equal:start_date',
+                'start_date' => 'date_format:Y-m-d|after_or_equal:today',
+                'start_time' => 'date_format:H:i',
+                'end_date' => 'date_format:Y-m-d|after_or_equal:start_date',
+                'end_time' => 'date_format:H:i',
                 'player_limit' => 'numeric|min:1'
             ]);
         

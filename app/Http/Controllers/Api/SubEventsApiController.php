@@ -192,8 +192,10 @@ class SubEventsApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'event_id' =>'required|exists:events,id',
-                'start_date' => 'after_or_equal:today',
-                'end_date' => 'after_or_equal:start_date'
+                'start_date' => 'date_format:Y-m-d|after_or_equal:today',
+                'start_time' => 'date_format:H:i',
+                'end_date' => 'date_format:Y-m-d|after_or_equal:start_date',
+                'end_time' => 'date_format:H:1'
             ]);
         
             if($validator->fails()){
