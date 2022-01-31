@@ -31,6 +31,34 @@ class UserJoinedEventsApiController extends BaseController
             }
             
             $eventDetail = Event::findOrFail($request->event_id);
+            //if user in joining virtual event (start)
+            if ($eventDetail->event_type_id = 2) {
+                DB::begintransaction();
+                $result = UserJoinedEvent::create($request->all());
+
+                // Update user transaction table (deposite start)
+                $eventUserDetail = User::findOrFail($eventDetail->user_id);
+                $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
+                
+                $depositeData = [
+                    'user_id' => $eventDetail->user_id,
+                    'joining_event_name' => $eventDetail->name,
+                    'amount_before_transaction' => $eventUserDetail->total_amount,
+                    'amount_after_transaction' => $eventtotalAmount,
+                    'deposite' => $request->amount,
+                    'transaction_type' => 'deposite'
+                ];
+                $eventUserDetail->total_amount = $eventtotalAmount;
+                $eventUserDetail->save();
+                $userTransaction = UserTransaction::create($depositeData);
+                // Update user transaction table (deposite end)
+
+                DB::commit();
+                return $this->sendResponse($result, 'Event joined successfully.');
+            }
+            //if user in joining virtual event (end)
+
+            //if user in joining onsite event (start)
             if (!is_null($eventDetail->referee_id))
             {
                 // Get all referee array list for this event(start)
@@ -75,8 +103,10 @@ class UserJoinedEventsApiController extends BaseController
             } else {
                 return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
+            //if user in joining onsite event (end)
         } catch (\Exception $e) {
-            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line_no'=> $e->getLine()]);
         }
     }
 
