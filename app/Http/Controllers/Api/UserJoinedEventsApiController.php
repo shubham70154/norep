@@ -40,20 +40,26 @@ class UserJoinedEventsApiController extends BaseController
                 $eventUserDetail = User::findOrFail($eventDetail->user_id);
                 $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
                 
-                $depositeData = [
-                    'user_id' => $eventDetail->user_id,
-                    'joining_event_name' => $eventDetail->name,
-                    'amount_before_transaction' => $eventUserDetail->total_amount,
-                    'amount_after_transaction' => $eventtotalAmount,
-                    'deposite' => $request->amount,
-                    'transaction_type' => 'deposite'
-                ];
-                $eventUserDetail->total_amount = $eventtotalAmount;
-                $eventUserDetail->save();
-                $userTransaction = UserTransaction::create($depositeData);
+                // $depositeData = [
+                //     'user_id' => $eventDetail->user_id,
+                //     'joining_event_name' => $eventDetail->name,
+                //     'amount_before_transaction' => $eventUserDetail->total_amount,
+                //     'amount_after_transaction' => $eventtotalAmount,
+                //     'deposite' => $request->amount,
+                //     'transaction_type' => 'deposite'
+                // ];
+                // $eventUserDetail->total_amount = $eventtotalAmount;
+                // $eventUserDetail->save();
+                // $userTransaction = UserTransaction::create($depositeData);
                 // Update user transaction table (deposite end)
 
                 DB::commit();
+                //Send Notification to to event creator
+                $joinedUserDetail = User::findOrFail($request->user_id);
+                $title = "A new Athlete has joined the event";
+                $msg = "A new Athlete (". ucfirst($joinedUserDetail->name).") has joined the event ". "$eventDetail->name" ."." ;
+                $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+
                 return $this->sendResponse($result, 'Event joined successfully.');
             }
             //if user is joining virtual event (end)
