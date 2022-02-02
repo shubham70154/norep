@@ -52,11 +52,12 @@ class UserJoinedEventsApiController extends BaseController
                 // Update user transaction table (deposite end)
 
                 DB::commit();
-                //Send Notification to to event creator
+                //Send Notification to to event creator (start)
                 $joinedUserDetail = User::findOrFail($request->user_id);
-                $title = "A new Athlete has joined the event";
+                $title = "Norep: A new Athlete has joined the event";
                 $msg = "A new Athlete (". ucfirst($joinedUserDetail->name).") has joined the event ". "$eventDetail->name" ."." ;
                 $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+                //Send Notification to to event creator (end)
 
                 return $this->sendResponse($result, 'Event joined successfully.');
             }
@@ -100,11 +101,19 @@ class UserJoinedEventsApiController extends BaseController
                     // Update user transaction table (deposite end)
 
                     DB::commit();
-                    //Send Notification to to event creator
+                    //Send Notification to to event creator (start)
                     $joinedUserDetail = User::findOrFail($request->user_id);
-                    $title = "A new Athlete has joined the event";
+                    $title = "Norep : A new Athlete has joined the event";
                     $msg = "A new Athlete (". ucfirst($joinedUserDetail->name).") has joined the event ". "$eventDetail->name" ."." ;
                     $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+                    //Send Notification to to event creator (end)
+
+                    //Send Notification to to Judge/Referee (start)
+                    $judgeDetail = User::findOrFail($freeRefereeLists[0]);
+                    $title = "Norep: You have been invited to judge the new event";
+                    $msg = "You have been invited to judge the new event ". "$eventDetail->name" ."." ;
+                    $this->sendNotification($judgeDetail->device_token, $title, $msg);
+                    //Send Notification to to Judge/Referee (end)
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {
                     return $this->sendResponse((object)[], "All referee's assigned, can't join event.");
