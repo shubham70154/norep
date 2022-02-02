@@ -158,10 +158,14 @@ class UserJoinedEventsApiController extends BaseController
 
                 $refereeList = [];
                 foreach($result as $res) {
-                    $referee = User::where('id', $res->referee_id)->first();
-                    $participant = User::select('id', 'name')->where('id', $res->user_id)->first();
-                    $referee->assigned_participant = $participant;
-                    $refereeList[] = $referee;
+                    if(!is_null($res->referee_id) ) {
+                        $referee = User::where('id', $res->referee_id)->first();
+                    
+                        $participant = User::select('id', 'name')->where('id', $res->user_id)->first();
+                        $referee->assigned_participant = $participant;
+                        $refereeList[] = $referee;
+                    }
+                    
                 }
                 return $this->sendResponse($refereeList, 'Referee list get successfully.');
             }
