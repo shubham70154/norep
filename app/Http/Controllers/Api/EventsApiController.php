@@ -201,7 +201,7 @@ class EventsApiController extends BaseController
     {
         try {
             if (isset($id) && !is_null($id)) {
-                $event = Event::findOrFail($id);
+                $event = Event::find($id);
                 $event->users;
                 $event->event_types;
                 

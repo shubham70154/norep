@@ -28,14 +28,14 @@ class UserJoinedEventsApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             
-            $eventDetail = Event::findOrFail($request->event_id);
+            $eventDetail = Event::find($request->event_id);
             //if user is joining virtual event (start)
             if ($eventDetail->event_type_id == 1) {
                 DB::begintransaction();
                 $result = UserJoinedEvent::create($request->all());
 
                 // Update user transaction table (deposite start)
-                $eventUserDetail = User::findOrFail($eventDetail->user_id);
+                $eventUserDetail = User::find($eventDetail->user_id);
                 $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
                 
                 $depositeData = [
@@ -53,7 +53,7 @@ class UserJoinedEventsApiController extends BaseController
 
                 DB::commit();
                 //Send Notification to event creator (start)
-                $joinedUserDetail = User::findOrFail($request->user_id);
+                $joinedUserDetail = User::find($request->user_id);
                 $title = "Norep: A new Athlete has joined the event";
                 $msg = "A new Athlete (". ucfirst($joinedUserDetail->name).") has joined the event ". "$eventDetail->name" ."." ;
                 $this->sendNotification($eventUserDetail->device_token, $title, $msg);
@@ -84,7 +84,7 @@ class UserJoinedEventsApiController extends BaseController
                     $result = UserJoinedEvent::create($request->all());
 
                     // Update user transaction table (deposite start)
-                    $eventUserDetail = User::findOrFail($eventDetail->user_id);
+                    $eventUserDetail = User::find($eventDetail->user_id);
                     $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
                     
                     $depositeData = [
@@ -102,21 +102,21 @@ class UserJoinedEventsApiController extends BaseController
 
                     DB::commit();
                     //Send Notification to event creator (start)
-                    $joinedUserDetail = User::findOrFail($request->user_id);
+                    $joinedUserDetail = User::find($request->user_id);
                     $title = "Norep : A new Athlete has joined the event";
                     $msg = "A new Athlete (". ucfirst($joinedUserDetail->name).") has joined the event ". "$eventDetail->name" ."." ;
                     $this->sendNotification($eventUserDetail->device_token, $title, $msg);
                     //Send Notification to event creator (end)
 
                     //Send Notification to Judge/Referee (start)
-                    $judgeDetail = User::findOrFail($freeRefereeLists[0]);
+                    $judgeDetail = User::find($freeRefereeLists[0]);
                     $title = "Norep: You have been invited to judge the new event";
                     $msg = "You have been invited to judge the new event ". "$eventDetail->name" ."." ;
                     $this->sendNotification($judgeDetail->device_token, $title, $msg);
                     //Send Notification to Judge/Referee (end)
 
                     //Send Notification to event creator, The invited judge has accepted the invitation to become a referee (start)
-                    $judgeDetail = User::findOrFail($freeRefereeLists[0]);
+                    $judgeDetail = User::find($freeRefereeLists[0]);
                     $title = "Norep: The invited judge has accepted the invitation to become a referee";
                     $msg = "The invited judge (". ucfirst($judgeDetail->name).") has accepted the invitation to become a referee for event ". "$eventDetail->name" ."." ;
                     $this->sendNotification($eventUserDetail->device_token, $title, $msg);

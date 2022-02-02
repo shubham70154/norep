@@ -38,7 +38,7 @@ class UserWalletsApiController extends BaseController
                 $totalAmount = 0;
                 foreach($eventsAmount as $event)
                 {
-                    $eventDetail = Event::findOrFail($event->event_id);
+                    $eventDetail = Event::find($event->event_id);
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $eventDetail->id],
                         ['sub_event_id', null],
@@ -79,12 +79,12 @@ class UserWalletsApiController extends BaseController
                 $participants = [];
                 $eventAmount = 0;
                 foreach($events as $event){
-                    $userDetail = User::findOrFail($event->user_id);
+                    $userDetail = User::find($event->user_id);
                     $userDetail->event_joined_amount = $event->amount;
                     $eventAmount = $eventAmount + $event->amount;
                     $participants[] = $userDetail;
                 }
-                $eventDetail = Event::findOrFail($event->event_id);
+                $eventDetail = Event::find($event->event_id);
                 $eventDetail->event_total_amount = $eventAmount;
                 $result = ['event' => $eventDetail, 'participants' => $participants];
                 return $this->sendResponse($result, 'Event Participant List fetch successfully.');

@@ -29,7 +29,7 @@ class RefereesApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
             
-            $subeventDetail = SubEvent::findOrFail($request->sub_event_id);
+            $subeventDetail = SubEvent::find($request->sub_event_id);
             if ($subeventDetail)
             {
                 $imagefiles = DB::table('files')->where([

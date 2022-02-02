@@ -19,13 +19,13 @@ class SubEventsController extends Controller
 
     public function showSubEvent($id)
     {
-        $subEvent = SubEvent::findOrFail($id);
+        $subEvent = SubEvent::find($id);
         return view('admin.sub_events.show', compact('subEvent'));
     }
 
     public function getSubEventLeaderBoard($id)
     {   
-        $subeventDetail = SubEvent::findOrFail($id);
+        $subeventDetail = SubEvent::find($id);
         if ($subeventDetail)
         {
             $scoreboard = json_decode($subeventDetail->scoreboard);

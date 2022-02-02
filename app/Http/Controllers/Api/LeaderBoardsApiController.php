@@ -27,7 +27,7 @@ class LeaderBoardsApiController extends BaseController
         try {
             if (isset($event_id) && !is_null($event_id))
             {
-                $eventDetail = Event::findOrFail($event_id);
+                $eventDetail = Event::find($event_id);
                 $getSubEvents = SubEvent::where([
                         ['event_id', $event_id],
                         ['status', 1]
