@@ -34,7 +34,7 @@ class ManualNotificationsController extends Controller
             $url = 'https://fcm.googleapis.com/fcm/send';//env('FIREBASE_API_URL');
             // payload data, it will vary according to requirement
             $data = [
-                "registration_ids" => $device_tokens, // for multiple device ids
+                "to" => $device_tokens, // for multiple device ids
                 "notification" => [
                     "title" => $title,
                     "body" => $body,  
