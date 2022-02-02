@@ -152,7 +152,7 @@ class RefereesApiController extends BaseController
                 'header' => 'required',
                 'scoreboard' => 'required',
                 'total_points' =>  'required',
-                'athlete_virtual_videos' => 'required_if:event_type_id,2'
+                'athlete_virtual_videos' => 'required_if:event_type_id,1'
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
@@ -166,7 +166,7 @@ class RefereesApiController extends BaseController
 
             $UserLeaderboard = UserLeaderboard::create($request->all());
 
-            if ($request->has('athlete_virtual_videos') && $request->event_type_id == 2) {
+            if ($request->has('athlete_virtual_videos') && $request->event_type_id == 1) {
                 $videos = [];
                 $file = File::where([
                     ['user_leaderboard_id', $UserLeaderboard->id],

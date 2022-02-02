@@ -31,7 +31,7 @@ class UserJoinedEventsApiController extends BaseController
             }
             
             $eventDetail = Event::findOrFail($request->event_id);
-            //if user in joining virtual event (start)
+            //if user is joining virtual event (start)
             if ($eventDetail->event_type_id == 1) {
                 DB::begintransaction();
                 $result = UserJoinedEvent::create($request->all());
@@ -56,9 +56,9 @@ class UserJoinedEventsApiController extends BaseController
                 DB::commit();
                 return $this->sendResponse($result, 'Event joined successfully.');
             }
-            //if user in joining virtual event (end)
+            //if user is joining virtual event (end)
 
-            //if user in joining onsite event (start)
+            //if user is joining onsite event (start)
             if (!is_null($eventDetail->referee_id) && $eventDetail->event_type_id == 2)
             {
                 // Get all referee array list for this event(start)
@@ -103,7 +103,7 @@ class UserJoinedEventsApiController extends BaseController
             } else {
                 return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
-            //if user in joining onsite event (end)
+            //if user is joining onsite event (end)
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
             'line_no'=> $e->getLine()]);
