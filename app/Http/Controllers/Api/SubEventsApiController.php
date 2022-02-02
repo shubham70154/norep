@@ -69,7 +69,7 @@ class SubEventsApiController extends BaseController
             //     return $request->all();
             // }
           //  return "hi";
-            $checkSubEvents = DB::table('sub_events')->where([
+            $checkSubEvents = SubEvent::where([
                 ['start_date', $request->start_date],
                 ['start_time', $request->start_time],
                 ['event_id', $request->event_id],
@@ -79,7 +79,7 @@ class SubEventsApiController extends BaseController
                 return $this->sendError('Validation Error.', 'Sub Event already created with same start date and time');
             }
 
-            $eventdata = DB::table('events')->where([
+            $eventdata = Event::where([
                 ['id', $request->event_id],
                 ['deleted_at', null]
             ])->first();
@@ -203,7 +203,7 @@ class SubEventsApiController extends BaseController
             }
 
             if ($request->has('start_date') && $request->has('start_time')) {
-                $checkSubEvents = DB::table('sub_events')->where([
+                $checkSubEvents = SubEvent::where([
                     ['start_date', $request->start_date],
                     ['start_time', $request->start_time],
                     ['event_id', $request->event_id],
@@ -214,7 +214,7 @@ class SubEventsApiController extends BaseController
                 }
             }
 
-            $eventdata = DB::table('events')->where([
+            $eventdata = Event::where([
                 ['id', $request->event_id],
                 ['deleted_at', null]
             ])->first();
