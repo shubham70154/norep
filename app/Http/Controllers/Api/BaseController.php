@@ -74,7 +74,7 @@ class BaseController extends Controller
                 'Authorization: key=' . $SERVER_API_KEY,
                 'Content-Type: application/json',
             ];
-            Log::info('dataString: ' . json_encode($dataString));
+           // Log::info('dataString: ' . json_encode($dataString));
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, true);
@@ -85,7 +85,7 @@ class BaseController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
             $response = curl_exec($ch);
-            Log::info('response_check : ' . $response['succcess']);
+            Log::info('response_check : ' . $response);
             $notificationResponse = true;
             if ($response === FALSE) {
                 Log::info('FCM_notification_curl_error: ' . curl_error($ch));
