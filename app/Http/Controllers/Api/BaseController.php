@@ -89,10 +89,10 @@ class BaseController extends Controller
             if ($response === FALSE) {
                 Log::info('FCM_notification_curl_error: ' . curl_error($ch));
                 die;
-            } else if($response['succcess'] == 0) {
+            } else if($response['succcess']) {
                 Log::info('FCM_notification_send_successfully: ' . $response);
                 $notificationResponse = true;
-            } else if($response['failure'] == 0) {
+            } else if($response['failure']) {
                 Log::info('FCM_notification_send_failure: ' . $response);
                 $notificationResponse = false;
             } 
