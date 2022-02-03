@@ -76,7 +76,7 @@ class BaseController extends Controller
                 'Authorization: key=' . $SERVER_API_KEY,
                 'Content-Type: application/json',
             ];
-           // Log::info('dataString: ' . json_encode($dataString));
+            Log::info('dataString: ' . json_encode($dataString));
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, true);
