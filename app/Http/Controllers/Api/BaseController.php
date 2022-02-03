@@ -87,7 +87,7 @@ class BaseController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
             $response = curl_exec($ch);
-            Log::info('response_check : ' . json_decode($response));
+            Log::info('response_check11 : ' . json_decode($response));
             $notificationResponse = true;
             if ($response === FALSE) {
                 Log::info('FCM_notification_curl_error: ' . curl_error($ch));
