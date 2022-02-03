@@ -371,7 +371,7 @@ class SubEventsApiController extends BaseController
                     $eventSpecify = EventSpecify::find($subevent->event_specified_id);
                 } else {
                     $subEventData = SubEvent::find($subevent->id);
-                    $eventSpecify = EventSpecify::find($subevent->id);
+                  return  $eventSpecify = EventSpecify::find($subevent->id);
                 }
 
                 $imagefiles = DB::table('files')->where([
