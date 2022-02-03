@@ -95,5 +95,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('user-event-leaderboard', 'Api\LeaderBoardsApiController@userEventLeaderboard');
 
     Route::get('get-referee-notification-list/{referee_id}', 'Api\NotificationsApiController@getRefereeNotificationList');
+
+    Route::get('get-event-creator-notification-list/{user_id}', 'Api\NotificationsApiController@getEventCreatorNotificationList');
 });
 

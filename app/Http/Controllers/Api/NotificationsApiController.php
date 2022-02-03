@@ -31,4 +31,19 @@ class NotificationsApiController extends BaseController
         }
     }
 
+    public function getEventCreatorNotificationList($user_id)
+    {
+        try {
+            if (!is_null($user_id)) {
+                $result = NotificationList::select('id', 'title', 'message')->where([
+                    ['user_id', $user_id],
+                    ['response', 1]
+                ])->get();
+                return $this->sendResponse($result, 'Event Creator Notification list get successfully.');
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
 }
