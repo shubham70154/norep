@@ -65,7 +65,9 @@ class BaseController extends Controller
                 "to" => $device_tokens, // for multiple device ids
                 "notification" => [
                     "title" => $title,
-                    "body" => $body,  
+                    "body" => $body,
+                    'vibrate' => 1,
+                    'sound' => 1 
                 ]
             ];
             $dataString = json_encode($data);
@@ -85,7 +87,7 @@ class BaseController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
             $response = curl_exec($ch);
-            Log::info('response_check : ' . $response['success']);
+            Log::info('response_check : ' . json_decode($response));
             $notificationResponse = true;
             if ($response === FALSE) {
                 Log::info('FCM_notification_curl_error: ' . curl_error($ch));
