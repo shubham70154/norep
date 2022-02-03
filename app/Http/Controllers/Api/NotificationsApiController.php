@@ -46,4 +46,36 @@ class NotificationsApiController extends BaseController
         }
     }
 
+    public function deleteRefereeNotificationList(Request $request) {
+        try {
+            $validator = Validator::make($request->all(), [
+                'referee_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            NotificationList::where('referee_id', $request->referee_id)->delete();
+            return $this->sendResponse((object)[], 'Notification deleted successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function deleteEventCreatorNotificationList(Request $request) {
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            NotificationList::where('user_id', $request->user_id)->delete();
+            return $this->sendResponse((object)[], 'Notification deleted successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
 }

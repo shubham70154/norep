@@ -96,6 +96,10 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('get-referee-notification-list/{referee_id}', 'Api\NotificationsApiController@getRefereeNotificationList');
 
+    Route::delete('delete-referee-notification-list', 'Api\NotificationsApiController@deleteRefereeNotificationList');
+
     Route::get('get-event-creator-notification-list/{user_id}', 'Api\NotificationsApiController@getEventCreatorNotificationList');
+
+    Route::delete('delete-event-creator-notification-list', 'Api\NotificationsApiController@deleteEventCreatorNotificationList');
 });
 
