@@ -64,29 +64,7 @@ class RefereesApiController extends BaseController
                                                 ['event_id' , $request->event_id],
                                             ])->first();
                 if ($checkUserLeaderboard) {
-                    return $leaderboardHeader = unserialize($checkUserLeaderboard->header);
-                    $header = [];
-                    if (isset($leaderboardHeader->round) && !is_null($leaderboardHeader->round)) {
-                        $header['round'] = 'Round';
-                    }
-                    
-                    $header['task1'] = isset($leaderboardHeader->task1) ? $leaderboardHeader->task1 : null;
-                    $header['task2'] = isset($leaderboardHeader->task2) ? $leaderboardHeader->task2 : null;
-                    $header['task3'] = isset($leaderboardHeader->task3) ? $leaderboardHeader->task3 : null;
-                    $header['task4'] = isset($leaderboardHeader->task4) ? $leaderboardHeader->task4 : null;
-                    $header['task5'] = isset($leaderboardHeader->task5) ? $leaderboardHeader->task5 : null;
-                    
-                    if (isset($leaderboardHeader->reps) && !is_null($leaderboardHeader->reps)) {
-                        $header['reps'] = 'Reps'. "($leaderboardHeader->reps)";
-                    }
-                    if (isset($leaderboardHeader->time) && !is_null($leaderboardHeader->time)) {
-                        $header['timer'] = "Timer" ."($leaderboardHeader->time)";
-                    }
-                    if (isset($leaderboardHeader->weight) && !is_null($leaderboardHeader->weight)) {
-                        $header['weight'] = "Weight" ."($leaderboardHeader->weight)";
-                    }
-                    $header['points'] = "Points";
-                    $scoreboard->header = $header;
+                    $scoreboard->header = unserialize($checkUserLeaderboard->header);
                     $scoreboard->data = unserialize($checkUserLeaderboard->scoreboard);
                     $athlete_virtual_videos = DB::table('files')->select('id','url', 'type', 'event_id', 'user_leaderboard_id', 'sub_event_id')
                                             ->where([
