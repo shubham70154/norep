@@ -363,7 +363,7 @@ class SubEventsApiController extends BaseController
                     ['event_id', $event_id]
                 ])->orderBy('created_at', 'DESC')->get();
             }
-
+return $subeventLists; 
             $allevents = [];
             foreach($subeventLists as $subevent) {
                 $subEventData = SubEvent::find($subevent->id);
