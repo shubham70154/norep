@@ -390,8 +390,8 @@ class SubEventsApiController extends BaseController
                 $subEventData->vidoes =  $videofiles;
                 $subEventData->docs =  $docsfiles;
                 $subEventData->specified_for =  $eventSpecify;
-                $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? null : null;
-                $subEventData->timer = !is_null($subEventData->timer) ? null : null;
+                $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? json_decode($subEventData->scoreboard) : null;
+                $subEventData->timer = !is_null($subEventData->timer) ? json_decode($subEventData->timer) : null;
                 $allevents[] = $subEventData;
             }
 
