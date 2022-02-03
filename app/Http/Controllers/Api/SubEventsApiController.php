@@ -374,7 +374,7 @@ class SubEventsApiController extends BaseController
                     $subEventSpecifylist = SubEventSpecify::where([
                                     ['sub_event_id', $subevent->id]
                                 ])->pluck('event_specified_id')->all();
-                    $eventSpecify = EventSpecify::whereIn($subEventSpecifylist);
+                    $eventSpecify = EventSpecify::whereIn('id', $subEventSpecifylist);
                 }
 
                 $imagefiles = DB::table('files')->where([
