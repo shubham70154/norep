@@ -359,7 +359,7 @@ class SubEventsApiController extends BaseController
                     ['event_specified_id', $event_specified_id]
                 ])->orderBy('created_at', 'DESC')->get();
             } else {
-            return    $subeventLists = SubEvent::where([
+                $subeventLists = SubEvent::where([
                     ['event_id', $event_id]
                 ])->orderBy('created_at', 'DESC')->get();
             }
@@ -390,8 +390,8 @@ class SubEventsApiController extends BaseController
                 $subEventData->vidoes =  $videofiles;
                 $subEventData->docs =  $docsfiles;
                 $subEventData->specified_for =  $eventSpecify;
-                $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? json_decode($subEventData->scoreboard) : null;
-                $subEventData->timer = !is_null($subEventData->timer) ? json_decode($subEventData->timer) : null;
+                $subEventData->scoreboard = !is_null($subEventData->scoreboard) ? null : null;
+                $subEventData->timer = !is_null($subEventData->timer) ? null : null;
                 $allevents[] = $subEventData;
             }
 
