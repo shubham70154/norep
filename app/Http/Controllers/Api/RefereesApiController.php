@@ -94,7 +94,7 @@ class RefereesApiController extends BaseController
                     if (isset($scoreboard->weight) && !is_null($scoreboard->weight)) {
                         $header['weight'] = "Weight" ."($scoreboard->weight)";
                     }
-                    $header['points'] = "Points";
+                    $header['PPoints'] = "Points";
                     $scoreboard->header = $header;
     
                     $data = [];
