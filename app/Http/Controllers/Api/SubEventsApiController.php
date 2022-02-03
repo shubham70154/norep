@@ -359,14 +359,14 @@ class SubEventsApiController extends BaseController
                     ['event_specified_id', $event_specified_id]
                 ])->orderBy('created_at', 'DESC')->get();
             } else {
-              return  $subeventLists = SubEvent::where([
+                $subeventLists = SubEvent::where([
                     ['event_id', $event_id]
                 ])->orderBy('created_at', 'DESC')->get();
             }
 
             $allevents = [];
             foreach($subeventLists as $subevent) {
-              return  $subEventData = SubEvent::find($subevent->sub_event_id);
+                $subEventData = SubEvent::find($subevent->id);
 
                 $eventSpecify = EventSpecify::find($subevent->event_specified_id);
                 $imagefiles = DB::table('files')->where([
