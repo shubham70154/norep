@@ -342,10 +342,9 @@ class EventsApiController extends BaseController
         }
     }
 
-    public function getRunningEventList(Request $request)
+    public function getRunningEventList($user_id=null)
     {
         try {
-            $user = $request->user();
             if(isset($user_id) && !is_null($user_id)) {
                 $eventLists = Event::where([
                     ['status' , 4],
