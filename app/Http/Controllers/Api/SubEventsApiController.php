@@ -366,6 +366,7 @@ class SubEventsApiController extends BaseController
 
             $allevents = [];
             foreach($subeventLists as $subevent) {
+                return $subevent;
                 if ($subevent->sub_event_id && $subevent->event_specified_id) {
                     $subEventData = SubEvent::find($subevent->sub_event_id);
                     $eventSpecify = EventSpecify::find($subevent->event_specified_id);
