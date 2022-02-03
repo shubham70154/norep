@@ -124,7 +124,7 @@ class UserJoinedEventsApiController extends BaseController
                     $title = "Norep: The invited judge has accepted the invitation to become a referee";
                     $msg = "The invited judge (". ucfirst($judgeDetail->name).") has accepted the invitation to become a referee for event ". "$eventDetail->name" ."." ;
                     $notificationResponse = $this->sendNotification($eventUserDetail->device_token, $title, $msg);
-                    $this->saveNotification($eventUserDetail->id, null, $title, $msg, $notificationResponse);
+                    $this->saveNotification(null, $eventUserDetail->id, $title, $msg, $notificationResponse);
                     //Send Notification to event creator, The invited judge has accepted the invitation to become a referee (end)
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {
