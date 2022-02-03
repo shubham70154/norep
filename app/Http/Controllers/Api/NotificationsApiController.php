@@ -21,7 +21,7 @@ class NotificationsApiController extends BaseController
         try {
             if (!is_null($referee_id)) {
                 $result = NotificationList::select('id', 'title', 'message')->where([
-                    ['referee', $referee_id],
+                    ['referee_id', $referee_id],
                     ['response', 1]
                 ])->get();
                 return $this->sendResponse($result, 'Referee Notification list get successfully.');
