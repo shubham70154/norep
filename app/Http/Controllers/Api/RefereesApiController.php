@@ -64,6 +64,7 @@ class RefereesApiController extends BaseController
                                                 ['event_id' , $request->event_id],
                                             ])->first();
                 if ($checkUserLeaderboard) {
+                    return "hi";
                     $scoreboard->header = unserialize($checkUserLeaderboard->header);
                     $scoreboard->data = unserialize($checkUserLeaderboard->scoreboard);
                     $athlete_virtual_videos = DB::table('files')->select('id','url', 'type', 'event_id', 'user_leaderboard_id', 'sub_event_id')
