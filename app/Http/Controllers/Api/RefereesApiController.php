@@ -64,7 +64,6 @@ class RefereesApiController extends BaseController
                                                 ['event_id' , $request->event_id],
                                             ])->first();
                 if ($checkUserLeaderboard) {
-                    return "hi";
                     $leaderboardHeader = unserialize($checkUserLeaderboard->header);
                     $header = [];
                     if (isset($leaderboardHeader->round) && !is_null($leaderboardHeader->round)) {
