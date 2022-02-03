@@ -366,7 +366,7 @@ class SubEventsApiController extends BaseController
 
             $allevents = [];
             foreach($subeventLists as $subevent) {
-                $subEventData = SubEvent::find($subevent->sub_event_id);
+              return  $subEventData = SubEvent::find($subevent->sub_event_id);
 
                 $eventSpecify = EventSpecify::find($subevent->event_specified_id);
                 $imagefiles = DB::table('files')->where([
