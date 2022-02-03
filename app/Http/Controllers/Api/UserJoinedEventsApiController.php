@@ -11,6 +11,7 @@ use App\UserTransaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
+use App\NotificationList;
 use DB, Validator, Illuminate\Support\Carbon;
 
 class UserJoinedEventsApiController extends BaseController
@@ -105,21 +106,43 @@ class UserJoinedEventsApiController extends BaseController
                     $joinedUserDetail = User::find($request->user_id);
                     $title = "Norep : A new Athlete has joined the event";
                     $msg = "A new Athlete (". ucfirst($joinedUserDetail->name).") has joined the event ". "$eventDetail->name" ."." ;
-                    $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+                    $notificationResponse = $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+                    $saveNotificationData =[
+                        'user_id' => $eventUserDetail->id,
+                        'title' => $title,
+                        'message' => $msg,
+                        'response' => $notificationResponse,
+                    ];
+                    NotificationList::create($saveNotificationData);
+
                     //Send Notification to event creator (end)
 
                     //Send Notification to Judge/Referee (start)
                     $judgeDetail = User::find($freeRefereeLists[0]);
                     $title = "Norep: You have been invited to judge the new event";
                     $msg = "You have been invited to judge the new event ". "$eventDetail->name" ."." ;
-                    $this->sendNotification($judgeDetail->device_token, $title, $msg);
+                    $notificationResponse = $this->sendNotification($judgeDetail->device_token, $title, $msg);
+                    $saveNotificationData =[
+                        'referee_id' => $judgeDetail->id,
+                        'title' => $title,
+                        'message' => $msg,
+                        'response' => $notificationResponse,
+                    ];
+                    NotificationList::create($saveNotificationData);
                     //Send Notification to Judge/Referee (end)
 
                     //Send Notification to event creator, The invited judge has accepted the invitation to become a referee (start)
                     $judgeDetail = User::find($freeRefereeLists[0]);
                     $title = "Norep: The invited judge has accepted the invitation to become a referee";
                     $msg = "The invited judge (". ucfirst($judgeDetail->name).") has accepted the invitation to become a referee for event ". "$eventDetail->name" ."." ;
-                    $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+                    $notificationResponse = $this->sendNotification($eventUserDetail->device_token, $title, $msg);
+                    $saveNotificationData =[
+                        'referee_id' => $eventUserDetail->id,
+                        'title' => $title,
+                        'message' => $msg,
+                        'response' => $notificationResponse,
+                    ];
+                    NotificationList::create($saveNotificationData);
                     //Send Notification to event creator, The invited judge has accepted the invitation to become a referee (end)
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {
