@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Support\Facades\Log;
+use App\NotificationList;
 
 
 class BaseController extends Controller
@@ -103,6 +104,22 @@ class BaseController extends Controller
             curl_close($ch);
           
             return $notificationResponse;
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
+    public function saveNotification($referee_id = null, $user_id = null, $title = '', $msg = '', $response = '')
+    {
+        try {
+            $saveNotificationData =[
+                'referee_id' => $referee_id,
+                'user_id' => $user_id,
+                'title' => $title,
+                'message' => $msg,
+                'response' => $response,
+            ];
+            NotificationList::create($saveNotificationData);
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
