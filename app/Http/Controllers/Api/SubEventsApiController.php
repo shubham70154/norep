@@ -359,7 +359,7 @@ class SubEventsApiController extends BaseController
                     ['event_specified_id', $event_specified_id]
                 ])->orderBy('created_at', 'DESC')->get();
             } else {
-                $subeventLists = SubEvent::where([
+            return    $subeventLists = SubEvent::where([
                     ['event_id', $event_id]
                 ])->orderBy('created_at', 'DESC')->get();
             }
