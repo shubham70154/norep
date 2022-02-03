@@ -94,6 +94,7 @@ class LeaderBoardsApiController extends BaseController
                             unset($data['task4']);
                             unset($data['task5']);
                             unset($data['reps']);
+                            unset($data['weight']);
                             $data['rank'] = $key+1;
                             array_push($scoreboardArray, $data);
                         }

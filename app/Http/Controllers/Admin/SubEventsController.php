@@ -56,6 +56,9 @@ class SubEventsController extends Controller
                 if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
                     $header[] = "Timer" ." ($scoreboard->time)";
                 }
+                if (isset($scoreboard->weight) && !is_null($scoreboard->weight)) {
+                    $header[] = "Weight" ." ($scoreboard->weight)";
+                }
                 $scoreboard->header = $header;
 
                 $data = [];
@@ -84,6 +87,9 @@ class SubEventsController extends Controller
                     }
                     if (isset($scoreboard->time) && !is_null($scoreboard->time)) {
                         $rawData['timer'] = '';
+                    }
+                    if (isset($scoreboard->weight) && !is_null($scoreboard->weight)) {
+                        $rawData['weight'] = '';
                     }
                     $data[] = $rawData;
                 }
