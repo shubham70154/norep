@@ -176,23 +176,18 @@ class RefereesApiController extends BaseController
 
             $header = serialize($request->header);
             $scoreboard = serialize($request->scoreboard);
+            $request->request->add(['header' => $header]);
+            $request->request->add(['scoreboard' => $scoreboard]);
 
             if (!is_null($UserLeaderboardId)) {
                 $UserLeaderboard = UserLeaderboard::where("id", $UserLeaderboardId)->first();
                 if($UserLeaderboard) {
                     DB::begintransaction();
-                    $UserLeaderboard->update([
-                        'header' => $header,
-                        'scoreboard' => $scoreboard,
-                        'is_final_submit' => 3
-                    ]);
+                    $UserLeaderboard->update($request->all());
                     DB::commit();
                 }
             } else {
                 DB::begintransaction();
-                $request->request->add(['header' => $header]);
-                $request->request->add(['scoreboard' => $scoreboard]);
-
                 $UserLeaderboard = UserLeaderboard::create($request->all());
 
                 if ($request->has('athlete_virtual_videos') && $request->event_type_id == 1) {
