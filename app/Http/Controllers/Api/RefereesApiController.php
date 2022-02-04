@@ -168,7 +168,7 @@ class RefereesApiController extends BaseController
                 'header' => 'required',
                 'scoreboard' => 'required',
                 'total_points' =>  'required',
-                'athlete_virtual_videos' => 'required_if:event_type_id,1'
+               // 'athlete_virtual_videos' => 'required_if:event_type_id,1'
             ]);
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
