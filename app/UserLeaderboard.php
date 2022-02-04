@@ -18,6 +18,8 @@ class UserLeaderboard extends Model
         'event_id',
         'sub_event_id',
         'referee_id',
+        'event_creator_id',
+        'score_given_by',
         'header',
         'scoreboard',
         'total_points',
