@@ -40,7 +40,7 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
-            if(\Carbon\Carbon::parse($request->date_start.' '.$request->date_time)->lt(Carbon::now()))
+            if(\Carbon\Carbon::parse($request->start_date.' '.$request->start_time)->lt(Carbon::now()))
             {
                 return $this->sendError('Validation Error.', 'Can not create event for past date and time.');
             } 
