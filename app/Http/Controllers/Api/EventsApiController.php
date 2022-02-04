@@ -40,12 +40,12 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
-            //return Carbon::parse($request->start_date.' '.$request->start_time);
+            
             if(Carbon::parse($request->start_date.' '.$request->start_time)->lt(Carbon::now()))
             {
                 return $this->sendError('Validation Error.', 'Can not create event for past date and time.');
-            } 
-            return "hi";
+            }
+
             DB::begintransaction();
             $event = Event::create($request->all());
 
@@ -133,6 +133,10 @@ class EventsApiController extends BaseController
         
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            if(Carbon::parse($request->start_date.' '.$request->start_time)->lt(Carbon::now()))
+            {
+                return $this->sendError('Validation Error.', 'Can not create event for past date and time.');
             }
           
             DB::begintransaction();

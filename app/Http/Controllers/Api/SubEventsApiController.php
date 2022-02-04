@@ -58,6 +58,10 @@ class SubEventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
+            if(Carbon::parse($request->start_date.' '.$request->start_time)->lt(Carbon::now()))
+            {
+                return $this->sendError('Validation Error.', 'Can not create sub event for past date and time.');
+            }
 
             // $files = $request->file('docs');
 
@@ -200,6 +204,10 @@ class SubEventsApiController extends BaseController
         
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            if(Carbon::parse($request->start_date.' '.$request->start_time)->lt(Carbon::now()))
+            {
+                return $this->sendError('Validation Error.', 'Can not create sub event for past date and time.');
             }
 
             if ($request->has('start_date') && $request->has('start_time')) {
