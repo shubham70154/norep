@@ -61,6 +61,31 @@
                                     {{ $data['task5'] ?? ''}}
                                 </td>
                             @endif
+                            @if(isset($data['task6']))
+                                <td>
+                                    {{ $data['task6'] ?? ''}}
+                                </td>
+                            @endif
+                            @if(isset($data['task7']))
+                                <td>
+                                    {{ $data['task7'] ?? ''}}
+                                </td>
+                            @endif
+                            @if(isset($data['task8']))
+                                <td>
+                                    {{ $data['task8'] ?? ''}}
+                                </td>
+                            @endif
+                            @if(isset($data['task9']))
+                                <td>
+                                    {{ $data['task9'] ?? ''}}
+                                </td>
+                            @endif
+                            @if(isset($data['task10']))
+                                <td>
+                                    {{ $data['task10'] ?? ''}}
+                                </td>
+                            @endif
                             @if(isset($data['reps'])) 
                                 <td>
                                     {{ $data['reps'] ?? ''}}

@@ -83,6 +83,11 @@ class RefereesApiController extends BaseController
                     $header['task3'] = isset($scoreboard->task3) ? $scoreboard->task3 : null;
                     $header['task4'] = isset($scoreboard->task4) ? $scoreboard->task4 : null;
                     $header['task5'] = isset($scoreboard->task5) ? $scoreboard->task5 : null;
+                    $header['task6'] = isset($scoreboard->task6) ? $scoreboard->task6 : null;
+                    $header['task7'] = isset($scoreboard->task7) ? $scoreboard->task7 : null;
+                    $header['task8'] = isset($scoreboard->task8) ? $scoreboard->task8 : null;
+                    $header['task9'] = isset($scoreboard->task9) ? $scoreboard->task9 : null;
+                    $header['task10'] = isset($scoreboard->task10) ? $scoreboard->task10 : null;
                     
                     if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                         $header['reps'] = 'Reps'. "($scoreboard->reps)";
@@ -106,7 +111,12 @@ class RefereesApiController extends BaseController
                         $rawData['task2'] = isset($scoreboard->task2) ? '' : null;
                         $rawData['task3'] = isset($scoreboard->task3) ? '' : null;
                         $rawData['task4'] = isset($scoreboard->task4) ? '' : null;
-                        $rawData['task5'] = isset($scoreboard->task5) ? '' : null;  
+                        $rawData['task5'] = isset($scoreboard->task5) ? '' : null;
+                        $rawData['task6'] = isset($scoreboard->task6) ? '' : null;  
+                        $rawData['task7'] = isset($scoreboard->task7) ? '' : null;  
+                        $rawData['task8'] = isset($scoreboard->task8) ? '' : null;  
+                        $rawData['task9'] = isset($scoreboard->task9) ? '' : null;  
+                        $rawData['task10'] = isset($scoreboard->task10) ? '' : null;  
                         if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                             $rawData['reps'] = '';
                         }

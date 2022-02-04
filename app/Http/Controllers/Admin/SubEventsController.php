@@ -50,6 +50,21 @@ class SubEventsController extends Controller
                 if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
                     $header[] = $scoreboard->task5 ." (Task5)";
                 }
+                if (isset($scoreboard->task6) && !is_null($scoreboard->task6)) {
+                    $header[] = $scoreboard->task6 ." (Task6)";
+                }
+                if (isset($scoreboard->task7) && !is_null($scoreboard->task7)) {
+                    $header[] = $scoreboard->task7 ." (Task7)";
+                }
+                if (isset($scoreboard->task8) && !is_null($scoreboard->task8)) {
+                    $header[] = $scoreboard->task8 ." (Task8)";
+                }
+                if (isset($scoreboard->task9) && !is_null($scoreboard->task9)) {
+                    $header[] = $scoreboard->task9 ." (Task9)";
+                }
+                if (isset($scoreboard->task10) && !is_null($scoreboard->task10)) {
+                    $header[] = $scoreboard->task10 ." (Task10)";
+                }
                 if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                     $header[] = 'Reps'. " ($scoreboard->reps)";
                 }
@@ -81,6 +96,21 @@ class SubEventsController extends Controller
                     }
                     if (isset($scoreboard->task5) && !is_null($scoreboard->task5)) {
                         $rawData['task5'] = '';
+                    }
+                    if (isset($scoreboard->task6) && !is_null($scoreboard->task6)) {
+                        $rawData['task6'] = '';
+                    }
+                    if (isset($scoreboard->task7) && !is_null($scoreboard->task7)) {
+                        $rawData['task7'] = '';
+                    }
+                    if (isset($scoreboard->task8) && !is_null($scoreboard->task8)) {
+                        $rawData['task8'] = '';
+                    }
+                    if (isset($scoreboard->task9) && !is_null($scoreboard->task9)) {
+                        $rawData['task9'] = '';
+                    }
+                    if (isset($scoreboard->task10) && !is_null($scoreboard->task10)) {
+                        $rawData['task10'] = '';
                     }
                     if (isset($scoreboard->reps) && !is_null($scoreboard->reps)) {
                         $rawData['reps'] = '';
