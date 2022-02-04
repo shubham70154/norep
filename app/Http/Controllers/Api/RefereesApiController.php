@@ -236,7 +236,36 @@ class RefereesApiController extends BaseController
             $UserLeaderboard = UserLeaderboard::where('id', $request->user_leaderboard_id)->update([
                 'referee_signature_url' => $request->referee_signature_url,
                 'athlete_signature_url' => $request->athlete_signature_url,
-                'is_final_submit' => 1
+                'is_final_submit' => 1,
+                'score_given_by' => 'Referee',
+                'event_creator_id' => $request->event_creator_id
+            ]);
+            $UserLeaderboard = UserLeaderboard::find($request->user_leaderboard_id);
+            $UserLeaderboard->header = unserialize($UserLeaderboard->header);
+            $UserLeaderboard->scoreboard = unserialize($UserLeaderboard->scoreboard);
+            DB::commit();
+            return $this->sendResponse($UserLeaderboard, 'Final scoreboard submitted successfully.');
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
+            'line_no'=> $e->getLine()]);
+        }
+    }
+
+    public function submitFinalAthleteScoreByEventCreator(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_leaderboard_id' => 'required',
+                'event_creator_id' => 'required',
+            ]);
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            DB::begintransaction();
+            $UserLeaderboard = UserLeaderboard::where('id', $request->user_leaderboard_id)->update([
+                'is_final_submit' => 1,
+                'score_given_by' => 'Event Organiser',
+                'event_creator_id' => $request->event_creator_id
             ]);
             $UserLeaderboard = UserLeaderboard::find($request->user_leaderboard_id);
             $UserLeaderboard->header = unserialize($UserLeaderboard->header);
