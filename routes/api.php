@@ -86,7 +86,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('referee-get-subevent-details', 'Api\RefereesApiController@refereeGetSubeventDetails');
 
-    Route::post('add-user-score-by-referee', 'Api\RefereesApiController@addUserScoreByReferee');
+    Route::post('add-user-score-by-referee/{user_leaderboardid?}', 'Api\RefereesApiController@addUserScoreByReferee');
 
     Route::post('submit-final-user-score-by-referee', 'Api\RefereesApiController@submitFinalUserScoreByReferee');
 

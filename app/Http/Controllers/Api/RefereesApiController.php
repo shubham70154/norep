@@ -157,7 +157,7 @@ class RefereesApiController extends BaseController
         }
     }
 
-    public function addUserScoreByReferee(Request $request)
+    public function addUserScoreByReferee(Request $request, $UserLeaderboardId = null)
     {
         try {
             $validator = Validator::make($request->all(), [
@@ -174,36 +174,50 @@ class RefereesApiController extends BaseController
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
 
-            DB::begintransaction();
             $header = serialize($request->header);
             $scoreboard = serialize($request->scoreboard);
-            $request->request->add(['header' => $header]);
-            $request->request->add(['scoreboard' => $scoreboard]);
 
-            $UserLeaderboard = UserLeaderboard::create($request->all());
-
-            if ($request->has('athlete_virtual_videos') && $request->event_type_id == 1) {
-                $videos = [];
-                $file = File::where([
-                    ['user_leaderboard_id', $UserLeaderboard->id],
-                    ['type', 'athlete_virtual_videos']
-                ])->delete();
-                foreach($request->athlete_virtual_videos as $video) {
-                    $file = File::create([
-                        'url' => $video,
-                        'type' => 'athlete_virtual_videos',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $request->sub_event_id,
-                        'user_leaderboard_id' => $UserLeaderboard->id 
+            if (!is_null($UserLeaderboardId)) {
+                $UserLeaderboard = UserLeaderboard::where("id", $UserLeaderboardId)->first();
+                if($UserLeaderboard) {
+                    DB::begintransaction();
+                    $UserLeaderboard->update([
+                        'header' => $header,
+                        'scoreboard' => $scoreboard,
+                        'is_final_submit' => 3
                     ]);
-                    $videos[] = $video;
+                    DB::commit();
                 }
-                $UserLeaderboard->athlete_virtual_videos = $videos;
+            } else {
+                DB::begintransaction();
+                $request->request->add(['header' => $header]);
+                $request->request->add(['scoreboard' => $scoreboard]);
+
+                $UserLeaderboard = UserLeaderboard::create($request->all());
+
+                if ($request->has('athlete_virtual_videos') && $request->event_type_id == 1) {
+                    $videos = [];
+                    $file = File::where([
+                        ['user_leaderboard_id', $UserLeaderboard->id],
+                        ['type', 'athlete_virtual_videos']
+                    ])->delete();
+                    foreach($request->athlete_virtual_videos as $video) {
+                        $file = File::create([
+                            'url' => $video,
+                            'type' => 'athlete_virtual_videos',
+                            'event_id' => $request->event_id,
+                            'sub_event_id' => $request->sub_event_id,
+                            'user_leaderboard_id' => $UserLeaderboard->id 
+                        ]);
+                        $videos[] = $video;
+                    }
+                    $UserLeaderboard->athlete_virtual_videos = $videos;
+                }
+                DB::commit();
             }
-            
             $UserLeaderboard->header = unserialize($UserLeaderboard->header);
             $UserLeaderboard->scoreboard = unserialize($UserLeaderboard->scoreboard);
-            DB::commit();
+
             return $this->sendResponse($UserLeaderboard, 'Scoreboard submitted successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
