@@ -23,7 +23,7 @@ class EventsApiController extends BaseController
     public function create(Request $request)
     {
         try {
-            return Carbon::now();
+            //return Carbon::now();
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'description' => 'required',
