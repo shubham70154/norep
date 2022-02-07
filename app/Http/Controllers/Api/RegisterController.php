@@ -33,16 +33,17 @@ class RegisterController extends BaseController
             //return $validator->errors();
             return $this->sendError('Validation Error.', $validator->messages()->first());       
         }
-        
    
         $input = $request->all();
+        DB::beginTransaction();
         $input['password'] = bcrypt($input['password']);
         $input['email'] = strtolower($input['email']);
         $input['user_type'] = ucfirst(strtolower($input['user_type']));
         $user = User::create($input);
-        $user->sendEmailVerificationNotification();
         $success['token'] =  $user->createToken('Norep App')->accessToken;
         $success['user_details'] =  $user;
+        DB::commit();
+        $user->sendEmailVerificationNotification();
    
         return $this->sendResponse($success, 'User register successfully, Please verify your email id.');
     }
