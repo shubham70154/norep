@@ -136,7 +136,7 @@ class UserJoinedEventsApiController extends BaseController
                     // //Send Notification to event creator, The invited judge has accepted the invitation to become a referee (end)
 
                     $email_data['subject'] = "NoRep: Joined New Event";
-                    $email_data['user_details']  = $joinedUserDetail;
+                    $email_data['email']  = $joinedUserDetail->email;
                     $email_data['event_details']  = $eventDetail;
                     $email_data['page'] = "emails.user.join-event";
                 
