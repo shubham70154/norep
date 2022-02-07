@@ -20,12 +20,12 @@ class VerifyEmail extends VerifyEmailBase
             return call_user_func(static::$toMailCallback, $notifiable);
         }
         return (new MailMessage)
-            ->subject(Lang::getFromJson('Nore: Verify Email Address'))
-            ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
+            ->subject('Norep: Verify Email Address')
+            ->line('Please click the button below to verify your email address.')
             ->action(
                 'Verify Email Address',
                 $this->verificationUrl($notifiable)
             )
-            ->line(Lang::getFromJson('If you did not create an account, no further action is required.'));
+            ->line('If you did not create an account, no further action is required.');
     }
 }
