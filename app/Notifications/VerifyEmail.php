@@ -23,7 +23,7 @@ class VerifyEmail extends VerifyEmailBase
             ->subject(Lang::getFromJson('Nore: Verify Email Address'))
             ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
             ->action(
-                Lang::getFromJson('Verify Email Address'),
+                'Verify Email Address',
                 $this->verificationUrl($notifiable)
             )
             ->line(Lang::getFromJson('If you did not create an account, no further action is required.'));
