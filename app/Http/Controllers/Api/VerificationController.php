@@ -80,21 +80,4 @@ class VerificationController extends Controller
 
         return \response(['message' => 'Successfully verified!']);
     }
-
-    /**
-     * Resend the email verification notification.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function resend(Request $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return \response(['message' => 'Already verified!'], 204);
-        }
-
-        $request->user()->sendEmailVerificationNotification();
-
-        return \response(['message' => 'Email Sent!'], 200);
-    }
 }
