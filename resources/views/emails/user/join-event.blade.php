@@ -139,7 +139,7 @@
                                                 <br></br>
 
                                                 <h3>Dear {{$data['user_name']}},</h3>
-                                                <p>You have successfully joined the event <strong>" {{$data['event_details']['name']}} "</strong></p>
+                                                <p>You have successfully joined the event:- <strong>{{$data['event_details']['name']}} </strong></p>
 
 
                                             </div>
