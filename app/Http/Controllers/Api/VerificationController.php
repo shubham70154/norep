@@ -67,8 +67,11 @@ class VerificationController extends Controller
             return \response(['message' => 'Already verified!']);
         }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
+        // if ($request->user()->markEmailAsVerified()) {
+        //     event(new Verified($request->user()));
+        // }
+        if (!$request->user()->hasVerifiedEmail()) {
+            $request->user()->markEmailAsVerified();
         }
 
         if ($response = $this->verified($request)) {
