@@ -13,7 +13,7 @@ Route::get('email/resend', 'Api\VerificationController@resend')->name('verificat
 Route::get('email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
 
 
-Route::group(['middleware' => ['auth:api', 'verified']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('permissions', 'Api\PermissionsApiController');
 
     Route::post('save-device-token', 'Api\RegisterController@saveDeviceToken');
