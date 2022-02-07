@@ -39,11 +39,8 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        //Modify to api
-        $this->middleware('auth:api')->only('resend');
-        //'signed' middleware => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        $this->middleware('auth');
         $this->middleware('signed')->only('verify');
-        //You can only send a maximum of 6 requests in 1 minute
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
@@ -68,7 +65,7 @@ class VerificationController extends Controller
         }
 
         if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
+            //event(new Verified($request->user()));
         }
 
         if ($response = $this->verified($request)) {
