@@ -40,7 +40,8 @@ class RegisterController extends BaseController
         $input['email'] = strtolower($input['email']);
         $input['user_type'] = ucfirst(strtolower($input['user_type']));
         $user = User::create($input);
-        User::create($request->getAttributes())->sendEmailVerificationNotification();
+        //User::create($request->getAttributes())->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
         $success['token'] =  $user->createToken('Norep App')->accessToken;
         $success['user_details'] =  $user;
    
