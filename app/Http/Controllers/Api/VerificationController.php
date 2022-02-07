@@ -74,9 +74,9 @@ class VerificationController extends Controller
             $request->user()->markEmailAsVerified();
         }
 
-        if ($response = $this->verified($request)) {
-            return $response;
-        }
+        // if ($response = $this->verified($request)) {
+        //     return $response;
+        // }
 
         return \response(['message' => 'Successfully verified!']);
     }
