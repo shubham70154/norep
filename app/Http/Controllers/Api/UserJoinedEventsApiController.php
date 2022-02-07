@@ -137,6 +137,7 @@ class UserJoinedEventsApiController extends BaseController
 
                     $email_data['subject'] = "NoRep: Joined New Event";
                     $email_data['email']  = $joinedUserDetail->email;
+                    $email_data['user_name']  = $joinedUserDetail->name;
                     $email_data['event_details']  = $eventDetail;
                     $email_data['page'] = "emails.user.join-event";
                 

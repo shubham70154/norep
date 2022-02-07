@@ -138,7 +138,7 @@
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:22px;text-align:left;color:#555;">
                                                 <br></br>
 
-                                                <h3>Dear {{$data['user_details']['name']}},</h3>
+                                                <h3>Dear {{$data['user_name']}},</h3>
                                                 <p>You have successfully joined the event {{$data['event_details']['name']}}<strong></strong></p>
 
 
