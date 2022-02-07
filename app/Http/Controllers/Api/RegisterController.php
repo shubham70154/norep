@@ -23,7 +23,7 @@ class RegisterController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+           // 'email' => 'required|email|unique:users,email',
             'mobile_no' => 'required',
             'password' => 'required',
             'user_type' => 'required'
@@ -40,6 +40,7 @@ class RegisterController extends BaseController
         $input['email'] = strtolower($input['email']);
         $input['user_type'] = ucfirst(strtolower($input['user_type']));
         $user = User::create($input);
+        User::create($request->getAttributes())->sendEmailVerificationNotification();
         $success['token'] =  $user->createToken('Norep App')->accessToken;
         $success['user_details'] =  $user;
    
