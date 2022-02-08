@@ -72,6 +72,7 @@ class RefereesApiController extends BaseController
                                                 ['type', '=', 'athlete_virtual_videos']
                                             ])->get();
                     $scoreboard->athlete_virtual_videos = $athlete_virtual_videos;
+                    $scoreboard->user_leaderboard_id = $checkUserLeaderboard->id;
                 }elseif ($scoreboard) {
                     $header = [];
                     if (isset($scoreboard->round) && !is_null($scoreboard->round)) {
