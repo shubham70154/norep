@@ -15,7 +15,7 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth:api']], function () {
     //only verified account can access with this group
-    Route::group(['middleware' => ['verified']], function() {
+  //  Route::group(['middleware' => ['verified']], function() {
         Route::apiResource('permissions', 'Api\PermissionsApiController');
 
         Route::post('save-device-token', 'Api\RegisterController@saveDeviceToken');
@@ -109,6 +109,6 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('get-event-creator-notification-list/{user_id}', 'Api\NotificationsApiController@getEventCreatorNotificationList');
 
         Route::delete('delete-event-creator-notification-list', 'Api\NotificationsApiController@deleteEventCreatorNotificationList');
-    });
+   // });
 });
 
