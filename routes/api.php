@@ -14,7 +14,7 @@ Route::get('email/verify/{id}/{hash}', 'Api\VerificationController@verify')->nam
 
 Route::group(['middleware' => ['auth:api']], function () {
     //only verified account can access with this group
-    Route::group(['middleware' => ['verified:api']], function() {
+    Route::group(['middleware' => ['verified']], function() {
         Route::apiResource('permissions', 'Api\PermissionsApiController');
 
         Route::post('save-device-token', 'Api\RegisterController@saveDeviceToken');
