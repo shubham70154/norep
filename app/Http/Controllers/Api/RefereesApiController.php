@@ -16,11 +16,6 @@ use DB, Validator, Illuminate\Support\Carbon;
 
 class RefereesApiController extends BaseController
 {
-    public function __construct()
-    {
-        $this->middleware(['verified']);
-    }
-
     public function refereeGetSubeventDetails(Request $request)
     {
         try {
