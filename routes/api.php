@@ -10,7 +10,7 @@ Route::post('reset-password', 'Api\RegisterController@resetPassword');
 Route::get('get-page-details/{query_title}', 'Api\PagesApiController@getPageDetails');
 
 Route::get('email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
-Auth::routes(['verify' => true]);
+//Auth::routes(['verify' => true]);
 
 
 Route::group(['middleware' => ['auth:api']], function () {
