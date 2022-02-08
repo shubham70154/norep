@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Log;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Authenticate extends Middleware
 {
@@ -17,7 +18,8 @@ class Authenticate extends Middleware
     {
         Log::info('$request->expectsJson()'. json_encode($request->expectsJson()));
         if (! $request->expectsJson()) {
-            return route('login');
+           // return route('login');
+           throw new AccessDeniedHttpException("Permission denied.");
         }
     }
 }
