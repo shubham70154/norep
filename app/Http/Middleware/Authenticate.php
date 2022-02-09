@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Log;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class Authenticate extends Middleware
+class Authenticate
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
@@ -14,7 +13,7 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-    protected function redirectTo($request)
+    public function redirectTo($request)
     {
         Log::info('$request->expectsJson()'. json_encode($request->expectsJson()));
         if (! $request->expectsJson()) {
