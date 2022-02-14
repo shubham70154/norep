@@ -1,0 +1,12 @@
+/vendor
+/testresults
+/.scannerwork
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+data/
+docker/mongoconnector/oplog.ts
+tests/performancescripts/__pycache__/
+/history
+*.DS_Store
