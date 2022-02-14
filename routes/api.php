@@ -11,6 +11,8 @@ Route::get('get-page-details/{query_title}', 'Api\PagesApiController@getPageDeta
 
 Route::get('email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
 //Auth::routes(['verify' => true]);
+Route::post('file-upload', 'Api\FilesApiController@fileUpload');
+Route::delete('delete-file', 'Api\FilesApiController@deleteFile');
 
 
 Route::group(['middleware' => ['auth:api']], function () {

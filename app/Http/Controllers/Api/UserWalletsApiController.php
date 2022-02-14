@@ -42,13 +42,15 @@ class UserWalletsApiController extends BaseController
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $eventDetail->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'image']
+                        ['type', '=', 'image'],
+                        ['status', 1]
                     ])->select('url')->get();
     
                     $videofiles = DB::table('files')->where([
                         ['event_id', $eventDetail->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'video']
+                        ['type', '=', 'video'],
+                        ['status', 1]
                     ])->select('url')->get();
                     $eventDetail->images =  $imagefiles;
                     $eventDetail->vidoes =  $videofiles;

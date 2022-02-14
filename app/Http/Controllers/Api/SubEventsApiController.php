@@ -125,14 +125,16 @@ class SubEventsApiController extends BaseController
             if ($request->has('images')) {
                 $images = [];
                 $req_images = $request->images;
-                foreach($req_images as $image) {
-                    $file = File::create([
-                        'url' => $image,
-                        'type' => 'image',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $subEvent->id
-                    ]);
-                    $images[] = $image;
+                foreach($req_images as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $request->event_id,
+                            'sub_event_id' => $subEvent->id
+                        ]);
+                    }
+                    $images[] = $url;
                 }
                 $subEvent->images = $images;
             }
@@ -140,14 +142,16 @@ class SubEventsApiController extends BaseController
             if ($request->has('videos')) {
                 $videos = [];
                 $req_videos = $request->videos;
-                foreach($req_videos as $video) {
-                    $file = File::create([
-                        'url' => $video,
-                        'type' => 'video',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $subEvent->id
-                    ]);
-                    $videos[] = $video;
+                foreach($req_videos as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $request->event_id,
+                            'sub_event_id' => $subEvent->id
+                        ]);
+                    }
+                    $videos[] = $url;
                 }
                 $subEvent->videos = $videos;
             }
@@ -267,14 +271,16 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_images = $request->images;
-                foreach($req_images as $image) {
-                    $file = File::create([
-                        'url' => $image,
-                        'type' => 'image',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $Sub_event_id
-                    ]);
-                    $images[] = $image;
+                foreach($req_images as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $request->event_id,
+                            'sub_event_id' => $Sub_event_id
+                        ]);
+                    }
+                    $images[] = $url;
                 }
             }
 
@@ -285,14 +291,16 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_videos = $request->videos;
-                foreach($req_videos as $video) {
-                    $file = File::create([
-                        'url' => $video,
-                        'type' => 'video',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $Sub_event_id
-                    ]);
-                    $videos[] = $video;
+                foreach($req_videos as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $request->event_id,
+                            'sub_event_id' => $Sub_event_id
+                        ]);
+                    }
+                    $videos[] = $url;
                 }
             }
             
@@ -303,14 +311,16 @@ class SubEventsApiController extends BaseController
                     ['sub_event_id', $Sub_event_id]
                 ])->delete();
                 $req_docs = $request->docs;
-                foreach($req_docs as $doc) {
-                    $file = File::create([
-                        'url' => $doc,
-                        'type' => 'doc',
-                        'event_id' => $request->event_id,
-                        'sub_event_id' => $Sub_event_id
-                    ]);
-                    $docs[] = $doc;
+                foreach($req_docs as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $request->event_id,
+                            'sub_event_id' => $Sub_event_id
+                        ]);
+                    }
+                    $docs[] = $url;
                 }
             }
 
@@ -388,19 +398,22 @@ class SubEventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $subEventData->id],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $subEventData->id],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $docsfiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $subEventData->id],
-                    ['type', '=', 'doc']
+                    ['type', '=', 'doc'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $subEventData->images =  $imagefiles;
                 $subEventData->vidoes =  $videofiles;

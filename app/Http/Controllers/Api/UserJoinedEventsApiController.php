@@ -263,13 +263,15 @@ class UserJoinedEventsApiController extends BaseController
                                     ->where([
                                         ['event_id', $event->id],
                                         ['sub_event_id', null],
-                                        ['type', '=', 'image']
+                                        ['type', '=', 'image'],
+                                        ['status', 1]
                                     ])->get();
                     $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                         ->where([
                                             ['event_id', $event->id],
                                             ['sub_event_id', null],
-                                            ['type', '=', 'video']
+                                            ['type', '=', 'video'],
+                                            ['status', 1]
                                         ])->get();
                     $event->images = $imageFiles;
                     $event->videos = $videoFiles;

@@ -35,19 +35,22 @@ class RefereesApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $request->event_id],
                     ['sub_event_id', $request->sub_event_id],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $request->event_id],
                     ['sub_event_id', $request->sub_event_id],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $docsfiles = DB::table('files')->where([
                     ['event_id', $request->event_id],
                     ['sub_event_id', $request->sub_event_id],
-                    ['type', '=', 'docs']
+                    ['type', '=', 'docs'],
+                    ['status', 1]
                 ])->select('url')->get(); 
 
                 $subeventDetail->images =  $imagefiles;
@@ -69,7 +72,8 @@ class RefereesApiController extends BaseController
                     $athlete_virtual_videos = DB::table('files')->select('id','url', 'type', 'event_id', 'user_leaderboard_id', 'sub_event_id')
                                             ->where([
                                                 ['user_leaderboard_id', $checkUserLeaderboard->id],
-                                                ['type', '=', 'athlete_virtual_videos']
+                                                ['type', '=', 'athlete_virtual_videos'],
+                                                ['status', 1]
                                             ])->get();
                     $scoreboard->athlete_virtual_videos = $athlete_virtual_videos;
                     $scoreboard->user_leaderboard_id = $checkUserLeaderboard->id;

@@ -40,7 +40,7 @@ class EventsApiController extends BaseController
             if($validator->fails()){
                 return $this->sendError('Validation Error.', $validator->errors()->first());       
             }
-            
+
             if(Carbon::parse($request->start_date.' '.$request->start_time)->lt(Carbon::now()))
             {
                 return $this->sendError('Validation Error.', 'Can not create event for past date and time.');
@@ -63,26 +63,30 @@ class EventsApiController extends BaseController
 
             if ($request->has('images')) {
                 $images = [];
-                foreach($request->images as $image) {
-                    $file = File::create([
-                        'url' => $image,
-                        'type' => 'image',
-                        'event_id' => $event->id
-                    ]);
-                    $images[] = $image;
+                foreach($request->images as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $event->id
+                        ]);
+                    }
+                    $images[] = $url;
                 }
                 $event->images = $images;
             }
             
             if ($request->has('videos')) {
                 $videos = [];
-                foreach($request->videos as $video) {
-                    $file = File::create([
-                        'url' => $video,
-                        'type' => 'video',
-                        'event_id' => $event->id
-                    ]);
-                    $videos[] = $video;
+                foreach($request->videos as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $event->id
+                        ]);
+                    }
+                    $videos[] = $url;
                 }
                 $event->videos = $videos;
             }
@@ -165,13 +169,15 @@ class EventsApiController extends BaseController
                     ['sub_event_id', null],
                     ['type', 'image']
                 ])->delete();
-                foreach($request->images as $image) {
-                    $file = File::create([
-                        'url' => $image,
-                        'type' => 'image',
-                        'event_id' => $event->id
-                    ]);
-                    $images[] = $image;
+                foreach($request->images as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $event->id
+                        ]);
+                    }
+                    $images[] = $url;
                 }
                 $event->images = $images;
             }
@@ -183,13 +189,15 @@ class EventsApiController extends BaseController
                     ['sub_event_id', null],
                     ['type', 'video']
                 ])->delete();
-                foreach($request->videos as $video) {
-                    $file = File::create([
-                        'url' => $video,
-                        'type' => 'video',
-                        'event_id' => $event->id
-                    ]);
-                    $videos[] = $video;
+                foreach($request->videos as $url) {
+                    $file = File::where("url", $url)->first();
+                    if($file) {
+                        $file->update([
+                            'status' => 1,
+                            'event_id' => $event->id
+                        ]);
+                    }
+                    $videos[] = $url;
                 }
                 $event->videos = $videos;
             }    
@@ -219,13 +227,15 @@ class EventsApiController extends BaseController
                                     ->where([
                                         ['event_id', $event->id],
                                         ['sub_event_id', null],
-                                        ['type', '=', 'image']
+                                        ['type', '=', 'image'],
+                                        ['status', 1]
                                     ])->get();
                 $videoFiles = DB::table('files')->select('id','url', 'type', 'event_id', 'sub_event_id')
                                     ->where([
                                         ['event_id', $event->id],
                                         ['sub_event_id', null],
-                                        ['type', '=', 'video']
+                                        ['type', '=', 'video'],
+                                        ['status', 1]
                                     ])->get();
                 $event->images = $imageFiles;
                 $event->videos = $videoFiles;
@@ -254,13 +264,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -294,13 +306,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -334,13 +348,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -376,13 +392,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event->id],
                     ['sub_event_id', null],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -407,13 +425,15 @@ class EventsApiController extends BaseController
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'image']
+                        ['type', '=', 'image'],
+                        ['status', 1]
                     ])->select('url')->get();
 
                     $videofiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'video']
+                        ['type', '=', 'video'],
+                        ['status', 1]
                     ])->select('url')->get();
                     $event->images =  $imagefiles;
                     $event->vidoes =  $videofiles;
@@ -489,13 +509,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $event->id],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $event->id],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -516,13 +538,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $event->id],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $event->id],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -543,13 +567,15 @@ class EventsApiController extends BaseController
                 $imagefiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $event->id],
-                    ['type', '=', 'image']
+                    ['type', '=', 'image'],
+                    ['status', 1]
                 ])->select('url')->get();
 
                 $videofiles = DB::table('files')->where([
                     ['event_id', $event_id],
                     ['sub_event_id', $event->id],
-                    ['type', '=', 'video']
+                    ['type', '=', 'video'],
+                    ['status', 1]
                 ])->select('url')->get();
                 $event->images =  $imagefiles;
                 $event->vidoes =  $videofiles;
@@ -600,19 +626,22 @@ class EventsApiController extends BaseController
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'image']
+                        ['type', '=', 'image'],
+                        ['status', 1]
                     ])->select('url')->get();
 
                     $videofiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'video']
+                        ['type', '=', 'video'],
+                        ['status', 1]
                     ])->select('url')->get();
 
                     $docfiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'docs']
+                        ['type', '=', 'docs'],
+                        ['status', 1]
                     ])->select('url')->get();
 
                     $event->images =  $imagefiles;
@@ -645,13 +674,15 @@ class EventsApiController extends BaseController
                     $imagefiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'image']
+                        ['type', '=', 'image'],
+                        ['status', 1]
                     ])->select('url')->get();
     
                     $videofiles = DB::table('files')->where([
                         ['event_id', $event->id],
                         ['sub_event_id', null],
-                        ['type', '=', 'video']
+                        ['type', '=', 'video'],
+                        ['status', 1]
                     ])->select('url')->get();
                     $event->images =  $imagefiles;
                     $event->vidoes =  $videofiles;
