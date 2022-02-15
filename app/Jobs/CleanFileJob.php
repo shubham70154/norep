@@ -33,9 +33,7 @@ class CleanFileJob implements ShouldQueue
     {
         try{
             $files = File::where('status','=', 0)->orderBy('created_at', 'DESC')->take(1)->get();
-            Log::info('file deleted successfully'. json_encode($files));
             foreach($files as $file) {
-                Log::info('file deleted successfully'. json_encode($file));
                 $response = Storage::disk('s3')->delete(trim($file->url));
                 $file = $file->delete();
                 Log::info('file deleted successfully'. $file->url);
