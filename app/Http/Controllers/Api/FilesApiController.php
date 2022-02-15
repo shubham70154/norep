@@ -20,7 +20,7 @@ class FilesApiController extends BaseController
             $fileName = time() . '_' . $file->getClientOriginalName();
             $filePath = 'norepFiles/'.$fileName;
             // Save File on S3 Bucket.
-            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            Storage::disk('s3')->put($filePath, fopen($file, 'r+'));
             $url = asset(Storage::disk('s3')->url($filePath));
 
             if ($url) {
