@@ -57,6 +57,5 @@ class FilesApiController extends BaseController
                 return $this->sendResponse($response, 'You have successfully deleted file.');
             }
         }
-
     }
 }
