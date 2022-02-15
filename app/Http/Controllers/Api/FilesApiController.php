@@ -16,22 +16,27 @@ class FilesApiController extends BaseController
     public function fileUpload(Request $request)
     {
         if ($request->hasfile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = 'norepFiles/'.$fileName;
-            // Save File on S3 Bucket.
-            Storage::disk('s3')->put($filePath, fopen($file, 'r+'));
-            $url = asset(Storage::disk('s3')->url($filePath));
-
-            if ($url) {
-                $file = File::create([
-                    'url' => $url,
-                    'type' => $request->type,
-                    'status' => 0
-                ]);
+            try {
+                $file = $request->file('file');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $filePath = 'norepFiles/'.$fileName;
+                // Save File on S3 Bucket.
+                Storage::disk('s3')->put($filePath, fopen($file, 'r+'));
+                $url = asset(Storage::disk('s3')->url($filePath));
+    
+                if ($url) {
+                    $file = File::create([
+                        'url' => $url,
+                        'type' => $request->type,
+                        'status' => 0
+                    ]);
+                }
+                
+                return $this->sendResponse(['url' => $url], 'You have successfully uploaded file.');
+            } catch (\Exception $e) {
+                return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(), 
+                'line_no'=> $e->getLine()]);
             }
-            
-            return $this->sendResponse(['url' => $url], 'You have successfully uploaded file.');
         }
     }
 
