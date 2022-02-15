@@ -17,6 +17,9 @@ class FilesApiController extends BaseController
     {
         if ($request->hasfile('file')) {
             try {
+                ini_set('upload_max_filesize', '100M');
+                ini_set('post_max_size', '108M');
+                ini_set('max_execution_time', '500');
                 $file = $request->file('file');
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $filePath = 'norepFiles/'.$fileName;
