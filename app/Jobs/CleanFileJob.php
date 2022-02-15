@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Log;
+use Log, Storage;
 
 class CleanFileJob implements ShouldQueue
 {
@@ -34,9 +34,9 @@ class CleanFileJob implements ShouldQueue
         try{
             $files = File::where('status','=', 0)->orderBy('created_at', 'DESC')->take(1)->get();
             foreach($files as $file) {
+                Log::info('file deleted successfully'. $file->url);
                 $response = Storage::disk('s3')->delete(trim($file->url));
                 $file = $file->delete();
-                Log::info('file deleted successfully'. $file->url);
             }
         } catch (\Exception $e) {
                 Log::error('Oops something went wrong.', ['error'=> $e->getMessage(), 
