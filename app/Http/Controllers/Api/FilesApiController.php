@@ -21,6 +21,8 @@ class FilesApiController extends BaseController
                 ini_set('post_max_size', '108M');
                 ini_set('max_execution_time', '500');
                 $file = $request->file('file');
+
+                return ini_get('upload_max_filesize');
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $filePath = 'norepFiles/'.$fileName;
                 // Save File on S3 Bucket.
