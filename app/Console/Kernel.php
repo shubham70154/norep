@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->job(new CleanFileJob())->hourly();
+        $schedule->job(new CleanFileJob())->daily();
     }
 
     /**

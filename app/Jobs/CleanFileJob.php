@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Log, Storage;
+use Carbon\Carbon;
 
 class CleanFileJob implements ShouldQueue
 {
@@ -32,7 +33,10 @@ class CleanFileJob implements ShouldQueue
     public function handle()
     {
         try{
-            $files = File::where('status','=', 0)->orderBy('created_at', 'DESC')->take(1)->get();
+            $files = File::where([
+                    ['created_at', '<=', Carbon::now()->subDay()],
+                    ['status', '=', 0],
+                ])->orderBy('created_at', 'DESC')->get();
             foreach($files as $file) {
                 Log::info('file deleted successfully'. $file->url);
                 $url = $file->url;
@@ -40,7 +44,7 @@ class CleanFileJob implements ShouldQueue
                 $getpath = explode($domain, $url);
                 if(count($getpath)==2){
                     Log::info('path to delete '.$getpath[1]);
-                    $response = Storage::disk('s3')->delete(trim($getpath[1]));
+                    Storage::disk('s3')->delete(trim($getpath[1]));
                     $file = $file->delete();
                 }
             }
