@@ -65,7 +65,7 @@ class RefereesApiController extends BaseController
                                                 ['sub_event_id' , $request->sub_event_id],
                                                 ['referee_id' , isset($request->referee_id)?$request->referee_id:null],
                                                 ['event_id' , $request->event_id],
-                                            ])->first();
+                                            ])->orderBy('created_at', 'DESC')->first();
                 if ($checkUserLeaderboard) {
                     $scoreboard->header = unserialize($checkUserLeaderboard->header);
                     $scoreboard->data = unserialize($checkUserLeaderboard->scoreboard);
