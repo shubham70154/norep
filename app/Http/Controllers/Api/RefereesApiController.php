@@ -189,6 +189,27 @@ class RefereesApiController extends BaseController
                 if($UserLeaderboard) {
                     DB::begintransaction();
                     $UserLeaderboard->update($request->all());
+
+                    if ($request->has('athlete_virtual_videos') && $request->event_type_id == 1) {
+                        $videos = [];
+                        $file = File::where([
+                            ['user_leaderboard_id', $UserLeaderboardId],
+                            ['type', 'athlete_virtual_videos']
+                        ])->delete();
+                        foreach($request->athlete_virtual_videos as $url) {
+                            $file = File::where("url", $url)->first();
+                            if($file) {
+                                $file->update([
+                                    'status' => 1,
+                                    'event_id' => $request->event_id,
+                                    'sub_event_id' => $request->sub_event_id,
+                                    'user_leaderboard_id' => $UserLeaderboardId 
+                                ]);
+                            }
+                            $videos[] = $url;
+                        }
+                        $UserLeaderboard->athlete_virtual_videos = $videos;
+                    }
                     DB::commit();
                 }
             } else {
@@ -201,15 +222,17 @@ class RefereesApiController extends BaseController
                         ['user_leaderboard_id', $UserLeaderboard->id],
                         ['type', 'athlete_virtual_videos']
                     ])->delete();
-                    foreach($request->athlete_virtual_videos as $video) {
-                        $file = File::create([
-                            'url' => $video,
-                            'type' => 'athlete_virtual_videos',
-                            'event_id' => $request->event_id,
-                            'sub_event_id' => $request->sub_event_id,
-                            'user_leaderboard_id' => $UserLeaderboard->id 
-                        ]);
-                        $videos[] = $video;
+                    foreach($request->athlete_virtual_videos as $url) {
+                        $file = File::where("url", $url)->first();
+                        if($file) {
+                            $file->update([
+                                'status' => 1,
+                                'event_id' => $request->event_id,
+                                'sub_event_id' => $request->sub_event_id,
+                                'user_leaderboard_id' => $UserLeaderboard->id 
+                            ]);
+                        }
+                        $videos[] = $url;
                     }
                     $UserLeaderboard->athlete_virtual_videos = $videos;
                 }
