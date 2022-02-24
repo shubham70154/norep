@@ -477,7 +477,8 @@ class EventsApiController extends BaseController
                 'referee_id' => $request->referee_id,
                 'status' => 4
             ]);
-            return $this->sendResponse($event, 'Referee assigned successfully.');
+            $getUpdatedEvent = Event::select('referee_id')->find($request->event_id);
+            return $this->sendResponse($getUpdatedEvent, 'Referee assigned successfully.');
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
