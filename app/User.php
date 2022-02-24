@@ -55,7 +55,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_terms_conditions_accept',
         'email_verified_at',
         'device_token',
-        'total_amount'
+        'total_amount',
+        'paypal_email_account'
     ];
 
     public function getEmailVerifiedAtAttribute($value)
