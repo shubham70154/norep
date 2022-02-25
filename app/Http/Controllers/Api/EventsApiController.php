@@ -474,7 +474,7 @@ class EventsApiController extends BaseController
         try {
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
-                'referee_id' => $request->referee_id
+                'referee_id' => 'required'
             ]);
         
             if($validator->fails()){
