@@ -23,10 +23,11 @@ class RegisterController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            //'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email',
             'mobile_no' => 'required',
             'password' => 'required',
-            'user_type' => 'required'
+            'user_type' => 'required',
+            'paypal_email_account' => 'required'
         ]);
         
         if($validator->fails()){
