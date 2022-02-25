@@ -26,8 +26,7 @@ class RegisterController extends BaseController
             'email' => 'required|email|unique:users,email',
             'mobile_no' => 'required',
             'password' => 'required',
-            'user_type' => 'required',
-            'paypal_email_account' => 'required'
+            'user_type' => 'required'
         ]);
         
         if($validator->fails()){
