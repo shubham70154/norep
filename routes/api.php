@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
         Route::get('get-event-creators-event-list/{user_id}', 'Api\EventsApiController@getEventCreatorsEventList');
 
+        Route::post('publish_event', 'Api\EventsApiController@publishEvent');
+
         Route::post('create-subevents', 'Api\SubEventsApiController@createSubEvent');
         Route::get('subevent/{subeventid}', 'Api\SubEventsApiController@showSubEventDetails');
         Route::get('get-subevent-list/{eventid}/{event_specified_id?}', 'Api\SubEventsApiController@getSubEventList');
@@ -66,7 +68,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
         Route::post('join-user-event', 'Api\UserJoinedEventsApiController@joinUserEvent');
         
-        Route::post('save-event-amount', 'Api\EventPaymentsApiController@saveEventAmount');
+        //Route::post('save-event-amount', 'Api\EventPaymentsApiController@saveEventAmount');
 
         Route::get('get-participants-list-by-eventId/{eventid}', 'Api\UserJoinedEventsApiController@getParticipantsListByEventId');
 
