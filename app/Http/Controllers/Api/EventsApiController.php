@@ -472,10 +472,17 @@ class EventsApiController extends BaseController
     public function assignEventReferees(Request $request)
     {
         try {
-            // assign referee to event and update status 4 means event publish
+            $validator = Validator::make($request->all(), [
+                'event_id' => 'required',
+                'referee_id' => $request->referee_id
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            // assign referee to event
             $event = Event::where('id', $request->event_id)->update([
-                'referee_id' => $request->referee_id,
-                'status' => 4
+                'referee_id' => $request->referee_id
             ]);
             $getUpdatedEvent = Event::select('referee_id')->find($request->event_id);
             return $this->sendResponse($getUpdatedEvent, 'Referee assigned successfully.');
@@ -696,6 +703,32 @@ class EventsApiController extends BaseController
             
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=>$e->getMessage()]);
+        }
+    }
+
+    public function publishEvent(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' => 'required'
+            ]);
+        
+            if($validator->fails()){
+                return $this->sendError('Validation Error.', $validator->errors()->first());       
+            }
+            $event = Event::find($request->event_id);
+            if ($event) {
+                // update the event status= 4 means event publish
+                Event::where('id', $request->event_id)->update([
+                    'status' => 4
+                ]);
+                $getUpdatedEvent = Event::find($request->event_id);
+                return $this->sendResponse($getUpdatedEvent, 'Event has been published successfully.');
+            } else {
+                return $this->sendResponse((object)[], 'Invalid Event Id.');
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
 }
