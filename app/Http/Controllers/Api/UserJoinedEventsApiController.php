@@ -22,7 +22,12 @@ class UserJoinedEventsApiController extends BaseController
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required',
                 'user_id' => 'required',
-                'event_specified_id' => 'required'
+                'event_specified_id' => 'required',
+                'amount' => 'required',
+                "paypal_status" => 'required',
+                "paypal_transaction_id" => 'required',
+                "paypal_response" => 'required',
+                'device_type' => 'required'
             ]);
         
             if($validator->fails()){
@@ -34,23 +39,7 @@ class UserJoinedEventsApiController extends BaseController
             if ($eventDetail->event_type_id == 1) {
                 DB::begintransaction();
                 $result = UserJoinedEvent::create($request->all());
-
-                // Update user transaction table (deposite start)
                 $eventUserDetail = User::find($eventDetail->user_id);
-                $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
-                
-                $depositeData = [
-                    'user_id' => $eventDetail->user_id,
-                    'joining_event_name' => $eventDetail->name,
-                    'amount_before_transaction' => $eventUserDetail->total_amount,
-                    'amount_after_transaction' => $eventtotalAmount,
-                    'deposite' => $request->amount,
-                    'transaction_type' => 'deposite'
-                ];
-                $eventUserDetail->total_amount = $eventtotalAmount;
-                $eventUserDetail->save();
-                $userTransaction = UserTransaction::create($depositeData);
-                // Update user transaction table (deposite end)
 
                 DB::commit();
                 //Send Notification to event creator (start)
@@ -68,6 +57,11 @@ class UserJoinedEventsApiController extends BaseController
                 $email_data['page'] = "emails.user.join-event";
                 
                 $this->dispatch(new \App\Jobs\SendEmailJob($email_data));
+
+                // transfer amount to event creator paypal account after the user/athlete join the event
+                if ($request->paypal_status == 'COMPLETED' && !is_null($request->paypal_transaction_id)) {
+                    $this->dispatch(new \App\Jobs\TransferAmountToEventCreatorAccountJob($eventDetail, $request->amount));
+                }
                 return $this->sendResponse($result, 'Event joined successfully.');
             }
             //if user is joining virtual event (end)
@@ -91,24 +85,7 @@ class UserJoinedEventsApiController extends BaseController
                     DB::begintransaction();
                     $request->request->add(['referee_id' => $freeRefereeLists[0]]);
                     $result = UserJoinedEvent::create($request->all());
-
-                    // Update user transaction table (deposite start)
                     $eventUserDetail = User::find($eventDetail->user_id);
-                    $eventtotalAmount = $eventUserDetail->total_amount + $request->amount;
-                    
-                    $depositeData = [
-                        'user_id' => $eventDetail->user_id,
-                        'joining_event_name' => $eventDetail->name,
-                        'amount_before_transaction' => $eventUserDetail->total_amount,
-                        'amount_after_transaction' => $eventtotalAmount,
-                        'deposite' => $request->amount,
-                        'transaction_type' => 'deposite'
-                    ];
-                    $eventUserDetail->total_amount = $eventtotalAmount;
-                    $eventUserDetail->save();
-                    $userTransaction = UserTransaction::create($depositeData);
-                    // Update user transaction table (deposite end)
-
                     DB::commit();
                     //Send Notification to event creator (start)
                     $joinedUserDetail = User::find($request->user_id);
@@ -141,6 +118,10 @@ class UserJoinedEventsApiController extends BaseController
                     $email_data['page'] = "emails.user.join-event";
                 
                     $this->dispatch(new \App\Jobs\SendEmailJob($email_data));
+                   // transfer amount to event creator paypal account after the user/athlete join the event
+                    if ($request->paypal_status == 'COMPLETED' && !is_null($request->paypal_transaction_id)) {
+                        $this->dispatch(new \App\Jobs\TransferAmountToEventCreatorAccountJob($eventDetail, $request->amount));
+                    }
                     return $this->sendResponse($result, 'Event joined successfully.');
                 } else {
                     return $this->sendResponse((object)[], "All referee's assigned, can't join event.");
@@ -149,6 +130,7 @@ class UserJoinedEventsApiController extends BaseController
                 return $this->sendResponse((object)[], "No referees are assigned to this event");
             }
             //if user is joining onsite event (end)
+
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
             'line_no'=> $e->getLine()]);
@@ -183,20 +165,6 @@ class UserJoinedEventsApiController extends BaseController
     {
         try {
             if (!is_null($eventId)) {
-            //    $eventDetails = Event::where([
-            //         ['id', $eventId]
-            //     ])->select('referee_id', 'user_id')->get();
-
-            //     $result = '';
-            //     foreach ($eventDetails as $referees) {
-            //         if (!is_null($referees->referee_id)) {
-            //             $result .= str_replace('"',"",$referees->referee_id) .',';
-            //         }
-            //     }
-            //     $refereeArray = explode(',', rtrim($result, ','));
-            //     $refereeIds = array_unique($refereeArray);
-
-            //     $participantList = User::whereIn('id', $refereeIds)->get();
                 $result = UserJoinedEvent::where([
                     ['event_id', $eventId]
                 ])->get();
@@ -210,11 +178,9 @@ class UserJoinedEventsApiController extends BaseController
                         $referee->assigned_participant = $participant;
                         $refereeList[] = $referee;
                     }
-                    
                 }
                 return $this->sendResponse($refereeList, 'Referee list get successfully.');
             }
-       
         } catch (\Exception $e) {
             return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }

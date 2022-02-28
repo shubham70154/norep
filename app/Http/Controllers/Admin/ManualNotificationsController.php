@@ -30,8 +30,9 @@ class ManualNotificationsController extends Controller
     public function notificationSend($device_tokens, $title = '', $body = '')
     {
         try {
-            $SERVER_API_KEY = 'AAAAVevGbvs:APA91bE1Ob11Y6-iQmWlAKSB7YOgDHElWYHXjcjzICNu5MObm_YFLhMUSIZ5zyh3O6GgtHFDbPrcSxgTnKqRKPI2VqmYfukoCMzcTcG1YXlaug1Wm2D3ULBZunipGxDAhA5LGLmsGBfJ';
-            $url = 'https://fcm.googleapis.com/fcm/send';//env('FIREBASE_API_URL');
+            $settings = DB::table('settings')->pluck('value', 'name')->toArray();
+            $SERVER_API_KEY = $settings['FCM_SERVER_API_KEY'];
+            $url = $settings['FCM_API_URL'];//env('FIREBASE_API_URL');
             // payload data, it will vary according to requirement
             $data = [
                 "to" => $device_tokens, // for multiple device ids

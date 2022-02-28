@@ -19,6 +19,10 @@ class UserJoinedEvent extends Model
         'referee_id',
         'event_specified_id',
         'amount',
+        'paypal_status',
+        'paypal_transaction_id',
+        'paypal_response',
+        'device_type',
         'created_at',
         'updated_at'
     ];
