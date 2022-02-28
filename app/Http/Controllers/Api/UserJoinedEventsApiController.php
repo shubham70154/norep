@@ -38,6 +38,7 @@ class UserJoinedEventsApiController extends BaseController
             //if user is joining virtual event (start)
             if ($eventDetail->event_type_id == 1) {
                 DB::begintransaction();
+                $request->paypal_response =  json_encode($request->paypal_response);
                 $result = UserJoinedEvent::create($request->all());
                 $eventUserDetail = User::find($eventDetail->user_id);
 
@@ -84,6 +85,7 @@ class UserJoinedEventsApiController extends BaseController
                 if (count($freeRefereeLists) > 0) {
                     DB::begintransaction();
                     $request->request->add(['referee_id' => $freeRefereeLists[0]]);
+                    $request->paypal_response =  json_encode($request->paypal_response);
                     $result = UserJoinedEvent::create($request->all());
                     $eventUserDetail = User::find($eventDetail->user_id);
                     DB::commit();
