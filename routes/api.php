@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
         Route::apiResource('users', 'Api\UsersApiController');
 
+        Route::get('get-settings', 'Api\BaseController@getSettings');
+
         // user profile update
         Route::post('user-profile-update/{userid}', 'Api\RegisterController@userProfileUpdate');
 

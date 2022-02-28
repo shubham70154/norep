@@ -203,4 +203,11 @@ class BaseController extends Controller
             return [ 'error_msg' =>'Oops payout_something went wrong.', 'error'=> $e->getMessage()];
         }
     }
+
+    public function getSettings() {
+        $settings = DB::table('settings')->pluck('value', 'name')->toArray();
+        if (count($settings) > 0) {
+            return $this->sendResponse($settings, 'All settings get successfully.');
+        }
+    }
 }
