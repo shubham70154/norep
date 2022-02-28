@@ -21,7 +21,7 @@ class UserJoinedEvent extends Model
         'amount',
         'paypal_status',
         'paypal_transaction_id',
-        'paypal_response',
+       // 'paypal_response',
         'device_type',
         'created_at',
         'updated_at'
