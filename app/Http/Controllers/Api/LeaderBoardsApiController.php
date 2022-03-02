@@ -22,14 +22,14 @@ use function GuzzleHttp\json_decode;
 
 class LeaderBoardsApiController extends BaseController
 {
-    public function getEventLeaderBoard($event_id)
+    public function getEventLeaderBoard($event_id, $sub_event_id)
     {
         try {
-            if (isset($event_id) && !is_null($event_id))
+            if (isset($event_id) && !is_null($event_id) && isset($sub_event_id) && !is_null($sub_event_id))
             {
                 $eventDetail = Event::find($event_id);
                 $getSubEvents = SubEvent::where([
-                        ['event_id', $event_id],
+                        ['id', $sub_event_id],
                         ['status', 1]
                     ])->get();
             
