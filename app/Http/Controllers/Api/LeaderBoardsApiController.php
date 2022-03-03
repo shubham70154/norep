@@ -27,7 +27,38 @@ class LeaderBoardsApiController extends BaseController
     {
         try {
             if (isset($event_id) && !is_null($event_id) && isset($specified_id) && !is_null($specified_id)
-            )
+                && isset($sub_event_id) && !is_null($sub_event_id))
+            {
+                $eventDetail = Event::find($event_id);
+                $sub_event_ids = SubEventSpecify::where([
+                        ['event_id', $event_id],
+                        ['event_specified_id', $specified_id],
+                        ['sub_event_id', $sub_event_id]
+                    ])->pluck('sub_event_id')->toArray();
+
+                $getSubEvents = SubEvent::whereIn('id', $sub_event_ids)->get();
+            
+                $getAssignedParticipantLists = UserJoinedEvent::where([
+                    ['event_id', $event_id],
+                    ['event_specified_id', $specified_id]
+                    ])->pluck('user_id')->toArray();
+                
+                $participantLists = User::select('id', 'name');
+                $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+
+                $participants = [];
+                foreach($getSubEvents as $subevent){
+                    $subevent->participants = $participantLists;
+                    $subevent->scoreboard = json_decode($subevent->scoreboard);
+                    $subevent->timer = json_decode($subevent->timer);
+                    $participants[] = $subevent;
+                }
+                $eventDetail->sub_events = $participants;
+                $eventDetail->total = ['participants' => $participantLists];
+                return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
+            } else if (isset($event_id) && !is_null($event_id) && isset($specified_id) && !is_null($specified_id))
             {
                 $eventDetail = Event::find($event_id);
                 $sub_event_ids = SubEventSpecify::where([
@@ -57,7 +88,8 @@ class LeaderBoardsApiController extends BaseController
                 $eventDetail->sub_events = $participants;
                 $eventDetail->total = ['participants' => $participantLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
-            } else if (isset($event_id) && !is_null($event_id)) {
+            } else if (isset($event_id) && !is_null($event_id))
+            {
                 $eventDetail = Event::find($event_id);
                 $getSubEvents = SubEvent::where([
                         ['event_id', $event_id],
