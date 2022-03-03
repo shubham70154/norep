@@ -25,32 +25,38 @@ class LeaderBoardsApiController extends BaseController
     public function getEventLeaderBoard($event_id, $sub_event_id = null)
     {
         try {
-            if (isset($event_id) && !is_null($event_id) && isset($sub_event_id) && !is_null($sub_event_id))
-            {
-                $eventDetail = Event::find($event_id);
-                $getSubEvents = SubEvent::where([
-                        ['id', $sub_event_id],
-                        ['status', 1]
-                    ])->get();
+            // if (isset($event_id) && !is_null($event_id) && isset($sub_event_id) && !is_null($sub_event_id)
+            // && isset($specified_id) && !is_null($specified_id)
+            // )
+            // {
+            //     $eventDetail = Event::find($event_id);
+            //     $getSubEvents = SubEvent::where([
+            //             ['id', $sub_event_id],
+            //             ['status', 1]
+            //         ])->get();
             
-                $getAssignedParticipantLists = UserJoinedEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
+            //     $getAssignedParticipantLists = UserJoinedEvent::where([
+            //         ['event_id', $event_id],
+            //         ['sub_event_id', $sub_event_id]
+            //         ])->pluck('user_id')->toArray();
                 
-                $participantLists = User::select('id', 'name');
-                $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
-                $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
-                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+            //     $participantLists = User::select('id', 'name');
+            //     $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+            //     $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+            //     $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
 
-                $participants = [];
-                foreach($getSubEvents as $subevent){
-                    $subevent->participants = $participantLists;
-                    $subevent->scoreboard = json_decode($subevent->scoreboard);
-                    $subevent->timer = json_decode($subevent->timer);
-                    $participants[] = $subevent;
-                }
-                $eventDetail->sub_events = $participants;
-                $eventDetail->total = ['participants' => $participantLists];
-                return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
-            } else if (isset($event_id) && !is_null($event_id)) {
+            //     $participants = [];
+            //     foreach($getSubEvents as $subevent){
+            //         $subevent->participants = $participantLists;
+            //         $subevent->scoreboard = json_decode($subevent->scoreboard);
+            //         $subevent->timer = json_decode($subevent->timer);
+            //         $participants[] = $subevent;
+            //     }
+            //     $eventDetail->sub_events = $participants;
+            //     $eventDetail->total = ['participants' => $participantLists];
+            //     return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
+            // } else
+             if (isset($event_id) && !is_null($event_id)) {
                 $eventDetail = Event::find($event_id);
                 $getSubEvents = SubEvent::where([
                         ['event_id', $event_id],
@@ -71,7 +77,7 @@ class LeaderBoardsApiController extends BaseController
                     $subevent->timer = json_decode($subevent->timer);
                     $participants[] = $subevent;
                 }
-               // $eventDetail->sub_events = $participants;
+                $eventDetail->sub_events = $participants;
                 $eventDetail->total = ['participants' => $participantLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else {
