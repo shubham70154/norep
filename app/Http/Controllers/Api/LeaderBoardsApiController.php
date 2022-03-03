@@ -78,7 +78,7 @@ class LeaderBoardsApiController extends BaseController
                     $subevent->timer = json_decode($subevent->timer);
                     $participants[] = $subevent;
                 }
-               // $eventDetail->sub_events = $participants;
+                $eventDetail->sub_events = $participants;
                 $eventDetail->total = ['participants' => $participantLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else {
