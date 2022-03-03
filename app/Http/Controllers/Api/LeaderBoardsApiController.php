@@ -39,7 +39,7 @@ class LeaderBoardsApiController extends BaseController
             
                 $getAssignedParticipantLists = UserJoinedEvent::where([
                     ['event_id', $event_id],
-                    ['sub_event_id', $sub_event_id]
+                    ['event_specified_id', $specified_id]
                     ])->pluck('user_id')->toArray();
                 
                 $participantLists = User::select('id', 'name');
