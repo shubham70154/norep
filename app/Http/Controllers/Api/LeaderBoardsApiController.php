@@ -50,6 +50,30 @@ class LeaderBoardsApiController extends BaseController
                 $eventDetail->sub_events = $participants;
                 $eventDetail->total = ['participants' => $participantLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
+            } else if (isset($event_id) && !is_null($event_id)) {
+                $eventDetail = Event::find($event_id);
+                $getSubEvents = SubEvent::where([
+                        ['event_id', $event_id],
+                        ['status', 1]
+                    ])->get();
+            
+                $getAssignedParticipantLists = UserJoinedEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
+                
+                $participantLists = User::select('id', 'name');
+                $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+
+                $participants = [];
+                foreach($getSubEvents as $subevent){
+                    $subevent->participants = $participantLists;
+                    $subevent->scoreboard = json_decode($subevent->scoreboard);
+                    $subevent->timer = json_decode($subevent->timer);
+                    $participants[] = $subevent;
+                }
+               // $eventDetail->sub_events = $participants;
+                $eventDetail->total = ['participants' => $participantLists];
+                return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
             }
