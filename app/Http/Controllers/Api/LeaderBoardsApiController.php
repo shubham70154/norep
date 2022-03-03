@@ -23,7 +23,7 @@ use function GuzzleHttp\json_decode;
 
 class LeaderBoardsApiController extends BaseController
 {
-    public function getEventLeaderBoard($event_id, $sub_event_id = null, $specified_id = null)
+    public function getEventLeaderBoard($event_id, $specified_id = null, $sub_event_id = null)
     {
         try {
             if (isset($event_id) && !is_null($event_id) && isset($specified_id) && !is_null($specified_id)
