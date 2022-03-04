@@ -105,16 +105,16 @@ class LeaderBoardsApiController extends BaseController
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
-                    $SubEventSpecify = SubEventSpecify::select('event_specified_id')->where('sub_event_id', $subevent->id)->pluck('user_id')->toArray();
+                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
                     $subevent->subeventspecify = $SubEventSpecify;
-                    // $SubEventSpecifyUser = UserJoinedEvent::select('event_specified_id')
-                    //     ->where('event_id', $event_id)
-                    //     ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
-                    // $participantLists = User::select('id', 'name');
-                    // $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
-                    // $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
-                    // $participantLists = $participantLists->whereIn('id', $SubEventSpecifyUser)->get();
-                    // $subevent->participants = $participantLists;
+                    $SubEventSpecifyUser = UserJoinedEvent::select('event_specified_id')
+                        ->where('event_id', $event_id)
+                        ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
+                    $participantLists = User::select('id', 'name');
+                    $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                    $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                    $participantLists = $participantLists->whereIn('id', $SubEventSpecifyUser)->get();
+                    $subevent->participants = $participantLists;
                     $subevent->scoreboard = json_decode($subevent->scoreboard);
                     $subevent->timer = json_decode($subevent->timer);
                     $participants[] = $subevent;
