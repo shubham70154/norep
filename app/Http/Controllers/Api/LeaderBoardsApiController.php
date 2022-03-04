@@ -105,7 +105,8 @@ class LeaderBoardsApiController extends BaseController
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
-                    $subevent->participants = $participantLists;
+                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->get();
+                    $subevent->participants = $SubEventSpecify;
                     $subevent->scoreboard = json_decode($subevent->scoreboard);
                     $subevent->timer = json_decode($subevent->timer);
                     $participants[] = $subevent;
