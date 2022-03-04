@@ -107,8 +107,7 @@ class LeaderBoardsApiController extends BaseController
                 foreach($getSubEvents as $subevent){
                     $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
                     $subevent->subeventspecify = $SubEventSpecify;
-                    $SubEventSpecifyUser = UserJoinedEvent::select('event_specified_id')
-                        ->where('event_id', $event_id)
+                    $SubEventSpecifyUser = UserJoinedEvent::where('event_id', $event_id)
                         ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
                     $participantLists = User::select('id', 'name');
                     $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
