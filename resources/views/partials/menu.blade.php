@@ -160,7 +160,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route("admin.walletmanagement.list") }}" class="nav-link {{ request()->is('admin/walletmanagement') || request()->is('admin/walletmanagement/*') ? 'active' : '' }}">
+                <a href="{{ route('admin.walletmanagement.list', 7) }}" class="nav-link {{ request()->is('admin/walletmanagement') || request()->is('admin/walletmanagement/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
