@@ -54,4 +54,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::post('get-states-by-country','RefereesController@getState');
     Route::post('get-cities-by-state','RefereesController@getCity');
+
+    Route::get('/wallet/list/{id}', 'UserWalletsController@index')->name('walletmanagement.list');
 });
