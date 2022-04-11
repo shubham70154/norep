@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>
                     @foreach($transactionResult as $key => $transaction)
-                        <tr data-entry-id="{{ $transaction->id }}">
+                        <tr data-entry-id="{{ $key }}">
                             <td>
                                 {{ $transaction->transaction_type ?? '' }}
                             </td>
