@@ -47,8 +47,8 @@ class UserWalletsController extends Controller
             $transactionResult[] = $transactions;
             $transactions = [];
         }
-        
-        return view('admin.walletmanagement.index', compact('transactionResult'));
+        return $this->sendResponse($transactionResult, 'Transaction list fetch successfully.');
+       // return view('admin.walletmanagement.index', compact('transactionResult'));
     }
 
 }
