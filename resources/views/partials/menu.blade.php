@@ -164,7 +164,7 @@
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
-                    test
+                    {{ trans('global.walletManagement.title') }}
                 </a>
             </li>
 
