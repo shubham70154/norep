@@ -32,6 +32,7 @@
                 </thead>
                 <tbody>
                     @foreach($transactionResult as $key => $transaction)
+                    <?php print_r($transaction);?>
                         <tr data-entry-id="{{ $key }}">
                             <td>
                                 {{ $transaction->transaction_type ?? '' }}
