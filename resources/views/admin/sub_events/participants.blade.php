@@ -23,13 +23,16 @@
 
                         </th>
                         <th>
-                            {{ trans('global.sub_event.fields.title') }}
+                            Name 
                         </th>
                         <th>
-                            {{ trans('global.sub_event.fields.description') }}
+                            Eamil
                         </th>
                         <th>
-                            Sub Event Type
+                            Gender
+                        </th>
+                        <th>
+                            Mobile No.
                         </th>
                         <th>
                             &nbsp;
@@ -37,42 +40,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($subEvents as $key => $event)
-                        <tr data-entry-id="{{ $event->id }}">
+                    @foreach($participantList as $key => $participant)
+                        <tr data-entry-id="{{ $participant->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $event->name ?? '' }}
+                                {{ $participant->name ?? '' }}
                             </td>
                             <td>
-                                {{ $event->description ?? '' }}
+                                {{ $participant->email ?? '' }}
                             </td>
                            
                             <td>
-                                @if($event->event_type_id == 1)
-                                    Virtual Event
-                                    @endif
-                                @if($event->event_type_id == 2)
-                                    On Site Event
-                                @endif
+                                {{ $participant->gender}}
                             </td>
                             <td>
-                                @can('product_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.subevents.show', $event->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-                                @can('product_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.subevents.leaderboard', $event->id) }}">
-                                        View Leaderboard
-                                    </a>
-                                @endcan
-                                <!-- @can('product_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.events.edit', $event->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan -->
+                                {{ $participant->mobile_no}}
                             </td>
 
                         </tr>
