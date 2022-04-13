@@ -35,7 +35,7 @@
                     <?php print_r($transaction);?>
                         <tr data-entry-id="{{ $key }}">
                             <td>
-                                {{ $transaction->transaction_type ?? '' }}
+                                {{ $transaction['transaction_type'] ?? '' }}
                             </td>
                             <td>
                                 {{ $transaction->deposite ?? '' }}  {{ $transaction->withdraw ?? '' }}
