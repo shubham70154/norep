@@ -47,7 +47,10 @@
                                 {{ $event->price ?? '' }}
                             </td>
                             <td>
-                               <?php print_r($event);?>
+                            @php 
+                            echo App\Http\Controllers\Admin\EventsController::getUserDetails($event->user_id);
+                            @endphp
+                               <?php print_r($event->user);?>
                             </td>
                             <td>
                                 @can('product_show')
