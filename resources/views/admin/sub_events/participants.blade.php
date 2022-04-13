@@ -34,9 +34,6 @@
                         <th>
                             Mobile No.
                         </th>
-                        <th>
-                            &nbsp;
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
