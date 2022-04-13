@@ -174,7 +174,7 @@ class EventsController extends Controller
     public static function getUserDetails($id) {
         $user = User::find($id);
         if ($user) {
-            return $user->name;
+            return ucfirst($user->name);
         } else {
             return '';
         }
