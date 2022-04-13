@@ -20,7 +20,7 @@
                 <thead>
                     <tr>
                         <th width="10">
-
+                        Id
                         </th>
                         <th>
                             Name 
@@ -40,7 +40,7 @@
                     @foreach($participantList as $key => $participant)
                         <tr data-entry-id="{{ $participant->id }}">
                             <td>
-
+{{$key+1}}
                             </td>
                             <td>
                                 {{ $participant->name ?? '' }}
