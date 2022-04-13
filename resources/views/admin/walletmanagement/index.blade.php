@@ -32,25 +32,24 @@
                 </thead>
                 <tbody>
                     @foreach($transactionResult as $key => $transaction)
-                    <?php print_r($transaction);?>
-                        <tr data-entry-id="{{ $key }}">
+                        <tr data-entry-id="{{$transaction['id'] }}">
                             <td>
                                 {{ $transaction['transaction_type'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->deposite ?? '' }}  {{ $transaction->withdraw ?? '' }}
+                                {{ $transaction['deposite'] ?? '' }}  {{ $transaction['withdraw'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->joining_event_name ?? '' }}
+                                {{ $transaction['joining_event_name'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->amount_before_transaction ?? '' }}
+                                {{ $transaction['amount_before_transaction'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->amount_after_transaction ?? '' }}
+                                {{ $transaction['amount_after_transaction'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->transaction_date_time ?? '' }}
+                                {{ $transaction['transaction_date_time'] ?? '' }}
                             </td>
                         </tr>
                     @endforeach
