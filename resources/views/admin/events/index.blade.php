@@ -24,6 +24,9 @@
                             {{ trans('global.event.fields.price') }}
                         </th>
                         <th>
+                            Event Organiser Name
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -42,6 +45,9 @@
                             </td>
                             <td>
                                 {{ $event->price ?? '' }}
+                            </td>
+                            <td>
+                                {{ EventsController::getUserDetails($event->user_id); }}
                             </td>
                             <td>
                                 @can('product_show')

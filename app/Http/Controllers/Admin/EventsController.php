@@ -170,4 +170,13 @@ class EventsController extends Controller
         }
         return view('admin.events.pastevents', compact('allevents'));
     }
+
+    public function getUserDetails($id) {
+        $user = User::find($id);
+        if ($user) {
+            return $user->name;
+        } else {
+            return '';
+        }
+    }
 }
