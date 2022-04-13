@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Event;
 use App\User;
 use App\SubEvent;
+use App\UserJoinedEvent;
 use Log;
 use DB;
 use Carbon\Carbon;
@@ -177,6 +178,30 @@ class EventsController extends Controller
             return ucfirst($user->name);
         } else {
             return '';
+        }
+    }
+
+    public function getParticipantsListByEventId($eventId)
+    {
+        try {
+            if (!is_null($eventId)) {
+                $result = UserJoinedEvent::where([
+                    ['event_id', $eventId]
+                ])->get();
+
+                $participantList = [];
+                foreach($result as $res) {
+                   $participant = User::where('id', $res->user_id)->first();
+                   $referee = User::select('id', 'name')->where('id', $res->referee_id)->first();
+                   $participant->assigned_referee = $referee;
+                   $participantList[] = $participant;
+                }
+                return view('admin.sub_events.participants', compact('participantList'));
+               // return $this->sendResponse($participantList, 'Participants list get successfully.');
+            }
+       
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
         }
     }
 }

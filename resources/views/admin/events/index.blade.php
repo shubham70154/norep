@@ -73,6 +73,10 @@
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.subevent/lists', $event->id) }}">
                                         {{ trans('global.event.view_subevent') }}
                                 </a>
+
+                                <a class="btn btn-xs btn-info" href="{{ route('admin.events.participant/lists', $event->id) }}">
+                                       View Participant
+                                </a>
                             </td>
 
                         </tr>
