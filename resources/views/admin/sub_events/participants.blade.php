@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('global.sub_event.title_singular') }} {{ trans('global.list') }}
+        Participant List
     </div>
 
     <div class="card-body">
