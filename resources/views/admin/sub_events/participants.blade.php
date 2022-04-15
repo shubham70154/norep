@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        Participant List
+        Participants List
     </div>
 
     <div class="card-body">
