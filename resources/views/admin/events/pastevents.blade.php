@@ -51,7 +51,6 @@
                             @php 
                             echo App\Http\Controllers\Admin\EventsController::getUserDetails($event->user_id);
                             @endphp
-                               
                             </td>
                             <td>
                                 @can('product_show')

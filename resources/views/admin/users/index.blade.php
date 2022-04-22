@@ -65,7 +65,6 @@
                             @php 
                             echo App\Http\Controllers\Admin\EventsController::eventOrganizerAmountEarned($user->id);
                             @endphp
-                               <?php print_r($event->user);?>
                             </td>
                             <td>
                                 @can('user_show')
