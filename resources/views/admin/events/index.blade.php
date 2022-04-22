@@ -76,6 +76,9 @@
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.participant/lists', $event->id) }}">
                                        View Participant
                                 </a>
+                                <a class="btn btn-xs btn-info" href="{{ route('admin.events.referee/lists', $event->id) }}">
+                                       View Referee
+                                </a>
                             </td>
 
                         </tr>

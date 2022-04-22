@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('events/participant/lists/{id}', 'EventsController@getParticipantsListByEventId')->name('events.participant/lists');
 
+    Route::get('events/referee/lists/{id}', 'EventsController@getRefereeListByEventId')->name('events.referee/lists');
+
     Route::get('subevent/show/{id}', 'SubEventsController@showSubEvent')->name('subevents.show');
 
     Route::get('subevent/leaderboard/{id}', 'SubEventsController@getSubEventLeaderBoard')->name('subevents.leaderboard');

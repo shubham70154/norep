@@ -205,6 +205,32 @@ class EventsController extends Controller
         }
     }
 
+    public function getRefereeListByEventId($eventId)
+    {
+        try {
+            if (!is_null($eventId)) {
+                $result = UserJoinedEvent::where([
+                    ['event_id', $eventId]
+                ])->get();
+
+                $refereeList = [];
+                foreach($result as $res) {
+                    if(!is_null($res->referee_id) ) {
+                        $referee = User::where('id', $res->referee_id)->first();
+                    
+                        $participant = User::select('id', 'name')->where('id', $res->user_id)->first();
+                        $referee->assigned_participant = $participant;
+                        $refereeList[] = $referee;
+                    }
+                }
+                return view('admin.sub_events.refereelist', compact('refereeList'));
+                //return $this->sendResponse($refereeList, 'Referee list get successfully.');
+            }
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage()]);
+        }
+    }
+
     public static function eventOrganizerAmountEarned($id) {
         $event_ids = Event::where('user_id', $id)->pluck('id')->toArray();
         if ($event_ids) {
