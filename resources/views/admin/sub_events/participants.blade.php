@@ -3,7 +3,7 @@
 @can('product_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.events.index") }}">
+            <a class="btn btn-success" href="{{ url()->previous() }}">
                 Back to Event List
             </a>
         </div>
