@@ -25,8 +25,8 @@
         <div class="col-sm-3 mb-3 mb-md-0">
             <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Events Created:  </h5>
-                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">View All Events</a>
+                <h5 class="card-title">Events Created : {{$events}}</h5>
+                <a href="{{ route("admin.events.index") }}" class="btn btn-primary">View All Events</a>
             </div>
             </div>
         </div>
