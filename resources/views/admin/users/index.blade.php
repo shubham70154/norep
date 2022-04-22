@@ -63,7 +63,7 @@
 
                             <td>
                             @php 
-                            echo App\Http\Controllers\Admin\EventsController::eventOrganizerAmountEarned($event->user_id);
+                            echo App\Http\Controllers\Admin\EventsController::eventOrganizerAmountEarned($user->id);
                             @endphp
                                <?php print_r($event->user);?>
                             </td>
