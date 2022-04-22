@@ -14,7 +14,7 @@ class HomeController
         $user = Auth::user();
         $earnedAmount = UserTransaction::orderBy('id', 'DESC')->first();
         $events = Event::count();
-        $crossFiter = User::wgere('user_type', 'CrossFiter'); 
+        $crossFiter = User::where('user_type', 'CrossFiter')->get(); 
 
         return view('home', compact('user','earnedAmount','events', 'crossFiter'));
     }
