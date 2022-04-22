@@ -34,8 +34,8 @@
         <div class="col-sm-3 mb-3 mb-md-0">
             <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Total Active Events : {{$activeEvents}} </h5>
-                <a href="{{ route('admin.events.runningeventlist') }}" class="btn btn-primary">View All Active Events</a>
+                <h5 class="card-title">Total Running Events : {{$activeEvents}} </h5>
+                <a href="{{ route('admin.events.runningeventlist') }}" class="btn btn-primary">View All Running Events</a>
             </div>
             </div>
         </div>
