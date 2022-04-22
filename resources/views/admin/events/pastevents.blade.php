@@ -28,7 +28,7 @@
                             Event Organiser Name
                         </th>
                         <th>
-                            &nbsp;
+                           Action
                         </th>
                     </tr>
                 </thead>
