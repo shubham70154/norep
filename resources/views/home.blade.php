@@ -34,8 +34,17 @@
         <div class="col-sm-3 mb-3 mb-md-0">
             <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Total Users:  </h5>
-                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">View All Users</a>
+                <h5 class="card-title">Total CrossFiter: {{crossFiter}} </h5>
+                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">View All CrossFiter</a>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 mb-3 mb-md-0">
+            <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total CrossFiter: {{crossFiter}} </h5>
+                <a href="{{ route("admin.users.index") }}" class="btn btn-primary">View All CrossFiter</a>
             </div>
             </div>
         </div>
