@@ -35,6 +35,9 @@
                             User Type
                         </th>
                         <th>
+                           Amount Earned
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
