@@ -74,10 +74,10 @@
                                 </a>
 
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.participant/lists', $event->id) }}">
-                                       View Participant
+                                       Joined Participant
                                 </a>
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.referee/lists', $event->id) }}">
-                                       View Referee
+                                       Assigned Referee
                                 </a>
                             </td>
 
