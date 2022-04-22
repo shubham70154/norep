@@ -74,10 +74,10 @@
                                         {{ trans('global.event.view_subevent') }}
                                 </a>
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.participant/lists', $event->id) }}">
-                                       Joined Participant
+                                       Joined Participants
                                 </a>
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.referee/lists', $event->id) }}">
-                                       Assigned Referee
+                                       Assigned Referees
                                 </a>
                             </td>
 
