@@ -206,16 +206,16 @@ class EventsController extends Controller
     }
 
     public static function eventOrganizerAmountEarned($id) {
-        $event_ids = Event::where('user_id', $id)->pluck('event_id')->toArray();
+        $event_ids = Event::where('user_id', $id)->pluck('id')->toArray();
         if ($event_ids) {
             $getJoinedEventsAmount = UserJoinedEvent::whereIn('event_id', $event_ids)->sum('amount');
             if ($getJoinedEventsAmount) {
                 return $getJoinedEventsAmount;
             } else {
-                return '';
+                return 0;
             }
         } else {
-            return '';
+            return 0;
         }
     }
 }
