@@ -60,6 +60,13 @@
                             <td>
                             {{ $user->user_type ?? '' }}
                             </td>
+
+                            <td>
+                            @php 
+                            echo App\Http\Controllers\Admin\EventsController::eventOrganizerAmountEarned($event->user_id);
+                            @endphp
+                               <?php print_r($event->user);?>
+                            </td>
                             <td>
                                 @can('user_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
