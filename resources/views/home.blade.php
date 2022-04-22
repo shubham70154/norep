@@ -17,7 +17,7 @@
             <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Amount Earned : {{$earnedAmount->amount_after_transaction}} </h5>
-                <a href="{{ route('admin.walletmanagement.list', $user->id) }}" class="btn btn-primary">View Transaction</a>
+                <a href="{{ route('admin.walletmanagement.list', 7) }}" class="btn btn-primary">View Transaction</a>
             </div>
             </div>
         </div>
