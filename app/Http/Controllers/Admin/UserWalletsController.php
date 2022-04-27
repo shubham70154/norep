@@ -65,7 +65,7 @@ class UserWalletsController extends Controller
         if ($userJoinedEvent) {
             $event = Event::find($userJoinedEvent->event_id);
             if ($event) {
-                return ucfirst($event->name);
+                return "Event Id: $event->id :- " . ucfirst($event->name);
             } else {
                 return '';
             }
