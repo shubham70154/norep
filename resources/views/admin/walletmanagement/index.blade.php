@@ -21,7 +21,7 @@
                             Transaction Amount
                         </th>
                         <th>
-                            Transaction for (Event Fees/Event Creator)
+                            Event Fees/Payment to Event Creator
                         </th>
                         <th>
                             Paypal Transaction ID
