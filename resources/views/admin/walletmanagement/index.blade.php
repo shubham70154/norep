@@ -17,7 +17,13 @@
                             Transaction Amount
                         </th>
                         <th>
-                            Transaction for (Event Name)
+                            Transaction for (Event Name/User Name)
+                        </th>
+                        <th>
+                            Paypal Transaction ID
+                        </th>
+                        <th>
+                            comssion
                         </th>
                         <th>
                             Amount Before Transaction
@@ -37,11 +43,28 @@
                                 {{ $transaction['transaction_type'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction['deposite'] ?? '' }}  {{ $transaction['withdraw'] ?? '' }}
+                                {{ $transaction['deposite_amount'] ?? '' }}  {{ $transaction['withdraw_amount'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction['joining_event_name'] ?? '' }}
+                                @if($transaction['transaction_type'] == 'deposite')
+                                    @php 
+                                    echo App\Http\Controllers\Admin\UserWalletsController::getEventDetails($transaction['user_joined_event_id']);
+                                    @endphp
+                                @endif
+                                @if($transaction['transaction_type'] == 'withdraw')
+                                    @php 
+                                    echo App\Http\Controllers\Admin\EventsController::getUserDetails($transaction['user_id']);
+                                    @endphp
+                                @endif
                             </td>
+                            <td>
+                                {{ $transaction['paypal_transaction_id'] ?? '' }}
+                            </td>
+
+                            <td>
+                                {{ $transaction['comssion'] ?? '--' }}
+                            </td>
+
                             <td>
                                 {{ $transaction['amount_before_transaction'] ?? '' }}
                             </td>
@@ -49,7 +72,7 @@
                                 {{ $transaction['amount_after_transaction'] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction['transaction_date_time'] ?? '' }}
+                                {{ $transaction['created_at'] ?? '' }}
                             </td>
                         </tr>
                     @endforeach
