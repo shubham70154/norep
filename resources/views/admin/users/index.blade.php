@@ -62,9 +62,10 @@
                             </td>
 
                             <td>
-                            @php 
+                            {{ $user->amount ?? '' }}
+                            <!-- @php 
                             echo App\Http\Controllers\Admin\EventsController::eventOrganizerAmountEarned($user->id);
-                            @endphp
+                            @endphp -->
                             </td>
                             <td>
                                 @can('user_show')
