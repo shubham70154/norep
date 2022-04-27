@@ -62,7 +62,7 @@
                             </td>
 
                             <td>
-                            {{ $user->amount ?? '' }}
+                            {{ $user->total_amount ?? '' }}
                             <!-- @php 
                             echo App\Http\Controllers\Admin\EventsController::eventOrganizerAmountEarned($user->id);
                             @endphp -->
