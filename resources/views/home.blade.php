@@ -16,7 +16,7 @@
         <div class="col-sm-3 mb-3 mb-md-0">
             <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Admin Amount Earned : {{$earnedAmount->total_amount}} </h5>
+                <h5 class="card-title">Admin Amount Earned : {{$user->total_amount}} </h5>
                 <a href="{{ route('admin.walletmanagement.list', 1) }}" class="btn btn-primary">View Transaction</a>
             </div>
             </div>
