@@ -17,7 +17,7 @@
                             Transaction Amount
                         </th>
                         <th>
-                            Transaction for (Event/Event Creator)
+                            Transaction for (Event Fees/Event Creator)
                         </th>
                         <th>
                             Paypal Transaction ID
@@ -40,7 +40,7 @@
                     @foreach($transactionResult as $key => $transaction)
                         <tr data-entry-id="{{$transaction['id'] }}">
                             <td>
-                                {{ $transaction['transaction_type'] ?? '' }}
+                                {{ ucfirst($transaction['transaction_type']) ?? '' }}
                             </td>
                             <td>
                                 {{ $transaction['deposite_amount'] ?? '' }}  {{ $transaction['withdraw_amount'] ?? '' }}
