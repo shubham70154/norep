@@ -44,7 +44,7 @@
                     @foreach($transactionResult as $key => $transaction)
                         <tr data-entry-id="{{$transaction['id'] }}">  
                             <td>
-                                {{ $transaction['id'] }}
+                                {{ $key+1 }}
                             </td>
                             <td>
                                 {{ ucfirst($transaction['transaction_type']) ?? '' }}
