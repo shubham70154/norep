@@ -188,7 +188,7 @@ class TransferAmountToEventCreatorAccountJob implements ShouldQueue
             DB::begintransaction();
             // Update Admin transaction table (Withdraw start)
             $adminData = User::find(1); // get admin Account transaction details
-            $adminUpdatedAmount = ($adminData->total_amount - $this->eventCreatorFees);
+            $adminUpdatedAmount = $adminData->total_amount - $this->eventCreatorFees;
             
             $depositeData = [
                 'transaction_type' => 'withdraw',
@@ -210,10 +210,10 @@ class TransferAmountToEventCreatorAccountJob implements ShouldQueue
             $eventId = $this->event->id;
             $depositeData = [
                 'user_id' => $this->event->user_id,
-                'joining_event_name' => "event_id: $eventId- " . $this->event->name,
+                'joining_event_name' => "Event ID: $eventId :- " . $this->event->name,
                 'amount_before_transaction' => $eventUserDetail->total_amount,
                 'amount_after_transaction' => $eventtotalAmount,
-                'deposite' => $this->eventAmount,
+                'deposite' => $this->eventCreatorFees,
                 'transaction_type' => 'deposite'
             ];
             $eventUserDetail->total_amount = $eventtotalAmount;
@@ -225,7 +225,7 @@ class TransferAmountToEventCreatorAccountJob implements ShouldQueue
             //Send Notification to event creator (start)
             $eventName = $this->event->name;
             $title = "Norep : Paypent received notification";
-            $msg = "You have received payment amount ($this->eventCreatorFees) ILS for a new user has joined your event ($eventName)" ;
+            $msg = "You have received payment amount ($this->eventCreatorFees ILS)for a new user has joined your event ($eventName)" ;
             $notificationResponse = BaseController::sendPayoutNotification($eventUserDetail->device_token, $title, $msg);
             BaseController::savePayoutNotification(null, $eventUserDetail->id, $title, $msg, $notificationResponse);
             //Send Notification to event creator (end)
