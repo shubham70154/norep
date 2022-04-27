@@ -188,7 +188,7 @@ class TransferAmountToEventCreatorAccountJob implements ShouldQueue
             DB::begintransaction();
             // Update Admin transaction table (Withdraw start)
             $adminData = User::find(1); // get admin Account transaction details
-            $adminUpdatedAmount = $adminData->total_amount - $this->eventCreatorFees;
+            $adminUpdatedAmount = ($adminData->total_amount - $this->eventCreatorFees);
             
             $depositeData = [
                 'transaction_type' => 'withdraw',
