@@ -14,6 +14,7 @@ use App\Mail\SendEmail;
 use Log, DB;
 use App\User;
 use App\UserTransaction;
+use App\AdminTransaction;
 
 class TransferAmountToEventCreatorAccountJob implements ShouldQueue
 {
@@ -39,8 +40,26 @@ class TransferAmountToEventCreatorAccountJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($event, $eventAmount = null)
+    public function __construct($event, $eventAmount = null, $user_joined_event_details = null)
     {
+        DB::begintransaction();
+        // Update Admin transaction table (deposite start)
+        $eventUserDetail = User::find(1); // get admin Account transaction details
+        $eventtotalAmount = $eventUserDetail->total_amount + $eventAmount;
+        
+        $depositeData = [
+            'transaction_type' => 'deposite',
+            'user_joined_event_id' => $user_joined_event_details->id,
+            'deposite_amount' => $eventAmount,
+            'paypal_transaction_id' => $user_joined_event_details->paypal_transaction_id,
+            'amount_before_transaction' => $eventUserDetail->total_amount,
+            'amount_after_transaction' => $eventtotalAmount
+        ];
+        $eventUserDetail->total_amount = $eventtotalAmount;
+        $eventUserDetail->save();
+        $adminTransaction = AdminTransaction::create($depositeData);
+        DB::commit();
+
         $this->event = $event; 
         $this->eventAmount = $eventAmount;
         $this->setting = DB::table('settings')->pluck('value', 'name')->toArray();
@@ -167,13 +186,31 @@ class TransferAmountToEventCreatorAccountJob implements ShouldQueue
 
         if ($batch_status = "PROCESSING" || $batch_status == "SUCCESS") {
             DB::begintransaction();
-            // Update user transaction table (deposite start)
-            $eventUserDetail = User::find($this->event->user_id);
-            $eventtotalAmount = $eventUserDetail->total_amount + $this->eventAmount;
+            // Update Admin transaction table (Withdraw start)
+            $adminData = User::find(1); // get admin Account transaction details
+            $adminUpdatedAmount = ($adminData->total_amount - $this->eventCreatorFees);
             
             $depositeData = [
+                'transaction_type' => 'withdraw',
                 'user_id' => $this->event->user_id,
-                'joining_event_name' => $this->event->name,
+                'withdraw_amount' => $this->eventCreatorFees,
+                'comssion' => $this->setting['EVENT_COMMISSION'],
+                'paypal_transaction_id' => $batchId,
+                'amount_before_transaction' => $adminData->total_amount,
+                'amount_after_transaction' => $adminUpdatedAmount
+            ];
+            $adminData->total_amount = $adminUpdatedAmount;
+            $adminData->save();
+            $adminTransaction = AdminTransaction::create($depositeData);
+            
+            // Update user transaction table (deposite start)
+            $eventUserDetail = User::find($this->event->user_id);
+            $eventtotalAmount = ($eventUserDetail->total_amount + $this->eventCreatorFees);
+            
+            $eventId = $this->event->id;
+            $depositeData = [
+                'user_id' => $this->event->user_id,
+                'joining_event_name' => "event_id: $eventId- " . $this->event->name,
                 'amount_before_transaction' => $eventUserDetail->total_amount,
                 'amount_after_transaction' => $eventtotalAmount,
                 'deposite' => $this->eventAmount,

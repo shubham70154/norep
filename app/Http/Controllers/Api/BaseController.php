@@ -14,7 +14,7 @@ use DB;
 class BaseController extends Controller
 {
 
-    protected $setting;
+    public $setting;
 
     public function __construct()
     {
@@ -184,7 +184,8 @@ class BaseController extends Controller
           
             return $notificationResponse;
         } catch (\Exception $e) {
-            return [ 'error_msg' =>'Oops payout_something went wrong.', 'error'=> $e->getMessage()];
+            return [ 'error_msg' =>'Oops payout_something went wrong.', 'error'=> $e->getMessage(),
+            'line_no'=> $e->getLine()];
         }
     }
 
@@ -200,7 +201,8 @@ class BaseController extends Controller
             ];
             NotificationList::create($saveNotificationData);
         } catch (\Exception $e) {
-            return [ 'error_msg' =>'Oops payout_something went wrong.', 'error'=> $e->getMessage()];
+            return [ 'error_msg' =>'Oops payout_something went wrong.', 'error'=> $e->getMessage(),
+            'line_no'=> $e->getLine()];
         }
     }
 
