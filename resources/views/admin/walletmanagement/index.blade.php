@@ -11,6 +11,10 @@
                 <thead>
                     <tr>
                         <th>
+                            ID
+                        </th>
+
+                        <th>
                             Transaction Type
                         </th>
                         <th>
@@ -38,7 +42,10 @@
                 </thead>
                 <tbody>
                     @foreach($transactionResult as $key => $transaction)
-                        <tr data-entry-id="{{$transaction['id'] }}">
+                        <tr data-entry-id="{{$transaction['id'] }}">  
+                            <td>
+                                {{ $transaction['id'] }}
+                            </td>
                             <td>
                                 {{ ucfirst($transaction['transaction_type']) ?? '' }}
                             </td>
