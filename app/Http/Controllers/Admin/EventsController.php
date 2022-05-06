@@ -10,6 +10,7 @@ use App\Event;
 use App\EventSpecify;
 use App\User;
 use App\SubEvent;
+use App\SubEventSpecify;
 use App\UserJoinedEvent;
 use Log;
 use DB;
@@ -252,12 +253,23 @@ class EventsController extends Controller
         }
     }
 
-    public static function getEventCategoryList($id) {
-        $EventSpecify = EventSpecify::where('event_id', $id)->pluck('title')->toArray();
-        if ($EventSpecify) {
-            return implode(', ' , $EventSpecify);
-        } else {
-            return '';
+    public static function getEventCategoryList($eventid, $sub_eventid = null) {
+        if (!is_null($eventid) && !is_null($sub_eventid)) {
+            $SubEventSpecify = SubEventSpecify::where('event_id', $eventid)
+                            ->where('sub_event_id', $sub_eventid)->select('event_specified_id')->get();
+            $EventSpecify = EventSpecify::find($SubEventSpecify->event_specified_id);
+            if ($EventSpecify) {
+                return $EventSpecify->title;
+            } else {
+                return '';
+            }
+        } elseif(!is_null($eventid) && is_null($sub_eventid)) {
+            $EventSpecify = EventSpecify::where('event_id', $eventid)->pluck('title')->toArray();
+            if ($EventSpecify) {
+                return implode(', ' , $EventSpecify);
+            } else {
+                return '';
+            }
         }
     }
 }

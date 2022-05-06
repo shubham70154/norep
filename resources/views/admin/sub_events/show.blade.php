@@ -39,6 +39,18 @@
                         {!! $subEvent->category !!}
                     </td>
                 </tr>
+
+                <tr>
+                    <th>
+                        Event Category
+                    </th>
+                    <td>
+                        @php 
+                        echo App\Http\Controllers\Admin\EventsController::getEventCategoryList($subEvent->event_id, $subEvent->id);
+                        @endphp
+                    </td>
+                </tr>
+
                 <tr>
                     <th>
                         Sub Event Type
