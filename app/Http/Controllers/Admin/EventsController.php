@@ -255,7 +255,7 @@ class EventsController extends Controller
     public static function getEventCategoryList($id) {
         $EventSpecify = EventSpecify::where('event_id', $id)->pluck('title')->toArray();
         if ($EventSpecify) {
-            return implode(',' , $EventSpecify);
+            return implode(', ' , $EventSpecify);
         } else {
             return '';
         }
