@@ -12,7 +12,7 @@ class SubEventsController extends Controller
 {
     public function subEventList($id)
     {
-        $subEvents = SubEvent::find($id);
+        $subEvents = SubEvent::where('event_id' , $id)->get();
         
         return view('admin.sub_events.index', compact('subEvents'));
     }
