@@ -48,6 +48,18 @@
                         {!! $event->description !!}
                     </td>
                 </tr>
+
+                <tr>
+                    <th>
+                        Event Category
+                    </th>
+                    <td>
+                        @php 
+                        echo App\Http\Controllers\Admin\UserWalletsController::getEventCategoryList($event->id);
+                        @endphp
+                    </td>
+                </tr>
+
                 <tr>
                     <th>
                         Start Date

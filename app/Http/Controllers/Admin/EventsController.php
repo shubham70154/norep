@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyEventRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Event;
+use App\EventSpecify;
 use App\User;
 use App\SubEvent;
 use App\UserJoinedEvent;
@@ -246,6 +247,15 @@ class EventsController extends Controller
         $user = User::find($id);
         if ($user) {
             return ucfirst($user->amount);
+        } else {
+            return '';
+        }
+    }
+
+    public static function getEventCategoryList($id) {
+        $EventSpecify = EventSpecify::where('event_id', $id)->pluck('title')->toArray();
+        if ($EventSpecify) {
+            return implode(',' , $EventSpecify);
         } else {
             return '';
         }
