@@ -55,7 +55,7 @@
                     </th>
                     <td>
                         @php 
-                        echo App\Http\Controllers\Admin\UserWalletsController::getEventCategoryList($event->id);
+                        echo App\Http\Controllers\Admin\EventsController::getEventCategoryList($event->id);
                         @endphp
                     </td>
                 </tr>
