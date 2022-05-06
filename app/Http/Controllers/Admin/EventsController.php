@@ -256,7 +256,7 @@ class EventsController extends Controller
     public static function getEventCategoryList($eventid, $sub_eventid = null) {
         if (!is_null($eventid) && !is_null($sub_eventid)) {
             $SubEventSpecify = SubEventSpecify::where('event_id', $eventid)
-                            ->where('sub_event_id', $sub_eventid)->select('event_specified_id')->get();
+                            ->where('sub_event_id', $sub_eventid)->select('event_specified_id')->first();
             $EventSpecify = EventSpecify::find($SubEventSpecify->event_specified_id);
             if ($EventSpecify) {
                 return $EventSpecify->title;
