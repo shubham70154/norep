@@ -46,6 +46,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('subevent/leaderboard/{id}', 'SubEventsController@getSubEventLeaderBoard')->name('subevents.leaderboard');
 
+    Route::get('event/leaderboard/{id}', 'EventsController@getEventLeaderBoard')->name('events.leaderboard');
+
     Route::resource('referees', 'RefereesController');
 
     Route::get('/helpsupports/list', 'HelpSupportsController@index')->name('helpsupports.list');

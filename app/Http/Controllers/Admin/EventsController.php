@@ -272,4 +272,140 @@ class EventsController extends Controller
             }
         }
     }
+
+    public function getEventLeaderBoard($event_id, $specified_id = null, $sub_event_id = null)
+    {
+        try {
+            if (isset($event_id) && !is_null($event_id) && isset($specified_id) && !is_null($specified_id)
+                && isset($sub_event_id) && !is_null($sub_event_id))
+            {
+                $eventDetail = Event::find($event_id);
+                $sub_event_ids = SubEventSpecify::where([
+                        ['event_id', $event_id],
+                        ['event_specified_id', $specified_id],
+                        ['sub_event_id', $sub_event_id]
+                    ])->pluck('sub_event_id')->toArray();
+
+                $getSubEvents = SubEvent::whereIn('id', $sub_event_ids)->get();
+            
+                $getAssignedParticipantLists = UserJoinedEvent::where([
+                    ['event_id', $event_id],
+                    ['event_specified_id', $specified_id]
+                    ])->pluck('user_id')->toArray();
+                
+                $participantLists = User::select('id', 'name');
+                $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+
+                $participants = [];
+                foreach($getSubEvents as $subevent){
+                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
+                    $subevent->subeventspecify = $SubEventSpecify;
+                    $SubEventSpecifyUser = UserJoinedEvent::where('event_id', $event_id)
+                        ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
+                    $participantLists = User::select('id', 'name');
+                    $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                    $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                    $participantLists = $participantLists->whereIn('id', $SubEventSpecifyUser)->get();
+                    $subevent->participants = $participantLists;
+                    //$subevent->participants = $participantLists;
+                    $subevent->scoreboard = json_decode($subevent->scoreboard);
+                    $subevent->timer = json_decode($subevent->timer);
+                    $participants[] = $subevent;
+                }
+                $eventDetail->sub_events = $participants;
+                $eventDetail->total = ['participants' => $participantLists];
+
+                $specifiedList = DB::table('event_specified_for')->select('id','title')
+                        ->where('event_id' , $event_id)->get();
+                return view('admin.events.leaderboard', compact('eventDetail', 'specifiedList'));
+               // return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
+            } else if (isset($event_id) && !is_null($event_id) && isset($specified_id) && !is_null($specified_id))
+            {
+                $eventDetail = Event::find($event_id);
+                $sub_event_ids = SubEventSpecify::where([
+                        ['event_id', $event_id],
+                        ['event_specified_id', $specified_id]
+                    ])->pluck('sub_event_id')->toArray();
+
+                $getSubEvents = SubEvent::whereIn('id', $sub_event_ids)->get();
+            
+                $getAssignedParticipantLists = UserJoinedEvent::where([
+                    ['event_id', $event_id],
+                    ['event_specified_id', $specified_id]
+                    ])->pluck('user_id')->toArray();
+                
+                $participantLists = User::select('id', 'name');
+                $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+
+                $participants = [];
+                foreach($getSubEvents as $subevent){
+                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
+                    $subevent->subeventspecify = $SubEventSpecify;
+                    $SubEventSpecifyUser = UserJoinedEvent::where('event_id', $event_id)
+                        ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
+                    $participantLists = User::select('id', 'name');
+                    $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                    $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                    $participantLists = $participantLists->whereIn('id', $SubEventSpecifyUser)->get();
+                    $subevent->participants = $participantLists;
+                    //$subevent->participants = $participantLists;
+                    $subevent->scoreboard = json_decode($subevent->scoreboard);
+                    $subevent->timer = json_decode($subevent->timer);
+                    $participants[] = $subevent;
+                }
+                $eventDetail->sub_events = $participants;
+                $eventDetail->total = ['participants' => $participantLists];
+                $specifiedList = DB::table('event_specified_for')->select('id','title')
+                        ->where('event_id' , $event_id)->get();
+                return view('admin.events.leaderboard', compact('eventDetail', 'specifiedList'));
+                //return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
+            } else if (isset($event_id) && !is_null($event_id))
+            {
+                $eventDetail = Event::find($event_id);
+                $getSubEvents = SubEvent::where([
+                        ['event_id', $event_id],
+                        ['status', 1]
+                    ])->get();
+            
+                $getAssignedParticipantLists = UserJoinedEvent::where('event_id', $event_id)->pluck('user_id')->toArray();
+                
+                $participantLists = User::select('id', 'name');
+                $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+
+                $participants = [];
+                foreach($getSubEvents as $subevent){
+                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
+                    $subevent->subeventspecify = $SubEventSpecify;
+                    $SubEventSpecifyUser = UserJoinedEvent::where('event_id', $event_id)
+                        ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
+                    $participantLists = User::select('id', 'name');
+                    $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
+                    $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
+                    $participantLists = $participantLists->whereIn('id', $SubEventSpecifyUser)->get();
+                    $subevent->participants = $participantLists;
+                    $subevent->scoreboard = json_decode($subevent->scoreboard);
+                    $subevent->timer = json_decode($subevent->timer);
+                    $participants[] = $subevent;
+                }
+                $eventDetail->sub_events = $participants;
+                $eventDetail->total = ['participants' => $participantLists];
+                $specifiedList = DB::table('event_specified_for')->select('id','title')
+                        ->where('event_id' , $event_id)->get();
+                return view('admin.events.leaderboard', compact('eventDetail', 'specifiedList'));
+            } else {
+                $eventDetail = [];
+                return view('admin.events.leaderboard', compact($eventDetail));
+            }
+
+        } catch (\Exception $e) {
+            return $this->sendError('Oops something went wrong.', ['error'=> $e->getMessage(),
+            'line_no'=> $e->getLine()]);
+        }
+    }
 }
