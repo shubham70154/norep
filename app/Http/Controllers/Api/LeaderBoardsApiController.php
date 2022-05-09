@@ -77,7 +77,7 @@ class LeaderBoardsApiController extends BaseController
 
                 $getSubEvents = SubEvent::whereIn('id', $sub_event_ids)->get();
             
-                $getAssignedParticipantLists = UserJoinedEvent::where([
+             return   $getAssignedParticipantLists = UserJoinedEvent::where([
                     ['event_id', $event_id],
                     ['event_specified_id', $specified_id]
                     ])->pluck('user_id')->toArray();
