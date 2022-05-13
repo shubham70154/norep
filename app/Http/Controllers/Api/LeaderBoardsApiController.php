@@ -104,7 +104,7 @@ class LeaderBoardsApiController extends BaseController
                     $participants[] = $subevent;
                 }
                 $eventDetail->sub_events = $participants;
-                $eventDetail->total = ['participants' => $participantLists];
+                $eventDetail->total = ['participants' => $participanttotalLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else if (isset($event_id) && !is_null($event_id))
             {
@@ -137,7 +137,7 @@ class LeaderBoardsApiController extends BaseController
                     $participants[] = $subevent;
                 }
                 $eventDetail->sub_events = $participants;
-                $eventDetail->total = ['participants' => $participantLists];
+                $eventDetail->total = ['participants' => $participanttotalLists];
                 return $this->sendResponse($eventDetail, 'LeaderBoard fetch successfully.');
             } else {
                 return $this->sendError('Event not found.', ['error'=>'Event id not found!']);
