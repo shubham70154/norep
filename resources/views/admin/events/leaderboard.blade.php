@@ -248,7 +248,6 @@
     <style>
       .jumbotron {
         color: white;
-        background-image: url("https://competitioncorner.net/file.aspx/mainFilesystem?General%2ffb_leaderboard_v61.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
