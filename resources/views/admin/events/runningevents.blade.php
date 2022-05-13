@@ -73,6 +73,11 @@
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.subevent/lists', $event->id) }}">
                                         {{ trans('global.event.view_subevent') }}
                                 </a>
+
+                                <a class="btn btn-xs btn-primary" href="{{ route('admin.events.leaderboard', $event->id) }}">
+                                    View Leaderboard
+                                </a>
+                                
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.events.participant/lists', $event->id) }}">
                                        Joined Participants
                                 </a>
