@@ -339,7 +339,7 @@
               <table class="table" style="margin-left: -25px; ">
 
               </table>
-              <div id="1" class="tab-pane fade in active">
+              <div class="tab-pane fade">
                 <table class="table">
                   <thead>
                     <tr>
