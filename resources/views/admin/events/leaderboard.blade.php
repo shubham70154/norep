@@ -300,7 +300,7 @@
           <div class="row ">
             <ul class="nav nav-tabs owl-carousel owl-theme">
             @foreach($specifiedList as $key => $list)
-            <li>
+              <li>
                 <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; ">
                  <b>{{$list->title}}</b>
                 </a>
@@ -336,9 +336,6 @@
             </ul>
 
             <div class="tab-content" style="width: 100%; margin-top: 30px">
-              <table class="table">
-
-              </table>
               <div class="tab-pane fade in active">
                 <table class="table">
                   <thead>
