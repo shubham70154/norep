@@ -294,9 +294,9 @@
   <div class="card-header">
     View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
   </div>
-
   <div class="card-body">
     <div class="jumbotron jumbotron-fluid">
+        <div class="container">
           <div class="row ">
             <ul class="nav nav-tabs owl-carousel owl-theme">
 
@@ -852,6 +852,7 @@
 
 
           </div>
+        </div>
       </div>
       <!-- </div> -->
 
