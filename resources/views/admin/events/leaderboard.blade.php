@@ -306,33 +306,6 @@
                 </a>
               </li>
             @endforeach
-
-              <!-- <li class="active ">
-                <a data-toggle="tab" style="border: none; margin: 10px;  " href="#1"><b>Female Novice (Team)</b></a>
-              </li>
-
-              <li>
-                <a data-toggle="tab" style="border: none; margin: 10px;  " href="#2"><b>Female Intermediate
-                    (Team)</b></a>
-              </li>
-              <li>
-                <a data-toggle="tab" style="border: none; margin: 10px;  " href="#3"><b>Male Intermediate
-                    (Team)</b></a>
-              </li>
-              <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#4"><b>Female Masters 45+
-                    (Team)</b></a>
-              </li>
-              <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#5"><b>Male Masters 45+
-                    (Team)</b></a>
-              </li>
-              <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#6"><b>Female Intermediate</b></a>
-              </li>
-              <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#7"><b> Female Novice</b></a>
-              </li>
-              <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#8"><b>Male Intermediate</b></a>
-              </li>
-              <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#9"><b>Male Masters 45+</b></a>
-              </li> -->
             </ul>
 
             <div class="tab-content" style="width: 100%; margin-top: 30px">
@@ -342,12 +315,12 @@
                     <tr>
                       <th scope="col">Participants 1</th>
                       <th scope="col">Total</th>
-                      <th scope="col">WOD 1 <br><a data-toggle="modal" data-target="#exampleModal22" href="#">
-                          details</a></th>
-                      <th scope="col">WOD 2 <br><a data-toggle="modal" data-target="#exampleModal22" href="#">
-                          details</a></th>
-                      <th scope="col">WOD 3: Row <br><a data-toggle="modal" data-target="#exampleModal22" href="#">
-                          details</a></th>
+                      @foreach($eventDetail['sub_events'] as $key => $list)
+                        <th scope="col">{{$list->name}}<br>
+                          <a data-toggle="modal" data-target="#exampleModal22" href="#">details</a>
+                        </th>
+                      
+                      @endforeach
                     </tr>
                   </thead>
                   <thead>
