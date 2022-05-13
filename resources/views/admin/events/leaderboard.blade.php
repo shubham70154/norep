@@ -295,7 +295,7 @@
     View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
   </div>
   <?php
-  echo "<pre>";print_r($eventDetail);
+  echo "<pre>";print_r($eventDetail->name);
   ?>
   <div class="card-body">
     <div class="jumbotron jumbotron-fluid">
