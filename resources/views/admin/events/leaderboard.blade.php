@@ -336,7 +336,7 @@
             </ul>
 
             <div class="tab-content" style="width: 100%; margin-top: 30px">
-              <div class="tab-pane">
+              <div class="tab-pane in active">
                 <table class="table">
                   <thead>
                     <tr>
