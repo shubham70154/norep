@@ -301,7 +301,9 @@
             <ul class="nav nav-tabs owl-carousel owl-theme">
             @foreach($specifiedList as $key => $list)
             <li class="active ">
-                <a data-toggle="tab" style="border: none; margin: 10px; font-size:18px; " href="#1"><b>{{$list->title}}</b></a>
+                <a href="{{ route('admin.events.leaderboard', $event->id, $list->id) }}" data-toggle="tab" style="border: none; margin: 10px; font-size:18px; ">
+                <b>{{$list->title}}</b>
+              </a>
               </li>
             @endforeach
 
