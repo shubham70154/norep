@@ -339,11 +339,11 @@ class EventsController extends Controller
                 $participantLists = User::select('id', 'name');
                 $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
                 $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
-               return $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
-                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
+                   return $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
                     $subevent->subeventspecify = $SubEventSpecify;
                     $SubEventSpecifyUser = UserJoinedEvent::where('event_id', $event_id)
                         ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
