@@ -13,7 +13,7 @@
 <div class="card-header">
         View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
     </div>
-    
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -245,21 +245,6 @@
       </div>
     </div>
   </div>
-    <header class="app-header navbar">
-        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-            <img class="navbar-brand-full" src="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/img/logo.svg" width="89" height="25" alt="Norep Admin Panel">
-            <span class="navbar-brand-minimized">N</span>
-        </a>
-        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <ul class="nav navbar-nav ml-auto">
-                    </ul>
-    </header>
     <style>
       .jumbotron {
         color: white;
