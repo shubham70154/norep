@@ -46,7 +46,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header"
-        style="background-image: url(./assets/images/480x400_athlete_brag621.png); height: 200px;">
+        style="height: 200px;">
         <h5
           style="text-align: center; margin-left: 50px; margin-right: 50px; margin-top: 80px; color: white; font-size: 20px;"
           class="modal-title" id="exampleModalLongTitle"><b>QUICK, GRAB MY INHALER!
