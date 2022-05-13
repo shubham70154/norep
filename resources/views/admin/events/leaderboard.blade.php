@@ -36,6 +36,245 @@
       }
   </style>
 @endpush
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header"
+          style="background-image: url(./assets/images/480x400_athlete_brag621.png); height: 200px;">
+          <h5
+            style="text-align: center; margin-left: 50px; margin-right: 50px; margin-top: 80px; color: white; font-size: 20px;"
+            class="modal-title" id="exampleModalLongTitle"><b>QUICK, GRAB MY INHALER!
+              AREA 56 WAREHOUSE GYM</b></h5>
+          <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: white;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs d-flex justify-content-center" style="height: 50px;">
+            <li class="active">
+              <a data-toggle="tab" style="border: none;  margin: 10px;" href="#11"><b>Rank</b></a>
+            </li>
+
+            <li>
+              <a data-toggle="tab" style="border: none;  margin: 10px;" href="#12"><b>Schedule</b></a>
+            </li>
+            <li>
+              <a data-toggle="tab" style="border: none;  margin: 10px;" href="#13"><b>Teammates</b></a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="11" class="tab-pane fade in active">
+
+
+              <div class="row">
+                <div class="col d-flex justify-content-center">
+
+                  <p><b style="font-size: 30px;"> 1st</b> <br> OverAll</p>
+                </div>
+                <div class="col d-flex justify-content-center">
+                  <p><b style="font-size: 30px;"> 7</b> <br> Total</p>
+                </div>
+              </div>
+              <div class="row">
+                <table class="table">
+
+                  <tbody style="margin-left: 50px;">
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td width="100px">Reps:5</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div id="12" class="tab-pane fade">
+              <div class="row">
+                <div class="col d-flex justify-content-center">
+
+                  <p><b style="font-size: 30px;"> 1st</b> <br> OverAll</p>
+                </div>
+                <div class="col d-flex justify-content-center">
+                  <p><b style="font-size: 30px;"> 7</b> <br> Total</p>
+                </div>
+              </div>
+              <div class="row">
+                <table class="table">
+
+                  <tbody style="margin-left: 50px;">
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td width="100px">Reps:5</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                    <tr>
+
+                      <td><b>WOD 1</b><br>
+                        Points: 1</td>
+                      <td>Time: 06:45</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div id="13" class="tab-pane fade">
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+
+                <div class="col">
+                  <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                </div>
+                <div class="col" style="margin-top: 15px; margin-left: -350px;">
+                  <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
+
+                </div>
+              </div>
+              <hr>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">WOD</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        All details here
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 @section('content')
 @can('product_create')
     <div style="margin-bottom: 10px;" class="row">
@@ -48,769 +287,815 @@
 @endcan
 
 <div class="card-header">
-        View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
-    </div>
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="height: 200px;" >
-          <h5 style="text-align: center; margin-left: 50px; margin-right: 50px; margin-top: 80px; color: white; font-size: 20px;" class="modal-title" id="exampleModalLongTitle"><b>QUICK, GRAB MY INHALER!
-            AREA 56 WAREHOUSE GYM</b></h5>
-          <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" style="color: white;">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" >
-          <ul class="nav nav-tabs d-flex justify-content-center" style="height: 50px;">
-            <li class="active">
-                <a data-toggle="tab" style="border: none;  margin: 10px;"
-                href="#11"><b >Rank</b></a>
-            </li>
-           
-            <li>
-                <a data-toggle="tab" style="border: none;  margin: 10px;"
-                href="#12"><b >Schedule</b></a>
-            </li>
-            <li>
-                <a data-toggle="tab" style="border: none;  margin: 10px;"
-                href="#13"><b >Teammates</b></a>
-            </li>
-            </ul>
-              
-            <div class="tab-content">
-              <div id="11" class="tab-pane fade in active">
-                        <div class="row">
-                          <div class="col d-flex justify-content-center">
-
-                            <p><b style="font-size: 30px;"> 1st</b> <br> OverAll</p>
-                          </div>
-                          <div class="col d-flex justify-content-center">
-                            <p><b style="font-size: 30px;"> 7</b> <br> Total</p>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <table class="table" >
-                           
-                            <tbody style="margin-left: 50px;" >
-                              <tr >
-                              
-                                <td><b>WOD 1</b><br>
-                                  Points: 1</td>
-                                <td width="100px">Reps:5</td>
-                              </tr>
-                              <tr>
-                              
-                                <td><b>WOD 1</b><br>
-                                  Points: 1</td>
-                                <td>Time: 06:45</td>
-                              </tr>
-                              <tr>
-                              
-                                <td><b>WOD 1</b><br>
-                                  Points: 1</td>
-                                <td>Time: 06:45</td>
-                              </tr><tr>
-                              
-                                <td><b>WOD 1</b><br>
-                                  Points: 1</td>
-                                <td>Time: 06:45</td>
-                              </tr><tr>
-                              
-                                <td><b>WOD 1</b><br>
-                                  Points: 1</td>
-                                <td>Time: 06:45</td>
-                              </tr>
-                            </tbody>
-                          </table>  
-                        </div>
-
-              </div>
-              <div id="12" class="tab-pane fade">
-                <div class="row">
-                  <div class="col d-flex justify-content-center">
-
-                    <p><b style="font-size: 30px;"> 1st</b> <br> OverAll</p>
-                  </div>
-                  <div class="col d-flex justify-content-center">
-                    <p><b style="font-size: 30px;"> 7</b> <br> Total</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <table class="table" >
-                   
-                    <tbody style="margin-left: 50px;" >
-                      <tr >
-                      
-                        <td><b>WOD 1</b><br>
-                          Points: 1</td>
-                        <td width="100px">Reps:5</td>
-                      </tr>
-                      <tr>
-                      
-                        <td><b>WOD 1</b><br>
-                          Points: 1</td>
-                        <td>Time: 06:45</td>
-                      </tr>
-                      <tr>
-                      
-                        <td><b>WOD 1</b><br>
-                          Points: 1</td>
-                        <td>Time: 06:45</td>
-                      </tr><tr>
-                      
-                        <td><b>WOD 1</b><br>
-                          Points: 1</td>
-                        <td>Time: 06:45</td>
-                      </tr><tr>
-                      
-                        <td><b>WOD 1</b><br>
-                          Points: 1</td>
-                        <td>Time: 06:45</td>
-                      </tr>
-                    </tbody>
-                  </table>  
-                </div>
-
-              </div>
-              <div id="13" class="tab-pane fade">
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div>
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div>
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div>
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div>
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div> 
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div>
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  
-                  <div class="col">
-                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-                  </div>
-                  <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                    <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-                  </div>
-                </div>
-                <hr>
-
-              </div>
-
-            </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">WOD</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          All details here
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-       
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- <div class="card"> -->
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-
-    <div class="row ">        
-        <ul class="nav nav-tabs owl-carousel owl-theme" style="height: 50px;">
-
-            <li class="active " >
-                <a data-toggle="tab"  style="border: none; margin: 10px;  "
-                href="#1"><b >Female Novice (Team)</b></a>
-            </li>
-            
-            <li>
-                <a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#2"><b>Female Intermediate (Team)</b></a>
-            </li>
-            <li>
-                <a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#3"><b>Male Intermediate (Team)</b></a>
-            </li>
-            <li><a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#4"><b>Female Masters 45+ (Team)</b></a>
-            </li>
-            <li><a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#5"><b>Male Masters 45+ (Team)</b></a>
-            </li>
-            <li><a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#6"><b>Female Intermediate</b></a>
-            </li>
-            <li><a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#7"><b> Female Novice</b></a>
-            </li>
-            <li><a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#8"><b>Male Intermediate</b></a>
-            </li>
-            <li><a data-toggle="tab" style="border: none; margin: 10px;  "
-                href="#9"><b>Male Masters 45+</b></a>
-            </li>
-        </ul>
-                
-        <div class="tab-content" style="width: 1200px; margin-top: 70px">
-            <table class="table" style="margin-left: -25px; ">
-                
-            </table>
-            <div id="1" class=
-                "tab-pane fade in active">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 1</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br><a data-toggle="modal" data-target="#exampleModal22" href="#"> details</a></th>
-                          <th scope="col">WOD 2 <br><a data-toggle="modal" data-target="#exampleModal22" href="#"> details</a></th>
-                          <th scope="col">WOD 3: Row <br><a data-toggle="modal" data-target="#exampleModal22" href="#"> details</a></th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;"><a style="color: black; text-decoration: none; "  href=""data-toggle="modal" data-target="#exampleModalCenter">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</a></span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-            <div id="2" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 2</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-            <div id="3" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 3</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-            <div id="4" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 4</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-            <div id="5" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 5</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-            <div id="6" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 6</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-
-            <div id="7" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 7</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-
-            <div id="8" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 8</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>     
-            </div>
-
-
-            <div id="9" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                        <tr >
-                          <th scope="col">Participants 9</th>  
-                          <th scope="col">Total</th>
-                          <th scope="col">WOD 1 <br>details</th>
-                          <th scope="col">WOD 2 <br>details</th>
-                          <th scope="col">WOD 3: Row <br>details</th>
-                        </tr>
-                      </thead>
-                      <thead>
-                        <tr style="background-color: rgba(134, 134, 134, 0.192);" >
-                          <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>  
-                          <th scope="col" style="color: grey;">Points</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                          <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                          <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                        </tr>
-                      </thead>
-                    
-                    <tbody>
-                      <tr>
-                        <th scope="row"  width= "30%">1 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">2 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"  width= "30%">3 
-                            <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;" >AREA 56 WAREHOUSE GYM</span></span></th>
-                        <td>20</td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-
-        </div>
-    </div>
-  </div>
+    View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
 </div>
-<!-- </div> -->
+
+<div class="app-body">
+    <div class="sidebar">
+      <nav class="sidebar-nav ps ps--active-y">
+
+        <ul class="nav">
+          <li class="nav-item">
+            <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt">
+
+              </i>
+              Dashboard
+            </a>
+          </li>
+          <!-- <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle">
+                    <i class="fas fa-users nav-icon">
+
+                    </i>
+                    User Management
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/permissions" class="nav-link ">
+                            <i class="fas fa-unlock-alt nav-icon">
+
+                            </i>
+                            Permissions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/roles" class="nav-link ">
+                            <i class="fas fa-briefcase nav-icon">
+
+                            </i>
+                            Roles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/users" class="nav-link ">
+                            <i class="fas fa-user nav-icon">
+
+                            </i>
+                            Users
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link  nav-dropdown-toggle">
+              <i class="fas fa-users nav-icon">
+
+              </i>
+              User Management
+            </a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/users" class="nav-link ">
+                  <i class="fas fa-user nav-icon">
+
+                  </i>
+                  Event Organizer
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/users/refereelist"
+                  class="nav-link ">
+                  <i class="fas fa-user nav-icon">
+
+                  </i>
+                  Referee List
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/events" class="nav-link ">
+                    <i class="fas fa-cogs nav-icon">
+
+                    </i>
+                    Event Management
+                </a>
+            </li> -->
+
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link  nav-dropdown-toggle">
+              <i class="fa fa-calendar nav-icon">
+
+              </i>
+              Event Management
+            </a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/events" class="nav-link ">
+                  <i class="fa fa-calendar nav-icon">
+
+                  </i>
+                  All Events
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/events/runningEventList"
+                  class="nav-link ">
+                  <i class="fa fa-calendar nav-icon">
+
+                  </i>
+                  Running Events
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/events/upcomingEventList"
+                  class="nav-link ">
+                  <i class="fa fa-calendar nav-icon">
+
+                  </i>
+                  Upcoming Events
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/events/pastEventList"
+                  class="nav-link ">
+                  <i class="fa fa-calendar nav-icon">
+
+                  </i>
+                  Past Events
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/referees" class="nav-link ">
+              <i class="fas fa-cogs nav-icon">
+
+              </i>
+              Referee Management
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/bookedevents/list" class="nav-link ">
+              <i class="fas fa-cogs nav-icon">
+
+              </i>
+              Booked Event
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/manualnotifications/index"
+              class="nav-link ">
+              <i class="fas fa-cogs nav-icon">
+
+              </i>
+              Manual Notifications
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/helpsupports/list" class="nav-link ">
+              <i class="fas fa-cogs nav-icon">
+
+              </i>
+              Support Section
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/admin/wallet/list/1" class="nav-link ">
+              <i class="fas fa-cogs nav-icon">
+
+              </i>
+              Wallet Management
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+              <i class="nav-icon fas fa-sign-out-alt">
+
+              </i>
+              Logout
+            </a>
+          </li>
+        </ul>
+
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+          <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+        </div>
+        <div class="ps__rail-y" style="top: 0px; height: 869px; right: 0px;">
+          <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 415px;"></div>
+        </div>
+      </nav>
+      <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    </div>
+    <main class="main">
+
+
+      <div style="padding-top: 20px" class="container-fluid">
+
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <div class="row">
+              <div class="col-2">
+                <img style="width: 150px;" src="./assets/images/mainlogo.png">
+              </div>
+              <div class="col">
+                <h3 style="color: black" class="display-4"><b>Fluid jumbotron</b></h3>
+                <p2 style="color: black;"><b>This is a modified jumbotron that occupies the entire<br> horizontal space
+                    of its parent.</b></p2>
+              </div>
+              <div class="col-2">
+                <div class="row">
+                  <div class="col">
+                    <div class="btn-group" role="group">
+                      <button type="button" id="jeko" class="btn btn-danger">Left</button>
+                      <button style="margin-top: -35px; margin-left: 55px" type="button" id="jeko"
+                        class="btn btn-warning">Middle</button>
+                      <!-- <button type="button" id="jeko" class="btn btn-warning">Middle</button> -->
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <br><br><br><br>
+
+            <div class="row ">
+
+
+              <ul class="nav nav-tabs owl-carousel owl-theme" style="height: 50px;">
+
+                <li class="active ">
+                  <a data-toggle="tab" style="border: none; margin: 10px;  " href="#1"><b>Female Novice (Team)</b></a>
+                </li>
+
+                <li>
+                  <a data-toggle="tab" style="border: none; margin: 10px;  " href="#2"><b>Female Intermediate
+                      (Team)</b></a>
+                </li>
+                <li>
+                  <a data-toggle="tab" style="border: none; margin: 10px;  " href="#3"><b>Male Intermediate
+                      (Team)</b></a>
+                </li>
+                <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#4"><b>Female Masters 45+
+                      (Team)</b></a>
+                </li>
+                <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#5"><b>Male Masters 45+
+                      (Team)</b></a>
+                </li>
+                <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#6"><b>Female Intermediate</b></a>
+                </li>
+                <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#7"><b> Female Novice</b></a>
+                </li>
+                <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#8"><b>Male Intermediate</b></a>
+                </li>
+                <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#9"><b>Male Masters 45+</b></a>
+                </li>
+
+
+              </ul>
+
+              <!-- <div class="container" style="width: 5000000px; height: 25px; background-color: rgba(236, 236, 236, 0.5);" ></div> -->
+
+
+
+              <div class="tab-content" style="width: 1200px; margin-top: 70px">
+                <table class="table" style="margin-left: -25px; ">
+
+                </table>
+                <div id="1" class="tab-pane fade in active">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 1</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br><a data-toggle="modal" data-target="#exampleModal22" href="#">
+                            details</a></th>
+                        <th scope="col">WOD 2 <br><a data-toggle="modal" data-target="#exampleModal22" href="#">
+                            details</a></th>
+                        <th scope="col">WOD 3: Row <br><a data-toggle="modal" data-target="#exampleModal22" href="#">
+                            details</a></th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;"><a style="color: black; text-decoration: none; " href=""
+                              data-toggle="modal" data-target="#exampleModalCenter">QUICK, GRAB MY INHALER!<br>
+                              <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</a></span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <div id="2" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 2</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+                <div id="3" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 3</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+                <div id="4" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 4</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <div id="5" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 5</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <div id="6" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 6</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <div id="7" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 7</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <div id="8" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 8</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+                <div id="9" class="tab-pane fade">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Participants 9</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">WOD 1 <br>details</th>
+                        <th scope="col">WOD 2 <br>details</th>
+                        <th scope="col">WOD 3: Row <br>details</th>
+                      </tr>
+                    </thead>
+                    <thead>
+                      <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                        <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                        <th scope="col" style="color: grey;">Points</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                        <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <th scope="row" width="30%">1
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">2
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="30%">3
+                          <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
+                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
+                        </th>
+                        <td>20</td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                        <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+
+
+      </div>
+
+
+    </main>
+    <form id="logoutform" action="http://ec2-3-144-155-98.us-east-2.compute.amazonaws.com/logout" method="POST"
+      style="display: none;">
+      <input type="hidden" name="_token" value="eDdAPqwzV7zgNyQpIbfyuPdgZ7imMxYLOBiIwcdi">
+    </form>
+  </div>
 
 @endsection
