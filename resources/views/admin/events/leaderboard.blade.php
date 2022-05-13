@@ -299,6 +299,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <div class="row ">
+            <h4>Select Event Category to view leaderboard</h4>
             <ul class="nav nav-tabs owl-carousel owl-theme">
             @foreach($specifiedList as $key => $list)
             <li class="active ">
