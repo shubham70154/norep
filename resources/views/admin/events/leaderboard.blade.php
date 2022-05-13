@@ -335,7 +335,7 @@
               </li> -->
             </ul>
 
-            <div style="width: 100%; margin-top: 30px">
+            <div class="tab-content" style="width: 100%; margin-top: 30px">
               <div class="tab-pane">
                 <table class="table">
                   <thead>
