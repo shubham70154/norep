@@ -346,10 +346,9 @@
                         <span style="margin-left: 10px;"><a style="color: black; text-decoration: none;" href=""
                             data-toggle="modal" data-target="#exampleModalCenter">{{$list->name}} </a></span>
                       </th>
-                      <td>20</td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
+                      <td>0</td>
+                      <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
+                      <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
                     </tr>
                     @endforeach
                     
