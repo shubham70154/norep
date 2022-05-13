@@ -340,7 +340,7 @@ class EventsController extends Controller
                 $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
                 $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
                 $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
-                $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+                $participanttotalLists = $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
@@ -359,7 +359,7 @@ class EventsController extends Controller
                     $participants[] = $subevent;
                 }
                 $eventDetail->sub_events = $participants;
-                $eventDetail->total = ['participants' => $participantLists];
+                $eventDetail->total = ['participants' => $participanttotalLists];
                 $specifiedList = DB::table('event_specified_for')->select('id','title')
                         ->where('event_id' , $event_id)->get();
                 return view('admin.events.leaderboard', compact('eventDetail', 'specifiedList'));
@@ -377,7 +377,7 @@ class EventsController extends Controller
                 $participantLists = User::select('id', 'name');
                 $participantLists = $participantLists->addSelect(DB::raw( "'00' AS points"));
                 $participantLists = $participantLists->addSelect(DB::raw( "'--' AS time"));
-              return  $participantLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
+                $participanttotalLists = $participantLists->whereIn('id', $getAssignedParticipantLists)->get();
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
@@ -395,7 +395,7 @@ class EventsController extends Controller
                     $participants[] = $subevent;
                 }
                 $eventDetail->sub_events = $participants;
-                $eventDetail->total = ['participants' => $participantLists];
+                $eventDetail->total = ['participants' => $participanttotalLists];
                 $specifiedList = DB::table('event_specified_for')->select('id','title')
                         ->where('event_id' , $event_id)->get();
                 return view('admin.events.leaderboard', compact('eventDetail', 'specifiedList'));
