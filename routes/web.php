@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('subevent/leaderboard/{id}', 'SubEventsController@getSubEventLeaderBoard')->name('subevents.leaderboard');
 
-    Route::get('event/leaderboard/{id}', 'EventsController@getEventLeaderBoard')->name('events.leaderboard');
+    Route::get('event/leaderboard/{event_id}/{specified_id?}/{sub_event_id?}', 'EventsController@getEventLeaderBoard')->name('events.leaderboard');
 
     Route::resource('referees', 'RefereesController');
 
