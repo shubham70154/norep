@@ -335,8 +335,8 @@
               </li> -->
             </ul>
 
-            <div class="tab-content" style="width: 100%; margin-top: 30px">
-              <div class="tab-pane fade in active">
+            <div style="width: 100%; margin-top: 30px">
+              <div>
                 <table class="table">
                   <thead>
                     <tr>
