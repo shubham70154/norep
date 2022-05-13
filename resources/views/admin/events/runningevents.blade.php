@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th width="10">
-
+                                #ID
                         </th>
                         <th>
                             {{ trans('global.event.fields.title') }}
@@ -36,7 +36,7 @@
                     @foreach($allevents as $key => $event)
                         <tr data-entry-id="{{ $event->id }}">
                             <td>
-
+                                {{$key+1}}
                             </td>
                             <td>
                                 {{ $event->name ?? '' }}
