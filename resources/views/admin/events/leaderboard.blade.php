@@ -336,11 +336,10 @@
                   <tbody>
 
                     <tr>
-                    @foreach($eventDetail['sub_events'] as $key => $list)
-                      <th scope="row" width="30%">1
-                        <span style="margin-left: 10px;"><a style="color: black; text-decoration: none; " href=""
-                            data-toggle="modal" data-target="#exampleModalCenter">QUICK, GRAB MY INHALER!<br>
-                            <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</a></span></span>
+                    @foreach($eventDetail['total']['participants'] as $key => $list)
+                      <th scope="row" width="30%"> {{$key+1}}
+                        <span style="margin-left: 10px;"><a style="color: black; text-decoration: none;" href=""
+                            data-toggle="modal" data-target="#exampleModalCenter">{{$list->name}} </a></span>
                       </th>
                       <td>20</td>
                       <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
