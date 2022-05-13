@@ -294,6 +294,7 @@
   View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
 </div>
 
+<main class="main">
 <div class="container-fluid">
 
   <div class="jumbotron jumbotron-fluid">
@@ -859,6 +860,7 @@
 
 
 </div>
+</main>
 
 
 @push('scripts')
