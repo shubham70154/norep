@@ -300,8 +300,13 @@
         <div class="container">
           <div class="row ">
             <ul class="nav nav-tabs owl-carousel owl-theme">
+            @foreach($specifiedList as $key => $list)
+            <li class="active ">
+                <a data-toggle="tab" style="border: none; margin: 10px;  " href="#1"><b>{{$list->title}}</b></a>
+              </li>
+            @endforeach
 
-              <li class="active ">
+              <!-- <li class="active ">
                 <a data-toggle="tab" style="border: none; margin: 10px;  " href="#1"><b>Female Novice (Team)</b></a>
               </li>
 
@@ -326,7 +331,7 @@
               <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#8"><b>Male Intermediate</b></a>
               </li>
               <li><a data-toggle="tab" style="border: none; margin: 10px;  " href="#9"><b>Male Masters 45+</b></a>
-              </li>
+              </li> -->
             </ul>
 
             <div class="tab-content" style="width: 1200px; margin-top: 70px">
