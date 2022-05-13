@@ -40,7 +40,7 @@
 </style>
 @endpush
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -68,196 +68,14 @@
           </li>
         </ul>
 
-        <div class="tab-content">
-          <div id="11" class="tab-pane fade in active">
-
-
-            <div class="row">
-              <div class="col d-flex justify-content-center">
-
-                <p><b style="font-size: 30px;"> 1st</b> <br> OverAll</p>
-              </div>
-              <div class="col d-flex justify-content-center">
-                <p><b style="font-size: 30px;"> 7</b> <br> Total</p>
-              </div>
-            </div>
-            <div class="row">
-              <table class="table">
-
-                <tbody style="margin-left: 50px;">
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td width="100px">Reps:5</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-          <div id="12" class="tab-pane fade">
-            <div class="row">
-              <div class="col d-flex justify-content-center">
-
-                <p><b style="font-size: 30px;"> 1st</b> <br> OverAll</p>
-              </div>
-              <div class="col d-flex justify-content-center">
-                <p><b style="font-size: 30px;"> 7</b> <br> Total</p>
-              </div>
-            </div>
-            <div class="row">
-              <table class="table">
-
-                <tbody style="margin-left: 50px;">
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td width="100px">Reps:5</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                  <tr>
-
-                    <td><b>WOD 1</b><br>
-                      Points: 1</td>
-                    <td>Time: 06:45</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-          <div id="13" class="tab-pane fade">
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-
-              <div class="col">
-                <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
-              </div>
-              <div class="col" style="margin-top: 15px; margin-left: -350px;">
-                <p2><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
-
-              </div>
-            </div>
-            <hr>
-
-          </div>
-
-        </div>
+       
       </div>
 
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -276,7 +94,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 @section('content')
 @can('product_create')
