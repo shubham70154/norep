@@ -299,6 +299,11 @@
         <div class="container">
           <div class="row ">
             <ul class="nav nav-tabs owl-carousel owl-theme">
+            <li>
+                <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; ">
+                 <b>All</b>
+                </a>
+              </li>
             @foreach($specifiedList as $key => $list)
               <li>
                 <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; ">
