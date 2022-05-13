@@ -15,7 +15,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 40vh;
   }
 
   a {
@@ -299,8 +298,6 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <div class="row ">
-            <h6>Select Event Category to view leaderboard</h6>
-            <br>
             <ul class="nav nav-tabs owl-carousel owl-theme">
             @foreach($specifiedList as $key => $list)
             <li class="active ">
