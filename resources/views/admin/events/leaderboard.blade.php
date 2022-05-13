@@ -292,11 +292,9 @@
 
 <div class="card">
   <div class="card-header">
-    View Leaderboard for {{ $eventDetail->name ?? '' }}
+    View Leaderboard for <b>{{ $eventDetail->name ?? '' }}</b>
   </div>
-  <?php
-  echo "<pre>";dd($eventDetail);
-  ?>
+
   <div class="card-body">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
