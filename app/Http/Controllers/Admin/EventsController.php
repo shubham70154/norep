@@ -329,7 +329,7 @@ class EventsController extends Controller
                         ['event_specified_id', $specified_id]
                     ])->pluck('sub_event_id')->toArray();
 
-               return $getSubEvents = SubEvent::whereIn('id', $sub_event_ids)->get();
+                $getSubEvents = SubEvent::whereIn('id', $sub_event_ids)->get();
             
                 $getAssignedParticipantLists = UserJoinedEvent::where([
                     ['event_id', $event_id],
