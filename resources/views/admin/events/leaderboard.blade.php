@@ -17,7 +17,7 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header" style="background-image: url(./assets/images/480x400_athlete_brag621.png); height: 200px;" >
+        <div class="modal-header" style="height: 200px;" >
           <h5 style="text-align: center; margin-left: 50px; margin-right: 50px; margin-top: 80px; color: white; font-size: 20px;" class="modal-title" id="exampleModalLongTitle"><b>QUICK, GRAB MY INHALER!
             AREA 56 WAREHOUSE GYM</b></h5>
           <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
@@ -208,7 +208,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div>
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
