@@ -313,7 +313,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Participants 1</th>
+                      <th scope="col">Participants</th>
                       <th scope="col">Total</th>
                       @foreach($eventDetail['sub_events'] as $key => $list)
                         <th scope="col">{{$list->name}}<br>
@@ -327,14 +327,16 @@
                     <tr style="background-color: rgba(134, 134, 134, 0.192);">
                       <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
                       <th scope="col" style="color: grey;">Points</th>
-                      <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
-                      <th scope="col" style="color: grey;">Points&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reps</th>
-                      <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reps</th>
+                      @foreach($eventDetail['sub_events'] as $key => $list)
+                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time</th>
+                      @endforeach
                     </tr>
                   </thead>
 
                   <tbody>
+
                     <tr>
+                    @foreach($eventDetail['sub_events'] as $key => $list)
                       <th scope="row" width="30%">1
                         <span style="margin-left: 10px;"><a style="color: black; text-decoration: none; " href=""
                             data-toggle="modal" data-target="#exampleModalCenter">QUICK, GRAB MY INHALER!<br>
@@ -345,26 +347,8 @@
                       <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
                       <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
                     </tr>
-                    <tr>
-                      <th scope="row" width="30%">2
-                        <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                          <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
-                      </th>
-                      <td>20</td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" width="30%">3
-                        <span style="margin-left: 10px;">QUICK, GRAB MY INHALER!<br>
-                          <span style="font-size: 10px; margin-left: 25px;">AREA 56 WAREHOUSE GYM</span></span>
-                      </th>
-                      <td>20</td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                      <td>20 <span id="reps" style="margin-left: 55px;">55</span></td>
-                    </tr>
+                    @endforeach
+                    
                   </tbody>
                 </table>
               </div>
