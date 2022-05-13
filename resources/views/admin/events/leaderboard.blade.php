@@ -322,7 +322,7 @@
                       <th scope="col">Total</th>
                       @foreach($eventDetail['sub_events'] as $key => $list)
                         <th scope="col">{{$list->name}}<br>
-                          <a data-toggle="modal" data-target="#exampleModal22" href="#">details</a>
+                          <!-- <a data-toggle="modal" data-target="#exampleModal22" href="#">details</a> -->
                         </th>
                       
                       @endforeach
