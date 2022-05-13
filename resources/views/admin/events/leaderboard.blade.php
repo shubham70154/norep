@@ -347,8 +347,9 @@
                             data-toggle="modal" data-target="#exampleModalCenter">{{$list->name}} </a></span>
                       </th>
                       <td>00</td>
-                      <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
-                      <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
+                      @foreach($eventDetail['sub_events'] as $key => $list)
+                        <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
+                      @endforeach
                     </tr>
                     @endforeach
                     
