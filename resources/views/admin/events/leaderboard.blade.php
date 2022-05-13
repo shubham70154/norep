@@ -142,7 +142,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div>
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
@@ -153,7 +153,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div>
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
@@ -164,7 +164,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div>
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
@@ -175,7 +175,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div>
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
@@ -186,7 +186,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div> 
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
@@ -197,7 +197,7 @@
                 <div class="row">
                   
                   <div class="col">
-                    <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;">
+                    <!-- <img src="./assets/images/download.png" style="width: 50px; margin-top: 15px;"> -->
                   </div>
                   <div class="col" style="margin-top: 15px; margin-left: -350px;">
                     <p2 ><b>KARA SKELLEY</b><br>AREA 56 WAREHOUSE GYM</p2>
