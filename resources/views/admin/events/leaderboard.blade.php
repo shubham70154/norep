@@ -299,11 +299,12 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <div class="row ">
-            <h4>Select Event Category to view leaderboard</h4>
+            <h6>Select Event Category to view leaderboard</h6>
+            <br>
             <ul class="nav nav-tabs owl-carousel owl-theme">
             @foreach($specifiedList as $key => $list)
             <li class="active ">
-                <a data-toggle="tab" style="border: none; margin: 10px;  " href="#1"><b>{{$list->title}}</b></a>
+                <a data-toggle="tab" style="border: none; margin: 10px; font-size:18px; " href="#1"><b>{{$list->title}}</b></a>
               </li>
             @endforeach
 
