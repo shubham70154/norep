@@ -294,12 +294,12 @@
   View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
 </div>
 
-<div style="padding-top: 20px" class="container-fluid">
+<div class="container-fluid">
 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <div class="row ">
-        <ul class="nav nav-tabs owl-carousel owl-theme" style="height: 50px;">
+        <ul class="nav nav-tabs owl-carousel owl-theme">
 
           <li class="active ">
             <a data-toggle="tab" style="border: none; margin: 10px;  " href="#1"><b>Female Novice (Team)</b></a>
