@@ -343,7 +343,7 @@ class EventsController extends Controller
 
                 $participants = [];
                 foreach($getSubEvents as $subevent){
-                   return $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
+                    $SubEventSpecify = SubEventSpecify::where('sub_event_id', $subevent->id)->pluck('event_specified_id')->toArray();
                     $subevent->subeventspecify = $SubEventSpecify;
                     $SubEventSpecifyUser = UserJoinedEvent::where('event_id', $event_id)
                         ->whereIn('event_specified_id', $SubEventSpecify)->pluck('user_id')->toArray();
