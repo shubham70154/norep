@@ -16,20 +16,6 @@
 
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-          <div class="row">
-            <div class="col-2">
-              <div class="row">
-                  <div class="col">
-                      <div class="btn-group"  role="group" >
-                        <button type="button" id="jeko" class="btn btn-danger">Left</button>
-                        <button style="margin-top: -35px; margin-left: 55px" type="button" id="jeko" class="btn btn-warning">Middle</button>
-                        <!-- <button type="button" id="jeko" class="btn btn-warning">Middle</button> -->
-                    </div>
-                  </div>                  
-              </div>
-            </div>
-          </div>
-          <br><br><br><br>
 
         <div class="row ">        
             <ul class="nav nav-tabs owl-carousel owl-theme" style="height: 50px;">
