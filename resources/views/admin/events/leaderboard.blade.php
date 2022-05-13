@@ -43,8 +43,6 @@
               
             <div class="tab-content">
               <div id="11" class="tab-pane fade in active">
-                        
-
                         <div class="row">
                           <div class="col d-flex justify-content-center">
 
