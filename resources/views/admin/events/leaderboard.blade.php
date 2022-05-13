@@ -10,6 +10,10 @@
     </div>
 @endcan
 
+<div class="card-header">
+        View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
+    </div>
+    
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -287,10 +291,7 @@
       }
   </style>
 
-<div class="card">
-    <div class="card-header">
-        View Leaderboard for {{ $eventDetail['data']->name ?? '' }}
-    </div>
+<!-- <div class="card"> -->
 
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
@@ -820,6 +821,6 @@
         </div>
       </div>
     </div>
-</div>
+<!-- </div> -->
 
 @endsection
