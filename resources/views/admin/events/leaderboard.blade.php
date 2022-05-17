@@ -15,6 +15,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 0.5rem 1.5rem !important;
   }
 
   a {
