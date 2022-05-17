@@ -102,7 +102,7 @@
   <div class="card-body">
     <div class="specified">
         <div class="row">
-        <ul class="nav nav-pills">
+        <ul class="nav">
         <li class="nav-item">
             <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link">
                 <b>All</b>
