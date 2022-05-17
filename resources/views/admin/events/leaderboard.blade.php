@@ -113,8 +113,8 @@
   </div>
 
   <div class="card-body">
-    <div class="jumbotron jumbotron-fluid">
-        
+    <div class="jumbotron">
+        <div class="">
           <div class="row ">
             <ul class="nav nav-tabs owl-carousel owl-theme">
             <li>
@@ -179,7 +179,7 @@
 
 
           </div>
-       
+        </div>
       </div>
       <!-- </div> -->
 
