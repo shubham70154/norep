@@ -11,10 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
   .specified {
-    color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #e4e7ea;
     padding: 0.5rem 1.5rem !important;
   }
 
@@ -114,74 +111,72 @@
   </div>
 
   <div class="card-body">
-    <div class="jumbotron">
-        <div class="">
-          <div class="row ">
-            <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link">
-                 <b>All</b>
-                </a>
+    <div class="specified">
+        <div class="row ">
+        <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link">
+                <b>All</b>
+            </a>
+        </li>
+        @foreach($specifiedList as $key => $list)
+            <li>
+            <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link active">
+                <b>{{$list->title}}</b>
+            </a>
             </li>
-            @foreach($specifiedList as $key => $list)
-              <li>
-                <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link active">
-                 <b>{{$list->title}}</b>
-                </a>
-              </li>
-            @endforeach
-            </ul>
+        @endforeach
+        </ul>
 
-            <div class="tab-content" style="width: 100%; margin-top: 30px">
-              <div class="tab-pane in active">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Participants</th>
-                      <th scope="col">Total</th>
-                      @foreach($eventDetail['sub_events'] as $key => $list)
-                        <th scope="col">{{$list->name}}<br>
-                          <!-- <a data-toggle="modal" data-target="#exampleModal22" href="#">details</a> -->
-                        </th>
-                      
-                      @endforeach
-                    </tr>
-                  </thead>
-                  <thead>
-                    <tr style="background-color: rgba(134, 134, 134, 0.192);">
-                      <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
-                      <th scope="col" style="color: grey;">Points</th>
-                      @foreach($eventDetail['sub_events'] as $key => $list)
-                        <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time</th>
-                      @endforeach
-                    </tr>
-                  </thead>
-
-                  <tbody>
-
-                    <tr>
-                    @foreach($eventDetail['total']['participants'] as $key => $list)
-                      <th scope="row" width="30%"> {{$key+1}}
-                        <span style="margin-left: 10px;"><a style="color: black; text-decoration: none;" href=""
-                            data-toggle="modal" data-target="#exampleModalCenter">{{$list->name}} </a></span>
-                      </th>
-                      <td>00</td>
-                      @foreach($eventDetail['sub_events'] as $listing)
-                        <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
-                      @endforeach
-                    </tr>
-                    @endforeach
+        <div class="tab-content" style="width: 100%; margin-top: 30px">
+            <div class="tab-pane in active">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Participants</th>
+                    <th scope="col">Total</th>
+                    @foreach($eventDetail['sub_events'] as $key => $list)
+                    <th scope="col">{{$list->name}}<br>
+                        <!-- <a data-toggle="modal" data-target="#exampleModal22" href="#">details</a> -->
+                    </th>
                     
-                  </tbody>
-                </table>
-              </div>
+                    @endforeach
+                </tr>
+                </thead>
+                <thead>
+                <tr style="background-color: rgba(134, 134, 134, 0.192);">
+                    <th scope="col" style="color: grey;"># &nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+                    <th scope="col" style="color: grey;">Points</th>
+                    @foreach($eventDetail['sub_events'] as $key => $list)
+                    <th scope="col" style="color: grey;">Points &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time</th>
+                    @endforeach
+                </tr>
+                </thead>
 
+                <tbody>
+
+                <tr>
+                @foreach($eventDetail['total']['participants'] as $key => $list)
+                    <th scope="row" width="30%"> {{$key+1}}
+                    <span style="margin-left: 10px;"><a style="color: black; text-decoration: none;" href=""
+                        data-toggle="modal" data-target="#exampleModalCenter">{{$list->name}} </a></span>
+                    </th>
+                    <td>00</td>
+                    @foreach($eventDetail['sub_events'] as $listing)
+                    <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
+                    @endforeach
+                </tr>
+                @endforeach
+                
+                </tbody>
+            </table>
             </div>
 
-
-          </div>
         </div>
-      </div>
+
+
+        </div>
+    </div>
       <!-- </div> -->
 
 
