@@ -154,12 +154,6 @@
                     @foreach($eventDetail['sub_events'] as $listing)
                     <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
                     @endforeach
-                    @foreach($eventDetail['sub_events'] as $listing)
-                    <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
-                    @endforeach
-                    @foreach($eventDetail['sub_events'] as $listing)
-                    <td>{{$list->points}} <span id="reps" style="margin-left: 55px;">{{$list->time}}</span></td>
-                    @endforeach
                 </tr>
                 @endforeach
                 
