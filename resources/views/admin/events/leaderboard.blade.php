@@ -10,11 +10,7 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
-  .jumbotron {
-    color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  .specified {
     padding: 0.5rem 1.5rem !important;
   }
 
@@ -114,7 +110,7 @@
   </div>
 
   <div class="card-body">
-    <div class="jumbotron">
+    <div class="specified">
         <div class="">
           <div class="row ">
             <ul class="nav nav-pills">
