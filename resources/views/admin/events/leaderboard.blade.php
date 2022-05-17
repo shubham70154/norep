@@ -11,6 +11,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
   .specified {
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 0.5rem 1.5rem !important;
   }
 
@@ -110,7 +114,7 @@
   </div>
 
   <div class="card-body">
-    <div class="specified">
+    <div class="jumbotron">
         <div class="">
           <div class="row ">
             <ul class="nav nav-pills">
