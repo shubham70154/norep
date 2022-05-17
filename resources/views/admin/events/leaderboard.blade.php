@@ -118,13 +118,13 @@
           <div class="row ">
             <ul class="nav nav-pills">
             <li class="nav-item">
-                <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link active">
+                <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link">
                  <b>All</b>
                 </a>
             </li>
             @foreach($specifiedList as $key => $list)
               <li>
-                <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; ">
+                <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link active">
                  <b>{{$list->title}}</b>
                 </a>
               </li>
