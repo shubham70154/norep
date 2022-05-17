@@ -24,17 +24,6 @@
     color: red;
     text-decoration: none;
   }
-
-  #jeko {
-    margin-right: 30px;
-    margin-top: 120px;
-    border-radius: 0px;
-    margin-left: -10px;
-  }
-
-  .btn-group {
-    margin-left: -20px;
-  }
 </style>
 @endpush
 
@@ -112,7 +101,7 @@
 
   <div class="card-body">
     <div class="specified">
-        <div class="row ">
+        <div class="row">
         <ul class="nav nav-pills">
         <li class="nav-item">
             <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link">
