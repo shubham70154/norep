@@ -116,12 +116,12 @@
     <div class="jumbotron">
         <div class="">
           <div class="row ">
-            <ul class="nav nav-tabs owl-carousel owl-theme">
-            <li>
-                <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; ">
+            <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a href="{{ route('admin.events.leaderboard', $eventDetail->id) }}" style="border: none; margin: 10px; font-size:18px; " class="nav-link active">
                  <b>All</b>
                 </a>
-              </li>
+            </li>
             @foreach($specifiedList as $key => $list)
               <li>
                 <a href="{{ route('admin.events.leaderboard', [$eventDetail->id,$list->id]) }}" style="border: none; margin: 10px; font-size:18px; ">
